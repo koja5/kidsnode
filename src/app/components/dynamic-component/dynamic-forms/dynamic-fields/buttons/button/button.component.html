@@ -1,0 +1,10 @@
+<div [ngClass]="[config.positionClass]">
+  <button
+    ejs-button
+    [disabled]="config.disabled"
+    type="submit"
+    [class]="config.class"
+  >
+    {{config.label}}
+  </button>
+</div>

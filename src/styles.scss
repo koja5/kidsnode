@@ -16,3 +16,28 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     line-height: 0.9375rem;
     font-weight: bold;
 }
+
+.form-group {
+    display: inline-block;
+    margin-bottom: 4px !important;
+}
+
+.position-start {
+    text-align: start;
+}
+
+.position-center {
+    text-align: center;
+}
+
+.position-end {
+    text-align: end;
+}
+
+.e-btn, .e-css.e-btn {
+    padding: 10px 12px 10px !important;
+}
+
+.display-none {
+    display: none;
+}

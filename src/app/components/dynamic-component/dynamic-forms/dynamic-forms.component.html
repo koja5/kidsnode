@@ -1,0 +1,37 @@
+<div *ngIf="config.additionalInfo">
+  <div class="card card-form">
+    <div class="row no-gutters">
+      <div class="col-lg-4 card-body">
+        <p>
+          <strong class="headings-color">{{
+            config.additionalInfo.title
+          }}</strong>
+        </p>
+        <p class="text-muted">{{ config.additionalInfo.text }}</p>
+      </div>
+      <div class="col-lg-8 card-form__body card-body">
+        <form [formGroup]="form" (submit)="handleSubmit($event)">
+          <ng-container
+            *ngFor="let field of config.config"
+            dynamicField
+            [config]="field"
+            [group]="form"
+          >
+          </ng-container>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="config.additionalInfo === undefined">
+  <form [formGroup]="form" (submit)="handleSubmit($event)">
+    <ng-container
+      *ngFor="let field of config.config"
+      dynamicField
+      [config]="field"
+      [group]="form"
+    >
+    </ng-container>
+  </form>
+</div>
