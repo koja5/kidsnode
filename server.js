@@ -1,6 +1,7 @@
-const express = require("express");
-const app = express();
+// const express = require("express");
+const app = require('./server/config/app');
 const http = require('http');
+const path = require('path');
 const bodyParser = require('body-parser');
 const api = require("./server/api");
 

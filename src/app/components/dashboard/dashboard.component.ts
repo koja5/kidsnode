@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -65,7 +66,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private helpService: HelpService,
     private storageService: StorageService,
-    private configurationService: ConfigurationService
+    private configurationService: ConfigurationService,
+    private callApi: CallApiService
   ) {
     this.initialCollapseMenu();
   }
