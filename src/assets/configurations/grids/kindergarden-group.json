@@ -1,0 +1,105 @@
+{
+  "pageSize": 10,
+  "request": {
+    "type": "GET",
+    "api": "/api/getKindergardenGroup",
+    "parameters": ["superadmin"],
+    "fields": "",
+    "root": ""
+  },
+  "paging": {
+    "enable": true,
+    "settings": {
+      "pageSize": 10
+    }
+  },
+  "sorting": {
+    "enable": false
+  },
+  "grouping": {
+    "enable": true,
+    "group": []
+  },
+  "filtering": {
+    "enable": false
+  },
+  "customGrouping": false,
+  "allowResizing": true,
+  "reorderable": true,
+  "selectable": true,
+  "scrollable": false,
+  "hideable": true,
+  "refresh": false,
+  "reset": true,
+  "toolbar": ["Add", "Edit", "Delete", "Print", "Search"],
+  "editSettings": {
+    "allowEditing": true,
+    "allowAdding": true,
+    "allowDeleting": true,
+    "showDeleteConfirmDialog": true,
+    "mode": "Dialog"
+  },
+  "editSettingsRequest": {
+    "add": {
+      "type": "POST",
+      "api": "/api/createToDo",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "edit": {
+      "type": "POST",
+      "api": "/api/updateToDo",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "delete": {
+      "type": "POST",
+      "api": "/api/deleteTodo",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    }
+  },
+  "columns": [
+    {
+      "title": "ID",
+      "width": 70,
+      "filterable": true,
+      "hideable": true,
+      "filter": "date",
+      "type": "number",
+      "class": "text-align-right",
+      "field": "id",
+      "isPrimaryKey": true,
+      "allowEditing": false
+    },
+    {
+      "title": "Name",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "name",
+      "validation": { "required": true }
+    }
+  ],
+  "configField": [
+    {
+      "type": "textbox",
+      "width": "col-md-12",
+      "name": "id",
+      "label": "ID",
+      "field": "id",
+      "readonly": true
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-12",
+      "name": "name",
+      "label": "Name",
+      "field": "name"
+    }
+  ]
+}

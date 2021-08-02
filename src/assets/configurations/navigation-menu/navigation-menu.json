@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Deca",
+    "menu": [
+      {
+        "icon": "",
+        "title": "Grupe",
+        "link": "/dashboard/children/group",
+        "rights": ""
+      },
+      {
+        "icon": "",
+        "title": "Zahtevi",
+        "link": "",
+        "rights": "",
+        "children": [
+          {
+            "icon": "",
+            "title": "Svi zahtevi",
+            "link": "/login",
+            "rights": ""
+          },
+          {
+            "icon": "",
+            "title": "Obradjeni/Bodovani",
+            "link": "/login",
+            "rights": ""
+          },
+          {
+            "icon": "",
+            "title": "Dokumenta za upis",
+            "link": "/login",
+            "rights": ""
+          }
+        ]
+      },
+      {
+        "icon": "",
+        "title": "Popis dece",
+        "link": "dashboard/groups",
+        "rights": ""
+      },
+      {
+        "icon": "",
+        "title": "Upisne grupe",
+        "link": "dashboard/groups",
+        "rights": ""
+      }
+    ]
+  },
+  {
+    "title": "Organizacija",
+    "menu": [
+      {
+        "icon": "",
+        "title": "Deca",
+        "link": "dashboard/groups",
+        "rights": ""
+      },
+      {
+        "icon": "",
+        "title": "Zaposleni",
+        "link": "dashboard/groups",
+        "rights": ""
+      }
+    ]
+  }
+]

@@ -1,18 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-@import '~material-kit/assets/scss/material-kit';
+@import "~bootstrap/scss/bootstrap";
+// @import "~material-kit/assets/scss/material-kit";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+span {
+  font-family: "Roboto", sans-serif !important;
+}
 
 .custom-label {
-    display: inline-block;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    color: rgba(147, 159, 173, 0.84);
-    line-height: 0.9375rem;
-    font-weight: bold;
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(147, 159, 173, 0.84);
+  line-height: 0.9375rem;
+  font-weight: bold;
+}
+
+.form-group {
+  display: inline-block;
+  margin-bottom: 4px !important;
+}
+
+.position-start {
+  text-align: start;
+}
+
+.position-center {
+  text-align: center;
+}
+
+.position-end {
+  text-align: end;
+}
+
+.e-btn,
+.e-css.e-btn {
+  padding: 10px 12px 10px !important;
+}
+
+.display-none {
+  display: none;
+}
+
+.e-info {
+    background: #18137A !important;
+    padding: 15px !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

@@ -1,0 +1,134 @@
+h2, h4, p {
+    font-family: "Comic Sans MS" !important;
+    font-weight: bold;
+}
+
+.forny-container {
+  background-size: contain;
+  display: block;
+  align-items: center;
+}
+.forny-inner {
+  display: block;
+  height: 100vh;
+  width: 100%;
+}
+.forny-two-pane {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.forny-two-pane > div {
+  flex: 1;
+  background-color: #fff;
+}
+.forny-two-pane > div:first-child {
+  display: flex;
+  align-items: center;
+}
+.forny-two-pane > div:last-child {
+  display: none;
+  background: #e2f9e4;
+  background: var(--forny-color-accent-100);
+  color: #0e5813;
+  color: var(--forny-color-accent-700);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.forny-form {
+  padding: 2.5rem;
+  padding: var(--forny-form-paddings);
+  background: #fff;
+}
+.forny-container h4 {
+  font-weight: 700;
+}
+.forny-container .btn-social {
+  font-weight: 500;
+}
+.forny-form .forny-logo {
+  text-align: left;
+  color: #313e49;
+  color: var(--forny-color-gray-900);
+}
+@media (min-width: 768px) {
+  .forny-container {
+    background-color: #f5f7fa;
+    background-color: var(--forny-color-gray-100);
+  }
+  .forny-two-pane > div:last-child {
+    display: flex;
+  }
+}
+.forny-container .btn-social {
+  color: #313e49;
+  color: var(--forny-color-gray-900);
+  background-color: transparent !important;
+  width: auto;
+  display: inline-block;
+  font-size: 0.875rem;
+  font-size: var(--forny-text-sm);
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-right: 1rem !important;
+  margin-right: var(--forny-p4) !important;
+}
+.forny-container .btn-social:hover {
+  text-decoration: underline;
+}
+.forny-form .form-group {
+  margin-bottom: 1rem;
+  margin-bottom: var(--forny-p4);
+  background: 0 0;
+  background: var(--forny-form-control-background);
+  border-radius: 0;
+  border-radius: var(--forny-form-control-radius);
+  transition: box-shadow 0.3s;
+  border: 1px solid transparent;
+  border: 1px solid var(--forny-form-control-background);
+}
+.forny-form .btn {
+  border-radius: 0;
+  border-radius: var(--forny-form-control-radius);
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  padding: var(--forny-p2) var(--forny-p4);
+}
+.forny-form .input-group .input-group-prepend + .form-control {
+  padding-left: 0.5rem;
+  padding-left: var(--forny-p2);
+}
+
+.left-pane {
+    text-align: center;
+}
+
+.welcome {
+    font-weight: bold;
+}
+
+.container-login {
+    height: 100%;
+    width: 100%;
+    display: table;
+}
+
+.content {
+    vertical-align: middle;
+    height: 100%;
+    display: table-cell;
+}
+
+.login-form {
+    padding: 2% 10%;
+}
+
+.login-button {
+    background: #18137A !important;
+}
+
+.logo img {
+
+  width: 225px;
+}

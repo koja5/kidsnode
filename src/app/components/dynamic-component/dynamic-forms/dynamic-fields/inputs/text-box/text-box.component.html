@@ -1,0 +1,4 @@
+<div [ngClass]="[config.width]" [formGroup]="group" class="form-group">
+  <label *ngIf="config.label" class="custom-label">{{config.label}}</label>
+  <ejs-textbox cssClass="{{config.class}}" [id]="config.name" [type]="config.type" [placeholder]="config.placeholder ? config.placeholder : ''" [formControlName]="config.name" [readonly]="config.readonly" [disabled]="config.disabled!"></ejs-textbox>
+</div>

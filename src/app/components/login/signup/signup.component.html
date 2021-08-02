@@ -1,0 +1,151 @@
+<body>
+  <div class="col-lg-3 col-md-12 col-sm-12 left-side">
+    
+    <div class="logo pt-4">
+      <img src="./assets/logo_white.png">
+    </div>
+    <div class="container-signup">
+      <div class="content">
+        <div class="steps large-device-step">
+          <h2 class="title">{{ leftSideStep.title }}</h2>
+          <p class="text">{{ leftSideStep.text }}</p>
+        </div>
+        <div class="steps-items large-device-step">
+          <div
+            class="item"
+            [ngClass]="step > 0 ? 'done' : step === 0 ? 'active' : ''"
+          >
+            <h4>
+              <div class="step-number">
+                <span>1</span>
+              </div>
+              <span class="step-title"> Informacije o vrticu </span>
+            </h4>
+          </div>
+          <div
+            class="line"
+            [ngClass]="step > 1 ? 'done' : step === 1 ? 'active' : ''"
+          ></div>
+          <div
+            class="item"
+            [ngClass]="step > 1 ? 'done' : step === 1 ? 'active' : ''"
+          >
+            <h4>
+              <div class="step-number">
+                <span>2</span>
+              </div>
+              <span class="step-title"> Informacije o vlasniku </span>
+            </h4>
+          </div>
+
+          <div
+            class="line"
+            [ngClass]="step > 2 ? 'done' : step === 2 ? 'active' : ''"
+          ></div>
+          <div
+            class="item"
+            [ngClass]="step > 2 ? 'done' : step === 2 ? 'active' : ''"
+          >
+            <h4>
+              <div class="step-number">
+                <span>3</span>
+              </div>
+              <span class="step-title"> Informacije o direktoru </span>
+            </h4>
+          </div>
+          <div
+            class="line"
+            [ngClass]="step > 3 ? 'done' : step === 3 ? 'active' : ''"
+          ></div>
+          <div
+            class="item"
+            [ngClass]="step > 3 ? 'done' : step === 3 ? 'active' : ''"
+          >
+            <h4>
+              <div class="step-number">
+                <span>4</span>
+              </div>
+              <span class="step-title"> Uspesna regestracija </span>
+            </h4>
+          </div>
+        </div>
+        <div class="row steps-items small-device-step">
+          <div
+            class="item col-xs-3 col-sm-3 col-md-3"
+            [ngClass]="step > 0 ? 'done' : step === 0 ? 'active' : ''"
+          >
+            <h4>
+              <span class="step-title"> Informacije o vrticu </span>
+            </h4>
+          </div>
+          <div
+            class="item col-xs-3 col-sm-3 col-md-3"
+            [ngClass]="step > 1 ? 'done' : step === 1 ? 'active' : ''"
+          >
+            <h4>
+              <span class="step-title"> Informacije o vlasniku </span>
+            </h4>
+          </div>
+          <div
+            class="item col-xs-3 col-sm-3 col-md-3"
+            [ngClass]="step > 2 ? 'done' : step === 2 ? 'active' : ''"
+          >
+            <h4>
+              <span class="step-title"> Informacije o direktoru </span>
+            </h4>
+          </div>
+          <div
+            class="item col-xs-3 col-sm-3 col-md-3"
+            [ngClass]="step > 3 ? 'done' : step === 3 ? 'active' : ''"
+          >
+            <h4>
+              <span class="step-title"> Uspesna regestracija </span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9 col-md-12 col-sm-12 right-side">
+    <div>
+      <div class="content">
+        <div class="content-right">
+          <div class="content-right-title" *ngIf="step !== 3">
+            <h3>{{ rightSideStep.title }}</h3>
+            <p>{{ rightSideStep.text }}</p>
+          </div>
+          <div class="content-right-fields;">
+            <div *ngFor="let item of configField; let i = index">
+              <app-dynamic-forms
+                *ngIf="i === step"
+                [config]="item.form"
+                (submit)="submitData($event)"
+                #form="dynamicForm"
+              >
+              </app-dynamic-forms>
+            </div>
+            <div *ngIf="step === 3" class="main-container">
+              <div class="check-container">
+                <div class="check-background">
+                  <svg
+                    viewBox="0 0 65 51"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7 25L27.3077 44L58.5 7"
+                      stroke="white"
+                      stroke-width="13"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
