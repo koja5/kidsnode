@@ -14,6 +14,7 @@
     [allowPaging]="config.paging.enable"
     [pageSettings]="config.paging.settings"
     [allowFiltering]="config.filtering.enable"
+    (actionComplete)="actionComplete($event)"
   >
     <e-columns>
       <e-column
@@ -37,7 +38,7 @@
       <div ngForm>
         <div class="form-row">
           <app-dynamic-forms
-            [config]="config.configField"
+            [config]="config"
             (submit)="submitEmitter($event)"
             #form="dynamicForm"
           >

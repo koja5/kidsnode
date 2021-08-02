@@ -2,6 +2,9 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   DialogEditEventArgs,
+  SaveEventArgs,
+  EditSettingsModel,
+  ToolbarItems,
   GridComponent,
 } from '@syncfusion/ej2-angular-grids';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
@@ -81,7 +84,7 @@ export class DynamicGridComponent implements OnInit {
     if (args.requestType === 'beginEdit' || args.requestType === 'add') {
       args.dialog!.buttons = [];
       setTimeout(() => {
-        this.setValue(this.config.configField, args.rowData);
+        this.setValue(this.config.config, args.rowData);
       }, 50);
     }
 

@@ -85,10 +85,11 @@
       "validation": { "required": true }
     }
   ],
-  "configField": [
+  "config": [
     {
       "type": "textbox",
       "width": "col-md-12",
+      "class": "e-outline",
       "name": "id",
       "label": "ID",
       "field": "id",
@@ -97,9 +98,19 @@
     {
       "type": "textbox",
       "width": "col-md-12",
+      "class": "e-outline",
       "name": "name",
       "label": "Name",
       "field": "name"
+    },
+    {
+      "type": "button",
+      "width": "col-md-12",
+      "class": "e-info",
+      "name": "submit",
+      "label": "Sacuvaj",
+      "field": "submit",
+      "positionClass": "position-end mt-3 col-md-12"
     }
   ]
 }
