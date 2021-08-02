@@ -14,23 +14,29 @@ import { SignupComponent } from './components/login/signup/signup.component';
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { LoginModule } from './components/login/routing-module/login.module';
+import { FormsModule } from '@angular/forms';
+import { KindergardenGroupComponent } from './components/dashboard/children/kindergarden-group/kindergarden-group.component';
+import { ChildrenComponent } from './components/dashboard/children/children/children.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    LoginComponent,
-    SignupComponent,
-    ForgotPasswordComponent  
+    KindergardenGroupComponent,
+    ChildrenComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    FormsModule,
     AppRoutingModule,
     DynamicModuleModule,
     NgbModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

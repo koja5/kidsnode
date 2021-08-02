@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +13,9 @@ export class DashboardComponent implements OnInit {
   public transformContainerPosition = 'transform: translate3d(0px, 0px, 0px)';
   public sidebarClass = 'collapse-show';
   public mobileSidebarClass = 'display-none';
+  public username!: any;
+  public profileInfo = '';
+  public menu: any;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -57,17 +62,32 @@ export class DashboardComponent implements OnInit {
     ],
   };
 
-  constructor(private helpService: HelpService) {
+  constructor(
+    private helpService: HelpService,
+    private storageService: StorageService,
+    private configurationService: ConfigurationService
+  ) {
     this.initialCollapseMenu();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserInfo();
+    this.initializeConfigurations();
+  }
 
   initialCollapseMenu() {
     this.checkMobileForSidebar();
     for (let i = 0; i < 10; i++) {
       this.collapseMenuItems[i] = '';
     }
+  }
+
+  initializeConfigurations() {
+    this.configurationService
+      .getConfiguration('/navigation-menu', 'navigation-menu.json')
+      .subscribe((data) => {
+        this.menu = data;
+      });
   }
 
   checkMobileForSidebar() {
@@ -99,6 +119,18 @@ export class DashboardComponent implements OnInit {
       this.collapseMenuItems[i] = 'show';
     } else {
       this.collapseMenuItems[i] = '';
+    }
+  }
+
+  getUserInfo() {
+    this.username = this.storageService.getLocalStorageSimple('username');
+  }
+
+  myProfileInfo() {
+    if (this.profileInfo === '') {
+      this.profileInfo = 'show';
+    } else {
+      this.profileInfo = '';
     }
   }
 }

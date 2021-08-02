@@ -2,7 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
-@import "~material-kit/assets/scss/material-kit";
+// @import "~material-kit/assets/scss/material-kit";
 
 html,
 body {
@@ -59,4 +59,13 @@ span {
 
 .display-none {
   display: none;
+}
+
+.e-info {
+    background: #18137A !important;
+    padding: 15px !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
