@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor() {}
+  constructor(private storageService: StorageService) {}
 
   public get getToken() {
-    return {
-      'x-access-token':
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2Mjc5Mzg4NDksImV4cCI6MTYyNzk4MjA0OX0.50jcMrF9ITWCHhbGzuzK2wXvBY6HIZMZtrbspAIYkvI',
-    };
+      return {
+        'x-access-token': this.storageService.getLocalStorageSimple('token')?.split("\"").join("") + ""
+      };
   }
 }

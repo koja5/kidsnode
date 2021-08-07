@@ -6,6 +6,7 @@ const expiresToken = "12h";
 const jwt = require("jsonwebtoken");
 const auth = require("./config/auth");
 const logger = require('./config/logger');
+const verifyToken = require("./config/auth");
 
 var connection = mysql.createPool({
   host: "185.178.193.141",
@@ -82,7 +83,7 @@ router.post("/createAccountForKinderGarden", async function(req, res, next) {
   try {
     connection.getConnection(async function (err, conn) {
       if (err) {
-        // logger.log("error", err.sql + ". " + err.sqlMessage);
+        logger.log("error", err.sql + ". " + err.sqlMessage);
         return res.json(err);
       }
       req.body.kindergarden.password = await bcrypt.hash(
@@ -150,7 +151,7 @@ router.post("/createAccountForKinderGarden", async function(req, res, next) {
 router.post("/login", async (req, res, next) => {
   connection.getConnection(function (err, conn) {
     if (err) {
-      // logger.log("error", err.sql + ". " + err.sqlMessage);
+      logger.log("error", err.sql + ". " + err.sqlMessage);
       return res.json(err);
     }
     const email = req.body.email;
@@ -160,12 +161,13 @@ router.post("/login", async (req, res, next) => {
       [req.body.username, req.body.password],
       function (err, rows, fields) {
         if (err) {
-          // logger.log("error", err.sql + ". " + err.sqlMessage);
+          logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         }
         if (rows.length > 0) {
+          // dodaj unutar tokena da pored id-a user-a stoji i id vrtica kome dati user pripada
           const token = jwt.sign(
-            { user_id: rows[0].id, email },
+            { user_id: rows[0].id, kindergarden_id: rows[0].kindergarden_id, email },
             process.env.TOKEN_KEY,
             {
               expiresIn: expiresToken,
@@ -182,7 +184,7 @@ router.post("/login", async (req, res, next) => {
             [req.body.username, req.body.password],
             function (err, rows, fields) {
               if (err) {
-                // logger.log("error", err.sql + ". " + err.sqlMessage);
+                logger.log("error", err.sql + ". " + err.sqlMessage);
                 res.json(err);
               }
               if (rows.length > 0) {
@@ -207,9 +209,9 @@ router.post("/login", async (req, res, next) => {
   });
 });
 
-router.get("/getKindergardenGroup/:id", async (req, res, next) => {
+router.get("/getKindergardenGroup/:id", auth, async (req, res, next) => {
   try {
-
+    console.log(req);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -223,7 +225,7 @@ router.get("/getKindergardenGroup/:id", async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              logger.log("info", "Test");
+              // logger.log("info", "Test");
               res.json(rows);
             }
           }
@@ -235,9 +237,5 @@ router.get("/getKindergardenGroup/:id", async (req, res, next) => {
     res.json(ex);
   }
 });
-
-/*router.post("/welcome", auth, (req, res) => {
-  res.status(200).send("Welcome 🙌 ");
-});*/
 
 module.exports = router;

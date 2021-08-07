@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
@@ -67,7 +68,7 @@ export class DashboardComponent implements OnInit {
     private helpService: HelpService,
     private storageService: StorageService,
     private configurationService: ConfigurationService,
-    private callApi: CallApiService
+    private router: Router,
   ) {
     this.initialCollapseMenu();
   }
@@ -134,5 +135,10 @@ export class DashboardComponent implements OnInit {
     } else {
       this.profileInfo = '';
     }
+  }
+
+  logout() {
+    this.storageService.removeAllLocalStorage();
+    this.router.navigate(['/login']);
   }
 }

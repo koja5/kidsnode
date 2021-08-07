@@ -19,6 +19,14 @@ export class StorageService {
     return JSON.parse(JSON.stringify(sessionStorage.getItem(key)));
   }
 
+  removeAllSessionStorage() {
+    sessionStorage.clear();
+  }
+
+  removeSessionStorage(key: string) {
+    sessionStorage.removeItem(key);
+  }
+
   setLocalStorage(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -29,5 +37,13 @@ export class StorageService {
 
   getLocalStorageObject(key: string) {
     return JSON.parse(JSON.stringify(localStorage.getItem(key)));
+  }
+
+  removeAllLocalStorage() {
+    localStorage.clear();
+  }
+
+  removeLocalStorage(key: string) {
+    localStorage.removeItem(key);
   }
 }

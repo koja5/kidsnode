@@ -32,7 +32,7 @@ module.exports = class CustomTransport extends Transport {
       // The content of the file is checked to know if it is necessary to adapt the array
       try {
         const data = fs.readFile(
-          __dirname + "\\..\\logs\\..\\" + this.filename,
+          __dirname + "\\..\\logs\\" + this.filename,
           "utf8", function(err) {
               if(err) return err;
               return true;

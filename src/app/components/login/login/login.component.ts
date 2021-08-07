@@ -62,5 +62,6 @@ export class LoginComponent implements OnInit {
   }
   setUserInfo(data: any) {
     this.storageService.setLocalStorage('username', data.user[0].firstname);
+    this.storageService.setLocalStorage('token', data.token);
   }
 }
