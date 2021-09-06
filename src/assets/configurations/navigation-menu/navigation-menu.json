@@ -3,31 +3,31 @@
     "title": "Deca",
     "menu": [
       {
-        "icon": "",
+        "icon": "groups",
         "title": "Grupe",
         "link": "/dashboard/children/group",
         "rights": ""
       },
       {
-        "icon": "",
+        "icon": "format_list_numbered",
         "title": "Zahtevi",
         "link": "",
         "rights": "",
         "children": [
           {
-            "icon": "",
+            "icon": "text_snippet",
             "title": "Svi zahtevi",
             "link": "/login",
             "rights": ""
           },
           {
-            "icon": "",
+            "icon": "speaker_notes",
             "title": "Obradjeni/Bodovani",
             "link": "/login",
             "rights": ""
           },
           {
-            "icon": "",
+            "icon": "description",
             "title": "Dokumenta za upis",
             "link": "/login",
             "rights": ""
@@ -35,13 +35,13 @@
         ]
       },
       {
-        "icon": "",
+        "icon": "child_care",
         "title": "Popis dece",
         "link": "dashboard/groups",
         "rights": ""
       },
       {
-        "icon": "",
+        "icon": "speaker_group",
         "title": "Upisne grupe",
         "link": "dashboard/groups",
         "rights": ""
@@ -52,13 +52,13 @@
     "title": "Organizacija",
     "menu": [
       {
-        "icon": "",
+        "icon": "baby_changing_station",
         "title": "Deca",
         "link": "dashboard/groups",
         "rights": ""
       },
       {
-        "icon": "",
+        "icon": "people_alt",
         "title": "Zaposleni",
         "link": "dashboard/groups",
         "rights": ""

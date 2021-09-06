@@ -2,7 +2,17 @@
 
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
-//  @import "~material-kit/assets/scss/material-kit";
+// @import "~material-kit/assets/scss/material-kit";
+
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-angular-grids/styles/material.css';
 
 html,
 body {
@@ -10,7 +20,6 @@ body {
 }
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
 }
 
 h1,
@@ -20,8 +29,7 @@ h4,
 h5,
 h6,
 p,
-label,
-span {
+label {
   font-family: "Roboto", sans-serif !important;
 }
 
@@ -52,18 +60,8 @@ span {
   text-align: end;
 }
 
-.e-btn,
-.e-css.e-btn {
-  padding: 10px 12px 10px !important;
-}
-
 .display-none {
   display: none;
-}
-
-.e-info {
-    background: #18137A !important;
-    padding: 15px !important;
 }
 
 .cursor-pointer {
