@@ -12,8 +12,11 @@
     [allowGrouping]="config.grouping.enable"
     [allowResizing]="config.allowResizing"
     [allowPaging]="config.paging.enable"
+    [allowExcelExport]="true"
+    [allowPdfExport]="true"
     [pageSettings]="config.paging.settings"
     [allowFiltering]="config.filtering.enable"
+    [contextMenuItems]="config.contextMenuItems"
     (actionComplete)="actionComplete($event)"
   >
     <e-columns>

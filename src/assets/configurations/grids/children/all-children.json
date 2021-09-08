@@ -2,7 +2,7 @@
   "pageSize": 10,
   "request": {
     "type": "GET",
-    "api": "/api/getKindergardenGroup",
+    "api": "/api/getKindergardenSubgroup",
     "parameters": ["superadmin"],
     "fields": "",
     "root": ""
@@ -14,7 +14,7 @@
     }
   },
   "sorting": {
-    "enable": false
+    "enable": true
   },
   "grouping": {
     "enable": true,
@@ -31,6 +31,23 @@
   "hideable": true,
   "refresh": false,
   "reset": true,
+  "contextMenuItems": [
+    "AutoFit",
+    "AutoFitAll",
+    "SortAscending",
+    "SortDescending",
+    "Copy",
+    "Edit",
+    "Delete",
+    "Save",
+    "Cancel",
+    "FirstPage",
+    "PrevPage",
+    "LastPage",
+    "NextPage",
+    "Group",
+    "Ungroup"
+  ],
   "toolbar": ["Add", "Edit", "Delete", "Print", "Search"],
   "editSettings": {
     "allowEditing": true,
@@ -42,21 +59,21 @@
   "editSettingsRequest": {
     "add": {
       "type": "POST",
-      "api": "/api/createToDo",
+      "api": "/api/createKindergardenSubgroup",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "edit": {
       "type": "POST",
-      "api": "/api/updateToDo",
+      "api": "/api/updateKindergardenSubgroup",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "delete": {
       "type": "POST",
-      "api": "/api/deleteTodo",
+      "api": "/api/deleteKindergardenSubgroup",
       "parameters": [],
       "fields": "",
       "root": ""
@@ -83,6 +100,15 @@
       "class": "text-align-right",
       "field": "name",
       "validation": { "required": true }
+    },
+    {
+      "title": "Kindergarden name",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "kindergarden_group_name",
+      "validation": { "required": true }
     }
   ],
   "config": [
@@ -97,11 +123,66 @@
     },
     {
       "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "firstname",
+      "label": "Firstname",
+      "field": "firstname"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "lastname",
+      "label": "Lastname",
+      "field": "lastname"
+    },
+    {
+      "type": "radio",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "gender",
+      "label": "Gender",
+      "field": "gender",
+      "itemFields": [
+        {
+          "label": "Muski",
+          "value": "man"
+        },
+        {
+          "label": "Zenski",
+          "value": "femaly"
+        }
+      ]
+    },
+    {
+      "type": "datepicker",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "birthday",
+      "label": "Birthday",
+      "field": "birthday"
+    },
+    {
+      "type": "combobox",
       "width": "col-md-12",
       "class": "e-outline",
-      "name": "name",
-      "label": "Name",
-      "field": "name"
+      "name": "kindergarden_group_id",
+      "label": "Kindergarden group",
+      "field": { "text": "name", "value": "id" },
+      "request": {
+        "type": "GET",
+        "api": "/api/getKindergardenGroupByKindergardenId",
+        "parameters": [],
+        "fields": "",
+        "root": ""
+      },
+      "placeholder": "Please select kindergarden group",
+      "fieldConfig": {
+        "ignoreAccent": false,
+        "filter": true
+      },
+      "required": true
     },
     {
       "type": "button",

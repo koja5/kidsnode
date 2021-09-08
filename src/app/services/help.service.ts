@@ -15,7 +15,11 @@ export class HelpService {
   }
 
   getHeightForGridWithoutPx() {
-    return Number(window.innerHeight - 153);
+    if (window.innerWidth > 992) {
+      return Number(window.innerHeight - 320);
+    } else {
+      return Number(window.innerHeight - 345);
+    }
   }
 
   getHeightForGrid() {

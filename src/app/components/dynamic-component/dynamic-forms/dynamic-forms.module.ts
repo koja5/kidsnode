@@ -22,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComboBoxModule, MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { DynamicFieldsDirective } from './dynamic-fields/dynamic-fields.directive';
 import { DynamicFormsComponent } from './dynamic-forms.component';
+import { DatepickerComponent } from './dynamic-fields/inputs/datepicker/datepicker.component';
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { DynamicFormsComponent } from './dynamic-forms.component';
     MultiselectComponent,
     CheckboxComponent,
     RadioComponent,
-    ButtonComponent
+    ButtonComponent,
+    DatepickerComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +47,8 @@ import { DynamicFormsComponent } from './dynamic-forms.component';
     CheckBoxModule,
     RadioButtonModule,
     ButtonModule,
-    MultiSelectModule
+    MultiSelectModule,
+    DatePickerModule 
   ],
   exports: [DynamicFieldsDirective],
   entryComponents: [

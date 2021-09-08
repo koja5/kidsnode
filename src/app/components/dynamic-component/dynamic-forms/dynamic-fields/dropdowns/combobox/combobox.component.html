@@ -1,1 +1,14 @@
-<ejs-combobox cssClass="e-outline"></ejs-combobox>
+<div [ngClass]="[config.width]" [formGroup]="group" class="form-group">
+  <label *ngIf="config.label" class="custom-label">{{ config.label }}</label>
+  <ejs-combobox
+    cssClass="{{ config.class }}"
+    [id]="config.name"
+    [dataSource]="data"
+    [fields]="config.field"
+    [placeholder]="config.placeholder ? config.placeholder : ''"
+    [allowFiltering]="config.fieldConfig?.filter"
+    [ignoreAccent]="config.fieldConfig?.ignoreAccent"
+    [filterBarPlaceholder]="config.fieldConfig?.filterPlaceholder"
+    [formControlName]="config.name"
+  ></ejs-combobox>
+</div>

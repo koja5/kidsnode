@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KindergardenGroupComponent implements OnInit {
 
-  public path = '/grids';
+  public path = '/grids/children';
   public file = 'kindergarden-group.json';
 
   constructor() { }

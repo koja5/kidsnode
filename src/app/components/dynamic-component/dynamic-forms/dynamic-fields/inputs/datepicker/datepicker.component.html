@@ -1,0 +1,5 @@
+<div [ngClass]="[config.width]" [formGroup]="group" class="form-group">
+    <label *ngIf="config.label" class="custom-label">{{config.label}}</label>
+    <ejs-datepicker cssClass="{{config.class}}" [id]="config.name" [formControlName]="config.name" [disabled]="config.disabled!"></ejs-datepicker>
+  </div>
+  

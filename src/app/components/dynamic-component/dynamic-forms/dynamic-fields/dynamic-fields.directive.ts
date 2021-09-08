@@ -8,6 +8,7 @@ import { ButtonComponent } from './buttons/button/button.component';
 import { CheckboxComponent } from './buttons/checkbox/checkbox.component';
 import { RadioComponent } from './buttons/radio/radio.component';
 import { ComboboxComponent } from './dropdowns/combobox/combobox.component';
+import { DatepickerComponent } from './inputs/datepicker/datepicker.component';
 import { TextBoxComponent } from './inputs/text-box/text-box.component';
 
 
@@ -18,7 +19,8 @@ const components: {[type: string]: Type<Field>} = {
   combobox: ComboboxComponent,
   button: ButtonComponent,
   radio: RadioComponent,
-  checkbox: CheckboxComponent
+  checkbox: CheckboxComponent,
+  datepicker: DatepickerComponent
 };
 
 @Directive({

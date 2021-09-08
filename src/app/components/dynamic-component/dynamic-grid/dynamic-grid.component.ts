@@ -1,4 +1,11 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   DialogEditEventArgs,
@@ -6,11 +13,13 @@ import {
   EditSettingsModel,
   ToolbarItems,
   GridComponent,
+  ContextMenuItem,
 } from '@syncfusion/ej2-angular-grids';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
+import { ToastrComponent } from '../common/toastr/toastr.component';
 import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
 
 @Component({
@@ -36,11 +45,17 @@ export class DynamicGridComponent implements OnInit {
   constructor(
     private configurationService: ConfigurationService,
     private apiService: CallApiService,
-    private helpService: HelpService
+    private helpService: HelpService,
+    private toastr: ToastrComponent
   ) {}
 
   ngOnInit(): void {
     this.initializeConfig();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.height = this.helpService.getHeightForGridWithoutPx();
   }
 
   initializeConfig() {
@@ -49,8 +64,6 @@ export class DynamicGridComponent implements OnInit {
       .subscribe((data) => {
         this.config = data;
         this.height = this.helpService.getHeightForGridWithoutPx();
-        this.container.nativeElement.style.height =
-          this.helpService.getHeightForGrid();
         this.callApi(data);
       });
   }
@@ -89,11 +102,12 @@ export class DynamicGridComponent implements OnInit {
     }
 
     if (args.requestType === 'delete') {
-      this.deleteData(args.rowData);
+      this.deleteData(args);
     }
 
     this.typeOfModification = args.requestType as string;
     this.operations = args;
+    args.cancel = true;
   }
 
   submitEmitter(event: any) {
@@ -103,24 +117,38 @@ export class DynamicGridComponent implements OnInit {
       this.callServerMethod(this.config.editSettingsRequest.edit, event);
     }
 
-    /*this.operations.dialog.close();
-    this.initialization();*/
+    this.operations.dialog.close();
   }
 
   callServerMethod(request: any, data: any) {
     if (request.type === 'POST') {
       this.apiService.callPostMethod(request.api, data).subscribe((res) => {
-        console.log(res);
+        if (res) {
+          this.callApi(this.config);
+          this.toastr.showSuccess('Action is successed executed!');
+        } else {
+          this.toastr.showError('Action is not successed executed!');
+        }
       });
     } else {
       this.apiService.callGetMethod(request.api, data).subscribe((res) => {
-        console.log(res);
+        if (res) {
+          this.callApi(this.config);
+          this.toastr.showSuccess('Action is successed executed!');
+        } else {
+          this.toastr.showError('Action is not successed executed!');
+        }
       });
     }
   }
 
   deleteData(event: any) {
-    this.callServerMethod(this.config.editSettingsRequest.delete, event.id);
+    for (let i = 0; i < event.data.length; i++) {
+      this.callServerMethod(
+        this.config.editSettingsRequest.delete,
+        event.data[i]
+      );
+    }
   }
 
   setValue(fields: any, values: any) {

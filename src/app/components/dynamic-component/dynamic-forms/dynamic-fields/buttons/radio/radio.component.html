@@ -1,7 +1,22 @@
-<ejs-radiobutton label="Option 1" name="default"></ejs-radiobutton>
+<div [ngClass]="[config.width]" [formGroup]="group" class="form-group">
+  <label *ngIf="config.label" class="custom-label">{{ config.label }}</label>
+  <ul class="radio-button-ul">
+    <li class="radio-button-li" *ngFor="let item of config.itemFields">
+      <ejs-radiobutton
+        label="{{ item.label }}"
+        name="{{ config.name }}"
+        value="{{item.value}}"
+        [id]="config.name"
+        [formControlName]="config.name"
+        [readonly]="config.readonly"
+        [disabled]="config.disabled!"
+      ></ejs-radiobutton>
+    </li>
+  </ul>
+</div>
 
-<ejs-radiobutton
+<!-- <ejs-radiobutton
   label="Option 2"
   name="default"
   checked="true"
-></ejs-radiobutton>
+></ejs-radiobutton> -->

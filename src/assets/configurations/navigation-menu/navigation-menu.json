@@ -5,8 +5,22 @@
       {
         "icon": "groups",
         "title": "Grupe",
-        "link": "/dashboard/children/group",
-        "rights": ""
+        "rights": "",
+        "children": [
+          {
+            "icon": "text_snippet",
+            "title": "Upisne grupe",
+            "link": "/dashboard/children/group",
+            "rights": "",
+            "isDefault": true
+          },
+          {
+            "icon": "speaker_notes",
+            "title": "Grupe u vrticu",
+            "link": "/dashboard/children/subgroup",
+            "rights": ""
+          }
+        ]
       },
       {
         "icon": "format_list_numbered",
@@ -37,7 +51,7 @@
       {
         "icon": "child_care",
         "title": "Popis dece",
-        "link": "dashboard/groups",
+        "link": "/dashboard/children/all-children",
         "rights": ""
       },
       {

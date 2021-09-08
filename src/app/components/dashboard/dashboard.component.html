@@ -1,4 +1,4 @@
-<body data-sidebar="colored" class="{{ sidebarClass }}">
+<body data-topbar="dark" class="{{ sidebarClass }}">
   <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
   <!-- Begin page -->
@@ -13,7 +13,7 @@
                 <img src="./assets/logo_sm.png" alt="" height="45" />
               </span>
               <span class="logo-lg">
-                <img src="./assets/logo.png" alt="" height="50" />
+                <img src="./assets/logo_light.png" alt="" height="50" />
               </span>
             </a>
 
@@ -22,7 +22,7 @@
                 <img src="./assets/logo_sm.png" alt="" height="45" />
               </span>
               <span class="logo-lg">
-                <img src="./assets/logo.png" alt="" height="50" />
+                <img src="./assets/logo_light.png" alt="" height="50" />
               </span>
             </a>
           </div>
@@ -345,28 +345,47 @@
                         {{ item.title }}
                       </li>
 
-                      <li
-                       
-                        *ngFor="let parent of item.menu; let j = index"
-                      >
-                      <a *ngIf="!parent.children"
-                          routerLink="{{parent.link}}"
+                      <li *ngFor="let parent of item.menu; let j = index">
+                        <a
+                          *ngIf="!parent.children"
+                          routerLink="{{ parent.link }}"
                           (click)="clickParentActiveNode(i, j)"
-                          class="waves-effect {{activeParentNode[i][j]}}"
+                          class="waves-effect {{ activeParentNode[i][j] }}"
                         >
                           <mat-icon aria-hidden="false">{{
                             parent.icon
                           }}</mat-icon>
                           <span key="t-dashboards">{{ parent.title }}</span>
                         </a>
-                        <a *ngIf="parent.children"
-                          (click)="collapseMenu(i, j); clickParentActiveNode(i, j)"
-                          class="waves-effect {{activeParentNode[i][j]}}"
+                        <a
+                          *ngIf="parent.children"
+                          (click)="
+                            collapseMenu(i, j); clickParentActiveNode(i, j)
+                          "
+                          class="waves-effect {{ activeParentNode[i][j] }}"
                         >
                           <mat-icon aria-hidden="false">{{
                             parent.icon
                           }}</mat-icon>
                           <span key="t-dashboards">{{ parent.title }}</span>
+                          <mat-icon
+                            class="expand-icon"
+                            *ngIf="
+                              parent.children &&
+                              collapseMenuItems[i][j] !== '' &&
+                              sidebarClass === ''
+                            "
+                            >expand_less</mat-icon
+                          >
+                          <mat-icon
+                            class="expand-icon"
+                            *ngIf="
+                              parent.children &&
+                              collapseMenuItems[i][j] === '' &&
+                              sidebarClass === ''
+                            "
+                            >expand_more</mat-icon
+                          >
                         </a>
                         <ul
                           *ngIf="parent.children"
@@ -376,14 +395,14 @@
                           aria-expanded="false"
                         >
                           <li
-                            class="mm-{{activeChildrenNode[i][j][k]}}"
+                            class="mm-{{ activeChildrenNode[i][j][k] }}"
                             *ngFor="let child of parent.children; let k = index"
                           >
                             <a
-                              href="{{ child.link }}"
+                              routerLink="{{ child.link }}"
                               (click)="clickActiveChildrenNode(i, j, k)"
                               key="t-default"
-                              class="{{activeChildrenNode[i][j][k]}}"
+                              class="{{ activeChildrenNode[i][j][k] }}"
                               >{{ child.title }}</a
                             >
                           </li>
@@ -433,118 +452,14 @@
     <div class="main-content">
       <div class="page-content">
         <div class="container-fluid">
-          <!-- start page title -->
-          <div class="row">
-            <div class="col-12">
-              <div
-                class="
-                  page-title-box
-                  d-sm-flex
-                  align-items-center
-                  justify-content-between
-                "
-              >
-                <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
-
-                <div class="page-title-right">
-                  <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item">
-                      <a href="javascript: void(0);">Dashboards</a>
-                    </li>
-                    <li class="breadcrumb-item active">Dashboard</li>
-                  </ol>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end page title -->
+          <app-path></app-path>
           <router-outlet></router-outlet>
         </div>
         <!-- container-fluid -->
       </div>
       <!-- End Page-content -->
-
-      <!-- subscribeModal -->
-      <div
-        class="modal fade"
-        id="subscribeModal"
-        tabindex="-1"
-        aria-labelledby="subscribeModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="text-center mb-4">
-                <div class="avatar-md mx-auto mb-4">
-                  <div
-                    class="avatar-title bg-light rounded-circle text-primary h1"
-                  >
-                    <i class="mdi mdi-email-open"></i>
-                  </div>
-                </div>
-
-                <div class="row justify-content-center">
-                  <div class="col-xl-10">
-                    <h4 class="text-primary">Subscribe !</h4>
-                    <p class="text-muted font-size-14 mb-4">
-                      Subscribe our newletter and get notification to stay
-                      update.
-                    </p>
-
-                    <div class="input-group bg-light rounded">
-                      <input
-                        type="email"
-                        class="form-control bg-transparent border-0"
-                        placeholder="Enter Email address"
-                        aria-label="Recipient's username"
-                        aria-describedby="button-addon2"
-                      />
-
-                      <button
-                        class="btn btn-primary"
-                        type="button"
-                        id="button-addon2"
-                      >
-                        <i class="bx bxs-paper-plane"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end modal -->
     </div>
     <!-- end main content-->
   </div>
   <!-- END layout-wrapper -->
-
-  <!-- Right Sidebar -->
-  <div class="right-bar">
-    <div data-simplebar class="h-100">
-      <div class="rightbar-title d-flex align-items-center px-3 py-4">
-        <h5 class="m-0 me-2">Settings</h5>
-
-        <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-          <i class="mdi mdi-close noti-icon"></i>
-        </a>
-      </div>
-
-      <!-- Settings -->
-      <hr class="mt-0" />
-      <h6 class="text-center mb-0">Choose Layouts</h6>
-    </div>
-    <!-- end slimscroll-menu-->
-  </div>
 </body>
