@@ -4,6 +4,7 @@ import { DropDown } from "./specific-property/dropdown";
 
 export class FieldConfig {
   label?: string;
+  text?: string;
   class?: string;
   width?: string;
   field?: any;

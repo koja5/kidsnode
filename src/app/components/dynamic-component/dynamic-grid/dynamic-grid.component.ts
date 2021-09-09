@@ -87,7 +87,7 @@ export class DynamicGridComponent implements OnInit {
   }
 
   callApiGet(api: string, parameters?: string) {
-    this.apiService.callGetMethod(api, '1').subscribe((data) => {
+    this.apiService.callGetMethod(api, parameters!).subscribe((data) => {
       this.data = data;
       this.grid.hideSpinner();
     });

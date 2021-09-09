@@ -17,6 +17,9 @@ export class CallApiService {
   }
 
   callGetMethod(api: string, data: string) {
+    if (data === undefined) {
+      data = '';
+    }
     return this.http.get(api + '/' + data, { headers: this.headers });
   }
 

@@ -24,6 +24,7 @@ import { DynamicFieldsDirective } from './dynamic-fields/dynamic-fields.directiv
 import { DynamicFormsComponent } from './dynamic-forms.component';
 import { DatepickerComponent } from './dynamic-fields/inputs/datepicker/datepicker.component';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { LabelComponent } from './dynamic-fields/text/label/label.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
     CheckboxComponent,
     RadioComponent,
     ButtonComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    LabelComponent
   ],
   imports: [
     CommonModule,

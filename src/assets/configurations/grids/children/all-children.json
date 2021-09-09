@@ -2,7 +2,7 @@
   "pageSize": 10,
   "request": {
     "type": "GET",
-    "api": "/api/getKindergardenSubgroup",
+    "api": "/api/getChildrens",
     "parameters": ["superadmin"],
     "fields": "",
     "root": ""
@@ -59,21 +59,21 @@
   "editSettingsRequest": {
     "add": {
       "type": "POST",
-      "api": "/api/createKindergardenSubgroup",
+      "api": "/api/createChildren",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "edit": {
       "type": "POST",
-      "api": "/api/updateKindergardenSubgroup",
+      "api": "/api/updateChildren",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "delete": {
       "type": "POST",
-      "api": "/api/deleteKindergardenSubgroup",
+      "api": "/api/deleteChildren",
       "parameters": [],
       "fields": "",
       "root": ""
@@ -88,62 +88,105 @@
       "filter": "date",
       "type": "number",
       "class": "text-align-right",
-      "field": "id",
+      "field": "children_id",
       "isPrimaryKey": true,
       "allowEditing": false
     },
     {
-      "title": "Name",
+      "title": "Children firstname",
       "filterable": true,
       "hideable": true,
       "type": "string",
       "class": "text-align-right",
-      "field": "name",
+      "field": "children_firstname",
       "validation": { "required": true }
     },
     {
-      "title": "Kindergarden name",
+      "title": "Children lastname",
       "filterable": true,
       "hideable": true,
       "type": "string",
       "class": "text-align-right",
-      "field": "kindergarden_group_name",
+      "field": "children_lastname",
+      "validation": { "required": true }
+    },
+    {
+      "title": "Children birthday",
+      "filterable": true,
+      "hideable": true,
+      "type": "date",
+      "format": "dd.MM.yyyy",
+      "class": "text-align-right",
+      "field": "children_birthday",
+      "validation": { "required": true }
+    },
+    {
+      "title": "Children gender",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "children_gender",
+      "validation": { "required": true }
+    },
+    {
+      "title": "Mother firstname",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "mother_firstname",
+      "validation": { "required": true }
+    },
+    {
+      "title": "Father firstname",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "father_firstname",
       "validation": { "required": true }
     }
   ],
   "config": [
     {
-      "type": "textbox",
+      "type": "label",
       "width": "col-md-12",
+      "label": "Podaci o detetu",
+      "text": "Molimo unesite neke osnovne podatke o detetu"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-12 hide",
       "class": "e-outline",
-      "name": "id",
+      "name": "children_id",
       "label": "ID",
-      "field": "id",
+      "field": "children_id",
       "readonly": true
     },
     {
       "type": "textbox",
       "width": "col-md-6",
       "class": "e-outline",
-      "name": "firstname",
+      "name": "children_firstname",
       "label": "Firstname",
-      "field": "firstname"
+      "field": "children_firstname"
     },
     {
       "type": "textbox",
       "width": "col-md-6",
       "class": "e-outline",
-      "name": "lastname",
+      "name": "children_lastname",
       "label": "Lastname",
-      "field": "lastname"
+      "field": "children_lastname"
     },
     {
       "type": "radio",
       "width": "col-md-6",
       "class": "e-outline",
-      "name": "gender",
+      "name": "children_gender",
       "label": "Gender",
-      "field": "gender",
+      "field": "children_gender",
       "itemFields": [
         {
           "label": "Muski",
@@ -159,20 +202,20 @@
       "type": "datepicker",
       "width": "col-md-6",
       "class": "e-outline",
-      "name": "birthday",
+      "name": "children_birthday",
       "label": "Birthday",
-      "field": "birthday"
+      "field": "children_birthday"
     },
     {
       "type": "combobox",
       "width": "col-md-12",
       "class": "e-outline",
-      "name": "kindergarden_group_id",
-      "label": "Kindergarden group",
+      "name": "kindergarden_subgroup_id",
+      "label": "Kindergarden subgroup",
       "field": { "text": "name", "value": "id" },
       "request": {
         "type": "GET",
-        "api": "/api/getKindergardenGroupByKindergardenId",
+        "api": "/api/getKindergardenSubgroup",
         "parameters": [],
         "fields": "",
         "root": ""
@@ -183,6 +226,125 @@
         "filter": true
       },
       "required": true
+    },
+    {
+      "type": "label",
+      "width": "col-md-12 border-top mt-3 pt-3",
+      "label": "Podaci o ocu",
+      "text": "Molimo unesite neke osnovne podatke o ocu"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-12 hide",
+      "class": "e-outline",
+      "name": "father_id",
+      "label": "ID",
+      "field": "father_id",
+      "readonly": true
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "father_firstname",
+      "label": "Firstname",
+      "field": "father_firstname"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "father_lastname",
+      "label": "Lastname",
+      "field": "father_lastname"
+    },
+    {
+      "type": "datepicker",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "father_birthday",
+      "label": "Birthday",
+      "field": "father_birthday"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "father_telephone",
+      "label": "Broj telefona",
+      "field": "father_telephone"
+    },
+    
+    {
+      "type": "label",
+      "width": "col-md-12 border-top mt-3 pt-3",
+      "label": "Podaci o majci",
+      "text": "Molimo unesite neke osnovne podatke o majci"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-12 hide",
+      "class": "e-outline",
+      "name": "mother_id",
+      "label": "ID",
+      "field": "mother_id",
+      "readonly": true
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "mother_firstname",
+      "label": "Firstname",
+      "field": "mother_firstname"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "mother_lastname",
+      "label": "Lastname",
+      "field": "mother_lastname"
+    },
+    {
+      "type": "datepicker",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "mother_birthday",
+      "label": "Birthday",
+      "field": "mother_birthday"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "mother_telephone",
+      "label": "Broj telefona",
+      "field": "mother_telephone"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-7",
+      "class": "e-outline",
+      "name": "mother_address",
+      "label": "Adresa",
+      "field": "mother_address"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-2",
+      "class": "e-outline",
+      "name": "mother_zipCode",
+      "label": "Zip kod",
+      "field": "mother_zipCode"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-3",
+      "class": "e-outline",
+      "name": "mother_city",
+      "label": "Grad",
+      "field": "mother_city"
     },
     {
       "type": "button",

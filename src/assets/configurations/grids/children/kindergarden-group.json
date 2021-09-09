@@ -105,7 +105,7 @@
   "config": [
     {
       "type": "textbox",
-      "width": "col-md-12",
+      "width": "col-md-12 hide",
       "class": "e-outline",
       "name": "id",
       "label": "ID",
@@ -115,7 +115,7 @@
     {
       "type": "textbox",
       "width": "col-md-12",
-      "class": "e-outline",
+      "class": "form-control e-outline",
       "name": "name",
       "label": "Name",
       "field": "name"

@@ -114,7 +114,7 @@
   "config": [
     {
       "type": "textbox",
-      "width": "col-md-12",
+      "width": "col-md-12 hide",
       "class": "e-outline",
       "name": "id",
       "label": "ID",
