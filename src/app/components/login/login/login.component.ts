@@ -14,6 +14,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class LoginComponent implements OnInit {
   public configField: LoginModel;
   public language: any;
+  public loader: boolean = false;
 
   constructor(
     private callApiService: CallApiService,
@@ -75,10 +76,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(event: any) {
+    this.loader = true;
     this.callApiService.callPostMethod('api/login', event).subscribe((data) => {
       if (data) {
         this.setUserInfoAndRoute(data);
+        this.loader = false;
       }
+    }, error => {
+      this.loader = false;
     });
   }
   setUserInfoAndRoute(data: any) {

@@ -1,6 +1,6 @@
-<app-loader-brand *ngIf="!language"></app-loader-brand>
+<app-loader-brand *ngIf="!language||loader"></app-loader-brand>
 
-<body *ngIf="language">
+<body *ngIf="language&&!loader">
   <div class="forny-container">
     <div class="forny-inner">
       <div class="forny-two-pane">

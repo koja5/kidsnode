@@ -51,7 +51,7 @@
       {
         "icon": "child_care",
         "title": "Popis dece",
-        "link": "/dashboard/children/all-children",
+        "link": "/dashboard/children/all-childrens",
         "rights": ""
       },
       {
@@ -72,9 +72,9 @@
         "rights": ""
       },
       {
-        "icon": "people_alt",
+        "icon": "badge",
         "title": "Zaposleni",
-        "link": "dashboard/groups",
+        "link": "/dashboard/employee/all-employees",
         "rights": ""
       }
     ]

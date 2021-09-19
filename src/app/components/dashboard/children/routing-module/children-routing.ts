@@ -20,7 +20,7 @@ const routes: Routes = [
     component: KindergardenSubgroupComponent,
   },
   {
-    path: 'all-children',
+    path: 'all-childrens',
     component: AllChildrenComponent
   },
   {
