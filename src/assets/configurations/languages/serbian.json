@@ -1,0 +1,19 @@
+{
+    "welcomeTitle": "Dobrodošli nazad!",
+    "noHaveAccount": "Nemate još uvek nalog?",
+    "signUp": "Registrujete se",
+    "loginButton": "Prijavi se",
+    "welcomeCoverTitle": "Dobrodošli na KinsNode!",
+    "welcomeCoverText": "KidsNode je sistem za upravljanje poslovnim procesima vrtica i obrazovnih ustanova!",
+    "kindergardenGroupName": "Ime upisne grupe",
+    "saveKindergardenGroup": "Sačuvaj",
+    "kindergardenSubgroupName": "Ime grupe u vrticu",
+    "firstname": "Ime",
+    "lastname": "Prezime",
+    "creationDate": "Datum kreiranja",
+    "telephone": "Telefon",
+    "email": "Email adresa",
+    "childrenFamily": "Rod deteta",
+    "idNumber": "Broj licne karte",
+    "saveButton": "Sačuvaj"
+}

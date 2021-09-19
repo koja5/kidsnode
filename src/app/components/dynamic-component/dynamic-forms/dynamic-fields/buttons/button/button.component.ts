@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { HelpService } from 'src/app/services/help.service';
 import { FieldConfig } from '../../../models/field-config';
 
 @Component({
@@ -10,11 +11,14 @@ import { FieldConfig } from '../../../models/field-config';
 export class ButtonComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
+  public language: any;
 
-  constructor() {
+  constructor(private helpService: HelpService) {
     this.config = new FieldConfig();
     this.group = new FormGroup({});
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.language = this.helpService.getLanguage();
+  }
 }

@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-12',
               class: 'e-outline',
               name: 'name',
-              label: 'Ime vrtica',
+              title: 'Ime vrtica',
               field: 'name',
             },
             {
@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-4',
               class: 'e-outline',
               name: 'address',
-              label: 'Adresa',
+              title: 'Adresa',
               field: 'address',
             },
             {
@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-4',
               class: 'e-outline',
               name: 'city',
-              label: 'Grad',
+              title: 'Grad',
               field: 'city',
             },
             {
@@ -60,7 +60,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-4',
               class: 'e-outline',
               name: 'zip_code',
-              label: 'Postanski broj',
+              title: 'Postanski broj',
               field: 'zip_code',
             },
             {
@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'telephone',
-              label: 'Broj telefona vrtica',
+              title: 'Broj telefona vrtica',
               field: 'telephone',
             },
             {
@@ -76,7 +76,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'pib',
-              label: 'PIB',
+              title: 'PIB',
               field: 'pib',
             },
             {
@@ -84,7 +84,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-12',
               class: 'e-info',
               name: 'submit',
-              label: 'changePasswordButton',
+              title: 'changePasswordButton',
               field: 'submit',
               positionClass: 'position-end mt-3 col-md-12',
             },
@@ -107,7 +107,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'firstname',
-              label: 'Ime',
+              title: 'Ime',
               field: 'firstname',
             },
             {
@@ -115,7 +115,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'lastname',
-              label: 'prezime',
+              title: 'prezime',
               field: 'lastname',
             },
             {
@@ -123,7 +123,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-4',
               class: 'e-outline',
               name: 'address',
-              label: 'Adresa',
+              title: 'Adresa',
               field: 'address',
             },
             {
@@ -131,7 +131,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-4',
               class: 'e-outline',
               name: 'city',
-              label: 'Grad',
+              title: 'Grad',
               field: 'city',
             },
             {
@@ -139,7 +139,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-4',
               class: 'e-outline',
               name: 'zip_code',
-              label: 'Postanski broj',
+              title: 'Postanski broj',
               field: 'zip_code',
             },
             {
@@ -147,7 +147,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-12',
               class: 'e-outline',
               name: 'telephone',
-              label: 'Broj telefona vrtica',
+              title: 'Broj telefona vrtica',
               field: 'telephone',
             },
             {
@@ -155,7 +155,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'email',
-              label: 'Email',
+              title: 'Email',
               field: 'email',
             },
             {
@@ -163,7 +163,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'password',
-              label: 'Lozinka',
+              title: 'Lozinka',
               field: 'password',
             },
             {
@@ -171,7 +171,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-12',
               class: 'e-info',
               name: 'submit',
-              label: 'changePasswordButton',
+              title: 'changePasswordButton',
               field: 'submit',
               positionClass: 'position-end mt-3 col-md-12',
             },
@@ -194,7 +194,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'firstname',
-              label: 'Ime',
+              title: 'Ime',
               field: 'firstname',
             },
             {
@@ -202,7 +202,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'lastname',
-              label: 'prezime',
+              title: 'prezime',
               field: 'lastname',
             },
             {
@@ -210,7 +210,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-4',
               class: 'e-outline',
               name: 'address',
-              label: 'Adresa',
+              title: 'Adresa',
               field: 'address',
             },
             {
@@ -218,7 +218,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-4',
               class: 'e-outline',
               name: 'city',
-              label: 'Grad',
+              title: 'Grad',
               field: 'city',
             },
             {
@@ -226,7 +226,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-4',
               class: 'e-outline',
               name: 'zip_code',
-              label: 'Postanski broj',
+              title: 'Postanski broj',
               field: 'zip_code',
             },
             {
@@ -234,7 +234,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-12',
               class: 'e-outline',
               name: 'telephone',
-              label: 'Broj telefona vrtica',
+              title: 'Broj telefona vrtica',
               field: 'telephone',
             },
             {
@@ -242,7 +242,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'email',
-              label: 'Email',
+              title: 'Email',
               field: 'email',
             },
             {
@@ -250,7 +250,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-6',
               class: 'e-outline',
               name: 'password',
-              label: 'Lozinka',
+              title: 'Lozinka',
               field: 'password',
             },
             {
@@ -258,7 +258,7 @@ export class SignupComponent implements OnInit {
               width: 'col-md-12',
               class: 'e-info',
               name: 'submit',
-              label: 'changePasswordButton',
+              title: 'changePasswordButton',
               field: 'submit',
               positionClass: 'position-end mt-3 col-md-12',
             },

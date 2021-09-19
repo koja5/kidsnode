@@ -20,7 +20,8 @@ export class CallApiService {
     if (data === undefined) {
       data = '';
     }
-    return this.http.get(api + '/' + data, { headers: this.headers });
+    const url = api.endsWith('/') ? api + data : api + '/' + data;
+    return this.http.get(url, { headers: this.headers });
   }
 
   packParametarPost(data: any, fields: any) {

@@ -3,7 +3,7 @@
   "request": {
     "type": "GET",
     "api": "/api/getKindergardenSubgroup",
-    "parameters": ["superadmin"],
+    "parameters": [],
     "fields": "",
     "root": ""
   },
@@ -93,7 +93,7 @@
       "allowEditing": false
     },
     {
-      "title": "Name",
+      "title": "kindergarden_subgroup_name",
       "filterable": true,
       "hideable": true,
       "type": "string",
@@ -102,7 +102,7 @@
       "validation": { "required": true }
     },
     {
-      "title": "Kindergarden name",
+      "title": "kindergarden_group_name",
       "filterable": true,
       "hideable": true,
       "type": "string",
@@ -117,7 +117,7 @@
       "width": "col-md-12 hide",
       "class": "e-outline",
       "name": "id",
-      "label": "ID",
+      "title": "ID",
       "field": "id",
       "readonly": true
     },
@@ -126,7 +126,7 @@
       "width": "col-md-12",
       "class": "e-outline",
       "name": "name",
-      "label": "Name",
+      "title": "Name",
       "field": "name"
     },
     {
@@ -134,7 +134,7 @@
       "width": "col-md-12",
       "class": "e-outline",
       "name": "kindergarden_group_id",
-      "label": "Kindergarden group",
+      "title": "Kindergarden group",
       "field": { "text": "name", "value": "id" },
       "request": {
         "type": "GET",
@@ -155,7 +155,7 @@
       "width": "col-md-12",
       "class": "e-info",
       "name": "submit",
-      "label": "Sacuvaj",
+      "title": "Sacuvaj",
       "field": "submit",
       "positionClass": "position-end mt-3 col-md-12"
     }

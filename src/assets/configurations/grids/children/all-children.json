@@ -3,7 +3,7 @@
   "request": {
     "type": "GET",
     "api": "/api/getChildrens",
-    "parameters": ["superadmin"],
+    "parameters": [],
     "fields": "",
     "root": ""
   },
@@ -146,13 +146,29 @@
       "class": "text-align-right",
       "field": "father_firstname",
       "validation": { "required": true }
+    },
+    {
+      "title": "Father firstname",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "father_firstname",
+      "template": {
+        "type": "button",
+        "action": "open",
+        "class": "btn btn-info",
+        "classIcon": "pageview",
+        "link": "dashboard/children/profile-children",
+        "parameters": ["children_id"]
+      }
     }
   ],
   "config": [
     {
-      "type": "label",
+      "type": "title",
       "width": "col-md-12",
-      "label": "Podaci o detetu",
+      "title": "Podaci o detetu",
       "text": "Molimo unesite neke osnovne podatke o detetu"
     },
     {
@@ -160,7 +176,7 @@
       "width": "col-md-12 hide",
       "class": "e-outline",
       "name": "children_id",
-      "label": "ID",
+      "title": "ID",
       "field": "children_id",
       "readonly": true
     },
@@ -169,7 +185,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "children_firstname",
-      "label": "Firstname",
+      "title": "Firstname",
       "field": "children_firstname"
     },
     {
@@ -177,7 +193,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "children_lastname",
-      "label": "Lastname",
+      "title": "Lastname",
       "field": "children_lastname"
     },
     {
@@ -185,15 +201,15 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "children_gender",
-      "label": "Gender",
+      "title": "Gender",
       "field": "children_gender",
       "itemFields": [
         {
-          "label": "Muski",
+          "title": "Muski",
           "value": "man"
         },
         {
-          "label": "Zenski",
+          "title": "Zenski",
           "value": "femaly"
         }
       ]
@@ -203,7 +219,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "children_birthday",
-      "label": "Birthday",
+      "title": "Birthday",
       "field": "children_birthday"
     },
     {
@@ -211,7 +227,7 @@
       "width": "col-md-12",
       "class": "e-outline",
       "name": "kindergarden_subgroup_id",
-      "label": "Kindergarden subgroup",
+      "title": "Kindergarden subgroup",
       "field": { "text": "name", "value": "id" },
       "request": {
         "type": "GET",
@@ -228,9 +244,9 @@
       "required": true
     },
     {
-      "type": "label",
+      "type": "title",
       "width": "col-md-12 border-top mt-3 pt-3",
-      "label": "Podaci o ocu",
+      "title": "Podaci o ocu",
       "text": "Molimo unesite neke osnovne podatke o ocu"
     },
     {
@@ -238,7 +254,7 @@
       "width": "col-md-12 hide",
       "class": "e-outline",
       "name": "father_id",
-      "label": "ID",
+      "title": "ID",
       "field": "father_id",
       "readonly": true
     },
@@ -247,7 +263,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "father_firstname",
-      "label": "Firstname",
+      "title": "Firstname",
       "field": "father_firstname"
     },
     {
@@ -255,7 +271,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "father_lastname",
-      "label": "Lastname",
+      "title": "Lastname",
       "field": "father_lastname"
     },
     {
@@ -263,7 +279,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "father_birthday",
-      "label": "Birthday",
+      "title": "Birthday",
       "field": "father_birthday"
     },
     {
@@ -271,14 +287,14 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "father_telephone",
-      "label": "Broj telefona",
+      "title": "Broj telefona",
       "field": "father_telephone"
     },
-    
+
     {
-      "type": "label",
+      "type": "title",
       "width": "col-md-12 border-top mt-3 pt-3",
-      "label": "Podaci o majci",
+      "title": "Podaci o majci",
       "text": "Molimo unesite neke osnovne podatke o majci"
     },
     {
@@ -286,7 +302,7 @@
       "width": "col-md-12 hide",
       "class": "e-outline",
       "name": "mother_id",
-      "label": "ID",
+      "title": "ID",
       "field": "mother_id",
       "readonly": true
     },
@@ -295,7 +311,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "mother_firstname",
-      "label": "Firstname",
+      "title": "Firstname",
       "field": "mother_firstname"
     },
     {
@@ -303,7 +319,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "mother_lastname",
-      "label": "Lastname",
+      "title": "Lastname",
       "field": "mother_lastname"
     },
     {
@@ -311,7 +327,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "mother_birthday",
-      "label": "Birthday",
+      "title": "Birthday",
       "field": "mother_birthday"
     },
     {
@@ -319,7 +335,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "mother_telephone",
-      "label": "Broj telefona",
+      "title": "Broj telefona",
       "field": "mother_telephone"
     },
     {
@@ -327,7 +343,7 @@
       "width": "col-md-7",
       "class": "e-outline",
       "name": "mother_address",
-      "label": "Adresa",
+      "title": "Adresa",
       "field": "mother_address"
     },
     {
@@ -335,7 +351,7 @@
       "width": "col-md-2",
       "class": "e-outline",
       "name": "mother_zipCode",
-      "label": "Zip kod",
+      "title": "Zip kod",
       "field": "mother_zipCode"
     },
     {
@@ -343,7 +359,7 @@
       "width": "col-md-3",
       "class": "e-outline",
       "name": "mother_city",
-      "label": "Grad",
+      "title": "Grad",
       "field": "mother_city"
     },
     {
@@ -351,7 +367,7 @@
       "width": "col-md-12",
       "class": "e-info",
       "name": "submit",
-      "label": "Sacuvaj",
+      "title": "Sacuvaj",
       "field": "submit",
       "positionClass": "position-end mt-3 col-md-12"
     }

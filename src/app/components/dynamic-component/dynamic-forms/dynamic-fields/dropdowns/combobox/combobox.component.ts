@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CallApiService } from 'src/app/services/call-api.service';
+import { ConfigurationService } from 'src/app/services/configuration.service';
+import { HelpService } from 'src/app/services/help.service';
+import { ConfigurationFile } from '../../../models/complex-properties/configuration-file';
 import { FieldConfig } from '../../../models/field-config';
 
 @Component({
@@ -13,13 +16,19 @@ export class ComboboxComponent implements OnInit {
   public group: FormGroup;
 
   public data: any;
+  public language: any;
 
-  constructor(private callApi: CallApiService) {
+  constructor(
+    private callApi: CallApiService,
+    private helpService: HelpService,
+    private configurationService: ConfigurationService
+  ) {
     this.config = new FieldConfig();
     this.group = new FormGroup({});
   }
 
   ngOnInit(): void {
+    this.language = this.helpService.getLanguage();
     if (this.config.data && this.config.data['translation']) {
       /*this.data =
         this.helpService.getLanguage()[
@@ -32,9 +41,13 @@ export class ComboboxComponent implements OnInit {
   }
 
   initialization() {
-    if (this.config.request!.type === 'POST') {
+    if (this.config.request!.localData) {
+      this.getLocalData(this.config.request!.localData);
     } else {
-      this.getApiRequest();
+      if (this.config.request!.type === 'POST') {
+      } else {
+        this.getApiRequest();
+      }
     }
   }
 
@@ -63,6 +76,14 @@ export class ComboboxComponent implements OnInit {
         } else {
           this.data = data;
         }
+      });
+  }
+
+  getLocalData(localDataRequest: ConfigurationFile) {
+    this.configurationService
+      .getConfiguration(localDataRequest.path!, localDataRequest.file!)
+      .subscribe((data) => {
+        this.data = data;
       });
   }
 }

@@ -23,16 +23,33 @@ import { DynamicGridComponent } from '../dynamic-grid/dynamic-grid.component';
 import { DynamicFormsModule } from '../dynamic-forms/dynamic-forms.module';
 import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
 import { ToastrComponent } from '../common/toastr/toastr.component';
+import { TabModule } from '@syncfusion/ej2-angular-navigations';
+import { DynamicTabsComponent } from '../dynamic-tabs/dynamic-tabs.component';
+import { LoaderComponent } from '../../common/loader/loader.component';
+import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.component';
 
 @NgModule({
-  declarations: [DynamicGridComponent, DynamicFormsComponent],
-  exports: [DynamicGridComponent, DynamicFormsComponent],
+  declarations: [
+    DynamicGridComponent,
+    DynamicFormsComponent,
+    DynamicTabsComponent,
+    LoaderComponent,
+    DialogModalComponent
+  ],
+  exports: [
+    DynamicGridComponent,
+    DynamicFormsComponent,
+    DynamicTabsComponent,
+    LoaderComponent,
+    DialogModalComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     GridModule,
     DynamicFormsModule,
     FormsModule,
+    TabModule,
     ToastrModule.forRoot(),
   ],
   providers: [

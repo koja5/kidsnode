@@ -1,10 +1,10 @@
-<div [ngClass]="[config.positionClass]">
+<div *ngIf="language" [ngClass]="[config.positionClass]">
   <button
     ejs-button
     [disabled]="config.disabled"
     type="submit"
     [class]="config.class"
   >
-    {{config.label}}
+    {{ language[config?.title] ? language[config?.title] : config?.title }}
   </button>
 </div>

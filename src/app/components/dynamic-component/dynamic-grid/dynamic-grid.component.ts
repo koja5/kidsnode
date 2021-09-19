@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   DialogEditEventArgs,
   SaveEventArgs,
@@ -41,15 +42,20 @@ export class DynamicGridComponent implements OnInit {
   public height!: number;
   public typeOfModification = 'add';
   public operations: any;
+  public language: any;
+  public loader = false;
 
   constructor(
     private configurationService: ConfigurationService,
     private apiService: CallApiService,
     private helpService: HelpService,
-    private toastr: ToastrComponent
+    private toastr: ToastrComponent,
+    private routerNavigate: Router,
+    private router: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.loader = true;
     this.initializeConfig();
   }
 
@@ -59,11 +65,15 @@ export class DynamicGridComponent implements OnInit {
   }
 
   initializeConfig() {
+    //get language
+    this.language = this.helpService.getLanguage();
+
     this.configurationService
       .getConfiguration(this.path, this.file)
       .subscribe((data) => {
         this.config = data;
         this.height = this.helpService.getHeightForGridWithoutPx();
+        this.loader = false;
         this.callApi(data);
       });
   }
@@ -76,7 +86,19 @@ export class DynamicGridComponent implements OnInit {
     if (data.type === 'POST') {
       this.callApiPost(data.request.api, data.body);
     } else {
-      this.callApiGet(data.request.api, data.parameters);
+      if (data.request.url) {
+        const dataValue = this.helpService.getRequestDataParameters(
+          this.router.snapshot.params,
+          data.request.url
+        );
+        this.callApiGet(data.request.api, dataValue);
+      } else {
+        const dataValue = this.helpService.getRequestDataParameters(
+          this.router.snapshot.params,
+          data.request.parameters
+        );
+        this.callApiGet(data.request.api, dataValue);
+      }
     }
   }
 
@@ -89,7 +111,9 @@ export class DynamicGridComponent implements OnInit {
   callApiGet(api: string, parameters?: string) {
     this.apiService.callGetMethod(api, parameters!).subscribe((data) => {
       this.data = data;
-      this.grid.hideSpinner();
+      setTimeout(() => {
+        this.grid.hideSpinner();
+      }, 100);
     });
   }
 
@@ -122,6 +146,13 @@ export class DynamicGridComponent implements OnInit {
 
   callServerMethod(request: any, data: any) {
     if (request.type === 'POST') {
+      if (request.url) {
+        data = this.helpService.postRequestDataParameters(
+          data,
+          this.router.snapshot.params,
+          request.url
+        );
+      }
       this.apiService.callPostMethod(request.api, data).subscribe((res) => {
         if (res) {
           this.callApi(this.config);
@@ -155,5 +186,14 @@ export class DynamicGridComponent implements OnInit {
     for (let i = 0; i < fields.length; i++) {
       this.form.setValue(fields[i]['name'], values[fields[i]['name']]);
     }
+  }
+
+  openPage(link: string, parameters: string[], data: any) {
+    const linkWithParameters = this.helpService.concatenatePageLink(
+      link,
+      parameters,
+      data
+    );
+    this.routerNavigate.navigate([linkWithParameters]);
   }
 }

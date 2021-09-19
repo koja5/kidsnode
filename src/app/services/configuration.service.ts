@@ -9,6 +9,10 @@ export class ConfigurationService {
   constructor(private http: HttpClient) { }
 
   getConfiguration(path: string, file: string) {
-    return this.http.get("../../assets/configurations" + path + "/" + file);
+    return this.http.get("../../assets/configurations/" + path + "/" + file);
+  }
+
+  getLanguage(language: string) {
+    return this.http.get("../../assets/configurations/languages/" + language + '.json');
   }
 }

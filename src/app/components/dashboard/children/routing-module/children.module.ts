@@ -5,13 +5,15 @@ import { ChildrenComponent } from '../children/children.component';
 import { KindergardenSubgroupComponent } from '../kindergarden-subgroup/kindergarden-subgroup.component';
 import { AllChildrenComponent } from '../all-children/all-children.component';
 import { DynamicModuleModule } from 'src/app/components/dynamic-component/dynamic-module/dynamic-module.module';
+import { ProfileChildrenComponent } from '../all-children/profile-children/profile-children.component';
 
 @NgModule({
   declarations: [
     KindergardenGroupComponent,
     ChildrenComponent,
     KindergardenSubgroupComponent,
-    AllChildrenComponent
+    AllChildrenComponent,
+    ProfileChildrenComponent
   ],
   imports: [ChildrenRouting, DynamicModuleModule],
   providers: [],

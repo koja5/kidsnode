@@ -165,6 +165,7 @@ router.post("/login", async (req, res, next) => {
         }
         if (rows.length > 0) {
           // dodaj unutar tokena da pored id-a user-a stoji i id vrtica kome dati user pripada
+          // treba ovde spakovati i tip user-a(uzmi iz enum-a)
           const token = jwt.sign(
             {
               user: { id: rows[0].id, kindergarden: rows[0].kindergarden },
@@ -176,8 +177,6 @@ router.post("/login", async (req, res, next) => {
             }
           );
           return res.json({
-            type: 1,
-            user: rows,
             token: token,
           });
         } else {
@@ -198,8 +197,6 @@ router.post("/login", async (req, res, next) => {
                   }
                 );
                 return res.json({
-                  type: 2,
-                  user: rows,
                   token: token,
                 });
               } else {
@@ -222,9 +219,7 @@ router.post("/createKindergardenGroup", auth, function (req, res, next) {
         // logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      console.log(req.body);
       req.body.kindergarden_id = req.user.user.kindergarden;
-      console.log(req.body);
       conn.query(
         "insert into kindergarden_group SET ?",
         [req.body],
@@ -385,9 +380,7 @@ router.post("/createKindergardenSubgroup", auth, function (req, res, next) {
         // logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      console.log(req.body);
       req.body.kindergarden_id = req.user.user.kindergarden;
-      console.log(req.body);
       conn.query(
         "insert into kindergarden_subgroup SET ?",
         [req.body],
@@ -640,7 +633,7 @@ router.get("/getChildrens", auth, async (req, res, next) => {
         res.json(err);
       } else {
         conn.query(
-          "select c.id as children_id, c.firstname as children_firstname, c.lastname as children_lastname, c.birthday as children_birthday, c.gender as children_gender, p1.firstname as mother_firstname, p1.lastname as mother_lastname, p2.firstname as father_firstname, p2.lastname as father_lastname from childrens c join parents p1 on c.mother_id = p1.id join parents p2 on c.father_id = p2.id where c.kindergarden_id = ?",
+          "select c.id as children_id, c.firstname as children_firstname, c.lastname as children_lastname, c.birthday as children_birthday, c.gender as children_gender, p1.firstname as mother_firstname, p1.lastname as mother_lastname, p2.firstname as father_firstname, p2.lastname as father_lastname, ks.id as kindergarden_subgroup_id from childrens c join parents p1 on c.mother_id = p1.id join parents p2 on c.father_id = p2.id join kindergarden_subgroup ks on c.kindergarden_subgroup_id = ks.id where c.kindergarden_id = ?",
           [req.user.user.kindergarden],
           function (err, rows, fields) {
             conn.release();
@@ -649,7 +642,74 @@ router.get("/getChildrens", auth, async (req, res, next) => {
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
               // logger.log("info", "Test");
+              console.log(rows);
               res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getChildrenById/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from childrens where id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              // logger.log("info", "Test");
+              if (rows.length === 1) {
+                res.json(rows[0]);
+              } else {
+                res.json(rows);
+              }
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getChildrenParentsById/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select p1.firstname as mother_firstname, p1.lastname as mother_lastname, p2.firstname as father_firstname, p2.lastname as father_lastname from childrens c join parents p1 on c.mother_id = p1.id join parents p2 on c.father_id = p2.id where c.id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              // logger.log("info", "Test");
+              if (rows.length === 1) {
+                res.json(rows[0]);
+              } else {
+                res.json(rows);
+              }
             }
           }
         );
@@ -692,5 +752,265 @@ router.post("/deleteChildren", (req, res, next) => {
 });
 
 /* ALL CHILDRENS END */
+
+/* CHILDREN NOTES */
+
+router.get("/getAllChildrenNotesByChildrenId/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from children_notes where children_id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              // logger.log("info", "Test");
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/createChildrenNotes", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        // logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      req.body.creation_date = new Date().toDateString();
+      req.body.children_id = req.body.id;
+      req.body.educator_id = req.user.user.id;
+      delete req.body.id;
+      console.log(req.body);
+      conn.query(
+        "insert into children_notes SET ?",
+        [req.body],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            /*logger.log(
+              "info",
+              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
+            );*/
+            res.json(true);
+          } else {
+            logger.log(
+              "error",
+              `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
+            );
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateChildrenNotes", function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    conn.query(
+      "update children_notes SET ? where id = ?",
+      [req.body, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          if (!err) {
+            res.json(true);
+          } else {
+            res.json(false);
+          }
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+router.post("/deleteChildrenNotes", (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from children_notes where id = '" + req.body.id + "'",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDREN NOTES END */
+
+/* CHILDREN TAKING */
+
+router.get("/getAllChildrenTakingByChildrenId/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from children_taking where children_id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              // logger.log("info", "Test");
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/createChildrenTaking", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        // logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      req.body.creation_date = new Date().toDateString();
+      req.body.children_id = req.body.id;
+      req.body.educator_id = req.user.user.id;
+      delete req.body.id;
+      console.log(req.body);
+      conn.query(
+        "insert into children_taking SET ?",
+        [req.body],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            /*logger.log(
+              "info",
+              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
+            );*/
+            res.json(true);
+          } else {
+            /*logger.log(
+              "error",
+              `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
+            );*/
+            console.log(err);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateChildrenTaking", function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    conn.query(
+      "update children_taking SET ? where id = ?",
+      [req.body, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          if (!err) {
+            res.json(true);
+          } else {
+            res.json(false);
+          }
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+router.post("/deleteChildrenTaking", (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from children_taking where id = '" + req.body.id + "'",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDREN TAKING END */
+
 
 module.exports = router;

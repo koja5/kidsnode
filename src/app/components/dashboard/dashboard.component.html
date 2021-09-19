@@ -279,7 +279,7 @@
           <div class="dropdown d-inline-block">
             <button
               type="button"
-              class="btn header-item waves-effect {{ profileUser }}"
+              class="center-text btn header-item waves-effect {{ profileUser }}"
               id="page-header-user-dropdown"
               (click)="clickProfileUser()"
             >
@@ -352,10 +352,12 @@
                           (click)="clickParentActiveNode(i, j)"
                           class="waves-effect {{ activeParentNode[i][j] }}"
                         >
-                          <mat-icon aria-hidden="false">{{
-                            parent.icon
-                          }}</mat-icon>
-                          <span key="t-dashboards">{{ parent.title }}</span>
+                          <div class="center-text">
+                            <mat-icon aria-hidden="false">{{
+                              parent.icon
+                            }}</mat-icon>
+                            <span key="t-dashboards">{{ parent.title }}</span>
+                          </div>
                         </a>
                         <a
                           *ngIf="parent.children"
@@ -363,11 +365,12 @@
                             collapseMenu(i, j); clickParentActiveNode(i, j)
                           "
                           class="waves-effect {{ activeParentNode[i][j] }}"
-                        >
-                          <mat-icon aria-hidden="false">{{
-                            parent.icon
-                          }}</mat-icon>
-                          <span key="t-dashboards">{{ parent.title }}</span>
+                          ><div class="center-text">
+                            <mat-icon aria-hidden="false">{{
+                              parent.icon
+                            }}</mat-icon>
+                            <span key="t-dashboards">{{ parent.title }}</span>
+                          </div>
                           <mat-icon
                             class="expand-icon"
                             *ngIf="

@@ -1,5 +1,6 @@
 <div [ngClass]="[config.width]" [formGroup]="group" class="form-group">
-  <label *ngIf="config.label" class="custom-label">{{ config.label }}</label>
+  <label *ngIf="config?.title" class="custom-label">
+    {{ language[config?.title] ? language[config?.title] : config?.title }}</label>
   <ul class="radio-button-ul">
     <li class="radio-button-li" *ngFor="let item of config.itemFields">
       <ejs-radiobutton
