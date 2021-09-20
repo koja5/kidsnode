@@ -1,0 +1,49 @@
+[
+    {
+      "title": {
+        "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>info</mat-icon> Osnovne informacije</div>",
+        "class": "e-fill",
+        "headerStyle": "e-fill"
+      },
+      "type": "forms",
+      "path": "/forms/children",
+      "file": "basic-information.json"
+    },
+    {
+      "title": {
+        "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>family_restroom</mat-icon> Roditelji</div>"
+      },
+      "type": "forms",
+      "path": "/forms/children",
+      "file": "parents-information.json"
+    },
+    {
+      "title": {
+        "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>note_alt</mat-icon> Napomene</div>"
+      },
+      "type": "grid",
+      "path": "/grids/children/profile-children",
+      "file": "children-notes.json"
+    },
+    {
+      "title": {
+        "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>house</mat-icon> Osobe za preuzimanje</div>"
+      },
+      "type": "grid",
+      "path": "/grids/children/profile-children",
+      "file": "children-taking.json"
+    },
+    {
+      "title": { "text": "Childrens", "headerStyle": "e-fill" },
+      "type": "grid",
+      "path": "/grids/children",
+      "file": "all-children.json"
+    },
+    {
+      "title": { "text": "Group", "headerStyle": "e-fill" },
+      "type": "grid",
+      "path": "/grids/children",
+      "file": "kindergarden-group.json"
+    }
+  ]
+  

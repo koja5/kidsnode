@@ -77,3 +77,12 @@ label {
   align-items: center;
   width: 100%;
 }
+
+.button-text-center {
+  display: inline-grid;
+  align-items: center;
+}
+
+input:focus, input:focus-visible {
+  outline: none;
+}

@@ -157,7 +157,7 @@
       "template": {
         "type": "button",
         "action": "open",
-        "class": "btn btn-info",
+        "class": "btn btn-info button-text-center",
         "classIcon": "pageview",
         "link": "dashboard/children/profile-children",
         "parameters": ["children_id"]

@@ -15,6 +15,10 @@ export class LoginComponent implements OnInit {
   public configField: LoginModel;
   public language: any;
   public loader: boolean = false;
+  public loginData = {
+    username: "",
+    password: ""
+  };
 
   constructor(
     private callApiService: CallApiService,
@@ -77,17 +81,24 @@ export class LoginComponent implements OnInit {
 
   login(event: any) {
     this.loader = true;
-    this.callApiService.callPostMethod('api/login', event).subscribe((data) => {
-      if (data) {
-        this.setUserInfoAndRoute(data);
+    this.callApiService.callPostMethod('api/login', this.loginData).subscribe(
+      (data) => {
+        if (data) {
+          this.setUserInfoAndRoute(data);
+        } else {
+          this.loader = false;
+        }
+      },
+      (error) => {
         this.loader = false;
       }
-    }, error => {
-      this.loader = false;
-    });
+    );
   }
   setUserInfoAndRoute(data: any) {
     this.storageService.setLocalStorage('token', data.token);
-    this.router.navigate(['/dashboard']);
+    setTimeout(() => {
+      this.loader = false;
+      this.router.navigate(['/dashboard']);
+    }, 100);
   }
 }
