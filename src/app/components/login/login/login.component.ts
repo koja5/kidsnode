@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginDataModel } from 'src/app/models/login-data-model';
 import { LoginModel } from 'src/app/models/login-model';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
@@ -15,10 +16,8 @@ export class LoginComponent implements OnInit {
   public configField: LoginModel;
   public language: any;
   public loader: boolean = false;
-  public loginData = {
-    username: "",
-    password: ""
-  };
+  public loginForgotPasswordIndicator = 'login';
+  public loginData = new LoginDataModel();
 
   constructor(
     private callApiService: CallApiService,

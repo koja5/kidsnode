@@ -256,7 +256,7 @@ p {
 
 .login-content .login-form form .forgot-password a {
   display: inline-block;
-  color: #13c4a1;
+  color: #2B4A77;
   text-decoration: underline;
 }
 
@@ -272,13 +272,13 @@ p {
   display: block;
   width: 100%;
   position: relative;
-  border: 1px solid #13c4a1;
+  border: 1px solid #2B4A77;
   background-color: transparent;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding: 11px 30px;
   border-radius: 2px;
-  color: #13c4a1;
+  color: #2B4A77;
   font-weight: 500;
 }
 
@@ -315,9 +315,13 @@ p {
 }
 
 .login-content .login-form form .connect-with-social button:hover {
-  background-color: #13c4a1;
+  background-color: #2B4A77;
   color: #fff;
-  border-color: #13c4a1;
+  border-color: #2B4A77;
+}
+
+.login-container, .forgot-container {
+  transition: visibility 1s, opacity 0.5s linear;
 }
 
 .d-table {
@@ -372,7 +376,7 @@ p {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background-color: #13c4a1;
+  background-color: #2B4A77;
   -webkit-transition: width 0.6s ease-in-out, height 0.5s ease-in-out;
   transition: width 0.6s ease-in-out, height 0.5s ease-in-out;
   -webkit-transform: translate(-50%, -50%);
@@ -414,6 +418,11 @@ p {
 
 .form-group-login {
   margin-bottom: 15px;
+}
+
+.signup-link {
+  cursor: pointer;
+  color: #ff612f;
 }
 
 /* END NEW LOGIN */
