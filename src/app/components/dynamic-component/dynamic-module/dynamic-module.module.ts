@@ -27,6 +27,9 @@ import { TabModule } from '@syncfusion/ej2-angular-navigations';
 import { DynamicTabsComponent } from '../dynamic-tabs/dynamic-tabs.component';
 import { LoaderComponent } from '../../common/loader/loader.component';
 import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.component';
+import { MatIconModule } from '@angular/material/icon';
+import { DynamicSchedulerComponent } from '../dynamic-scheduler/dynamic-scheduler.component';
+import { AgendaService, DayService, MonthService, RecurrenceEditorAllModule, ScheduleAllModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.com
     DynamicFormsComponent,
     DynamicTabsComponent,
     LoaderComponent,
-    DialogModalComponent
+    DialogModalComponent,
+    ToastrComponent,
+    DynamicSchedulerComponent
   ],
   exports: [
     DynamicGridComponent,
@@ -42,6 +47,8 @@ import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.com
     DynamicTabsComponent,
     LoaderComponent,
     DialogModalComponent,
+    ToastrComponent,
+    DynamicSchedulerComponent
   ],
   imports: [
     CommonModule,
@@ -51,6 +58,9 @@ import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.com
     FormsModule,
     TabModule,
     ToastrModule.forRoot(),
+    MatIconModule,
+    ScheduleAllModule,
+    RecurrenceEditorAllModule
   ],
   providers: [
     EditService,
@@ -64,6 +74,11 @@ import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.com
     GroupService,
     ResizeService,
     ToastrComponent,
+    DayService,
+    WeekService,
+    WorkWeekService,
+    MonthService,
+    AgendaService
   ],
   entryComponents: [DynamicFormsComponent],
 })

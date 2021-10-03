@@ -30,6 +30,14 @@ export class HelpService {
     }
   }
 
+  getHeightForSchedulerWithoutPx() {
+    if (window.innerWidth < 992) {
+      return Number(window.innerHeight - 125);
+    } else {
+      return Number(window.innerHeight - 120);
+    }
+  }
+
   concatenatePageLink(link: string, parameters: string[], data: any) {
     let parametersValue = '';
     for (let i = 0; i < parameters.length; i++) {

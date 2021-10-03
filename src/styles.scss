@@ -4,15 +4,16 @@
 @import "~bootstrap/scss/bootstrap";
 // @import "~material-kit/assets/scss/material-kit";
 
-@import '../node_modules/@syncfusion/ej2-base/styles/material.css';  
-@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';  
-@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';  
-@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';  
-@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';  
-@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';  
-@import '../node_modules/@syncfusion/ej2-angular-grids/styles/material.css';
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-calendars/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-angular-grids/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-angular-schedule/styles/material.css";
 
 html,
 body {
@@ -20,6 +21,21 @@ body {
 }
 body {
   margin: 0;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #c6c2c2;
+  border-radius: 5px;
 }
 
 h1,
@@ -87,6 +103,56 @@ a {
   align-items: center;
 }
 
-input:focus, input:focus-visible {
+input:focus,
+input:focus-visible {
   outline: none;
+}
+
+.navigation-container {
+  overflow: auto;
+}
+
+.navigation-container::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.navigation-container::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+
+.navigation-container::-webkit-scrollbar-thumb {
+  background-color: #c6c2c2;
+  border-radius: 5px;
+}
+
+.e-dlg-content::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.e-dlg-content::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+
+.e-dlg-content::-webkit-scrollbar-thumb {
+  background-color: #c6c2c2;
+  border-radius: 5px;
+}
+
+.e-content-wrap::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.e-content-wrap::-webkit-scrollbar {
+  width: 17px;
+  background-color: #f5f5f5;
+}
+
+.e-content-wrap::-webkit-scrollbar-thumb {
+  background-color: #c6c2c2;
+  border-radius: 17px;
 }

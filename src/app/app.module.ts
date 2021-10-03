@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { LoginModule } from './components/login/routing-module/login.module';
 import { FormsModule } from '@angular/forms';
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
   declarations: [

@@ -8,6 +8,7 @@ export class FieldConfig {
   class?: string;
   width?: string;
   field?: any;
+  rows?: string;
   disabled?: boolean;
   readonly?: boolean;
   floatLabel?: string;

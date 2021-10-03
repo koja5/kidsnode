@@ -1,0 +1,69 @@
+<div *ngIf="loader" style="height: 70vh">
+  <app-loader></app-loader>
+</div>
+
+<ejs-schedule
+  *ngIf="!loader"
+  width="100%"
+  [height]="height"
+  [views]="config?.views"
+  [eventSettings]="eventSettings"
+  [showQuickInfo]="config?.showQuickInfo"
+  (popupOpen)="onPopupOpen($event)"
+>
+  <!-- <ng-template #editorTemplate>
+    <div *ngFor="let item of config?.fields" class="{{item.width}}">
+      <div *ngIf="item.type === 'string'">
+        <label *ngIf="item?.title" class="custom-label">{{
+          language[item?.title] ? language[item?.title] : item?.title
+        }}</label>
+        <ejs-textbox
+          cssClass="{{ item.class }}"
+          [id]="item.name"
+          [type]="item.type"
+          [name]="item.name"
+          [placeholder]="item.placeholder ? item.placeholder : ''"
+          [readonly]="item.readonly"
+          [disabled]="item.disabled!"
+          [multiline]="item.multiline"
+        ></ejs-textbox>
+      </div>
+    </div>
+  </ng-template> -->
+  <ng-template #editorTemplate>
+    <table class="custom-event-editor" width="100%" cellpadding="5">
+        <tbody>
+            <tr>
+                <td class="e-textlabel">Summary</td>
+                <td colspan="4">
+                    <input id="Subject" class="e-field e-input" type="text" value="" name="Subject" style="width: 100%" />
+                </td>
+            </tr>
+            <tr>
+            <td class="e-textlabel">From</td>
+                <td colspan="4">
+                    <input id="StartTime" class="e-field" type="text" name="StartTime" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">To</td>
+                <td colspan="4">
+                    <input id="EndTime" class="e-field" type="text" name="EndTime" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">Owner</td>
+                <td colspan="4">
+                    <input type="text" id="OwnerId" name="OwnerId" class="e-field" style="width: 100%" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">Reason</td>
+                <td colspan="4">
+                    <textarea id="Description" class="e-field e-input" name="Description" rows="3" cols="50" style="width: 100%; height: 60px !important; resize: vertical"></textarea>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
+</ejs-schedule>

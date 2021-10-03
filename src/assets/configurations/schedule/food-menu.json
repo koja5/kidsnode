@@ -1,0 +1,34 @@
+{
+  "views": ["Day", "Week", "WorkWeek", "Month"],
+  "showQuickInfo": true,
+  "fields": [
+      {
+          "type": "string",
+          "width": "col-md-12",
+          "class": "e-textbox e-outline",
+          "title": "Subject",
+          "name": "Subject"
+      },
+      {
+        "type": "string",
+        "width": "col-md-12",
+        "class": "e-textbox e-outline",
+        "title": "Subject",
+        "name": "Subject"
+    },
+    {
+        "type": "string",
+        "width": "col-md-12",
+        "class": "e-textbox e-outline",
+        "title": "Subject",
+        "name": "Subject"
+    },
+    {
+        "type": "string",
+        "width": "col-md-12",
+        "class": "e-textbox e-outline",
+        "title": "Subject",
+        "name": "Subject"
+    }
+  ]
+}

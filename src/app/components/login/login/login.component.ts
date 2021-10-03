@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   public loader: boolean = false;
   public loginForgotPasswordIndicator = 'login';
   public loginData = new LoginDataModel();
+  public notCorrect = false;
 
   constructor(
     private callApiService: CallApiService,
@@ -84,12 +85,15 @@ export class LoginComponent implements OnInit {
       (data) => {
         if (data) {
           this.setUserInfoAndRoute(data);
+          this.notCorrect = false;
         } else {
           this.loader = false;
+          this.notCorrect = true;
         }
       },
       (error) => {
         this.loader = false;
+        this.notCorrect = true;
       }
     );
   }

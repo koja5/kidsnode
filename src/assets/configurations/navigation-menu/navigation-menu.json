@@ -66,6 +66,32 @@
     "title": "Organizacija",
     "menu": [
       {
+        "icon": "format_list_numbered",
+        "title": "Zahtevi",
+        "link": "",
+        "rights": "",
+        "children": [
+          {
+            "icon": "text_snippet",
+            "title": "Svi zahtevi",
+            "link": "/login",
+            "rights": ""
+          },
+          {
+            "icon": "speaker_notes",
+            "title": "Obradjeni/Bodovani",
+            "link": "/login",
+            "rights": ""
+          },
+          {
+            "icon": "description",
+            "title": "Dokumenta za upis",
+            "link": "/login",
+            "rights": ""
+          }
+        ]
+      },
+      {
         "icon": "baby_changing_station",
         "title": "Deca",
         "link": "dashboard/groups",
@@ -77,6 +103,52 @@
         "link": "/dashboard/employee/all-employees",
         "rights": ""
       }
+    ]
+  },
+  {
+    "title": "Administracija",
+    "menu": [
+      {
+        "icon": "work",
+        "title": "Posao",
+        "link": "",
+        "rights": "",
+        "children": [
+          {
+            "icon": "work",
+            "title": "Radna mesta",
+            "link": "/dashboard/parameters/work-places",
+            "rights": ""
+          },
+          {
+            "icon": "receipt_long",
+            "title": "Vrste rada",
+            "link": "/dashboard/parameters/type-of-work",
+            "rights": ""
+          }
+        ]
+      },
+      {
+        "icon": "restaurant",
+        "title": "Hrana",
+        "link": "",
+        "rights": "",
+        "children": [
+          {
+            "icon": "work",
+            "title": "Jela",
+            "link": "/dashboard/parameters/food",
+            "rights": ""
+          },
+          {
+            "icon": "receipt_long",
+            "title": "Jelovnik",
+            "link": "/dashboard/parameters/food-menu",
+            "rights": ""
+          }
+        ]
+      }
+      
     ]
   }
 ]

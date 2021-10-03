@@ -2,7 +2,7 @@
   "pageSize": 10,
   "request": {
     "type": "GET",
-    "api": "/api/getKindergardenGroup",
+    "api": "/api/getFoods",
     "parameters": [],
     "fields": "",
     "root": ""
@@ -59,21 +59,21 @@
   "editSettingsRequest": {
     "add": {
       "type": "POST",
-      "api": "/api/createKindergardenGroup",
+      "api": "/api/createFood",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "edit": {
       "type": "POST",
-      "api": "/api/updateKindergardenGroup",
+      "api": "/api/updateFood",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "delete": {
       "type": "POST",
-      "api": "/api/deleteKindergardenGroup",
+      "api": "/api/deleteFood",
       "parameters": [],
       "fields": "",
       "root": ""
@@ -93,12 +93,21 @@
       "allowEditing": false
     },
     {
-      "title": "kindergardenGroupName",
+      "title": "name",
       "filterable": true,
       "hideable": true,
       "type": "string",
       "class": "text-align-right",
       "field": "name",
+      "validation": { "required": true }
+    },
+    {
+      "title": "description",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "description",
       "validation": { "required": true }
     }
   ],
@@ -117,15 +126,25 @@
       "width": "col-md-12",
       "class": "e-outline",
       "name": "name",
-      "title": "kindergardenGroupName",
+      "title": "name",
       "field": "name"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-12",
+      "class": "e-outline",
+      "multiline": true,
+      "rows": "5",
+      "name": "description",
+      "title": "description",
+      "field": "description"
     },
     {
       "type": "button",
       "width": "col-md-12",
       "class": "e-info",
       "name": "submit",
-      "title": "saveKindergardenGroup",
+      "title": "saveButton",
       "field": "submit",
       "positionClass": "position-end mt-3 col-md-12"
     }
