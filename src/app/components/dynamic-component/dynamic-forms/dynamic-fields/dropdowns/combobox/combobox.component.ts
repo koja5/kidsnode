@@ -9,7 +9,7 @@ import { FieldConfig } from '../../../models/field-config';
 @Component({
   selector: 'app-combobox',
   templateUrl: './combobox.component.html',
-  styleUrls: ['./combobox.component.sass'],
+  styleUrls: ['./combobox.component.scss'],
 })
 export class ComboboxComponent implements OnInit {
   public config: FieldConfig;

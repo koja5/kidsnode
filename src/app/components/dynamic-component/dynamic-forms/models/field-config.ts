@@ -26,5 +26,6 @@ export class FieldConfig {
   positionClass?: string;
   onLabel?: string;
   offLabel?: string;
-  itemFields?: FieldConfig
+  itemFields?: FieldConfig;
+  schedule?: FieldConfig;
 }
