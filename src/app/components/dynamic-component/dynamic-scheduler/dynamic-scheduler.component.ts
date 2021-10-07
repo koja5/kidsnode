@@ -31,6 +31,7 @@ import { ActionCompleteEventArgs } from '@syncfusion/ej2-inputs';
 import { ScheduleModel } from 'src/app/models/schedule-model';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
+import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
 
 @Component({
   selector: 'app-dynamic-scheduler',
@@ -56,12 +57,14 @@ import { HelpService } from 'src/app/services/help.service';
 export class DynamicSchedulerComponent implements OnInit {
   @Input() path!: string;
   @Input() file!: string;
+  @ViewChild(DynamicFormsComponent) form!: DynamicFormsComponent;
 
   public eventSettings: EventSettingsModel = {};
   public config?: ScheduleModel;
   public loader = false;
   public language?: any;
   public height?: number;
+  public selectedData?: any;
   public configField = {
     config: [
       {
@@ -129,6 +132,28 @@ export class DynamicSchedulerComponent implements OnInit {
           class: 'e-field e-input e-lib e-keyboard',
         },
       },
+      {
+        type: 'multiselect',
+        width: 'col-md-12',
+        class: 'e-outline',
+        fieldClass: 'e-field e-input',
+        name: 'kindergarden_multi',
+        title: 'Kindergarden group',
+        field: { text: 'name', value: 'id' },
+        request: {
+          type: 'GET',
+          api: '/api/getKindergardenGroupByKindergardenId',
+          parameters: [],
+          fields: '',
+          root: '',
+        },
+        placeholder: 'Please select kindergarden group',
+        fieldConfig: {
+          ignoreAccent: false,
+          filter: true,
+        },
+        required: true,
+      },
     ],
   };
 
@@ -148,7 +173,6 @@ export class DynamicSchedulerComponent implements OnInit {
   }
 
   initializeConfig() {
-    //get language
     this.language = this.helpService.getLanguage();
 
     this.configurationService
@@ -162,13 +186,28 @@ export class DynamicSchedulerComponent implements OnInit {
 
   onPopupOpen(event: PopupOpenEventArgs) {
     console.log(event);
+    if (event.type === 'Editor') {
+      this.selectedData = event.data;
+      setTimeout(() => {
+        this.setValue(this.configField.config, this.selectedData);
+      }, 500);
+    }
   }
 
   actionComplete(event: ActionCompleteEventArgs) {
     console.log(event);
   }
 
-  submitEmitter(event: any) {
-    console.log(event);
+  setValue(fields: any, values: any) {
+    for (let i = 0; i < fields.length; i++) {
+      if (fields[i].schedule) {
+        this.form.setValue(
+          fields[i].schedule['name'],
+          values[fields[i].schedule['name']]
+        );
+      } else {
+        this.form.setValue(fields[i]['name'], values[fields[i]['name']]);
+      }
+    }
   }
 }

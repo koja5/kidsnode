@@ -8,16 +8,16 @@ import { ButtonComponent } from './buttons/button/button.component';
 import { CheckboxComponent } from './buttons/checkbox/checkbox.component';
 import { RadioComponent } from './buttons/radio/radio.component';
 import { ComboboxComponent } from './dropdowns/combobox/combobox.component';
+import { MultiselectComponent } from './dropdowns/multiselect/multiselect.component';
 import { DatepickerComponent } from './inputs/datepicker/datepicker.component';
 import { TextBoxComponent } from './inputs/text-box/text-box.component';
 import { LabelComponent } from './text/label/label.component';
-
-
 
 const components: {[type: string]: Type<Field>} = {
   textbox: TextBoxComponent,
   password: TextBoxComponent,
   combobox: ComboboxComponent,
+  multiselect: MultiselectComponent,
   button: ButtonComponent,
   radio: RadioComponent,
   checkbox: CheckboxComponent,

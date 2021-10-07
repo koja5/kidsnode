@@ -12,59 +12,10 @@
   (popupOpen)="onPopupOpen($event)"
   (actionComplete)="actionComplete($event)"
 >
-  <!-- <ng-template #editorTemplate>
-    <div *ngFor="let item of config?.fields" class="{{item.width}}">
-      <div *ngIf="item.type === 'string'">
-        <label *ngIf="item?.title" class="custom-label">{{
-          language[item?.title] ? language[item?.title] : item?.title
-        }}</label>
-        <ejs-textbox
-          cssClass="{{ item.class }}"
-          [id]="item.name"
-          [type]="item.type"
-          [name]="item.name"
-          [placeholder]="item.placeholder ? item.placeholder : ''"
-          [readonly]="item.readonly"
-          [disabled]="item.disabled!"
-          [multiline]="item.multiline"
-        ></ejs-textbox>
-      </div>
+  <ng-template #editorTemplate let-data>
+    <div ngForm>
+      <app-dynamic-forms [config]="configField" #form="dynamicForm">
+      </app-dynamic-forms>
     </div>
-  </ng-template> -->
-  <ng-template #editorTemplate>
-    <app-dynamic-forms
-      [config]="configField"
-      (submit)="submitEmitter($event)"
-      #form="dynamicForm"
-    >
-    </app-dynamic-forms>
-    <!-- <table class="custom-event-editor" width="100%" cellpadding="5">
-      <tbody>
-        <tr>
-          <td class="e-textlabel">Summary</td>
-          <td colspan="4" class="e-input-group e-control-wrapper e-outline">
-            <input
-              class="e-field e-input e-control e-textbox e-lib e-input"
-              type="text"
-              value=""
-              name="Subject"
-              style="width: 100%"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td class="e-textlabel">Create</td>
-          <td colspan="4" class="e-input-group e-control-wrapper e-outline">
-            <input
-              class="e-field e-input e-control e-textbox e-lib e-input"
-              type="text"
-              value=""
-              name="create"
-              style="width: 100%"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table> -->
   </ng-template>
 </ejs-schedule>

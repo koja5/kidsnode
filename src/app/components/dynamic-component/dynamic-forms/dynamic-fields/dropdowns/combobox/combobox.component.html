@@ -10,6 +10,7 @@
   <ejs-combobox
     cssClass="{{ config.class }}"
     [id]="config.name"
+    [type]="config.type"
     [dataSource]="data"
     [fields]="config.field"
     [placeholder]="config.placeholder ? config.placeholder : ''"
@@ -32,7 +33,11 @@
       id="{{ config.name }}"
       class="custom-combo {{ config?.schedule?.class }}"
     >
-      <option *ngFor="let item of data" value="{{ item[config.field.value] }}">
+      <option
+        *ngFor="let item of data"
+        value="{{ item[config.field.value] }}"
+        class="p-2"
+      >
         {{ item[config.field.text] }}
       </option>
     </select>

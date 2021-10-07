@@ -157,8 +157,8 @@
       "template": {
         "type": "button",
         "action": "open",
-        "class": "btn btn-info button-text-center",
-        "classIcon": "pageview",
+        "class": "btn btn-info button-text-center button-action",
+        "classIcon": "remove_red_eye",
         "link": "dashboard/children/profile-children",
         "parameters": ["children_id"]
       }
@@ -365,7 +365,7 @@
     {
       "type": "button",
       "width": "col-md-12",
-      "class": "e-info",
+      "class": "e-info button-action",
       "name": "submit",
       "title": "Sacuvaj",
       "field": "submit",

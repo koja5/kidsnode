@@ -28,12 +28,10 @@ export class ComboboxComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.group);
+    console.log(this.config);
     this.language = this.helpService.getLanguage();
     if (this.config.data && this.config.data['translation']) {
-      /*this.data =
-        this.helpService.getLanguage()[
-          this.config.data['translation']['property']
-        ];*/
       this.config.field = this.config.data['translation']['fields'];
     } else {
       this.initialization();

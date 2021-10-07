@@ -175,8 +175,8 @@
       "template": {
         "type": "button",
         "action": "open",
-        "class": "btn btn-info button-text-center",
-        "classIcon": "pageview",
+        "class": "btn btn-success button-text-center button-action",
+        "classIcon": "remove_red_eye",
         "link": "dashboard/employee/profile-employee",
         "parameters": ["id"]
       }
@@ -187,7 +187,7 @@
       "type": "textbox",
       "width": "col-md-12 hide",
       "class": "e-outline",
-      "name": "children_id",
+      "name": "id",
       "title": "ID",
       "field": "id",
       "readonly": true
@@ -317,7 +317,7 @@
     {
       "type": "button",
       "width": "col-md-12",
-      "class": "e-info",
+      "class": "e-info  button-action",
       "name": "submit",
       "title": "saveButton",
       "field": "submit",
