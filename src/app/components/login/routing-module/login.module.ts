@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 
+// SERVICES
+import { CookieService } from 'ngx-cookie-service';
+
 //CUSTOM MODULE
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +31,7 @@ import { LoaderBrandComponent } from '../../common/loader-brand/loader-brand.com
     NgbModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [],
 })
 export class LoginModule {}

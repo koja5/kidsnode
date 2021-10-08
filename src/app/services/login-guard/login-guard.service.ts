@@ -9,7 +9,7 @@ export class LoginGuardService {
   constructor(private router: Router, public storageService: StorageService) {}
 
   canActivate() {
-    if (this.storageService.getLocalStorageSimple('token')) {
+    if (this.storageService.getToken()) {
       return true;
     } else {
       this.router.navigate(['/login']);

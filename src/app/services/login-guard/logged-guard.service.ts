@@ -9,7 +9,7 @@ export class LoggedGuardService {
   constructor(private router: Router, public storageService: StorageService) {}
 
   canActivate() {
-    if (this.storageService.getLocalStorageSimple('token')) {
+    if (this.storageService.getToken()) {
       this.router.navigate(['/dashboard']);
       return false;
     } else {

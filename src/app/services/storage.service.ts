@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StorageService {
+  constructor(private cookieService: CookieService) {}
 
-  constructor() { }
-
-  setSessionStorage(key:string, value: any) {
+  setSessionStorage(key: string, value: any) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }
 
@@ -45,5 +45,17 @@ export class StorageService {
 
   removeLocalStorage(key: string) {
     localStorage.removeItem(key);
+  }
+
+  setToken(token: any) {
+    this.cookieService.set('token', token, { expires: 1, path: '/', sameSite: 'Lax' });
+  }
+
+  getToken() {
+    return this.cookieService.get('token');
+  }
+
+  deleteToken() {
+    this.cookieService.delete('token', '/');
   }
 }
