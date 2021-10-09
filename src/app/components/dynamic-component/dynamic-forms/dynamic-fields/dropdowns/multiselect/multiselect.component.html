@@ -3,11 +3,9 @@
     language[config?.title] ? language[config?.title] : config?.title
   }}</label>
   <ejs-multiselect
-    *ngIf="data"
     cssClass=" {{ config.class }}"
     class="{{ config.fieldClass }}"
     [id]="config.name"
-    [type]="config.type"
     [dataSource]="data"
     [fields]="config.field"
     [placeholder]="config.placeholder ? config.placeholder : ''"

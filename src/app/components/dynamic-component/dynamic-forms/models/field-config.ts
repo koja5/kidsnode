@@ -6,6 +6,7 @@ export class FieldConfig {
   title?: string;
   text?: string;
   class?: string;
+  fieldClass?: string;
   width?: string;
   field?: any;
   rows?: string;

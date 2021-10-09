@@ -191,8 +191,10 @@ export class DynamicFormsComponent implements OnInit {
   }
 
   setValue(name: string, value: any) {
-    if (this.form.controls[name]) {
-      this.form.controls[name].setValue(value, { emitEvent: true });
+    if (name) {
+      if (this.form.controls[name]) {
+        this.form.controls[name].setValue(value, { emitEvent: true });
+      }
     }
   }
 

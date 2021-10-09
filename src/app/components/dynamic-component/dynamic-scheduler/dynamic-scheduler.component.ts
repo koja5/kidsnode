@@ -137,7 +137,7 @@ export class DynamicSchedulerComponent implements OnInit {
         width: 'col-md-12',
         class: 'e-outline',
         fieldClass: 'e-field e-input',
-        name: 'kindergarden_multi',
+        name: 'Kinder',
         title: 'Kindergarden group',
         field: { text: 'name', value: 'id' },
         request: {
@@ -185,12 +185,11 @@ export class DynamicSchedulerComponent implements OnInit {
   }
 
   onPopupOpen(event: PopupOpenEventArgs) {
-    console.log(event);
     if (event.type === 'Editor') {
       this.selectedData = event.data;
       setTimeout(() => {
-        this.setValue(this.configField.config, this.selectedData);
-      }, 500);
+        this.setValue(this.configField.config, event.data);
+      }, 50);
     }
   }
 
