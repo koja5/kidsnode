@@ -1,5 +1,6 @@
 {
   "pageSize": 10,
+  "width": "50%",
   "request": {
     "type": "GET",
     "api": "/api/getEmployees",

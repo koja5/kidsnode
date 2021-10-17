@@ -9,7 +9,7 @@ import { FieldConfig } from '../../../models/field-config';
 @Component({
   selector: 'app-multiselect',
   templateUrl: './multiselect.component.html',
-  styleUrls: ['./multiselect.component.sass'],
+  styleUrls: ['./multiselect.component.scss'],
 })
 export class MultiselectComponent implements OnInit {
   public config: FieldConfig;
@@ -28,7 +28,6 @@ export class MultiselectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.group);
     this.language = this.helpService.getLanguage();
     if (this.config.data && this.config.data['translation']) {
       this.config.field = this.config.data['translation']['fields'];

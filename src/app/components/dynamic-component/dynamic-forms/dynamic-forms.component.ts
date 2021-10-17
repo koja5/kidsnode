@@ -202,6 +202,5 @@ export class DynamicFormsComponent implements OnInit {
     this.modalShow = true;
     this.loader = false;
     const componentModal = this.modal.open(DialogModalComponent);
-    console.log(componentModal);
   }
 }

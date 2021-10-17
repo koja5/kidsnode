@@ -26,7 +26,7 @@ import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component'
 @Component({
   selector: 'app-dynamic-grid',
   templateUrl: './dynamic-grid.component.html',
-  styleUrls: ['./dynamic-grid.component.sass'],
+  styleUrls: ['./dynamic-grid.component.scss'],
 })
 export class DynamicGridComponent implements OnInit {
   @Input() path!: string;
@@ -120,6 +120,14 @@ export class DynamicGridComponent implements OnInit {
   actionComplete(args: DialogEditEventArgs): void {
     if (args.requestType === 'beginEdit' || args.requestType === 'add') {
       args.dialog!.buttons = [];
+      if (this.config.width) {
+        args.dialog!.width = this.config.width;
+      }
+      if (args.requestType === 'add') {
+        args.dialog!.header = this.language.gridPopupAddTitle;
+      } else if (args.requestType === 'beginEdit') {
+        args.dialog!.header = this.language.gridPopupEditTitle;
+      }
       setTimeout(() => {
         this.setValue(this.config.config, args.rowData);
       }, 50);

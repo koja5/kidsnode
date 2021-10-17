@@ -32,5 +32,7 @@
     "saveButton": "Sačuvaj",
     "notFoundTitle": "Izgleda da ste se izgubili!",
     "notFoundText": "Stranica koju ste izabrali ne postoji!",
-    "notFoundBack": "Vrati se nazad"
+    "notFoundBack": "Vrati se nazad",
+    "gridPopupAddTitle": "Dodavanje novog podatka",
+    "gridPopupEditTitle": "Izmena podatka"
 }

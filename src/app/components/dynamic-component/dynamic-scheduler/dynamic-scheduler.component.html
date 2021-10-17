@@ -14,8 +14,14 @@
 >
   <ng-template #editorTemplate let-data>
     <div ngForm>
-      <app-dynamic-forms [config]="configField" #form="dynamicForm">
-      </app-dynamic-forms>
+      <div>
+        <app-dynamic-forms
+          [config]="config1"
+          (submit)="submitEmitter($event)"
+          #form="dynamicForm"
+        >
+        </app-dynamic-forms>
+      </div>
     </div>
   </ng-template>
 </ejs-schedule>

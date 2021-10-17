@@ -10,6 +10,7 @@ export class FieldConfig {
   width?: string;
   field?: any;
   rows?: string;
+  required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
   floatLabel?: string;

@@ -30,6 +30,7 @@ import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.com
 import { MatIconModule } from '@angular/material/icon';
 import { DynamicSchedulerComponent } from '../dynamic-scheduler/dynamic-scheduler.component';
 import { AgendaService, DayService, MonthService, RecurrenceEditorAllModule, ScheduleAllModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
+import { LoaderSvgComponent } from '../../common/loader-svg/loader-svg.component';
 
 @NgModule({
   declarations: [

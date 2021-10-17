@@ -1,5 +1,6 @@
 {
   "pageSize": 10,
+  "width": "50%",
   "request": {
     "type": "GET",
     "api": "/api/getChildrens",
@@ -166,7 +167,7 @@
   ],
   "config": [
     {
-      "type": "title",
+      "type": "label",
       "width": "col-md-12",
       "title": "Podaci o detetu",
       "text": "Molimo unesite neke osnovne podatke o detetu"
@@ -244,7 +245,7 @@
       "required": true
     },
     {
-      "type": "title",
+      "type": "label",
       "width": "col-md-12 border-top mt-3 pt-3",
       "title": "Podaci o ocu",
       "text": "Molimo unesite neke osnovne podatke o ocu"
@@ -292,7 +293,7 @@
     },
 
     {
-      "type": "title",
+      "type": "label",
       "width": "col-md-12 border-top mt-3 pt-3",
       "title": "Podaci o majci",
       "text": "Molimo unesite neke osnovne podatke o majci"

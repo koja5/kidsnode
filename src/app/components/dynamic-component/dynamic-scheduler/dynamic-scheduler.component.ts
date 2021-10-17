@@ -32,6 +32,8 @@ import { ScheduleModel } from 'src/app/models/schedule-model';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
 import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
+import { FieldConfig } from '../dynamic-forms/models/field-config';
+import { FormConfig } from '../dynamic-forms/models/form-config';
 
 @Component({
   selector: 'app-dynamic-scheduler',
@@ -65,10 +67,22 @@ export class DynamicSchedulerComponent implements OnInit {
   public language?: any;
   public height?: number;
   public selectedData?: any;
-  public configField = {
-    config: [
+  public configField!: FieldConfig[];
+  public config1!: FormConfig;
+
+  constructor(
+    private configurationService: ConfigurationService,
+    private helpService: HelpService
+  ) {}
+
+  ngOnInit(): void {
+    this.loader = true;
+    this.initializeConfig();
+
+    this.configField = [
       {
         type: 'textbox',
+        name: 'Subject',
         schedule: {
           type: 'text',
           title: 'Subject',
@@ -79,6 +93,7 @@ export class DynamicSchedulerComponent implements OnInit {
       },
       {
         type: 'textbox',
+        name: 'Owner',
         schedule: {
           type: 'text',
           title: 'Owner',
@@ -89,6 +104,7 @@ export class DynamicSchedulerComponent implements OnInit {
       },
       {
         type: 'textbox',
+        name: 'StartTime',
         schedule: {
           type: 'text',
           title: 'StartTime',
@@ -99,6 +115,7 @@ export class DynamicSchedulerComponent implements OnInit {
       },
       {
         type: 'textbox',
+        name: 'EndTime',
         schedule: {
           type: 'text',
           title: 'EndTime',
@@ -110,14 +127,14 @@ export class DynamicSchedulerComponent implements OnInit {
       {
         type: 'combobox',
         width: 'col-md-12',
-        class: 'e-outline e-field',
+        class: 'e-outline',
+        fieldClass: 'e-field e-input e-lib e-keyboard',
         name: 'kindergarden_group_id',
         title: 'Kindergarden group',
         field: { text: 'name', value: 'id' },
         request: {
           type: 'GET',
           api: '/api/getKindergardenGroupByKindergardenId',
-          parameters: [],
           fields: '',
           root: '',
         },
@@ -128,6 +145,8 @@ export class DynamicSchedulerComponent implements OnInit {
         },
         required: true,
         schedule: {
+          type: 'combobox',
+          name: 'kindergarden_group_id',
           title: 'Kindergarden group',
           class: 'e-field e-input e-lib e-keyboard',
         },
@@ -143,7 +162,6 @@ export class DynamicSchedulerComponent implements OnInit {
         request: {
           type: 'GET',
           api: '/api/getKindergardenGroupByKindergardenId',
-          parameters: [],
           fields: '',
           root: '',
         },
@@ -153,18 +171,17 @@ export class DynamicSchedulerComponent implements OnInit {
           filter: true,
         },
         required: true,
+        schedule: {
+          type: 'multiselect',
+          name: 'Kinder',
+          title: 'Kindergarden group',
+          class: 'e-field e-input e-lib e-keyboard',
+        },
       },
-    ],
-  };
-
-  constructor(
-    private configurationService: ConfigurationService,
-    private helpService: HelpService
-  ) {}
-
-  ngOnInit(): void {
-    this.loader = true;
-    this.initializeConfig();
+    ];
+    this.config1 = {
+      config: this.configField,
+    };
   }
 
   @HostListener('window:resize', ['$event'])
@@ -185,11 +202,10 @@ export class DynamicSchedulerComponent implements OnInit {
   }
 
   onPopupOpen(event: PopupOpenEventArgs) {
-    if (event.type === 'Editor') {
+    if (event.type === 'QuickInfo') {
       this.selectedData = event.data;
-      setTimeout(() => {
-        this.setValue(this.configField.config, event.data);
-      }, 50);
+      this.setValue(this.configField, this.selectedData);
+    } else if (event.type === 'Editor') {
     }
   }
 
@@ -204,8 +220,10 @@ export class DynamicSchedulerComponent implements OnInit {
           fields[i].schedule['name'],
           values[fields[i].schedule['name']]
         );
+        this.configField[i].value = values[fields[i].schedule['name']];
       } else {
         this.form.setValue(fields[i]['name'], values[fields[i]['name']]);
+        this.configField[i].value = values[fields[i].schedule['name']];
       }
     }
   }
