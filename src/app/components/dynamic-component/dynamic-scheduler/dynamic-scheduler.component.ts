@@ -78,110 +78,6 @@ export class DynamicSchedulerComponent implements OnInit {
   ngOnInit(): void {
     this.loader = true;
     this.initializeConfig();
-
-    this.configField = [
-      {
-        type: 'textbox',
-        name: 'Subject',
-        schedule: {
-          type: 'text',
-          title: 'Subject',
-          width: 'col-md-12',
-          class: 'e-field e-input e-control e-textbox e-lib e-input',
-          name: 'Subject',
-        },
-      },
-      {
-        type: 'textbox',
-        name: 'Owner',
-        schedule: {
-          type: 'text',
-          title: 'Owner',
-          width: 'col-md-12',
-          class: 'e-field e-input e-control e-textbox e-lib e-input',
-          name: 'Owner',
-        },
-      },
-      {
-        type: 'textbox',
-        name: 'StartTime',
-        schedule: {
-          type: 'text',
-          title: 'StartTime',
-          width: 'col-md-12',
-          class: 'e-field e-input e-control e-textbox e-lib e-input',
-          name: 'StartTime',
-        },
-      },
-      {
-        type: 'textbox',
-        name: 'EndTime',
-        schedule: {
-          type: 'text',
-          title: 'EndTime',
-          width: 'col-md-12',
-          class: 'e-field e-input e-control e-textbox e-lib e-input',
-          name: 'EndTime',
-        },
-      },
-      {
-        type: 'combobox',
-        width: 'col-md-12',
-        class: 'e-outline',
-        fieldClass: 'e-field e-input e-lib e-keyboard',
-        name: 'kindergarden_group_id',
-        title: 'Kindergarden group',
-        field: { text: 'name', value: 'id' },
-        request: {
-          type: 'GET',
-          api: '/api/getKindergardenGroupByKindergardenId',
-          fields: '',
-          root: '',
-        },
-        placeholder: 'Please select kindergarden group',
-        fieldConfig: {
-          ignoreAccent: false,
-          filter: true,
-        },
-        required: true,
-        schedule: {
-          type: 'combobox',
-          name: 'kindergarden_group_id',
-          title: 'Kindergarden group',
-          class: 'e-field e-input e-lib e-keyboard',
-        },
-      },
-      {
-        type: 'multiselect',
-        width: 'col-md-12',
-        class: 'e-outline',
-        fieldClass: 'e-field e-input',
-        name: 'Kinder',
-        title: 'Kindergarden group',
-        field: { text: 'name', value: 'id' },
-        request: {
-          type: 'GET',
-          api: '/api/getKindergardenGroupByKindergardenId',
-          fields: '',
-          root: '',
-        },
-        placeholder: 'Please select kindergarden group',
-        fieldConfig: {
-          ignoreAccent: false,
-          filter: true,
-        },
-        required: true,
-        schedule: {
-          type: 'multiselect',
-          name: 'Kinder',
-          title: 'Kindergarden group',
-          class: 'e-field e-input e-lib e-keyboard',
-        },
-      },
-    ];
-    this.config1 = {
-      config: this.configField,
-    };
   }
 
   @HostListener('window:resize', ['$event'])
@@ -204,7 +100,7 @@ export class DynamicSchedulerComponent implements OnInit {
   onPopupOpen(event: PopupOpenEventArgs) {
     if (event.type === 'QuickInfo') {
       this.selectedData = event.data;
-      this.setValue(this.configField, this.selectedData);
+      this.setValue(this.config?.config, this.selectedData);
     } else if (event.type === 'Editor') {
     }
   }
@@ -220,10 +116,10 @@ export class DynamicSchedulerComponent implements OnInit {
           fields[i].schedule['name'],
           values[fields[i].schedule['name']]
         );
-        this.configField[i].value = values[fields[i].schedule['name']];
+        this.config!.config![i].value = values[fields[i].schedule['name']];
       } else {
         this.form.setValue(fields[i]['name'], values[fields[i]['name']]);
-        this.configField[i].value = values[fields[i].schedule['name']];
+        this.config!.config![i].value = values[fields[i].schedule['name']];
       }
     }
   }

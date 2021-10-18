@@ -9,6 +9,10 @@
   [views]="config?.views"
   [eventSettings]="eventSettings"
   [showQuickInfo]="config?.showQuickInfo"
+  [currentView]="config?.currentView"
+  [startHour]="config?.startHour"
+  [endHour]="config?.endHour"
+  [interval]="config?.interval"
   (popupOpen)="onPopupOpen($event)"
   (actionComplete)="actionComplete($event)"
 >
@@ -16,7 +20,7 @@
     <div ngForm>
       <div>
         <app-dynamic-forms
-          [config]="config1"
+          [config]="config"
           (submit)="submitEmitter($event)"
           #form="dynamicForm"
         >

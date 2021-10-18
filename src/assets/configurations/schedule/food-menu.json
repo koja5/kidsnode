@@ -1,34 +1,115 @@
 {
-  "views": ["Day", "Week", "WorkWeek", "Month"],
+  "request": {
+    "type": "GET",
+    "api": "/api/getEmployees",
+    "parameters": [],
+    "fields": "",
+    "root": ""
+  },
+  "editSettingsRequest": {
+    "add": {
+      "type": "POST",
+      "api": "/api/createEmployee",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "edit": {
+      "type": "POST",
+      "api": "/api/updateEmployee",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "delete": {
+      "type": "POST",
+      "api": "/api/deleteEmployee",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    }
+  },
+  "views": ["WorkWeek", "Day", "Week", "Month"],
   "showQuickInfo": true,
-  "fields": [
-      {
-          "type": "string",
-          "width": "col-md-12",
-          "class": "e-textbox e-outline",
-          "title": "Subject",
-          "name": "Subject"
+  "startHour": "08:00",
+  "endHour": "18:00",
+  "interval": 30,
+  "config": [
+    {
+      "type": "combobox",
+      "width": "col-md-12",
+      "class": "e-outline",
+      "fieldClass": "e-field e-input e-lib e-keyboard",
+      "name": "eat",
+      "title": "Jelo",
+      "field": { "text": "name", "value": "id" },
+      "request": {
+        "type": "GET",
+        "api": "/api/getFoods",
+        "fields": "",
+        "root": ""
       },
-      {
-        "type": "string",
-        "width": "col-md-12",
-        "class": "e-textbox e-outline",
-        "title": "Subject",
-        "name": "Subject"
+      "placeholder": "Please select kindergarden group",
+      "fieldConfig": {
+        "ignoreAccent": false,
+        "filter": true
+      },
+      "required": true,
+      "schedule": {
+        "type": "combobox",
+        "name": "eat",
+        "title": "Jelo",
+        "class": "e-field e-input e-lib e-keyboard"
+      }
     },
     {
-        "type": "string",
-        "width": "col-md-12",
-        "class": "e-textbox e-outline",
-        "title": "Subject",
-        "name": "Subject"
+      "type": "multiselect",
+      "width": "col-md-12",
+      "class": "e-outline",
+      "fieldClass": "e-field e-input",
+      "name": "food",
+      "title": "Jelo",
+      "field": { "text": "name", "value": "id" },
+      "request": {
+        "type": "GET",
+        "api": "/api/getFoods",
+        "fields": "",
+        "root": ""
+      },
+      "placeholder": "Please select kindergarden group",
+      "fieldConfig": {
+        "ignoreAccent": false,
+        "filter": true
+      },
+      "required": true,
+      "schedule": {
+        "type": "multiselect",
+        "name": "food",
+        "title": "Jelo",
+        "class": "e-field e-input e-lib e-keyboard"
+      }
     },
     {
-        "type": "string",
+      "type": "textbox",
+      "name": "StartTime",
+      "schedule": {
+        "type": "text",
+        "title": "StartTime",
         "width": "col-md-12",
-        "class": "e-textbox e-outline",
-        "title": "Subject",
-        "name": "Subject"
+        "class": "e-field e-input e-control e-textbox e-lib e-input",
+        "name": "StartTime"
+      }
+    },
+    {
+      "type": "textbox",
+      "name": "EndTime",
+      "schedule": {
+        "type": "text",
+        "title": "EndTime",
+        "width": "col-md-12",
+        "class": "e-field e-input e-control e-textbox e-lib e-input",
+        "name": "EndTime"
+      }
     }
   ]
 }
