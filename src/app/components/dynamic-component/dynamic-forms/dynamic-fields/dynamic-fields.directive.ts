@@ -1,7 +1,6 @@
 import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-
 import { Field } from '../models/field';
 import { FieldConfig } from '../models/field-config';
 import { ButtonComponent } from './buttons/button/button.component';
@@ -10,6 +9,7 @@ import { RadioComponent } from './buttons/radio/radio.component';
 import { ComboboxComponent } from './dropdowns/combobox/combobox.component';
 import { MultiselectComponent } from './dropdowns/multiselect/multiselect.component';
 import { DatepickerComponent } from './inputs/datepicker/datepicker.component';
+import { DatetimepickerComponent } from './inputs/datetimepicker/datetimepicker.component';
 import { TextBoxComponent } from './inputs/text-box/text-box.component';
 import { LabelComponent } from './text/label/label.component';
 
@@ -22,6 +22,7 @@ const components: {[type: string]: Type<Field>} = {
   radio: RadioComponent,
   checkbox: CheckboxComponent,
   datepicker: DatepickerComponent,
+  datetimepicker: DatetimepickerComponent,
   label: LabelComponent
 };
 

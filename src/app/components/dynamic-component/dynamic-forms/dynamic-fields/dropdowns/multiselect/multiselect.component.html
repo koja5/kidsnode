@@ -1,5 +1,5 @@
 <div
-  *ngIf="!config?.schedule"
+  *ngIf="!config?.schedule && data"
   [ngClass]="[config.width]"
   [formGroup]="group"
   class="form-group"
@@ -21,9 +21,7 @@
   ></ejs-multiselect>
 </div>
 
-<div *ngIf="!data" [ngClass]="[config.width]" class="form-group">
-  <app-loader-svg></app-loader-svg>
-</div>
+<app-loader-svg *ngIf="!data"></app-loader-svg>
 
 <div
   *ngIf="config?.schedule && data"

@@ -25,6 +25,8 @@ import { DynamicFormsComponent } from './dynamic-forms.component';
 import { DatepickerComponent } from './dynamic-fields/inputs/datepicker/datepicker.component';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { LabelComponent } from './dynamic-fields/text/label/label.component';
+import { LoaderSvgComponent } from '../../common/loader-svg/loader-svg.component';
+import { DatetimepickerComponent } from './dynamic-fields/inputs/datetimepicker/datetimepicker.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { LabelComponent } from './dynamic-fields/text/label/label.component';
     RadioComponent,
     ButtonComponent,
     DatepickerComponent,
-    LabelComponent
+    LabelComponent,
+    LoaderSvgComponent,
+    DatetimepickerComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +64,8 @@ import { LabelComponent } from './dynamic-fields/text/label/label.component';
     MultiselectComponent,
     CheckboxComponent,
     RadioComponent,
-    ButtonComponent
+    ButtonComponent,
+    LoaderSvgComponent
   ],
 })
 export class DynamicFormsModule {}

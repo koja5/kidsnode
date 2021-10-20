@@ -1,7 +1,7 @@
 {
   "request": {
     "type": "GET",
-    "api": "/api/getEmployees",
+    "api": "/api/getFoodMenu",
     "parameters": [],
     "fields": "",
     "root": ""
@@ -9,21 +9,21 @@
   "editSettingsRequest": {
     "add": {
       "type": "POST",
-      "api": "/api/createEmployee",
+      "api": "/api/createFoodMenu",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "edit": {
       "type": "POST",
-      "api": "/api/updateEmployee",
+      "api": "/api/updateFoodMenu",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "delete": {
       "type": "POST",
-      "api": "/api/deleteEmployee",
+      "api": "/api/deleteFoodMenu",
       "parameters": [],
       "fields": "",
       "root": ""
@@ -40,12 +40,12 @@
       "width": "col-md-12",
       "class": "e-outline",
       "fieldClass": "e-field e-input e-lib e-keyboard",
-      "name": "eat",
-      "title": "Jelo",
+      "name": "type_of_meal_id",
+      "title": "Obrok",
       "field": { "text": "name", "value": "id" },
       "request": {
         "type": "GET",
-        "api": "/api/getFoods",
+        "api": "/api/getTypeOfMeal",
         "fields": "",
         "root": ""
       },
@@ -57,7 +57,7 @@
       "required": true,
       "schedule": {
         "type": "combobox",
-        "name": "eat",
+        "name": "type_of_meal_id",
         "title": "Jelo",
         "class": "e-field e-input e-lib e-keyboard"
       }
@@ -67,7 +67,7 @@
       "width": "col-md-12",
       "class": "e-outline",
       "fieldClass": "e-field e-input",
-      "name": "food",
+      "name": "type_of_food",
       "title": "Jelo",
       "field": { "text": "name", "value": "id" },
       "request": {
@@ -84,7 +84,7 @@
       "required": true,
       "schedule": {
         "type": "multiselect",
-        "name": "food",
+        "name": "type_of_food",
         "title": "Jelo",
         "class": "e-field e-input e-lib e-keyboard"
       }
@@ -95,7 +95,7 @@
       "schedule": {
         "type": "text",
         "title": "StartTime",
-        "width": "col-md-12",
+        "width": "col-md-12 hide",
         "class": "e-field e-input e-control e-textbox e-lib e-input",
         "name": "StartTime"
       }
@@ -106,7 +106,7 @@
       "schedule": {
         "type": "text",
         "title": "EndTime",
-        "width": "col-md-12",
+        "width": "col-md-12 hide",
         "class": "e-field e-input e-control e-textbox e-lib e-input",
         "name": "EndTime"
       }

@@ -14,13 +14,11 @@ import { CommonModule } from '@angular/common';
 import { LoginModule } from './components/login/routing-module/login.module';
 import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/common/not-found/not-found.component';
-import { LoaderSvgComponent } from './components/common/loader-svg/loader-svg.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
-    LoaderSvgComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

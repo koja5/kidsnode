@@ -755,34 +755,38 @@ router.post("/deleteChildren", (req, res, next) => {
 
 /* CHILDREN NOTES */
 
-router.get("/getAllChildrenNotesByChildrenId/:id", auth, async (req, res, next) => {
-  try {
-    connection.getConnection(function (err, conn) {
-      if (err) {
-        logger.log("error", err.sql + ". " + err.sqlMessage);
-        res.json(err);
-      } else {
-        conn.query(
-          "select * from children_notes where children_id = ?",
-          [req.params.id],
-          function (err, rows, fields) {
-            conn.release();
-            if (err) {
-              res.json(err);
-              logger.log("error", err.sql + ". " + err.sqlMessage);
-            } else {
-              // logger.log("info", "Test");
-              res.json(rows);
+router.get(
+  "/getAllChildrenNotesByChildrenId/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select * from children_notes where children_id = ?",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                res.json(err);
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+              } else {
+                // logger.log("info", "Test");
+                res.json(rows);
+              }
             }
-          }
-        );
-      }
-    });
-  } catch (ex) {
-    logger.log("error", err.sql + ". " + err.sqlMessage);
-    res.json(ex);
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
   }
-});
+);
 
 router.post("/createChildrenNotes", auth, function (req, res, next) {
   try {
@@ -884,34 +888,38 @@ router.post("/deleteChildrenNotes", (req, res, next) => {
 
 /* CHILDREN TAKING */
 
-router.get("/getAllChildrenTakingByChildrenId/:id", auth, async (req, res, next) => {
-  try {
-    connection.getConnection(function (err, conn) {
-      if (err) {
-        logger.log("error", err.sql + ". " + err.sqlMessage);
-        res.json(err);
-      } else {
-        conn.query(
-          "select * from children_taking where children_id = ?",
-          [req.params.id],
-          function (err, rows, fields) {
-            conn.release();
-            if (err) {
-              res.json(err);
-              logger.log("error", err.sql + ". " + err.sqlMessage);
-            } else {
-              // logger.log("info", "Test");
-              res.json(rows);
+router.get(
+  "/getAllChildrenTakingByChildrenId/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select * from children_taking where children_id = ?",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                res.json(err);
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+              } else {
+                // logger.log("info", "Test");
+                res.json(rows);
+              }
             }
-          }
-        );
-      }
-    });
-  } catch (ex) {
-    logger.log("error", err.sql + ". " + err.sqlMessage);
-    res.json(ex);
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
   }
-});
+);
 
 router.post("/createChildrenTaking", auth, function (req, res, next) {
   try {
@@ -1141,18 +1149,15 @@ router.get("/getUserOfType", auth, async (req, res, next) => {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       } else {
-        conn.query(
-          "select * from type_of_user",
-          function (err, rows, fields) {
-            conn.release();
-            if (err) {
-              res.json(err);
-              logger.log("error", err.sql + ". " + err.sqlMessage);
-            } else {
-              res.json(rows);
-            }
+        conn.query("select * from type_of_user", function (err, rows, fields) {
+          conn.release();
+          if (err) {
+            res.json(err);
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+          } else {
+            res.json(rows);
           }
-        );
+        });
       }
     });
   } catch (ex) {
@@ -1409,7 +1414,6 @@ router.post("/deleteTypeOfWork", (req, res, next) => {
 
 /* PARAMETERS TYPEOFWORK END */
 
-
 /* PARAMETERS FOOD */
 
 router.post("/createFood", auth, function (req, res, next) {
@@ -1420,24 +1424,20 @@ router.post("/createFood", auth, function (req, res, next) {
         res.json(err);
       }
       req.body.kindergarden_id = req.user.user.kindergarden;
-      conn.query(
-        "insert into foods SET ?",
-        [req.body],
-        function (err, rows) {
-          console.log(rows);
-          conn.release();
-          if (!err) {
-            /*logger.log(
+      conn.query("insert into foods SET ?", [req.body], function (err, rows) {
+        console.log(rows);
+        conn.release();
+        if (!err) {
+          /*logger.log(
               "info",
               `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
             );*/
-            res.json(true);
-          } else {
-            console.log(err);
-            res.json(false);
-          }
+          res.json(true);
+        } else {
+          console.log(err);
+          res.json(false);
         }
-      );
+      });
     });
   } catch (ex) {
     logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1532,5 +1532,154 @@ router.post("/deleteFood", (req, res, next) => {
 });
 
 /* PARAMETERS FOOD END */
+
+/* TYPE OF MEAL */
+
+router.get("/getTypeOfMeal", auth, async (req, res, next) => {
+  try {
+
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query("select * from type_of_meal", function (err, rows, fields) {
+          conn.release();
+          console.log(rows);
+          if (err) {
+            res.json(err);
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+          } else {
+            res.json(rows);
+          }
+        });
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END TYPE OF MEAL */
+
+/* FOOD MENU */
+
+router.post("/createFoodMenu", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        // logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      req.body.kindergarden_id = req.user.user.kindergarden;
+      conn.query("insert into food_menu SET ?", [req.body], function (err, rows) {
+        console.log(rows);
+        conn.release();
+        if (!err) {
+          /*logger.log(
+              "info",
+              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
+            );*/
+          res.json(true);
+        } else {
+          console.log(err);
+          res.json(false);
+        }
+      });
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateFoodMenu", function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    conn.query(
+      "update food_menu SET ? where id = ?",
+      [req.body, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          if (!err) {
+            res.json(true);
+          } else {
+            res.json(false);
+          }
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+router.get("/getFoodMenu", auth, async (req, res, next) => {
+  try {
+    console.log(req.user);
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from food_menu where kindergarden_id = ?",
+          [req.user.user.kindergarden],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/deleteFoodMenu", (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from food_menu where id = '" + req.body.id + "'",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END FOOD MENU */
 
 module.exports = router;

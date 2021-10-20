@@ -29,6 +29,7 @@ import {
 } from '@syncfusion/ej2-angular-schedule';
 import { ActionCompleteEventArgs } from '@syncfusion/ej2-inputs';
 import { ScheduleModel } from 'src/app/models/schedule-model';
+import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
 import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
@@ -69,10 +70,12 @@ export class DynamicSchedulerComponent implements OnInit {
   public selectedData?: any;
   public configField!: FieldConfig[];
   public config1!: FormConfig;
+  public data = [];
 
   constructor(
     private configurationService: ConfigurationService,
-    private helpService: HelpService
+    private helpService: HelpService,
+    private callApiService: CallApiService
   ) {}
 
   ngOnInit(): void {
@@ -92,9 +95,26 @@ export class DynamicSchedulerComponent implements OnInit {
       .getConfiguration(this.path, this.file)
       .subscribe((data) => {
         this.config = data;
+        this.getData();
         this.height = this.helpService.getHeightForSchedulerWithoutPx();
-        this.loader = false;
       });
+  }
+
+  getData() {
+    this.callApiService.callGetMethod(this.config!.request!.api, '').subscribe(
+      (data) => {
+        if (data) {
+          this.eventSettings.dataSource = data as [];
+        } else {
+          this.eventSettings.dataSource = [];
+        }
+        this.loader = false;
+      },
+      (error) => {
+        this.eventSettings.dataSource = [];
+        this.loader = false;
+      }
+    );
   }
 
   onPopupOpen(event: PopupOpenEventArgs) {
@@ -105,8 +125,64 @@ export class DynamicSchedulerComponent implements OnInit {
     }
   }
 
-  actionComplete(event: ActionCompleteEventArgs) {
-    console.log(event);
+  actionComplete(event: any) {
+    if (event.requestType === 'eventCreated') {
+      this.createData(event.addedRecords);
+    } else if (event.requestType === 'eventChanged') {
+      this.updateData(event.changedRecords);
+    } else if (event.requestType === 'eventDeleted') {
+      this.deleteData(event.deletedRecords);
+    }
+  }
+
+  createData(data: any) {
+    // this.callApi(this.config!.editSettingsRequest!.add, data);
+  }
+
+  updateData(data: any) {
+    this.callApi(this.config!.editSettingsRequest!.edit, data);
+  }
+
+  deleteData(data: any) {
+    this.callApi(this.config!.editSettingsRequest!.delete, data);
+  }
+
+  callApi(request: any, data: any, toastr?: true) {
+    if (request.type.toUpperCase() === 'POST') {
+      this.callApiService.callPostMethod(request.api, data).subscribe(
+        (data) => {
+          if (data) {
+            if (toastr) {
+              return true;
+            } else {
+              return data;
+            }
+          } else {
+            return false;
+          }
+        },
+        (error) => {
+          return false;
+        }
+      );
+    } else {
+      this.callApiService.callGetMethod(request.api, data).subscribe(
+        (data) => {
+          if (data) {
+            if (toastr) {
+              return false;
+            } else {
+              return data;
+            }
+          } else {
+            return false;
+          }
+        },
+        (error) => {
+          return false;
+        }
+      );
+    }
   }
 
   setValue(fields: any, values: any) {
