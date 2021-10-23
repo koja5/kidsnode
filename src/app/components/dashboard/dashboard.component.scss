@@ -7,7 +7,7 @@
   z-index: 1000;
   background-color: #fff;
   -webkit-box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  box-shadow: 0 0 5px grey;
 }
 .navbar-header {
   display: -webkit-box;
@@ -143,7 +143,7 @@
 }
 body[data-topbar="dark"] #page-topbar {
   // background-color: #2a3042;
-  background-color: #2b4a77;
+  background-color: #ffffff;
 }
 body[data-topbar="dark"] .navbar-header .dropdown .show.header-item {
   background-color: rgba(255, 255, 255, 0.05);
@@ -152,16 +152,16 @@ body[data-topbar="dark"] .navbar-header .waves-effect .waves-ripple {
   background: rgba(255, 255, 255, 0.4);
 }
 body[data-topbar="dark"] .header-item {
-  color: #e9ecef;
+  color: #545a6d;
 }
 body[data-topbar="dark"] .header-item:hover {
-  color: #e9ecef;
+  color: #545a6d;
 }
 body[data-topbar="dark"] .header-profile-user {
   background-color: rgba(255, 255, 255, 0.25);
 }
 body[data-topbar="dark"] .noti-icon i {
-  color: #e9ecef;
+  color: #545a6d;
 }
 body[data-topbar="dark"] .logo-dark {
   display: none;
@@ -170,7 +170,8 @@ body[data-topbar="dark"] .logo-light {
   display: block;
 }
 body[data-topbar="dark"] .app-search .form-control {
-  background-color: rgba(243, 243, 249, 0.07);
+  // background-color: rgba(243, 243, 249, 0.07);
+  background-color: #acafb8;
   color: #fff;
 }
 body[data-topbar="dark"]
@@ -468,7 +469,7 @@ body[data-layout="horizontal"] .footer {
 .vertical-collpsed .vertical-menu {
   position: absolute;
   width: 70px !important;
-  z-index: 5;
+  z-index: 1000;
 }
 .vertical-collpsed .vertical-menu .simplebar-content-wrapper,
 .vertical-collpsed .vertical-menu .simplebar-mask {
@@ -1083,10 +1084,10 @@ body[data-layout="horizontal"][data-topbar="colored"] .app-search span {
   color: rgba(255, 255, 255, 0.5);
 }
 body[data-layout="horizontal"][data-topbar="colored"] .header-item {
-  color: #e9ecef;
+  color: #545a6d;
 }
 body[data-layout="horizontal"][data-topbar="colored"] .header-item:hover {
-  color: #e9ecef;
+  color: #545a6d;
 }
 body[data-layout="horizontal"][data-topbar="colored"]
   .navbar-header
@@ -1101,7 +1102,7 @@ body[data-layout="horizontal"][data-topbar="colored"]
   background: rgba(255, 255, 255, 0.4);
 }
 body[data-layout="horizontal"][data-topbar="colored"] .noti-icon i {
-  color: #e9ecef;
+  color: #545a6d;
 }
 @media (min-width: 992px) {
   body[data-layout="horizontal"][data-topbar="colored"] .topnav {
