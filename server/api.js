@@ -1537,7 +1537,6 @@ router.post("/deleteFood", (req, res, next) => {
 
 router.get("/getTypeOfMeal", auth, async (req, res, next) => {
   try {
-
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1572,8 +1571,17 @@ router.post("/createFoodMenu", auth, function (req, res, next) {
         // logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
+      console.log(req.body[0]);
       req.body.kindergarden_id = req.user.user.kindergarden;
-      conn.query("insert into food_menu SET ?", [req.body], function (err, rows) {
+      const data = {
+        kindergarden_id: req.user.user.kindergarden,
+        type_of_meal_id: req.body.type_of_meal_id,
+        type_of_food: req.body.type_of_food.toString(),
+        StartTime: new Date(req.body.StartTime),
+        EndTime: new Date(req.body.EndTime),
+      };
+      console.log(data);
+      conn.query("insert into food_menu SET ?", [data], function (err, rows) {
         console.log(rows);
         conn.release();
         if (!err) {
@@ -1600,20 +1608,31 @@ router.post("/updateFoodMenu", function (req, res, next) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
       res.json(err);
     }
-
+    console.log(req.body);
+    const data = {
+      id: req.body.id,
+      kindergarden_id: req.body.kindergarden_id,
+      type_of_meal_id: req.body.type_of_meal_id,
+      type_of_food: req.body.type_of_food.toString(),
+      StartTime: new Date(req.body.StartTime),
+      EndTime: new Date(req.body.EndTime),
+    };
+    console.log(data);
     conn.query(
       "update food_menu SET ? where id = ?",
-      [req.body, req.body.id],
+      [data, req.body.id],
       function (err, rows) {
         conn.release();
         if (!err) {
           if (!err) {
             res.json(true);
           } else {
+            console.log(err);
             res.json(false);
           }
         } else {
-          logger.log("error", err.sql + ". " + err.sqlMessage);
+          // logger.log("error", err.sql + ". " + err.sqlMessage);
+          console.log(err);
           res.json(err);
         }
       }

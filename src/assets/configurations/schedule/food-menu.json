@@ -6,6 +6,19 @@
     "fields": "",
     "root": ""
   },
+  "resources": {
+    "request": {
+      "type": "GET",
+      "api": "/api/getTypeOfMeal",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "field": "type_of_meal_id",
+    "idField": "id",
+    "colorField": "color",
+    "allowMultipleOwner": true
+  },
   "editSettingsRequest": {
     "add": {
       "type": "POST",

@@ -1,6 +1,7 @@
 import { Request } from "../components/dynamic-component/dynamic-forms/models/complex-properties/request";
 import { FieldConfig } from "../components/dynamic-component/dynamic-forms/models/field-config";
 import { EditSettingsRequestModel } from "./edit-settings-request-model";
+import { SchedulerModelResources } from "./scheduler-model-resources";
 
 export class ScheduleModel {
     views?: string[];
@@ -22,4 +23,5 @@ export class ScheduleModel {
     cellTemplate?: string[];
     request?: Request;
     editSettingsRequest?: EditSettingsRequestModel;
+    resources?: SchedulerModelResources;
 }

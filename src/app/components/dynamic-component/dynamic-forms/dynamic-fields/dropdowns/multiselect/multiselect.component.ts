@@ -28,6 +28,18 @@ export class MultiselectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.config.value && typeof this.config.value === 'string') {
+      if(this.config.value.split(',').length > 0) {
+        let arrayValue = this.config.value.split(',');
+        let numberValue = [];
+        for(let i = 0; i < arrayValue.length; i++) {
+          numberValue.push(Number(arrayValue[i]));
+        }
+        this.config.value = numberValue;
+      } else {
+        this.config.value = Number(this.config.value);
+      }
+    }
     this.language = this.helpService.getLanguage();
     if (this.config.data && this.config.data['translation']) {
       this.config.field = this.config.data['translation']['fields'];

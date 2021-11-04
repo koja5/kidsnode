@@ -61,6 +61,7 @@ export class DynamicSchedulerComponent implements OnInit {
   @Input() path!: string;
   @Input() file!: string;
   @ViewChild(DynamicFormsComponent) form!: DynamicFormsComponent;
+  @ViewChild('scheduleObj') public scheduleObj!: ScheduleComponent;
 
   public eventSettings: EventSettingsModel = {};
   public config?: ScheduleModel;
@@ -68,9 +69,8 @@ export class DynamicSchedulerComponent implements OnInit {
   public language?: any;
   public height?: number;
   public selectedData?: any;
-  public configField!: FieldConfig[];
-  public config1!: FormConfig;
   public data = [];
+  public resources: any[] = [];
 
   constructor(
     private configurationService: ConfigurationService,
@@ -96,6 +96,7 @@ export class DynamicSchedulerComponent implements OnInit {
       .subscribe((data) => {
         this.config = data;
         this.getData();
+        this.getResources();
         this.height = this.helpService.getHeightForSchedulerWithoutPx();
       });
   }
@@ -108,13 +109,31 @@ export class DynamicSchedulerComponent implements OnInit {
         } else {
           this.eventSettings.dataSource = [];
         }
-        this.loader = false;
       },
       (error) => {
         this.eventSettings.dataSource = [];
         this.loader = false;
       }
     );
+  }
+
+  getResources() {
+    this.loader = true;
+    if (this.config?.resources) {
+      this.callApiService
+        .callGetMethod(this.config!.resources.request!.api, '')
+        .subscribe(
+          (data) => {
+            this.resources = data as [];
+            this.loader = false;
+          },
+          (error) => {
+            this.resources = [];
+          }
+        );
+    } else {
+      this.loader = false;
+    }
   }
 
   onPopupOpen(event: PopupOpenEventArgs) {
@@ -127,24 +146,34 @@ export class DynamicSchedulerComponent implements OnInit {
 
   actionComplete(event: any) {
     if (event.requestType === 'eventCreated') {
-      this.createData(event.addedRecords);
+      this.createData(event.addedRecords[0]);
     } else if (event.requestType === 'eventChanged') {
-      this.updateData(event.changedRecords);
-    } else if (event.requestType === 'eventDeleted') {
-      this.deleteData(event.deletedRecords);
+      this.updateData(event.changedRecords[0]);
+    } else if (event.requestType === 'eventRemoved') {
+      this.deleteData(event.deletedRecords[0]);
     }
   }
 
   createData(data: any) {
-    // this.callApi(this.config!.editSettingsRequest!.add, data);
+    this.callApi(this.config!.editSettingsRequest!.add, data);
   }
 
   updateData(data: any) {
+    delete data.Id;
     this.callApi(this.config!.editSettingsRequest!.edit, data);
+    const index = (this.eventSettings.dataSource as []).findIndex(
+      (x) => x['id'] == data.id
+    );
+    (this.eventSettings.dataSource as any[])[index] = data;
   }
 
   deleteData(data: any) {
+    delete data.Id;
     this.callApi(this.config!.editSettingsRequest!.delete, data);
+    const index = (this.eventSettings.dataSource as []).findIndex(
+      (x) => x['id'] == data.id
+    );
+    (this.eventSettings.dataSource as []).splice(index, 1);
   }
 
   callApi(request: any, data: any, toastr?: true) {
@@ -153,8 +182,12 @@ export class DynamicSchedulerComponent implements OnInit {
         (data) => {
           if (data) {
             if (toastr) {
+              // this.getData();
+              this.scheduleObj.refreshEvents();
               return true;
             } else {
+              // this.getData();
+              this.scheduleObj.refreshEvents();
               return data;
             }
           } else {

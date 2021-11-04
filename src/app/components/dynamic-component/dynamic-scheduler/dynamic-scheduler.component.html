@@ -3,6 +3,7 @@
 </div>
 
 <ejs-schedule
+  #scheduleObj
   *ngIf="!loader"
   width="100%"
   [height]="height"
@@ -31,4 +32,17 @@
   <!-- <ng-template #cellTemplate let-data>
     <div class="templatewrap">Rucak</div>
   </ng-template> -->
+  <e-resources *ngIf="config.resources">
+    <e-resource
+      [field]="config.resources.field"
+      title="Owner"
+      name="Owners"
+      [dataSource]="resources"
+      [allowMultiple]="config.resources?.allowMultipleOwner"
+      textField="color"
+      [idField]="config.resources.idField"
+      [colorField]="config.resources.colorField"
+    >
+    </e-resource>
+  </e-resources>
 </ejs-schedule>
