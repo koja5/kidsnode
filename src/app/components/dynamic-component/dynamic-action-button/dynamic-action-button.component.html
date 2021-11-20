@@ -1,0 +1,24 @@
+<div *ngIf="data.simpleButtons && data.simpleButtons.length > 0" class="{{data.class}}">
+  <button
+    *ngFor="let item of data.simpleButtons"
+    (click)="clickAction(item.action)"
+  >
+    {{ item.title }}
+  </button>
+</div>
+
+<div *ngIf="data.dropDownButtons && itemsModelDropDown.length > 0" class="{{data.class}}">
+  <button
+    ejs-dropdownbutton
+    content="{{ data.dropDownButtons.content }}"
+    [items]="itemsModelDropDown"
+    (select)='clickAction($event)'
+  ></button>
+</div>
+<div *ngIf="data.splitButtons && itemsModelSplit.length > 0" class="{{data.class}}">
+  <ejs-splitbutton
+    content="{{ data.splitButtons.content }}"
+    [items]="itemsModelSplit"
+    (select)='clickAction($event)'
+  ></ejs-splitbutton>
+</div>

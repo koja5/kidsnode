@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { HelpService } from 'src/app/services/help.service';
 
 @Component({
   selector: 'app-toastr',
@@ -7,34 +8,82 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./toastr.component.scss'],
 })
 export class ToastrComponent implements OnInit {
-  constructor(private toastr: ToastrService) {}
+  private language: any;
+
+  constructor(
+    private toastr: ToastrService,
+    private helpService: HelpService
+  ) {}
 
   ngOnInit(): void {}
 
-  showSuccess(title: string, text?: string) {
+  showSuccessCustom(title: string, text?: string) {
     this.toastr.success(title, text, {
       timeOut: 7000,
       positionClass: 'toast-bottom-right',
     });
   }
 
-  showInfo(title: string, text?: string) {
+  showInfoCustom(title: string, text?: string) {
     this.toastr.info(title, text, {
       timeOut: 7000,
       positionClass: 'toast-bottom-right',
     });
   }
 
-  showError(title: string, text?: string) {
+  showErrorCustom(title: string, text?: string) {
     this.toastr.error(title, text, {
       timeOut: 7000,
       positionClass: 'toast-bottom-right',
     });
   }
-  showWarning(title: string, text?: string) {
+  showWarningCustom(title: string, text?: string) {
     this.toastr.warning(title, text, {
       timeOut: 7000,
       positionClass: 'toast-bottom-right',
     });
+  }
+
+  showSuccess() {
+    this.toastr.success(
+      this.helpService.getLanguage().toastrSuccessExecutedActionTitle,
+      this.helpService.getLanguage().toastrSuccessExecutedActionText,
+      {
+        timeOut: 7000,
+        positionClass: 'toast-bottom-right',
+      }
+    );
+  }
+
+  showInfo() {
+    this.toastr.info(
+      this.helpService.getLanguage().toastrInfoExecutedActionTitle,
+      this.helpService.getLanguage().toastrInfoExecutedActionText,
+      {
+        timeOut: 7000,
+        positionClass: 'toast-bottom-right',
+      }
+    );
+  }
+
+  showError() {
+    this.toastr.error(
+      this.helpService.getLanguage().toastrErrorExecutedActionTitle,
+      this.helpService.getLanguage().toastrErrorExecutedActionText,
+      {
+        timeOut: 7000,
+        positionClass: 'toast-bottom-right',
+      }
+    );
+  }
+  showWarning() {
+    this.toastr.warning(
+      this.helpService.getLanguage().toastrWarningExecutedActionTitle,
+      this.helpService.getLanguage().toastrWarningExecutedActionText,
+      {
+        timeOut: 7000,
+        positionClass: 'toast-bottom-right',
+      }
+    );
   }
 }

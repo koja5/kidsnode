@@ -164,18 +164,18 @@ export class DynamicGridComponent implements OnInit {
       this.apiService.callPostMethod(request.api, data).subscribe((res) => {
         if (res) {
           this.callApi(this.config);
-          this.toastr.showSuccess('Action is successed executed!');
+          this.toastr.showSuccess();
         } else {
-          this.toastr.showError('Action is not successed executed!');
+          this.toastr.showError();
         }
       });
     } else {
       this.apiService.callGetMethod(request.api, data).subscribe((res) => {
         if (res) {
           this.callApi(this.config);
-          this.toastr.showSuccess('Action is successed executed!');
+          this.toastr.showSuccess();
         } else {
-          this.toastr.showError('Action is not successed executed!');
+          this.toastr.showError();
         }
       });
     }

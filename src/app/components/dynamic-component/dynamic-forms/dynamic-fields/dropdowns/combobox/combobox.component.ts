@@ -82,4 +82,9 @@ export class ComboboxComponent implements OnInit {
         this.data = data;
       });
   }
+
+  onChange(event: any) {
+    console.log(event);
+    this.config.value = Number(event);
+  }
 }

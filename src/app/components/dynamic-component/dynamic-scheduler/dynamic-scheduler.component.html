@@ -15,6 +15,7 @@
   [endHour]="config?.endHour"
   [interval]="config?.interval"
   (popupOpen)="onPopupOpen($event)"
+  (actionBegin)="actionBegin($event)"
   (actionComplete)="actionComplete($event)"
 >
   <ng-template #editorTemplate let-data>

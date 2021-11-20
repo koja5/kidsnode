@@ -1166,6 +1166,39 @@ router.get("/getUserOfType", auth, async (req, res, next) => {
   }
 });
 
+router.get("/getEmployeeById/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from employees where id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              // logger.log("info", "Test");
+              if (rows.length === 1) {
+                res.json(rows[0]);
+              } else {
+                res.json(rows);
+              }
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
 /* KINDERGARDEN WorkPlace END */
 
 /* PARAMETERS WORK PLACE */

@@ -2,16 +2,14 @@ import {
   Component,
   Input,
   OnInit,
-  Inject,
   ViewChild,
   ViewEncapsulation,
   HostListener,
 } from '@angular/core';
+import { ItemModel } from '@syncfusion/ej2-angular-navigations';
 import {
   ScheduleComponent,
   EventSettingsModel,
-  View,
-  EventRenderedArgs,
   DayService,
   WeekService,
   WorkWeekService,
@@ -26,15 +24,16 @@ import {
   ExcelExportService,
   PrintService,
   PopupOpenEventArgs,
+  ActionEventArgs,
+  ToolbarActionArgs,
+  ExportOptions,
 } from '@syncfusion/ej2-angular-schedule';
-import { ActionCompleteEventArgs } from '@syncfusion/ej2-inputs';
 import { ScheduleModel } from 'src/app/models/schedule-model';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
+import { ToastrComponent } from '../common/toastr/toastr.component';
 import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
-import { FieldConfig } from '../dynamic-forms/models/field-config';
-import { FormConfig } from '../dynamic-forms/models/form-config';
 
 @Component({
   selector: 'app-dynamic-scheduler',
@@ -75,7 +74,8 @@ export class DynamicSchedulerComponent implements OnInit {
   constructor(
     private configurationService: ConfigurationService,
     private helpService: HelpService,
-    private callApiService: CallApiService
+    private callApiService: CallApiService,
+    private toastr: ToastrComponent
   ) {}
 
   ngOnInit(): void {
@@ -144,6 +144,33 @@ export class DynamicSchedulerComponent implements OnInit {
     }
   }
 
+  actionBegin(args: ActionEventArgs & ToolbarActionArgs): void {
+    if (args.requestType === 'toolbarItemRendering') {
+      if (this.config?.toolbar?.exportToExcel) {
+        const exportItem: ItemModel = {
+          align: 'Right',
+          showTextOn: 'Both',
+          prefixIcon: 'e-icon-schedule-excel-export',
+          text: this.language.exportToExcelScheduler,
+          cssClass: 'e-excel-export',
+          click: this.exportExcel.bind(this),
+        };
+        args.items!.push(exportItem);
+      }
+      if (this.config?.toolbar?.print) {
+        const print: ItemModel = {
+          align: 'Right',
+          showTextOn: 'Both',
+          prefixIcon: 'e-icon-schedule-print',
+          text: this.language.printScheduler,
+          cssClass: 'e-print',
+          click: this.printScheduler.bind(this),
+        };
+        args.items!.push(print);
+      }
+    }
+  }
+
   actionComplete(event: any) {
     if (event.requestType === 'eventCreated') {
       this.createData(event.addedRecords[0]);
@@ -160,6 +187,7 @@ export class DynamicSchedulerComponent implements OnInit {
 
   updateData(data: any) {
     delete data.Id;
+    data = this.convertSubmitValue(data);
     this.callApi(this.config!.editSettingsRequest!.edit, data);
     const index = (this.eventSettings.dataSource as []).findIndex(
       (x) => x['id'] == data.id
@@ -181,20 +209,21 @@ export class DynamicSchedulerComponent implements OnInit {
       this.callApiService.callPostMethod(request.api, data).subscribe(
         (data) => {
           if (data) {
+            this.toastr.showSuccess();
             if (toastr) {
-              // this.getData();
               this.scheduleObj.refreshEvents();
               return true;
             } else {
-              // this.getData();
               this.scheduleObj.refreshEvents();
               return data;
             }
           } else {
+            this.toastr.showError();
             return false;
           }
         },
         (error) => {
+          this.toastr.showError();
           return false;
         }
       );
@@ -219,17 +248,57 @@ export class DynamicSchedulerComponent implements OnInit {
   }
 
   setValue(fields: any, values: any) {
-    for (let i = 0; i < fields.length; i++) {
-      if (fields[i].schedule) {
-        this.form.setValue(
-          fields[i].schedule['name'],
-          values[fields[i].schedule['name']]
-        );
-        this.config!.config![i].value = values[fields[i].schedule['name']];
-      } else {
-        this.form.setValue(fields[i]['name'], values[fields[i]['name']]);
-        this.config!.config![i].value = values[fields[i].schedule['name']];
+    if (this.form !== undefined) {
+      for (let i = 0; i < fields.length; i++) {
+        if (fields[i].schedule) {
+          this.form.setValue(
+            fields[i].schedule['name'],
+            this.helpService.convertValueToSpecificType(
+              values[fields[i].schedule['name']],
+              this.config!.config![i].type
+            )
+          );
+          this.config!.config![i].value =
+            this.helpService.convertValueToSpecificType(
+              values[fields[i].schedule['name']],
+              this.config!.config![i].type
+            );
+        } else {
+          this.form.setValue(
+            fields[i]['name'],
+            this.helpService.convertValueToSpecificType(
+              values[fields[i]['name']],
+              this.config!.config![i].type
+            )
+          );
+          this.config!.config![i].value =
+            this.helpService.convertValueToSpecificType(
+              values[fields[i]['name']],
+              this.config!.config![i].type
+            );
+        }
       }
     }
+  }
+
+  convertSubmitValue(data: any) {
+    if (this.config?.convertSubmitValue) {
+      for (let i = 0; i < this.config?.convertSubmitValue.length; i++) {
+        data[this.config.convertSubmitValue[i].field!] =
+          this.helpService.convertValueToSpecificType(
+            data[this.config.convertSubmitValue[i].field!],
+            this.config.convertSubmitValue[i].type ?? ''
+          );
+      }
+    }
+    return data;
+  }
+
+  exportExcel() {
+    this.scheduleObj.exportToExcel();
+  }
+
+  printScheduler() {
+    this.scheduleObj.print();
   }
 }

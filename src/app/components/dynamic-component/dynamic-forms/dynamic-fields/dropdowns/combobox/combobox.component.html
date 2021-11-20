@@ -21,7 +21,7 @@
   ></ejs-combobox>
 </div>
 
-<div *ngIf="config?.schedule" [ngClass]="[config.width]">
+<div *ngIf="config?.schedule && data" [ngClass]="[config.width]">
   <label *ngIf="config?.schedule?.title" class="custom-label">{{
     language[config?.schedule?.title]
       ? language[config?.schedule?.title]
@@ -32,11 +32,12 @@
       name="{{ config.name }}"
       id="{{ config.name }}"
       class="custom-combo {{ config?.schedule?.class }}"
+      (change)="onChange($event.target.value)"
     >
       <option
         *ngFor="let item of data"
         value="{{ item[config.field.value] }}"
-        [selected]="item[config.field.value].toString() === config.value"
+        [selected]="item[config.field.value] === config.value ? true : false"
       >
         {{ item[config.field.text] }}
       </option>

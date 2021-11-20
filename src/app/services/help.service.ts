@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Type } from '../enums/type';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +16,7 @@ export class HelpService {
   }
 
   getHeightForGridWithoutPx() {
-    if (window.innerWidth > 992) {
-      return Number(window.innerHeight - 320);
-    } else {
-      return Number(window.innerHeight - 345);
-    }
+    return Number(window.innerHeight - 261);
   }
 
   getHeightForGrid() {
@@ -31,11 +28,7 @@ export class HelpService {
   }
 
   getHeightForSchedulerWithoutPx() {
-    if (window.innerWidth < 992) {
-      return Number(window.innerHeight - 125);
-    } else {
-      return Number(window.innerHeight - 120);
-    }
+    return Number(window.innerHeight - 70);
   }
 
   concatenatePageLink(link: string, parameters: string[], data: any) {
@@ -108,5 +101,16 @@ export class HelpService {
 
   removeSessionStorageItem(key: string) {
     sessionStorage.removeItem(key);
+  }
+
+  convertValueToSpecificType(value: any, type: string) {
+    switch (type) {
+      case 'number':
+        return Number(value);
+      case 'multiselect':
+        return typeof value === 'string' ? value.split(',').map(Number) : value;
+      default:
+        return value;
+    }
   }
 }

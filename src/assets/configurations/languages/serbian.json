@@ -34,5 +34,15 @@
     "notFoundText": "Stranica koju ste izabrali ne postoji!",
     "notFoundBack": "Vrati se nazad",
     "gridPopupAddTitle": "Dodavanje novog podatka",
-    "gridPopupEditTitle": "Izmena podatka"
+    "gridPopupEditTitle": "Izmena podatka",
+    "toastrSuccessExecutedActionTitle": "Uspešno ste izvršili akciju!",
+    "toastrSuccessExecutedActionText": "",
+    "toastrInfoExecutedActionTitle": "Uspešno ste izvršili akciju!",
+    "toastrInfoExecutedActionText": "",
+    "toastrErrorExecutedActionTitle": "Uspešno ste izvršili akciju!",
+    "toastrErrorExecutedActionText": "",
+    "toastrWarningExecutedActionTitle": "Uspešno ste izvršili akciju!",
+    "toastrWarningExecutedActionText": "",
+    "exportToExcelScheduler": "Izvezi u eksel",
+    "printScheduler": "Štampaj"
 }

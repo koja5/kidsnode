@@ -2,6 +2,8 @@ import { Request } from "../components/dynamic-component/dynamic-forms/models/co
 import { FieldConfig } from "../components/dynamic-component/dynamic-forms/models/field-config";
 import { EditSettingsRequestModel } from "./edit-settings-request-model";
 import { SchedulerModelResources } from "./scheduler-model-resources";
+import { SchedulerToolbarModel } from "./scheduler-toolbar";
+import { SubmitValueModelScheduler } from "./submit-value-model-scheduler";
 
 export class ScheduleModel {
     views?: string[];
@@ -24,4 +26,6 @@ export class ScheduleModel {
     request?: Request;
     editSettingsRequest?: EditSettingsRequestModel;
     resources?: SchedulerModelResources;
+    convertSubmitValue?: SubmitValueModelScheduler[];
+    toolbar?: SchedulerToolbarModel;
 }

@@ -17,6 +17,8 @@ import {
 } from '@syncfusion/ej2-angular-grids';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
+import { SplitButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 
 //CUSTOM COMPONENT
 import { DynamicGridComponent } from '../dynamic-grid/dynamic-grid.component';
@@ -30,13 +32,14 @@ import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.com
 import { MatIconModule } from '@angular/material/icon';
 import { DynamicSchedulerComponent } from '../dynamic-scheduler/dynamic-scheduler.component';
 import { AgendaService, DayService, MonthService, RecurrenceEditorAllModule, ScheduleAllModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
-import { LoaderSvgComponent } from '../../common/loader-svg/loader-svg.component';
+import { DynamicActionButtonComponent } from '../dynamic-action-button/dynamic-action-button.component';
 
 @NgModule({
   declarations: [
     DynamicGridComponent,
     DynamicFormsComponent,
     DynamicTabsComponent,
+    DynamicActionButtonComponent,
     LoaderComponent,
     DialogModalComponent,
     ToastrComponent,
@@ -46,6 +49,7 @@ import { LoaderSvgComponent } from '../../common/loader-svg/loader-svg.component
     DynamicGridComponent,
     DynamicFormsComponent,
     DynamicTabsComponent,
+    DynamicActionButtonComponent,
     LoaderComponent,
     DialogModalComponent,
     ToastrComponent,
@@ -61,7 +65,9 @@ import { LoaderSvgComponent } from '../../common/loader-svg/loader-svg.component
     ToastrModule.forRoot(),
     MatIconModule,
     ScheduleAllModule,
-    RecurrenceEditorAllModule
+    RecurrenceEditorAllModule,
+    DropDownButtonModule,
+    SplitButtonModule
   ],
   providers: [
     EditService,

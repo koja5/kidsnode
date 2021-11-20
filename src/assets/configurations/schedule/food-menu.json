@@ -47,12 +47,22 @@
   "startHour": "08:00",
   "endHour": "18:00",
   "interval": 30,
+  "toolbar": {
+    "exportToExcel": true,
+    "print": true
+  },
+  "convertSubmitValue": [
+    {
+      "field": "type_of_meal_id",
+      "type": "number"
+    }
+  ],
   "config": [
     {
       "type": "combobox",
       "width": "col-md-12",
       "class": "e-outline",
-      "fieldClass": "e-field e-input e-lib e-keyboard",
+      "fieldClass": "e-field e-input",
       "name": "type_of_meal_id",
       "title": "Obrok",
       "field": { "text": "name", "value": "id" },

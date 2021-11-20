@@ -167,7 +167,7 @@
       "validation": { "required": true }
     },
     {
-      "title": "Father firstname",
+      "title": "",
       "filterable": true,
       "hideable": true,
       "type": "string",
@@ -176,7 +176,7 @@
       "template": {
         "type": "button",
         "action": "open",
-        "class": "btn btn-success button-text-center button-action",
+        "class": "btn btn-none button-text-center button-action text-center",
         "classIcon": "remove_red_eye",
         "link": "dashboard/employee/profile-employee",
         "parameters": ["id"]
