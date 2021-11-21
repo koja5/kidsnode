@@ -1,0 +1,122 @@
+{
+  "pageSize": 10,
+  "width": "50%",
+  "request": {
+    "type": "GET",
+    "api": "/api/getAllChildrenNotesByChildrenId",
+    "url": ["id"],
+    "parameters": [],
+    "fields": "",
+    "root": ""
+  },
+  "paging": {
+    "enable": true,
+    "settings": {
+      "pageSize": 10
+    }
+  },
+  "sorting": {
+    "enable": true
+  },
+  "grouping": {
+    "enable": true,
+    "group": []
+  },
+  "filtering": {
+    "enable": false
+  },
+  "customGrouping": false,
+  "allowResizing": true,
+  "reorderable": true,
+  "selectable": true,
+  "scrollable": false,
+  "hideable": true,
+  "refresh": false,
+  "reset": true,
+  "contextMenuItems": [
+    "AutoFit",
+    "AutoFitAll",
+    "SortAscending",
+    "SortDescending",
+    "Copy",
+    "Edit",
+    "Delete",
+    "Save",
+    "Cancel",
+    "FirstPage",
+    "PrevPage",
+    "LastPage",
+    "NextPage",
+    "Group",
+    "Ungroup"
+  ],
+  "toolbar": ["Add", "Edit", "Delete", "Print", "Search"],
+  "editSettings": {
+    "allowEditing": true,
+    "allowAdding": true,
+    "allowDeleting": true,
+    "showDeleteConfirmDialog": true,
+    "mode": "Dialog"
+  },
+  "editSettingsRequest": {
+    "add": {
+      "type": "POST",
+      "api": "/api/createChildrenNotes",
+      "url": ["id"],
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "edit": {
+      "type": "POST",
+      "api": "/api/updateChildrenNotes",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "delete": {
+      "type": "POST",
+      "api": "/api/deleteChildrenNotes",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    }
+  },
+  "columns": [
+    {
+      "title": "ID",
+      "width": 70,
+      "filterable": true,
+      "hideable": true,
+      "filter": "date",
+      "type": "number",
+      "class": "text-align-right",
+      "field": "id",
+      "isPrimaryKey": true,
+      "allowEditing": false
+    },
+    {
+      "title": "Datum kreiranja",
+      "filterable": true,
+      "hideable": true,
+      "type": "date",
+      "format": "dd.MM.yyyy",
+      "class": "text-align-right",
+      "field": "creation_date",
+      "validation": { "required": true }
+    },
+    {
+      "title": "Napomena",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "note",
+      "validation": { "required": true }
+    }
+  ],
+  "uploadConfig": {
+    "path": "/upload-config",
+    "file": "file-upload.json"
+  }
+}

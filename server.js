@@ -4,6 +4,7 @@ const http = require('http');
 const path = require('path');
 const bodyParser = require('body-parser');
 const api = require("./server/api");
+const upload = require("./server/upload");
 
 app.use(function (req, res, next) { //allow cross origin requests
   res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use("/api", api);
+app.use("/api/upload", upload);
 
 
 app.get("*", (req, res) => {

@@ -33,6 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { DynamicSchedulerComponent } from '../dynamic-scheduler/dynamic-scheduler.component';
 import { AgendaService, DayService, MonthService, RecurrenceEditorAllModule, ScheduleAllModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
 import { DynamicActionButtonComponent } from '../dynamic-action-button/dynamic-action-button.component';
+import { DynamicUploadComponent } from '../dynamic-upload/dynamic-upload.component';
+import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { DynamicActionButtonComponent } from '../dynamic-action-button/dynamic-a
     LoaderComponent,
     DialogModalComponent,
     ToastrComponent,
-    DynamicSchedulerComponent
+    DynamicSchedulerComponent,
+    DynamicUploadComponent
   ],
   exports: [
     DynamicGridComponent,
@@ -53,7 +56,8 @@ import { DynamicActionButtonComponent } from '../dynamic-action-button/dynamic-a
     LoaderComponent,
     DialogModalComponent,
     ToastrComponent,
-    DynamicSchedulerComponent
+    DynamicSchedulerComponent,
+    DynamicUploadComponent
   ],
   imports: [
     CommonModule,
@@ -67,7 +71,8 @@ import { DynamicActionButtonComponent } from '../dynamic-action-button/dynamic-a
     ScheduleAllModule,
     RecurrenceEditorAllModule,
     DropDownButtonModule,
-    SplitButtonModule
+    SplitButtonModule,
+    UploaderModule
   ],
   providers: [
     EditService,

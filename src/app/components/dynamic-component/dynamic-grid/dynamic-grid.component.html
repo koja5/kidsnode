@@ -63,11 +63,19 @@
       <div ngForm>
         <div class="form-row">
           <app-dynamic-forms
+            *ngIf="config.config && config.config.length > 0"
             [config]="config"
             (submit)="submitEmitter($event)"
             #form="dynamicForm"
           >
           </app-dynamic-forms>
+          <div style="width: 100%;">
+            <app-dynamic-upload
+              *ngIf="config.uploadConfig"
+              [path]="config.uploadConfig.path"
+              [file]="config.uploadConfig.file"
+            ></app-dynamic-upload>
+          </div>
         </div>
       </div>
     </ng-template>

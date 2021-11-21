@@ -128,9 +128,11 @@ export class DynamicGridComponent implements OnInit {
       } else if (args.requestType === 'beginEdit') {
         args.dialog!.header = this.language.gridPopupEditTitle;
       }
-      setTimeout(() => {
-        this.setValue(this.config.config, args.rowData);
-      }, 50);
+      if (this.config.config) {
+        setTimeout(() => {
+          this.setValue(this.config.config, args.rowData);
+        }, 50);
+      }
     }
 
     if (args.requestType === 'delete') {

@@ -44,5 +44,9 @@
     "toastrWarningExecutedActionTitle": "Uspešno ste izvršili akciju!",
     "toastrWarningExecutedActionText": "",
     "exportToExcelScheduler": "Izvezi u eksel",
-    "printScheduler": "Štampaj"
+    "printScheduler": "Štampaj",
+    "basicInfoUploadTab": "Osnovne informacije",
+    "documentUploadTab": "Dokumentacija",
+    "backButton": "Nazad",
+    "nextButton": "Dalje"
 }

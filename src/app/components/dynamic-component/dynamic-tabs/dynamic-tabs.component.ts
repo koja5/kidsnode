@@ -14,12 +14,6 @@ export class DynamicTabsComponent implements OnInit {
   @Input() file!: string;
   public config: any;
 
-  public headerText: any[] = [
-    { text: 'Twitter', iconCss: 'e-twitter' },
-    { text: 'Facebook', iconCss: 'e-facebook' },
-    { text: 'WhatsApp', iconCss: 'e-whatsapp' },
-  ];
-
   constructor(private configurationService: ConfigurationService) {}
 
   ngOnInit(): void {

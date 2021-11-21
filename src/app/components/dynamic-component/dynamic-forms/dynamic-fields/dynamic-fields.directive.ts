@@ -1,5 +1,6 @@
 import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { DynamicUploadComponent } from '../../dynamic-upload/dynamic-upload.component';
 
 import { Field } from '../models/field';
 import { FieldConfig } from '../models/field-config';
