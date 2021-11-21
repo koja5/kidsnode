@@ -39,4 +39,75 @@ router.post("/save", multipartMiddleware, (req, res) => {
   });
 });
 
+router.post("/saveChildrenDocuments", multipartMiddleware, (req, res) => {
+  try {
+    console.log(req);
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        const document = {
+          children_id: 1,
+          name: req.files.UploadFiles.name,
+          type: req.files.UploadFiles.type,
+          path: req.files.UploadFiles.path,
+        };
+        conn.query(
+          "insert into children_documents set ?",
+          [document],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+  res.json({
+    message: "File uploaded successfully",
+  });
+});
+
+router.get("/getChildrenDocuments/:id", auth, async (req, res, next) => {
+  try {
+    console.log(req.user);
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from children_documents where children_id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              // logger.log("info", "Test");
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
 module.exports = router;

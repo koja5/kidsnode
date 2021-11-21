@@ -17,11 +17,14 @@ import {
   ContextMenuItem,
 } from '@syncfusion/ej2-angular-grids';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
+import { Subject, Subscription } from 'rxjs';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
+import { MessageService } from 'src/app/services/message.service';
 import { ToastrComponent } from '../common/toastr/toastr.component';
 import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dynamic-grid',
@@ -44,6 +47,8 @@ export class DynamicGridComponent implements OnInit {
   public operations: any;
   public language: any;
   public loader = false;
+  public subscription!: Subscription;
+  private unsubscribe: Subject<null> = new Subject();
 
   constructor(
     private configurationService: ConfigurationService,
@@ -51,12 +56,14 @@ export class DynamicGridComponent implements OnInit {
     private helpService: HelpService,
     private toastr: ToastrComponent,
     private routerNavigate: Router,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.loader = true;
     this.initializeConfig();
+    this.subscribeMessageServices();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -65,7 +72,6 @@ export class DynamicGridComponent implements OnInit {
   }
 
   initializeConfig() {
-    //get language
     this.language = this.helpService.getLanguage();
 
     this.configurationService
@@ -76,6 +82,19 @@ export class DynamicGridComponent implements OnInit {
         this.loader = false;
         this.callApi(data);
       });
+  }
+
+  subscribeMessageServices() {
+    this.subscription = this.messageService.getRefreshGrid().subscribe(() => {
+      this.callApi(this.config);
+      setTimeout(() => {
+        this.operations.dialog.close();
+      }, 50);
+    });
+    // this.messageService.getRefreshGrid().subscribe(() => {
+    //   this.callApi(this.config);
+    //   this.operations.dialog.close();
+    // });
   }
 
   callApi(data: any) {
@@ -205,5 +224,16 @@ export class DynamicGridComponent implements OnInit {
       data
     );
     this.routerNavigate.navigate([linkWithParameters]);
+  }
+
+  unsuscribeME(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+  ngOnDestroy(): void {
+    this.unsuscribeME();
   }
 }

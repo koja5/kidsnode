@@ -3,7 +3,7 @@
   "width": "50%",
   "request": {
     "type": "GET",
-    "api": "/api/getAllChildrenNotesByChildrenId",
+    "api": "/api/upload/getChildrenDocuments",
     "url": ["id"],
     "parameters": [],
     "fields": "",
@@ -50,37 +50,13 @@
     "Group",
     "Ungroup"
   ],
-  "toolbar": ["Add", "Edit", "Delete", "Print", "Search"],
+  "toolbar": ["Add", "Delete", "Print", "Search"],
   "editSettings": {
-    "allowEditing": true,
+    "allowEditing": false,
     "allowAdding": true,
     "allowDeleting": true,
     "showDeleteConfirmDialog": true,
     "mode": "Dialog"
-  },
-  "editSettingsRequest": {
-    "add": {
-      "type": "POST",
-      "api": "/api/createChildrenNotes",
-      "url": ["id"],
-      "parameters": [],
-      "fields": "",
-      "root": ""
-    },
-    "edit": {
-      "type": "POST",
-      "api": "/api/updateChildrenNotes",
-      "parameters": [],
-      "fields": "",
-      "root": ""
-    },
-    "delete": {
-      "type": "POST",
-      "api": "/api/deleteChildrenNotes",
-      "parameters": [],
-      "fields": "",
-      "root": ""
-    }
   },
   "columns": [
     {
@@ -96,22 +72,20 @@
       "allowEditing": false
     },
     {
-      "title": "Datum kreiranja",
-      "filterable": true,
-      "hideable": true,
-      "type": "date",
-      "format": "dd.MM.yyyy",
-      "class": "text-align-right",
-      "field": "creation_date",
-      "validation": { "required": true }
-    },
-    {
-      "title": "Napomena",
+      "title": "Ime dokumenta",
       "filterable": true,
       "hideable": true,
       "type": "string",
       "class": "text-align-right",
-      "field": "note",
+      "field": "name"
+    },
+    {
+      "title": "Tip dokumenta",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "type",
       "validation": { "required": true }
     }
   ],

@@ -9,6 +9,7 @@ import { getUniqueID } from '@syncfusion/ej2-base';
 import { UploaderModel } from 'src/app/models/uploader-model';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
+import { MessageService } from 'src/app/services/message.service';
 import { FieldConfig } from '../dynamic-forms/models/field-config';
 
 @Component({
@@ -35,7 +36,8 @@ export class DynamicUploadComponent implements OnInit {
 
   constructor(
     private configurationService: ConfigurationService,
-    private helpService: HelpService
+    private helpService: HelpService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -51,9 +53,14 @@ export class DynamicUploadComponent implements OnInit {
       .subscribe((data) => {
         this.loader = false;
         this.config = data;
-        setTimeout(() => {
-          this.tabObj.element.classList.add('e-fill');
-        }, 50);
+        if (this.config.config) {
+          setTimeout(() => {
+            this.tabObj.element.classList.add('e-fill');
+            if (this.config.requiredBaseData) {
+              this.tabObj.enableTab(1, false);
+            }
+          }, 50);
+        }
         this.initializeSettings();
       });
   }
@@ -72,9 +79,12 @@ export class DynamicUploadComponent implements OnInit {
     args.customFormData = [
       {
         fileName: newName,
-        additionalData: this.basicData ? this.basicData : null,
+      },
+      {
+        additionalData: this.basicData ? JSON.stringify(this.basicData) : '',
       },
     ];
+    this.messageService.sendRefreshGrid();
   }
 
   submitEmitter(event: any) {

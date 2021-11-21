@@ -139,7 +139,9 @@ export class DynamicSchedulerComponent implements OnInit {
   onPopupOpen(event: PopupOpenEventArgs) {
     if (event.type === 'QuickInfo') {
       this.selectedData = event.data;
-      this.setValue(this.config?.config, this.selectedData);
+      setTimeout(() => {
+        this.setValue(this.config?.config, this.selectedData);
+      }, 50);
     } else if (event.type === 'Editor') {
     }
   }
@@ -248,9 +250,9 @@ export class DynamicSchedulerComponent implements OnInit {
   }
 
   setValue(fields: any, values: any) {
-    if (this.form !== undefined) {
-      for (let i = 0; i < fields.length; i++) {
-        if (fields[i].schedule) {
+    for (let i = 0; i < fields.length; i++) {
+      if (fields[i].schedule) {
+        if (this.form !== undefined) {
           this.form.setValue(
             fields[i].schedule['name'],
             this.helpService.convertValueToSpecificType(
@@ -258,12 +260,14 @@ export class DynamicSchedulerComponent implements OnInit {
               this.config!.config![i].type
             )
           );
-          this.config!.config![i].value =
-            this.helpService.convertValueToSpecificType(
-              values[fields[i].schedule['name']],
-              this.config!.config![i].type
-            );
-        } else {
+        }
+        this.config!.config![i].value =
+          this.helpService.convertValueToSpecificType(
+            values[fields[i].schedule['name']],
+            this.config!.config![i].type
+          );
+      } else {
+        if (this.form !== undefined) {
           this.form.setValue(
             fields[i]['name'],
             this.helpService.convertValueToSpecificType(
@@ -271,12 +275,12 @@ export class DynamicSchedulerComponent implements OnInit {
               this.config!.config![i].type
             )
           );
-          this.config!.config![i].value =
-            this.helpService.convertValueToSpecificType(
-              values[fields[i]['name']],
-              this.config!.config![i].type
-            );
         }
+        this.config!.config![i].value =
+          this.helpService.convertValueToSpecificType(
+            values[fields[i]['name']],
+            this.config!.config![i].type
+          );
       }
     }
   }
