@@ -1,0 +1,62 @@
+<div *ngIf="!data" style="height: 70vh">
+  <app-loader></app-loader>
+</div>
+
+<div
+  *ngIf="data"
+  class="
+    col-lg-12
+    control-section
+    card-control-section
+    vertical_card_layout
+    mt-3
+  "
+>
+  <div class="row e-sample-resize-container e-card-resize-container">
+    <div
+      class="col-xs-12 col-sm-6 col-md-6 col-lg-3 mb-3"
+      *ngFor="let item of data; let i = index"
+    >
+      <div class="options">
+        <ejs-checkbox></ejs-checkbox>
+      </div>
+      <div
+        tabindex="0"
+        class="e-card profile {{ selectedChildren[i] }}"
+        style="justify-content: flex-start"
+        (click)="selectChildren(i)"
+      >
+        <div class="e-card-header">
+          <div class="e-card-header-image e-card-corner">
+            <app-avatar
+              [name]="item.children_firstname + ' ' + item.children_lastname"
+            ></app-avatar>
+          </div>
+        </div>
+        <div class="e-card-header">
+          <div class="e-card-header-caption center">
+            <div class="e-card-header-title">
+              {{ item.children_firstname }} {{ item.children_lastname }}
+            </div>
+            <!-- <div class="e-card-sub-title">Sales Coordinator</div> -->
+          </div>
+        </div>
+        <div class="e-card-separator"></div>
+        <!-- <div class="e-card-content">
+          Laura received a BA in psychology from the University of Washington.
+          She has also completed a course in business French. She reads and
+          writes French.
+        </div> -->
+        <div class="e-card-actions center">
+          <button
+            class="e-btn e-info button-action mb-2"
+            title="showProfile"
+            (click)="showProfile(item.children_id)"
+          >
+            {{ language.showProfile }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

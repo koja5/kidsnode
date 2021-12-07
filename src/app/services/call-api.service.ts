@@ -46,4 +46,18 @@ export class CallApiService {
 
     return model.toString();
   }
+
+  downloadDocument(body: any) {
+    return this.http.post('/api/upload/downloadDocument', body, {
+      responseType: 'blob',
+      headers: new HttpHeaders().append('Content-Type', 'application/json'),
+    });
+  }
+
+  getDocument(body: any) {
+    return this.http.post('/api/upload/getDocument', body, {
+      responseType: 'blob',
+      headers: new HttpHeaders().append('Content-Type', 'application/json'),
+    });
+  }
 }

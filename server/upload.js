@@ -10,6 +10,7 @@ const verifyToken = require("./config/auth");
 const bodyParser = require("body-parser");
 const multipart = require("connect-multiparty");
 const multipartMiddleware = multipart({ uploadDir: "./server/file_uploads" });
+const path = require("path");
 
 var connection = mysql.createPool({
   host: process.env.host,
@@ -108,6 +109,18 @@ router.get("/getChildrenDocuments/:id", auth, async (req, res, next) => {
     logger.log("error", err.sql + ". " + err.sqlMessage);
     res.json(ex);
   }
+});
+
+router.post("/getDocument", async (req, res, next) => {
+  console.log(req);
+  req.body.path = req.body.path.toString().replace("server\\", "");
+  filepath = path.join(__dirname, req.body.path)
+  res.sendFile(filepath, {
+    headers: {
+      "Content-Type": "application/json",
+      "Content-Disposition": `attachement; filename="test.pdf"`,
+    },
+  });
 });
 
 module.exports = router;

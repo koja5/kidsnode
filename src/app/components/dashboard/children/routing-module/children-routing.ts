@@ -4,6 +4,7 @@ import { AllChildrenComponent } from '../all-children/all-children.component';
 import { ProfileChildrenComponent } from '../all-children/profile-children/profile-children.component';
 import { KindergardenGroupComponent } from '../kindergarden-group/kindergarden-group.component';
 import { KindergardenSubgroupComponent } from '../kindergarden-subgroup/kindergarden-subgroup.component';
+import { RecordsOfArrivalsComponent } from '../records-of-arrivals/records-of-arrivals.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'profile-children/:id',
     component: ProfileChildrenComponent
+  },
+  {
+    path: 'records-of-arrivals',
+    component: RecordsOfArrivalsComponent
   }
 ];
 

@@ -5,6 +5,7 @@
         <app-dynamic-grid
           [path]="item.path"
           [file]="item.file"
+          [partOfTab]="true"
         ></app-dynamic-grid>
       </ng-template>
       <ng-template #content *ngIf="item.type === 'forms'">

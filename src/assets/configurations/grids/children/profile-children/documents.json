@@ -86,7 +86,42 @@
       "type": "string",
       "class": "text-align-right",
       "field": "type",
-      "validation": { "required": true }
+      "template": {
+        "type": "fileType",
+        "field": "type",
+        "class": "btn btn-none button-text-center button-action text-center"
+      }
+    },
+    {
+      "title": "",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "father_firstname",
+      "template": {
+        "type": "button",
+        "action": "previewDocument",
+        "field": "filename",
+        "class": "btn btn-none button-text-center button-action text-center",
+        "classIcon": "remove_red_eye"
+      }
+    },
+    
+    {
+      "title": "",
+      "filterable": true,
+      "hideable": true,
+      "type": "string",
+      "class": "text-align-right",
+      "field": "father_firstname",
+      "template": {
+        "type": "button",
+        "action": "downloadDocument",
+        "field": "filename",
+        "class": "btn btn-none button-text-center button-action text-center",
+        "classIcon": "cloud_download"
+      }
     }
   ],
   "uploadConfig": {

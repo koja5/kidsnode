@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FileType } from '../enums/file-type';
 import { Type } from '../enums/type';
 
 @Injectable({
@@ -15,8 +16,12 @@ export class HelpService {
     }
   }
 
-  getHeightForGridWithoutPx() {
-    return Number(window.innerHeight - 261);
+  getHeightForGridWithoutPx(partOfTab?: boolean) {
+    if (partOfTab) {
+      return Number(window.innerHeight - 297);
+    } else {
+      return Number(window.innerHeight - 261);
+    }
   }
 
   getHeightForGrid() {
@@ -111,6 +116,15 @@ export class HelpService {
         return typeof value === 'string' ? value.split(',').map(Number) : value;
       default:
         return value;
+    }
+  }
+
+  getFileTypeIcon(type: string) {
+    switch (type) {
+      case FileType.pdf:
+        return 'picture_as_pdf';
+      default:
+        return 'description';
     }
   }
 }

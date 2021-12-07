@@ -6,6 +6,9 @@ import { KindergardenSubgroupComponent } from '../kindergarden-subgroup/kinderga
 import { AllChildrenComponent } from '../all-children/all-children.component';
 import { DynamicModuleModule } from 'src/app/components/dynamic-component/dynamic-module/dynamic-module.module';
 import { ProfileChildrenComponent } from '../all-children/profile-children/profile-children.component';
+import { RecordsOfArrivalsComponent } from '../records-of-arrivals/records-of-arrivals.component';
+import { AvatarComponent } from 'src/app/components/dashboard/common/avatar/avatar.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -13,9 +16,11 @@ import { ProfileChildrenComponent } from '../all-children/profile-children/profi
     ChildrenComponent,
     KindergardenSubgroupComponent,
     AllChildrenComponent,
-    ProfileChildrenComponent
+    ProfileChildrenComponent,
+    RecordsOfArrivalsComponent,
+    AvatarComponent
   ],
-  imports: [ChildrenRouting, DynamicModuleModule],
+  imports: [CommonModule, ChildrenRouting, DynamicModuleModule],
   providers: [],
 })
 export class ChildrenModule {}

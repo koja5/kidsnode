@@ -31,10 +31,20 @@ import { LoaderComponent } from '../../common/loader/loader.component';
 import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DynamicSchedulerComponent } from '../dynamic-scheduler/dynamic-scheduler.component';
-import { AgendaService, DayService, MonthService, RecurrenceEditorAllModule, ScheduleAllModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
+import {
+  AgendaService,
+  DayService,
+  MonthService,
+  RecurrenceEditorAllModule,
+  ScheduleAllModule,
+  ScheduleModule,
+  WeekService,
+  WorkWeekService,
+} from '@syncfusion/ej2-angular-schedule';
 import { DynamicActionButtonComponent } from '../dynamic-action-button/dynamic-action-button.component';
 import { DynamicUploadComponent } from '../dynamic-upload/dynamic-upload.component';
 import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
+import { DynamicPdfViewerComponent } from '../dynamic-pdf-viewer/dynamic-pdf-viewer.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +56,8 @@ import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
     DialogModalComponent,
     ToastrComponent,
     DynamicSchedulerComponent,
-    DynamicUploadComponent
+    DynamicUploadComponent,
+    DynamicPdfViewerComponent
   ],
   exports: [
     DynamicGridComponent,
@@ -57,7 +68,8 @@ import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
     DialogModalComponent,
     ToastrComponent,
     DynamicSchedulerComponent,
-    DynamicUploadComponent
+    DynamicUploadComponent,
+    DynamicPdfViewerComponent
   ],
   imports: [
     CommonModule,
@@ -90,7 +102,7 @@ import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
     WeekService,
     WorkWeekService,
     MonthService,
-    AgendaService
+    AgendaService,
   ],
   entryComponents: [DynamicFormsComponent],
 })

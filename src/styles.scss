@@ -15,6 +15,7 @@
 @import "../node_modules/@syncfusion/ej2-angular-grids/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-angular-schedule/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-pdfviewer/styles/material.css";
 
 html,
 body {
@@ -176,4 +177,30 @@ input:focus-visible {
 .btn-none {
   background: none;
   border: none;
+}
+
+.btn:focus,
+.btn.focus {
+  box-shadow: none !important;
+}
+
+.outer {
+  display: table;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  position: inherit;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
 }

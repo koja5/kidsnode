@@ -55,6 +55,12 @@
         "rights": ""
       },
       {
+        "icon": "assignment_turned_in",
+        "title": "Evidencija dolazaka",
+        "link": "/dashboard/children/records-of-arrivals",
+        "rights": ""
+      },
+      {
         "icon": "speaker_group",
         "title": "Upisne grupe",
         "link": "dashboard/groups",

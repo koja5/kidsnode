@@ -54,6 +54,45 @@
               >
               <span *ngIf="item.template.label">{{ item.template.label }}</span>
             </button>
+
+            <button
+              [class]="item.template.class"
+              *ngIf="
+                item.template.action === 'previewDocument' &&
+                data.type === 'application/pdf'
+              "
+              (click)="previewDocument(data)"
+            >
+              <mat-icon
+                class="mat-icon notranslate material-icons mat-icon-no-color"
+                aria-hidden="false"
+                *ngIf="item.template.classIcon"
+                >{{ item.template.classIcon }}</mat-icon
+              >
+              <span *ngIf="item.template.label">{{ item.template.label }}</span>
+            </button>
+
+            <button
+              [class]="item.template.class"
+              *ngIf="item.template.action === 'downloadDocument'"
+              (click)="downloadDocument(data)"
+            >
+              <mat-icon
+                class="mat-icon notranslate material-icons mat-icon-no-color"
+                aria-hidden="false"
+                *ngIf="item.template.classIcon"
+                >{{ item.template.classIcon }}</mat-icon
+              >
+              <span *ngIf="item.template.label">{{ item.template.label }}</span>
+            </button>
+          </div>
+
+          <div *ngIf="item.template.type === 'fileType'">
+            <mat-icon
+              class="mat-icon notranslate material-icons mat-icon-no-color"
+              aria-hidden="false"
+              >{{ getFileTypeIcon(data, item.template.field) }}</mat-icon
+            >
           </div>
         </ng-template>
       </e-column>
@@ -69,7 +108,7 @@
             #form="dynamicForm"
           >
           </app-dynamic-forms>
-          <div style="width: 100%;">
+          <div style="width: 100%">
             <app-dynamic-upload
               *ngIf="config.uploadConfig"
               [path]="config.uploadConfig.path"

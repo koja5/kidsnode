@@ -10,11 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   DialogEditEventArgs,
-  SaveEventArgs,
-  EditSettingsModel,
-  ToolbarItems,
   GridComponent,
-  ContextMenuItem,
 } from '@syncfusion/ej2-angular-grids';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { Subject, Subscription } from 'rxjs';
@@ -24,7 +20,7 @@ import { HelpService } from 'src/app/services/help.service';
 import { MessageService } from 'src/app/services/message.service';
 import { ToastrComponent } from '../common/toastr/toastr.component';
 import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
-import { takeUntil } from 'rxjs/operators';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-dynamic-grid',
@@ -34,6 +30,7 @@ import { takeUntil } from 'rxjs/operators';
 export class DynamicGridComponent implements OnInit {
   @Input() path!: string;
   @Input() file!: string;
+  @Input() partOfTab!: boolean;
   @ViewChild(DynamicFormsComponent) form!: DynamicFormsComponent;
   @ViewChild('grid') public grid!: GridComponent;
   @ViewChild('orderForm') public orderForm!: FormGroup;
@@ -68,7 +65,7 @@ export class DynamicGridComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.height = this.helpService.getHeightForGridWithoutPx();
+    this.height = this.helpService.getHeightForGridWithoutPx(this.partOfTab);
   }
 
   initializeConfig() {
@@ -78,7 +75,7 @@ export class DynamicGridComponent implements OnInit {
       .getConfiguration(this.path, this.file)
       .subscribe((data) => {
         this.config = data;
-        this.height = this.helpService.getHeightForGridWithoutPx();
+        this.height = this.helpService.getHeightForGridWithoutPx(this.partOfTab);
         this.loader = false;
         this.callApi(data);
       });
@@ -91,10 +88,6 @@ export class DynamicGridComponent implements OnInit {
         this.operations.dialog.close();
       }, 50);
     });
-    // this.messageService.getRefreshGrid().subscribe(() => {
-    //   this.callApi(this.config);
-    //   this.operations.dialog.close();
-    // });
   }
 
   callApi(data: any) {
@@ -235,5 +228,26 @@ export class DynamicGridComponent implements OnInit {
   }
   ngOnDestroy(): void {
     this.unsuscribeME();
+  }
+
+  downloadDocument(body: any) {
+    this.apiService.getDocument(body).subscribe(
+      (data: any) => saveAs(data, body.name),
+      (error: any) => console.error(error)
+    );
+  }
+
+  previewDocument(body: any) {
+    this.apiService.getDocument(body).subscribe((data: any) => {
+      console.log(data);
+      let file = new Blob([data], { type: 'application/pdf' });
+      console.log(file);
+      var fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+  }
+
+  getFileTypeIcon(data: any, field: string) {
+    return this.helpService.getFileTypeIcon(data[field]);
   }
 }
