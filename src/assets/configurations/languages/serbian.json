@@ -49,5 +49,7 @@
     "documentUploadTab": "Dokumentacija",
     "backButton": "Nazad",
     "nextButton": "Dalje",
-    "showProfile": "Prikaži profil"
+    "showProfile": "Prikaži profil",
+    "recordArrival": "Evidentiraj dolazak",
+    "recordAbsense": "Evidentiraj izostanak"
 }

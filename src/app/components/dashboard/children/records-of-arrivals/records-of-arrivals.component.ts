@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrComponent } from 'src/app/components/dynamic-component/common/toastr/toastr.component';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { HelpService } from 'src/app/services/help.service';
 
@@ -12,11 +13,13 @@ export class RecordsOfArrivalsComponent implements OnInit {
   public language: any;
   public data: any;
   public selectedChildren: any = {};
+  public selectedChildrenData: any = [];
 
   constructor(
     private helpService: HelpService,
     private apiService: CallApiService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrComponent
   ) {}
 
   ngOnInit(): void {
@@ -34,11 +37,46 @@ export class RecordsOfArrivalsComponent implements OnInit {
     this.router.navigate(['/dashboard/children/profile-children/' + id]);
   }
 
-  selectChildren(index: number) {
+  selectChildren(item: any, index: number) {
     if (!this.selectedChildren[index] || this.selectedChildren[index] === '') {
       this.selectedChildren[index] = 'selected';
+      this.selectedChildrenData.push(item);
     } else {
       this.selectedChildren[index] = '';
+      this.removeFromArray(item);
     }
+  }
+
+  removeFromArray(item: any) {
+    const index: number = this.selectedChildrenData.indexOf(item);
+    if (index !== -1) {
+      this.selectedChildrenData.splice(index, 1);
+    }
+  }
+
+  getTodayDate() {
+    const date = new Date();
+    return (
+      date.getDate() +
+      '.' +
+      (date.getMonth() + 1) +
+      '.' +
+      date.getFullYear() +
+      '.'
+    );
+  }
+
+  recordAbsense() {
+    this.apiService
+      .callPostMethod('/api/recordAbsense', this.selectedChildrenData)
+      .subscribe((data) => {
+        if (data) {
+          this.toastr.showSuccess();
+          this.selectedChildrenData = [];
+          this.selectedChildren = {};
+        } else {
+          this.toastr.showError();
+        }
+      });
   }
 }

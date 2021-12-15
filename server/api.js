@@ -1734,4 +1734,50 @@ router.post("/deleteFoodMenu", (req, res, next) => {
 
 /* END FOOD MENU */
 
+/* RECORD ABSENSE */
+
+router.post("/recordAbsense", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        // logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      const date = new Date();
+      var arrayOfValue = "";
+      console.log(req.body);
+      for (var i = 0; i < req.body.length; i++) {
+        arrayOfValue = "(" + req.body[i] + "," + "'" + date + "'" + ")";
+        if (i === req.body.length - 1) {
+          arrayOfValue += ";";
+        } else {
+          arrayOfValue += ",";
+        }
+      }
+      conn.query(
+        "insert into record_absense(children_id, date) VALUES " + arrayOfValue,
+        function (err, rows) {
+          console.log(rows);
+          conn.release();
+          if (!err) {
+            /*logger.log(
+              "info",
+              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
+            );*/
+            res.json(true);
+          } else {
+            console.log(err);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END RECORD ABSENSE */
+
 module.exports = router;
