@@ -6,19 +6,6 @@
     "fields": "",
     "root": ""
   },
-  "resources": {
-    "request": {
-      "type": "GET",
-      "api": "/api/getTypeOfMeal",
-      "parameters": [],
-      "fields": "",
-      "root": ""
-    },
-    "field": "type_of_meal_id",
-    "idField": "id",
-    "colorField": "color",
-    "allowMultipleOwner": true
-  },
   "editSettingsRequest": {
     "add": {
       "type": "POST",
@@ -50,43 +37,41 @@
   ],
   "showQuickInfo": true,
   "startHour": "08:00",
-  "endHour": "18:00",
+  "endHour": "20:00",
   "interval": 30,
   "toolbar": {
     "exportToExcel": true,
     "print": true
   },
-  "convertSubmitValue": [
-    {
-      "field": "type_of_meal_id",
-      "type": "number"
-    }
+  "displayFieldForSubject": [
+    "title_of_activity",
+    "<br>",
+    "description_of_activity"
   ],
   "config": [
     {
       "type": "textbox",
+      "title": "title",
       "width": "col-md-12",
-      "class": "e-outline",
-      "schedule": {
-        "type": "textbox",
-        "title": "title",
-        "width": "col-md-12",
-        "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
-        "name": "title_of_activity"
-      }
+      "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
+      "name": "title_of_activity",
+      "schedule": true
     },
     {
       "type": "textbox",
+      "title": "description",
+      "width": "col-md-12",
+      "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
+      "name": "description_of_activity",
+      "schedule": true
+    },
+    {
+      "type": "checkbox",
       "width": "col-md-12",
       "class": "e-outline",
-      "multiline": true,
-      "schedule": {
-        "type": "textbox",
-        "title": "description",
-        "width": "col-md-12",
-        "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
-        "name": "description_of_activity"
-      }
+      "title": "isAllDay",
+      "name": "IsAllDay",
+      "schedule": true
     },
     {
       "type": "datetimepicker",
@@ -95,13 +80,7 @@
       "fieldClass": "e-field e-input",
       "title": "Start",
       "name": "StartTime",
-      "schedule": {
-        "type": "datetimepicker",
-        "title": "StartTime",
-        "width": "col-md-12",
-        "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
-        "name": "StartTime"
-      }
+      "schedule": true
     },
     {
       "type": "datetimepicker",
@@ -109,13 +88,7 @@
       "class": "e-outline",
       "fieldClass": "e-field e-input",
       "name": "EndTime",
-      "schedule": {
-        "type": "datetimepicker",
-        "title": "EndTime",
-        "width": "col-md-12",
-        "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
-        "name": "EndTime"
-      }
+      "schedule": true
     }
   ]
 }

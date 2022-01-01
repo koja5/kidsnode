@@ -27,5 +27,6 @@ export class ScheduleModel {
     editSettingsRequest?: EditSettingsRequestModel;
     resources?: SchedulerModelResources;
     convertSubmitValue?: SubmitValueModelScheduler[];
+    displayFieldForSubject?: string[];
     toolbar?: SchedulerToolbarModel;
 }

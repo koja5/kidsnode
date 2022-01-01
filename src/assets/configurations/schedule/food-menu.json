@@ -86,12 +86,7 @@
         "filter": true
       },
       "required": true,
-      "schedule": {
-        "type": "combobox",
-        "name": "type_of_meal_id",
-        "title": "Jelo",
-        "class": "e-field e-input e-lib e-keyboard"
-      }
+      "schedule": true
     },
     {
       "type": "multiselect",
@@ -116,41 +111,25 @@
         "filter": true
       },
       "required": true,
-      "schedule": {
-        "type": "multiselect",
-        "name": "type_of_food",
-        "title": "Jelo",
-        "class": "e-field e-input e-lib e-keyboard"
-      }
+      "schedule": true
     },
     {
       "type": "datetimepicker",
+      "title": "Start",
       "width": "col-md-12",
       "class": "e-outline",
       "fieldClass": "e-field e-input",
-      "title": "Start",
       "name": "StartTime",
-      "schedule": {
-        "type": "datetimepicker",
-        "title": "StartTime",
-        "width": "col-md-12",
-        "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
-        "name": "StartTime"
-      }
+      "schedule": true
     },
     {
       "type": "datetimepicker",
+      "title": "End",
       "width": "col-md-12",
       "class": "e-outline",
       "fieldClass": "e-field e-input",
       "name": "EndTime",
-      "schedule": {
-        "type": "datetimepicker",
-        "title": "EndTime",
-        "width": "col-md-12",
-        "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
-        "name": "EndTime"
-      }
+      "schedule": true
     }
   ]
 }

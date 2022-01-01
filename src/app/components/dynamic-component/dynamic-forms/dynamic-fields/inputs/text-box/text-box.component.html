@@ -22,20 +22,20 @@
 
 <div
   *ngIf="config.schedule"
-  [ngClass]="[config?.schedule?.width]"
+  [ngClass]="[config?.width]"
   [formGroup]="group"
 >
-  <label *ngIf="config?.schedule?.title" class="custom-label">{{
-    language[config?.schedule?.title]
-      ? language[config?.schedule?.title]
-      : config?.schedule?.title
+  <label *ngIf="config?.title" class="custom-label">{{
+    language[config?.title]
+      ? language[config?.title]
+      : config?.title
   }}</label>
   <div class="e-input-group e-control-wrapper e-outline">
     <input
-      class="{{ config?.schedule?.class }}"
+      class="{{ config?.class }}"
       value=""
-      name="{{ config?.schedule?.name }}"
-      type="{{ config?.schedule?.type }}"
+      name="{{ config?.name }}"
+      type="{{ config?.type }}"
     />
   </div>
 </div>

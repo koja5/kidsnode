@@ -22,16 +22,14 @@
 </div>
 
 <div *ngIf="config?.schedule && data" [ngClass]="[config?.width]">
-  <label *ngIf="config?.schedule?.title" class="custom-label">{{
-    language[config?.schedule?.title]
-      ? language[config?.schedule?.title]
-      : config?.schedule?.title
+  <label *ngIf="config?.title" class="custom-label">{{
+    language[config?.title] ? language[config?.title] : config?.title
   }}</label>
   <div class="e-input-group e-control-wrapper e-outline e-ddl e-valid-input">
     <select
       name="{{ config.name }}"
       id="{{ config.name }}"
-      class="custom-combo {{ config?.schedule?.class }}"
+      class="custom-combo e-field e-input e-lib e-keyboard {{ config?.class }}"
       (change)="onChange($event.target.value)"
     >
       <option

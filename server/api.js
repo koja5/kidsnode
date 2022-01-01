@@ -1823,10 +1823,8 @@ router.post(
           creator_id: req.user.user.id,
           title_of_activity: req.body.title_of_activity,
           description_of_activity: req.body.description_of_activity,
-          Subject:
-            req.body.title_of_activity +
-            " \n" +
-            req.body.description_of_activity,
+          Subject: req.body.Subject,
+          IsAllDay: req.body.IsAllDay,
           StartTime: new Date(req.body.StartTime),
           EndTime: new Date(req.body.EndTime),
         };
@@ -1851,40 +1849,43 @@ router.post(
   }
 );
 
-router.post("/updateCalendarOfChildrenActivity", function (req, res, next) {
-  connection.getConnection(function (err, conn) {
-    if (err) {
-      logger.log("error", err.sql + ". " + err.sqlMessage);
-      res.json(err);
-    }
-    const data = {
-      kindergarden_id: req.user.user.kindergarden,
-      creator_id: req.user.user.id,
-      title_of_activity: req.body.title_of_activity,
-      description_of_activity: req.body.description_of_activity,
-      Subject:
-        req.body.title_of_activity + " \n" + req.body.description_of_activity,
-      StartTime: new Date(req.body.StartTime),
-      EndTime: new Date(req.body.EndTime),
-    };
-    conn.query(
-      "update calendar_of_children_activity SET ? where id = ?",
-      [data, req.body.id],
-      function (err, rows) {
-        conn.release();
-        if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
+router.post(
+  "/updateCalendarOfChildrenActivity",
+  auth,
+  function (req, res, next) {
+    try {
+      connection.getConnection(function (err, conn) {
+        const data = {
+          kindergarden_id: req.user.user.kindergarden,
+          creator_id: req.user.user.id,
+          title_of_activity: req.body.title_of_activity,
+          description_of_activity: req.body.description_of_activity,
+          Subject: req.body.Subject,
+          IsAllDay: req.body.IsAllDay,
+          StartTime: new Date(req.body.StartTime),
+          EndTime: new Date(req.body.EndTime),
+        };
+
+        conn.query(
+          "update calendar_of_children_activity SET ? where id = ?",
+          [data, req.body.id],
+          function (err, rows) {
+            conn.release();
+            if (!err) {
+              res.json(true);
+            } else {
+              console.log(err);
+              res.json(false);
+            }
           }
-        } else {
-          res.json(err);
-        }
-      }
-    );
-  });
-});
+        );
+      });
+    } catch (ex) {
+      // logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
 
 router.get("/getCalendarOfChildrenActivity", auth, async (req, res, next) => {
   try {

@@ -30,4 +30,5 @@ export class FieldConfig {
   offLabel?: string;
   itemFields?: FieldConfig;
   schedule?: FieldConfig;
+  mode?: string;
 }

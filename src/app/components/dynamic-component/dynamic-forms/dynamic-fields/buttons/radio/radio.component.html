@@ -1,12 +1,15 @@
 <div [ngClass]="[config.width]" [formGroup]="group" class="form-group">
   <label *ngIf="config?.title" class="custom-label">
-    {{ language[config?.title] ? language[config?.title] : config?.title }}</label>
+    {{
+      language[config?.title] ? language[config?.title] : config?.title
+    }}</label
+  >
   <ul class="radio-button-ul">
     <li class="radio-button-li" *ngFor="let item of config.itemFields">
       <ejs-radiobutton
         label="{{ language[item.title] ? language[item.title] : item.title }}"
         name="{{ config.name }}"
-        value="{{item.value}}"
+        value="{{ item.value }}"
         [id]="config.name"
         [formControlName]="config.name"
         [disabled]="config.disabled!"
@@ -14,9 +17,3 @@
     </li>
   </ul>
 </div>
-
-<!-- <ejs-radiobutton
-  label="Option 2"
-  name="default"
-  checked="true"
-></ejs-radiobutton> -->

@@ -1,1 +1,27 @@
-<ejs-checkbox></ejs-checkbox>
+<div [ngClass]="[config.width]" [formGroup]="group" class="form-group mt-2">
+  <ejs-checkbox
+    *ngIf="!config?.schedule"
+    name="{{ config.name }}"
+    [id]="config.name"
+    [value]="config?.value"
+    [checked]="config?.value"
+    [formControlName]="config.name"
+    [disabled]="config.disabled!"
+  ></ejs-checkbox>
+
+  <ejs-checkbox
+    *ngIf="config?.schedule"
+    name="{{ config.name }}"
+    class="{{ config?.class }} e-field e-input e-control e-textbox e-lib e-input "
+    [id]="config.name"
+    [value]="config?.value"
+    [checked]="config?.value"
+    [formControlName]="config.name"
+    [disabled]="config.disabled!"
+  ></ejs-checkbox>
+  <label *ngIf="config?.title" class="custom-label ml-2">
+    {{
+      language[config?.title] ? language[config?.title] : config?.title
+    }}</label
+  >
+</div>

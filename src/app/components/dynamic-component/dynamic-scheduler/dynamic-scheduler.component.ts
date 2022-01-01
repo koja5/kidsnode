@@ -184,6 +184,7 @@ export class DynamicSchedulerComponent implements OnInit {
   }
 
   createData(data: any) {
+    data = this.convertSubmitValue(data);
     this.callApi(this.config!.editSettingsRequest!.add, data);
   }
 
@@ -254,16 +255,16 @@ export class DynamicSchedulerComponent implements OnInit {
       if (fields[i].schedule) {
         if (this.form !== undefined) {
           this.form.setValue(
-            fields[i].schedule['name'],
+            fields[i]['name'],
             this.helpService.convertValueToSpecificType(
-              values[fields[i].schedule['name']],
+              values[fields[i]['name']],
               this.config!.config![i].type
             )
           );
         }
         this.config!.config![i].value =
           this.helpService.convertValueToSpecificType(
-            values[fields[i].schedule['name']],
+            values[fields[i]['name']],
             this.config!.config![i].type
           );
       } else {
@@ -293,6 +294,19 @@ export class DynamicSchedulerComponent implements OnInit {
             data[this.config.convertSubmitValue[i].field!],
             this.config.convertSubmitValue[i].type ?? ''
           );
+      }
+    }
+    if (this.config?.displayFieldForSubject) {
+      data.Subject = '';
+      for (let i = 0; i < this.config.displayFieldForSubject.length; i++) {
+        if (
+          data[this.config?.displayFieldForSubject[i]] !== undefined &&
+          data[this.config?.displayFieldForSubject[i]] !== null
+        ) {
+          data.Subject += data[this.config?.displayFieldForSubject[i]];
+        } else {
+          data.Subject += this.config?.displayFieldForSubject[i];
+        }
       }
     }
     return data;
