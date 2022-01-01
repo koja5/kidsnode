@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HelpService } from 'src/app/services/help.service';
 import { FieldConfig } from '../../../models/field-config';
@@ -9,6 +9,10 @@ import { FieldConfig } from '../../../models/field-config';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent implements OnInit {
+  @Input() class!: string;
+  @Input() title!: string;
+  @Input() icon!: string;
+  @Output() clickEmitter: EventEmitter<any> = new EventEmitter();
   public config: FieldConfig;
   public group: FormGroup;
   public language: any;
@@ -20,5 +24,9 @@ export class ButtonComponent implements OnInit {
 
   ngOnInit(): void {
     this.language = this.helpService.getLanguage();
+  }
+
+  clickButton() {
+    this.clickEmitter?.emit();
   }
 }

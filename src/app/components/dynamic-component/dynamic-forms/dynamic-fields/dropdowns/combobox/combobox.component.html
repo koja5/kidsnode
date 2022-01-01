@@ -21,7 +21,7 @@
   ></ejs-combobox>
 </div>
 
-<div *ngIf="config?.schedule && data" [ngClass]="[config.width]">
+<div *ngIf="config?.schedule && data" [ngClass]="[config?.width]">
   <label *ngIf="config?.schedule?.title" class="custom-label">{{
     language[config?.schedule?.title]
       ? language[config?.schedule?.title]

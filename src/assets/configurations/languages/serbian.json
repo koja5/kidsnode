@@ -51,5 +51,6 @@
     "nextButton": "Dalje",
     "showProfile": "Prikaži profil",
     "recordArrival": "Evidentiraj dolazak",
-    "recordAbsense": "Evidentiraj izostanak"
+    "recordAbsense": "Evidentiraj izostanak",
+    "evidentedAbsense": "Evidentiran izostanak"
 }

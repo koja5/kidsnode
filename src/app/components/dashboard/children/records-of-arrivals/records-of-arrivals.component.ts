@@ -14,6 +14,8 @@ export class RecordsOfArrivalsComponent implements OnInit {
   public data: any;
   public selectedChildren: any = {};
   public selectedChildrenData: any = [];
+  public reason!: string;
+  public absenseEvidented: string[] = [];
 
   constructor(
     private helpService: HelpService,
@@ -28,7 +30,7 @@ export class RecordsOfArrivalsComponent implements OnInit {
   }
 
   initializeData() {
-    this.apiService.callGetMethod('/api/getChildrens', '').subscribe((data) => {
+    this.apiService.callGetMethod('/api/getChildrensAndAbsense', '').subscribe((data) => {
       this.data = data;
     });
   }
@@ -74,6 +76,23 @@ export class RecordsOfArrivalsComponent implements OnInit {
           this.toastr.showSuccess();
           this.selectedChildrenData = [];
           this.selectedChildren = {};
+        } else {
+          this.toastr.showError();
+        }
+      });
+  }
+
+  recordAbsenseSingle(children_id: number) {
+    const data = {
+      children_id: children_id,
+      reason: this.reason,
+    };
+    this.apiService
+      .callPostMethod('/api/recordAbsenseSingle', data)
+      .subscribe((data) => {
+        if (data) {
+          this.absenseEvidented[children_id] = 'evidented';
+          this.toastr.showSuccess();
         } else {
           this.toastr.showError();
         }

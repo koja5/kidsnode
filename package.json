@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "client": "ng serve --proxy-config proxy.config.json",
-    "server": "nodemon server.js",
+    "client": "ng serve --port 4201 --proxy-config proxy.config.json",
+    "server": "nodemon server.js --port 3001",
     "start": "npx npm-run-all -p client server",
     "build": "ng serve --port 3000 --open && nodemon server",
     "test": "ng test",

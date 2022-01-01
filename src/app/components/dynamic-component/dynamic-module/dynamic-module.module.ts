@@ -45,7 +45,7 @@ import { DynamicActionButtonComponent } from '../dynamic-action-button/dynamic-a
 import { DynamicUploadComponent } from '../dynamic-upload/dynamic-upload.component';
 import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
 import { DynamicPdfViewerComponent } from '../dynamic-pdf-viewer/dynamic-pdf-viewer.component';
-
+import { DynamicIconComponent } from '../common/dynamic-icon/dynamic-icon.component';
 @NgModule({
   declarations: [
     DynamicGridComponent,
@@ -57,7 +57,8 @@ import { DynamicPdfViewerComponent } from '../dynamic-pdf-viewer/dynamic-pdf-vie
     ToastrComponent,
     DynamicSchedulerComponent,
     DynamicUploadComponent,
-    DynamicPdfViewerComponent
+    DynamicPdfViewerComponent,
+    DynamicIconComponent
   ],
   exports: [
     DynamicGridComponent,
@@ -69,7 +70,8 @@ import { DynamicPdfViewerComponent } from '../dynamic-pdf-viewer/dynamic-pdf-vie
     ToastrComponent,
     DynamicSchedulerComponent,
     DynamicUploadComponent,
-    DynamicPdfViewerComponent
+    DynamicPdfViewerComponent,
+    DynamicIconComponent
   ],
   imports: [
     CommonModule,

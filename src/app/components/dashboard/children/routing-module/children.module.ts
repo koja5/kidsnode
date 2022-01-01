@@ -9,6 +9,7 @@ import { ProfileChildrenComponent } from '../all-children/profile-children/profi
 import { RecordsOfArrivalsComponent } from '../records-of-arrivals/records-of-arrivals.component';
 import { AvatarComponent } from 'src/app/components/dashboard/common/avatar/avatar.component';
 import { CommonModule } from '@angular/common';
+import { CalendarOfActivityComponent } from '../calendar-of-activity/calendar-of-activity.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CommonModule } from '@angular/common';
     AllChildrenComponent,
     ProfileChildrenComponent,
     RecordsOfArrivalsComponent,
-    AvatarComponent
+    AvatarComponent,
+    CalendarOfActivityComponent
   ],
   imports: [CommonModule, ChildrenRouting, DynamicModuleModule],
   providers: [],

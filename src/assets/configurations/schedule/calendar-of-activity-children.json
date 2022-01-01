@@ -1,7 +1,7 @@
 {
   "request": {
     "type": "GET",
-    "api": "/api/getFoodMenu",
+    "api": "/api/getCalendarOfChildrenActivity",
     "parameters": [],
     "fields": "",
     "root": ""
@@ -22,21 +22,21 @@
   "editSettingsRequest": {
     "add": {
       "type": "POST",
-      "api": "/api/createFoodMenu",
+      "api": "/api/createCalendarOfChildrenActivity",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "edit": {
       "type": "POST",
-      "api": "/api/updateFoodMenu",
+      "api": "/api/updateCalendarOfChildrenActivity",
       "parameters": [],
       "fields": "",
       "root": ""
     },
     "delete": {
       "type": "POST",
-      "api": "/api/deleteFoodMenu",
+      "api": "/api/deleteCalendarOfChildrenActivity",
       "parameters": [],
       "fields": "",
       "root": ""
@@ -64,63 +64,28 @@
   ],
   "config": [
     {
-      "type": "combobox",
+      "type": "textbox",
       "width": "col-md-12",
       "class": "e-outline",
-      "fieldClass": "e-field e-input",
-      "name": "type_of_meal_id",
-      "title": "Obrok",
-      "field": {
-        "text": "name",
-        "value": "id"
-      },
-      "request": {
-        "type": "GET",
-        "api": "/api/getTypeOfMeal",
-        "fields": "",
-        "root": ""
-      },
-      "placeholder": "Please select kindergarden group",
-      "fieldConfig": {
-        "ignoreAccent": false,
-        "filter": true
-      },
-      "required": true,
       "schedule": {
-        "type": "combobox",
-        "name": "type_of_meal_id",
-        "title": "Jelo",
-        "class": "e-field e-input e-lib e-keyboard"
+        "type": "textbox",
+        "title": "title",
+        "width": "col-md-12",
+        "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
+        "name": "title_of_activity"
       }
     },
     {
-      "type": "multiselect",
+      "type": "textbox",
       "width": "col-md-12",
       "class": "e-outline",
-      "fieldClass": "e-field e-input",
-      "name": "type_of_food",
-      "title": "Jelo",
-      "field": {
-        "text": "name",
-        "value": "id"
-      },
-      "request": {
-        "type": "GET",
-        "api": "/api/getFoods",
-        "fields": "",
-        "root": ""
-      },
-      "placeholder": "Please select kindergarden group",
-      "fieldConfig": {
-        "ignoreAccent": false,
-        "filter": true
-      },
-      "required": true,
+      "multiline": true,
       "schedule": {
-        "type": "multiselect",
-        "name": "type_of_food",
-        "title": "Jelo",
-        "class": "e-field e-input e-lib e-keyboard"
+        "type": "textbox",
+        "title": "description",
+        "width": "col-md-12",
+        "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
+        "name": "description_of_activity"
       }
     },
     {

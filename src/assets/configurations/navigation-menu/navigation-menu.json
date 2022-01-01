@@ -23,32 +23,6 @@
         ]
       },
       {
-        "icon": "format_list_numbered",
-        "title": "Zahtevi",
-        "link": "",
-        "rights": "",
-        "children": [
-          {
-            "icon": "text_snippet",
-            "title": "Svi zahtevi",
-            "link": "/login",
-            "rights": ""
-          },
-          {
-            "icon": "speaker_notes",
-            "title": "Obradjeni/Bodovani",
-            "link": "/login",
-            "rights": ""
-          },
-          {
-            "icon": "description",
-            "title": "Dokumenta za upis",
-            "link": "/login",
-            "rights": ""
-          }
-        ]
-      },
-      {
         "icon": "child_care",
         "title": "Popis dece",
         "link": "/dashboard/children/all-childrens",
@@ -61,9 +35,9 @@
         "rights": ""
       },
       {
-        "icon": "speaker_group",
-        "title": "Upisne grupe",
-        "link": "dashboard/groups",
+        "icon": "event",
+        "title": "Kalendar aktivnosti",
+        "link": "/dashboard/children/calendar-of-children-activity",
         "rights": ""
       }
     ]
@@ -71,38 +45,6 @@
   {
     "title": "Organizacija",
     "menu": [
-      {
-        "icon": "format_list_numbered",
-        "title": "Zahtevi",
-        "link": "",
-        "rights": "",
-        "children": [
-          {
-            "icon": "text_snippet",
-            "title": "Svi zahtevi",
-            "link": "/login",
-            "rights": ""
-          },
-          {
-            "icon": "speaker_notes",
-            "title": "Obradjeni/Bodovani",
-            "link": "/login",
-            "rights": ""
-          },
-          {
-            "icon": "description",
-            "title": "Dokumenta za upis",
-            "link": "/login",
-            "rights": ""
-          }
-        ]
-      },
-      {
-        "icon": "baby_changing_station",
-        "title": "Deca",
-        "link": "dashboard/groups",
-        "rights": ""
-      },
       {
         "icon": "badge",
         "title": "Zaposleni",

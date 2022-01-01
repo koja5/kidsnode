@@ -15,14 +15,17 @@
   ></ejs-datetimepicker>
 </div>
 
-<div *ngIf="config.schedule" [ngClass]="[config.width]" class="form-group">
-  <label *ngIf="config.title" class="custom-label">{{
-    language[config?.title] ? language[config?.title] : config?.title
+<div *ngIf="config?.schedule" class="{{ config?.schedule.width }}">
+  <label *ngIf="config?.schedule?.title" class="custom-label">{{
+    language[config?.schedule?.title]
+      ? language[config?.schedule?.title]
+      : config?.schedule?.title
   }}</label>
-  <ejs-datetimepicker
-    cssClass="{{ config.class }}"
-    [id]="config.name"
-    [value]="config.value"
-    [disabled]="config.disabled!"
-  ></ejs-datetimepicker>
+  <div class="e-input-group e-control-wrapper e-outline e-ddl e-valid-input">
+    <ejs-datetimepicker
+      class="{{ config?.schedule?.class }} datetime-full-width"
+      value="{{ config.value }}"
+      name="{{ config?.schedule?.name }}"
+    ></ejs-datetimepicker>
+  </div>
 </div>

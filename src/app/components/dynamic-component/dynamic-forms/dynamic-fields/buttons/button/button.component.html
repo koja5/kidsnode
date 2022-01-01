@@ -1,4 +1,4 @@
-<div *ngIf="language" [ngClass]="[config.positionClass]">
+<div *ngIf="language && config" [ngClass]="[config.positionClass]">
   <button
     ejs-button
     [disabled]="config.disabled"
@@ -6,5 +6,12 @@
     [class]="config.class"
   >
     {{ language[config?.title] ? language[config?.title] : config?.title }}
+  </button>
+</div>
+
+<div *ngIf="title || icon">
+  <button class="e-btn {{ class }}" (click)="clickButton()">
+    <app-dynamic-icon *ngIf="icon" [icon]="icon"></app-dynamic-icon>
+    {{ title }}
   </button>
 </div>

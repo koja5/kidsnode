@@ -16,6 +16,7 @@
 @import "../node_modules/@syncfusion/ej2-angular-schedule/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-pdfviewer/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-angular-calendars/styles/material.css";
 
 html,
 body {
@@ -163,6 +164,66 @@ input:focus-visible {
   // border-radius: 0px !important;
 }
 
+.e-tab.e-fill .e-tab-header .e-toolbar-item.e-active .e-tab-wrap {
+  background: #202562 !important;
+}
+
+.e-tab.e-fill .e-tab-header {
+  border-bottom: 2px Solid #202562 !important;
+}
+
+.e-radio:checked + label::before {
+  border-color: #202562 !important;
+}
+
+.e-radio:checked + label::after {
+  background-color: #202562 !important;
+  color: #202562 !important;
+}
+
+.e-input-group
+  .e-control-wrapper
+  .e-valid-input
+  .e-date-time-wrapper
+  .e-input-focus {
+  border: none !important;
+}
+
+.e-input-group.e-control-wrapper.e-valid-input.e-datetime-wrapper {
+  border: none !important;
+  background-color: none !important;
+}
+
+.e-input-group:not(.e-float-icon-left):not(.e-float-input).e-input-focus::before,
+.e-input-group:not(.e-float-icon-left):not(.e-float-input).e-input-focus::after,
+.e-input-group.e-float-icon-left:not(.e-float-input).e-input-focus
+  .e-input-in-wrap::before,
+.e-input-group.e-float-icon-left:not(.e-float-input).e-input-focus
+  .e-input-in-wrap::after,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input).e-input-focus::before,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input).e-input-focus::after,
+.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input).e-input-focus
+  .e-input-in-wrap::before,
+.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input).e-input-focus
+  .e-input-in-wrap::after {
+  border: none !important;
+  background: none !important;
+}
+
+.e-input-group:not(.e-float-icon-left):not(.e-float-input)::before,
+.e-input-group:not(.e-float-icon-left):not(.e-float-input)::after,
+.e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::before,
+.e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after,
+.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input)
+  .e-input-in-wrap::before,
+.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input)
+  .e-input-in-wrap::after {
+  border: none !important;
+  background: none !important;
+}
+
 .button-action {
   // border-radius: 0px !important;
   padding: 9px 22px !important;
@@ -203,4 +264,12 @@ input:focus-visible {
 .inner {
   margin-left: auto;
   margin-right: auto;
+}
+
+.e-btn-center {
+  vertical-align: middle !important;
+  line-height: normal !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
 }

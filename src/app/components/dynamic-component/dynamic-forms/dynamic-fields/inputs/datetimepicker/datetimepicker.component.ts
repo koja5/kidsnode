@@ -21,6 +21,11 @@ export class DatetimepickerComponent implements OnInit {
 
   ngOnInit(): void {
     this.language = this.helpService.getLanguage();
+    this.initialization();
   }
+
+  initialization() {
+  }
+  
 
 }

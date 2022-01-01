@@ -47,7 +47,7 @@ router.get("/", (req, res) => {
               "insert into directors SET ?",
               req.body.director,
               function (err, rows_director) {
-                console.log(err);
+                
                 if (err) return res.json(false);
                 return res.json(true);
                 console.log("DIREKTOR_OWNER:");
@@ -113,7 +113,6 @@ router.post("/createAccountForKinderGarden", async function (req, res, next) {
                 "insert into directors SET ?",
                 req.body.director,
                 function (err, rows_director) {
-                  console.log(err);
                   if (err) return res.json(false);
                   return res.json(true);
                   /*console.log("DIREKTOR_OWNER:");
@@ -143,9 +142,7 @@ router.post("/createAccountForKinderGarden", async function (req, res, next) {
         }
       );
     });
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 });
 
 router.post("/login", async (req, res, next) => {
@@ -224,7 +221,6 @@ router.post("/createKindergardenGroup", auth, function (req, res, next) {
         "insert into kindergarden_group SET ?",
         [req.body],
         function (err, rows) {
-          console.log(rows);
           conn.release();
           if (!err) {
             /*logger.log(
@@ -277,7 +273,6 @@ router.post("/updateKindergardenGroup", function (req, res, next) {
 
 router.get("/getKindergardenGroup", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -310,7 +305,6 @@ router.get(
   auth,
   async (req, res, next) => {
     try {
-      console.log(req.user.user.kindergarden);
       connection.getConnection(function (err, conn) {
         if (err) {
           logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -385,7 +379,6 @@ router.post("/createKindergardenSubgroup", auth, function (req, res, next) {
         "insert into kindergarden_subgroup SET ?",
         [req.body],
         function (err, rows) {
-          console.log(rows);
           conn.release();
           if (!err) {
             /*logger.log(
@@ -438,7 +431,6 @@ router.post("/updateKindergardenSubgroup", function (req, res, next) {
 
 router.get("/getKindergardenSubgroup", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -521,7 +513,6 @@ router.post("/createChildren", auth, function (req, res, next) {
         "insert into parents SET ?",
         [father],
         function (err, father_res) {
-          console.log(father_res.insertId);
           if (!err) {
             /*logger.log(
               "info",
@@ -531,7 +522,6 @@ router.post("/createChildren", auth, function (req, res, next) {
               "insert into parents SET ?",
               [mother],
               function (err, mother_res) {
-                console.log(mother_res.insertId);
                 if (!err) {
                   /*logger.log(
                     "info",
@@ -548,12 +538,10 @@ router.post("/createChildren", auth, function (req, res, next) {
                     birthday: req.body.children_birthday,
                     gender: req.body.children_gender,
                   };
-                  console.log(children);
                   conn.query(
                     "insert into childrens SET ?",
                     [children],
                     function (err, children_res) {
-                      console.log(children_res);
                       conn.release();
                       if (!err) {
                         /*logger.log(
@@ -562,7 +550,6 @@ router.post("/createChildren", auth, function (req, res, next) {
                         );*/
                         res.json(true);
                       } else {
-                        console.log(err);
                         /*logger.log(
                           "error",
                           `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
@@ -572,7 +559,6 @@ router.post("/createChildren", auth, function (req, res, next) {
                     }
                   );
                 } else {
-                  console.log(err);
                   /*logger.log(
                     "error",
                     `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
@@ -626,7 +612,6 @@ router.post("/updateChildren", function (req, res, next) {
 
 router.get("/getChildrens", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -642,7 +627,7 @@ router.get("/getChildrens", auth, async (req, res, next) => {
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
               // logger.log("info", "Test");
-              console.log(rows);
+
               res.json(rows);
             }
           }
@@ -799,7 +784,7 @@ router.post("/createChildrenNotes", auth, function (req, res, next) {
       req.body.children_id = req.body.id;
       req.body.educator_id = req.user.user.id;
       delete req.body.id;
-      console.log(req.body);
+
       conn.query(
         "insert into children_notes SET ?",
         [req.body],
@@ -932,7 +917,7 @@ router.post("/createChildrenTaking", auth, function (req, res, next) {
       req.body.children_id = req.body.id;
       req.body.educator_id = req.user.user.id;
       delete req.body.id;
-      console.log(req.body);
+
       conn.query(
         "insert into children_taking SET ?",
         [req.body],
@@ -949,7 +934,7 @@ router.post("/createChildrenTaking", auth, function (req, res, next) {
               "error",
               `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
             );*/
-            console.log(err);
+
             res.json(false);
           }
         }
@@ -1034,7 +1019,6 @@ router.post("/createEmployee", auth, function (req, res, next) {
         "insert into employees SET ?",
         [req.body],
         function (err, rows) {
-          console.log(rows);
           conn.release();
           if (!err) {
             /*logger.log(
@@ -1043,7 +1027,6 @@ router.post("/createEmployee", auth, function (req, res, next) {
             );*/
             res.json(true);
           } else {
-            console.log(err);
             res.json(false);
           }
         }
@@ -1084,7 +1067,6 @@ router.post("/updateEmployee", function (req, res, next) {
 
 router.get("/getEmployees", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1143,7 +1125,6 @@ router.post("/deleteEmployee", (req, res, next) => {
 
 router.get("/getUserOfType", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1215,7 +1196,6 @@ router.post("/createWorkPlace", auth, function (req, res, next) {
         "insert into work_places SET ?",
         [req.body],
         function (err, rows) {
-          console.log(rows);
           conn.release();
           if (!err) {
             /*logger.log(
@@ -1224,7 +1204,6 @@ router.post("/createWorkPlace", auth, function (req, res, next) {
             );*/
             res.json(true);
           } else {
-            console.log(err);
             res.json(false);
           }
         }
@@ -1265,7 +1244,6 @@ router.post("/updateWorkPlace", function (req, res, next) {
 
 router.get("/getWorkPlaces", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1338,7 +1316,6 @@ router.post("/createTypeOfWork", auth, function (req, res, next) {
         "insert into type_of_work SET ?",
         [req.body],
         function (err, rows) {
-          console.log(rows);
           conn.release();
           if (!err) {
             /*logger.log(
@@ -1347,7 +1324,6 @@ router.post("/createTypeOfWork", auth, function (req, res, next) {
             );*/
             res.json(true);
           } else {
-            console.log(err);
             res.json(false);
           }
         }
@@ -1388,7 +1364,6 @@ router.post("/updateTypeOfWork", function (req, res, next) {
 
 router.get("/getTypeOfWorks", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1458,7 +1433,6 @@ router.post("/createFood", auth, function (req, res, next) {
       }
       req.body.kindergarden_id = req.user.user.kindergarden;
       conn.query("insert into foods SET ?", [req.body], function (err, rows) {
-        console.log(rows);
         conn.release();
         if (!err) {
           /*logger.log(
@@ -1467,7 +1441,6 @@ router.post("/createFood", auth, function (req, res, next) {
             );*/
           res.json(true);
         } else {
-          console.log(err);
           res.json(false);
         }
       });
@@ -1507,7 +1480,6 @@ router.post("/updateFood", function (req, res, next) {
 
 router.get("/getFoods", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1577,7 +1549,7 @@ router.get("/getTypeOfMeal", auth, async (req, res, next) => {
       } else {
         conn.query("select * from type_of_meal", function (err, rows, fields) {
           conn.release();
-          console.log(rows);
+
           if (err) {
             res.json(err);
             logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1604,7 +1576,6 @@ router.post("/createFoodMenu", auth, function (req, res, next) {
         // logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      console.log(req.body[0]);
       req.body.kindergarden_id = req.user.user.kindergarden;
       const data = {
         kindergarden_id: req.user.user.kindergarden,
@@ -1613,9 +1584,7 @@ router.post("/createFoodMenu", auth, function (req, res, next) {
         StartTime: new Date(req.body.StartTime),
         EndTime: new Date(req.body.EndTime),
       };
-      console.log(data);
       conn.query("insert into food_menu SET ?", [data], function (err, rows) {
-        console.log(rows);
         conn.release();
         if (!err) {
           /*logger.log(
@@ -1624,7 +1593,6 @@ router.post("/createFoodMenu", auth, function (req, res, next) {
             );*/
           res.json(true);
         } else {
-          console.log(err);
           res.json(false);
         }
       });
@@ -1641,7 +1609,7 @@ router.post("/updateFoodMenu", function (req, res, next) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
       res.json(err);
     }
-    console.log(req.body);
+
     const data = {
       id: req.body.id,
       kindergarden_id: req.body.kindergarden_id,
@@ -1650,7 +1618,7 @@ router.post("/updateFoodMenu", function (req, res, next) {
       StartTime: new Date(req.body.StartTime),
       EndTime: new Date(req.body.EndTime),
     };
-    console.log(data);
+
     conn.query(
       "update food_menu SET ? where id = ?",
       [data, req.body.id],
@@ -1660,12 +1628,11 @@ router.post("/updateFoodMenu", function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
-            console.log(err);
             res.json(false);
           }
         } else {
           // logger.log("error", err.sql + ". " + err.sqlMessage);
-          console.log(err);
+
           res.json(err);
         }
       }
@@ -1675,7 +1642,6 @@ router.post("/updateFoodMenu", function (req, res, next) {
 
 router.get("/getFoodMenu", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1736,6 +1702,7 @@ router.post("/deleteFoodMenu", (req, res, next) => {
 
 /* RECORD ABSENSE */
 
+// MULTI SELECT
 router.post("/recordAbsense", auth, function (req, res, next) {
   try {
     connection.getConnection(function (err, conn) {
@@ -1743,9 +1710,9 @@ router.post("/recordAbsense", auth, function (req, res, next) {
         // logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      const date = new Date();
+      const date = new Date().toLocaleDateString("en-US");
       var arrayOfValue = "";
-      console.log(req.body);
+
       for (var i = 0; i < req.body.length; i++) {
         arrayOfValue = "(" + req.body[i] + "," + "'" + date + "'" + ")";
         if (i === req.body.length - 1) {
@@ -1757,7 +1724,6 @@ router.post("/recordAbsense", auth, function (req, res, next) {
       conn.query(
         "insert into record_absense(children_id, date) VALUES " + arrayOfValue,
         function (err, rows) {
-          console.log(rows);
           conn.release();
           if (!err) {
             /*logger.log(
@@ -1766,7 +1732,6 @@ router.post("/recordAbsense", auth, function (req, res, next) {
             );*/
             res.json(true);
           } else {
-            console.log(err);
             res.json(false);
           }
         }
@@ -1778,6 +1743,208 @@ router.post("/recordAbsense", auth, function (req, res, next) {
   }
 });
 
+//SINGLE SELECT
+router.post("/recordAbsenseSingle", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        // logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      const date = new Date().toLocaleDateString("en-US");
+      req.body.date = date;
+      conn.query(
+        "insert into record_absense SET ?",
+        [req.body],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            /*logger.log(
+              "info",
+              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
+            );*/
+            res.json(true);
+          } else {
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getChildrensAndAbsense", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        const date = new Date().toLocaleDateString("en-US");
+        conn.query(
+          "select * from childrens c where c.kindergarden_id = ?",
+          [req.user.user.kindergarden],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
 /* END RECORD ABSENSE */
+
+/* CALENDAR OF CHILDREN ACTIVITY */
+
+router.post(
+  "/createCalendarOfChildrenActivity",
+  auth,
+  function (req, res, next) {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          res.json(err);
+        }
+        const data = {
+          kindergarden_id: req.user.user.kindergarden,
+          creator_id: req.user.user.id,
+          title_of_activity: req.body.title_of_activity,
+          description_of_activity: req.body.description_of_activity,
+          Subject:
+            req.body.title_of_activity +
+            " \n" +
+            req.body.description_of_activity,
+          StartTime: new Date(req.body.StartTime),
+          EndTime: new Date(req.body.EndTime),
+        };
+        conn.query(
+          "insert into calendar_of_children_activity SET ?",
+          [data],
+          function (err, rows) {
+            conn.release();
+            if (!err) {
+              res.json(true);
+            } else {
+              console.log(err);
+              res.json(false);
+            }
+          }
+        );
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post("/updateCalendarOfChildrenActivity", function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+    const data = {
+      kindergarden_id: req.user.user.kindergarden,
+      creator_id: req.user.user.id,
+      title_of_activity: req.body.title_of_activity,
+      description_of_activity: req.body.description_of_activity,
+      Subject:
+        req.body.title_of_activity + " \n" + req.body.description_of_activity,
+      StartTime: new Date(req.body.StartTime),
+      EndTime: new Date(req.body.EndTime),
+    };
+    conn.query(
+      "update calendar_of_children_activity SET ? where id = ?",
+      [data, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          if (!err) {
+            res.json(true);
+          } else {
+            res.json(false);
+          }
+        } else {
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+router.get("/getCalendarOfChildrenActivity", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from calendar_of_children_activity where kindergarden_id = ?",
+          [req.user.user.kindergarden],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/deleteCalendarOfChildrenActivity", (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from calendar_of_children_activity where id = ?",
+          [req.body.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END CALENDAR OF CHILDREN ACTIVITY */
 
 module.exports = router;

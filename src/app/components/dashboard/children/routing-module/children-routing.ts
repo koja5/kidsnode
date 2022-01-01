@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllChildrenComponent } from '../all-children/all-children.component';
 import { ProfileChildrenComponent } from '../all-children/profile-children/profile-children.component';
+import { CalendarOfActivityComponent } from '../calendar-of-activity/calendar-of-activity.component';
 import { KindergardenGroupComponent } from '../kindergarden-group/kindergarden-group.component';
 import { KindergardenSubgroupComponent } from '../kindergarden-subgroup/kindergarden-subgroup.component';
 import { RecordsOfArrivalsComponent } from '../records-of-arrivals/records-of-arrivals.component';
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'records-of-arrivals',
     component: RecordsOfArrivalsComponent
+  },
+  {
+    path: 'calendar-of-children-activity',
+    component: CalendarOfActivityComponent
   }
 ];
 

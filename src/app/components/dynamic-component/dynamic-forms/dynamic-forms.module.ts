@@ -21,9 +21,8 @@ import { ButtonComponent } from './dynamic-fields/buttons/button/button.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComboBoxModule, MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { DynamicFieldsDirective } from './dynamic-fields/dynamic-fields.directive';
-import { DynamicFormsComponent } from './dynamic-forms.component';
 import { DatepickerComponent } from './dynamic-fields/inputs/datepicker/datepicker.component';
-import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { DatePickerModule, DateTimePickerModule  } from '@syncfusion/ej2-angular-calendars';
 import { LabelComponent } from './dynamic-fields/text/label/label.component';
 import { LoaderSvgComponent } from '../../common/loader-svg/loader-svg.component';
 import { DatetimepickerComponent } from './dynamic-fields/inputs/datetimepicker/datetimepicker.component';
@@ -54,7 +53,8 @@ import { DatetimepickerComponent } from './dynamic-fields/inputs/datetimepicker/
     RadioButtonModule,
     ButtonModule,
     MultiSelectModule,
-    DatePickerModule 
+    DatePickerModule,
+    DateTimePickerModule
   ],
   exports: [DynamicFieldsDirective],
   entryComponents: [
