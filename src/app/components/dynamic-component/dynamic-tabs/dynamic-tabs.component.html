@@ -9,12 +9,24 @@
         ></app-dynamic-grid>
       </ng-template>
       <ng-template #content *ngIf="item.type === 'forms'">
-        <!-- proveri da li treba da se spusti mozda u form komponenti -->
-        <app-dynamic-action-button *ngIf="item.actionButtons" [data]="item.actionButtons"></app-dynamic-action-button>
+        <app-dynamic-action-button
+          *ngIf="item.actionButtons"
+          [data]="item.actionButtons"
+        ></app-dynamic-action-button>
         <app-dynamic-forms
           [path]="item.path"
           [file]="item.file"
         ></app-dynamic-forms>
+      </ng-template>
+      <ng-template #content *ngIf="item.type === 'scheduler'">
+        <app-dynamic-action-button
+          *ngIf="item.actionButtons"
+          [data]="item.actionButtons"
+        ></app-dynamic-action-button>
+        <app-dynamic-scheduler
+          [path]="item.path"
+          [file]="item.file"
+        ></app-dynamic-scheduler>
       </ng-template>
     </e-tabitem>
   </e-tabitems>

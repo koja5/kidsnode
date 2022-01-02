@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
   HostListener,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ItemModel } from '@syncfusion/ej2-angular-navigations';
 import {
   ScheduleComponent,
@@ -70,12 +71,14 @@ export class DynamicSchedulerComponent implements OnInit {
   public selectedData?: any;
   public data = [];
   public resources: any[] = [];
+  public isTootipDelayApplied: boolean = false;
 
   constructor(
     private configurationService: ConfigurationService,
     private helpService: HelpService,
-    private callApiService: CallApiService,
-    private toastr: ToastrComponent
+    private apiService: CallApiService,
+    private toastr: ToastrComponent,
+    private router: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -96,38 +99,61 @@ export class DynamicSchedulerComponent implements OnInit {
       .subscribe((data) => {
         this.config = data;
         this.getData();
-        this.getResources();
+        if (this.config.resources) {
+          this.getResources();
+        }
+        this.initializeSchedulerConfig();
         this.height = this.helpService.getHeightForSchedulerWithoutPx();
       });
   }
 
+  initializeSchedulerConfig() {
+    if (this.config?.tooltip && this.config?.tooltip?.display) {
+      this.eventSettings.enableTooltip = this.config?.tooltip?.display;
+    }
+  }
+
+  // proveri sta je problem u ovom delu
+  // ne salje kao parametar id zaposlenog
   getData() {
-    this.callApiService.callGetMethod(this.config!.request!.api, '').subscribe(
-      (data) => {
-        if (data) {
-          this.eventSettings.dataSource = data as [];
-        } else {
+    let dataValue = '';
+    if (this.config!.request!.parametars) {
+      dataValue = this.helpService.getRequestDataParameters(
+        this.router.snapshot.params,
+        this.config!.request!.parametars
+      );
+    }
+    this.apiService
+      .callGetMethod(this.config!.request!.api, dataValue)
+      .subscribe(
+        (data: any) => {
+          if (data) {
+            this.eventSettings.dataSource = data as [];
+          } else {
+            this.eventSettings.dataSource = [];
+          }
+          if (!this.config?.resources) {
+            this.loader = false;
+          }
+        },
+        (error: any) => {
           this.eventSettings.dataSource = [];
+          this.loader = false;
         }
-      },
-      (error) => {
-        this.eventSettings.dataSource = [];
-        this.loader = false;
-      }
-    );
+      );
   }
 
   getResources() {
     this.loader = true;
     if (this.config?.resources) {
-      this.callApiService
+      this.apiService
         .callGetMethod(this.config!.resources.request!.api, '')
         .subscribe(
-          (data) => {
+          (data: any) => {
             this.resources = data as [];
             this.loader = false;
           },
-          (error) => {
+          (error: any) => {
             this.resources = [];
           }
         );
@@ -143,6 +169,16 @@ export class DynamicSchedulerComponent implements OnInit {
         this.setValue(this.config?.config, this.selectedData);
       }, 50);
     } else if (event.type === 'Editor') {
+    }
+  }
+
+  onDataBound() {
+    if (!this.isTootipDelayApplied && this.config?.tooltip?.display) {
+      let tooltipObj = (this.scheduleObj.element as any).ej2_instances[2];
+      tooltipObj.mouseTrail = false;
+      tooltipObj.openDelay = this.config?.tooltip?.openDelay;
+      tooltipObj.position = this.config?.tooltip?.position;
+      this.isTootipDelayApplied = true;
     }
   }
 
@@ -209,45 +245,66 @@ export class DynamicSchedulerComponent implements OnInit {
 
   callApi(request: any, data: any, toastr?: true) {
     if (request.type.toUpperCase() === 'POST') {
-      this.callApiService.callPostMethod(request.api, data).subscribe(
-        (data) => {
-          if (data) {
-            this.toastr.showSuccess();
-            if (toastr) {
-              this.scheduleObj.refreshEvents();
-              return true;
-            } else {
-              this.scheduleObj.refreshEvents();
-              return data;
-            }
+      this.callApiPost(request.api, data, toastr);
+    } else {
+      // this.apiService.callGetMethod(request.api, data).subscribe();
+      if (request.url) {
+        const dataValue = this.helpService.getRequestDataParameters(
+          this.router.snapshot.params,
+          request.url
+        );
+        this.callApiGet(request.api, dataValue);
+      } else {
+        const dataValue = this.helpService.getRequestDataParameters(
+          this.router.snapshot.params,
+          request.parameters
+        );
+        this.callApiGet(request.api, dataValue);
+      }
+    }
+  }
+
+  callApiPost(api: string, body: any, toastr?: boolean) {
+    this.apiService.callPostMethod(api, body).subscribe(
+      (data: any) => {
+        if (data) {
+          this.toastr.showSuccess();
+          if (toastr) {
+            this.scheduleObj.refreshEvents();
+            return true;
           } else {
-            this.toastr.showError();
-            return false;
+            this.scheduleObj.refreshEvents();
+            return data;
           }
-        },
-        (error) => {
+        } else {
           this.toastr.showError();
           return false;
         }
-      );
-    } else {
-      this.callApiService.callGetMethod(request.api, data).subscribe(
-        (data) => {
-          if (data) {
-            if (toastr) {
-              return false;
-            } else {
-              return data;
-            }
-          } else {
+      },
+      (error: any) => {
+        this.toastr.showError();
+        return false;
+      }
+    );
+  }
+
+  callApiGet(api: string, parameters?: string, toastr?: boolean) {
+    this.apiService.callGetMethod(api, parameters!).subscribe(
+      (data: any) => {
+        if (data) {
+          if (toastr) {
             return false;
+          } else {
+            return data;
           }
-        },
-        (error) => {
+        } else {
           return false;
         }
-      );
-    }
+      },
+      (error: any) => {
+        return false;
+      }
+    );
   }
 
   setValue(fields: any, values: any) {

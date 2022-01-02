@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllEmployeeComponent } from '../all-employee/all-employee.component';
 import { ProfileEmployeeComponent } from '../employee/profile-employee/profile-employee.component';
+import { WorkDiaryComponent } from '../work-diary/work-diary.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,11 @@ const routes: Routes = [
   },
   {
     path: 'profile-employee/:id',
-    component: ProfileEmployeeComponent
+    component: ProfileEmployeeComponent,
+  },
+  {
+    path: 'work-diary',
+    component: WorkDiaryComponent,
   }
 ];
 

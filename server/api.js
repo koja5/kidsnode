@@ -1948,4 +1948,195 @@ router.post("/deleteCalendarOfChildrenActivity", (req, res, next) => {
 
 /* END CALENDAR OF CHILDREN ACTIVITY */
 
+/* WORK STRUCTURE EMPLOYEE */
+
+router.get("/getWorkStructureEmployee", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from work_structure_employee",
+          function (err, rows, fields) {
+            conn.release();
+
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END WORK STRUCTURE EMPLOYEE */
+
+/* CALENDAR OF CHILDREN ACTIVITY */
+
+router.post("/createWorkDiaryEmployee", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        res.json(err);
+      }
+      const data = {
+        kindergarden_id: req.user.user.kindergarden,
+        creator_id: req.user.user.id,
+        work_structure: req.body.work_structure,
+        work_description: req.body.work_description,
+        Subject: req.body.Subject,
+        StartTime: new Date(req.body.StartTime),
+        EndTime: new Date(req.body.EndTime),
+      };
+      conn.query(
+        "insert into work_diary_employee SET ?",
+        [data],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            console.log(err);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateWorkDiaryEmployee", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      const data = {
+        kindergarden_id: req.user.user.kindergarden,
+        creator_id: req.user.user.id,
+        work_structure: req.body.work_structure,
+        work_description: req.body.work_description,
+        Subject: req.body.Subject,
+        StartTime: new Date(req.body.StartTime),
+        EndTime: new Date(req.body.EndTime),
+      };
+
+      conn.query(
+        "update work_diary_employee SET ? where id = ?",
+        [data, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            console.log(err);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    // logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getWorkDiaryEmployee", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from work_diary_employee where kindergarden_id = ?",
+          [req.user.user.kindergarden],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getWorkDiaryEmployeeById/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from work_diary_employee where kindergarden_id = ? and creator_id = ?",
+          [req.user.user.kindergarden, req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/deleteWorkDiaryEmployee", (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from work_diary_employee where id = ?",
+          [req.body.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END CALENDAR OF CHILDREN ACTIVITY */
+
 module.exports = router;

@@ -17,6 +17,7 @@
   (popupOpen)="onPopupOpen($event)"
   (actionBegin)="actionBegin($event)"
   (actionComplete)="actionComplete($event)"
+  (dataBound)="onDataBound($event)"
 >
   <ng-template #editorTemplate let-data>
     <div ngForm>
@@ -33,11 +34,9 @@
   <!-- <ng-template #cellTemplate let-data>
     <div class="templatewrap">Rucak</div>
   </ng-template> -->
-  <e-resources *ngIf="config.resources">
+  <e-resources *ngIf="config?.resources">
     <e-resource
       [field]="config.resources.field"
-      title="Owner"
-      name="Owners"
       [dataSource]="resources"
       [allowMultiple]="config.resources?.allowMultipleOwner"
       textField="color"

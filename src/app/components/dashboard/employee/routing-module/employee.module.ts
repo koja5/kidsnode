@@ -3,13 +3,15 @@ import { DynamicModuleModule } from 'src/app/components/dynamic-component/dynami
 import { AllEmployeeComponent } from '../all-employee/all-employee.component';
 import { EmployeeComponent } from '../employee/employee.component';
 import { ProfileEmployeeComponent } from '../employee/profile-employee/profile-employee.component';
+import { WorkDiaryComponent } from '../work-diary/work-diary.component';
 import { EmployeeRouting } from './employee-routing';
 
 @NgModule({
   declarations: [
     AllEmployeeComponent,
     EmployeeComponent,
-    ProfileEmployeeComponent
+    ProfileEmployeeComponent,
+    WorkDiaryComponent
   ],
   imports: [EmployeeRouting, DynamicModuleModule],
   providers: [],

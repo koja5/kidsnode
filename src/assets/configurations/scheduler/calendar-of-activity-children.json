@@ -53,7 +53,7 @@
       "type": "textbox",
       "title": "title",
       "width": "col-md-12",
-      "class": "e-field e-input e-control e-textbox e-lib e-input e-outline",
+      "class": "e-outline",
       "name": "title_of_activity",
       "schedule": true
     },

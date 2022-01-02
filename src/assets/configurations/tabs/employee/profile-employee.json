@@ -23,5 +23,13 @@
         "items": []
       }
     }
+  },
+  {
+    "title": {
+      "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>import_contacts</mat-icon> work_diary</div>"
+    },
+    "type": "scheduler",
+    "path": "/scheduler/employee",
+    "file": "profile-employee-work-diary.json"
   }
 ]

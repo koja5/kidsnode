@@ -7,7 +7,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class FoodMenuComponent implements OnInit {
 
-  public path = '/schedule';
+  public path = '/scheduler/parameter';
   public file = 'food-menu.json';
 
   constructor() { }

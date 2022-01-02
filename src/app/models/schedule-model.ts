@@ -3,6 +3,7 @@ import { FieldConfig } from "../components/dynamic-component/dynamic-forms/model
 import { EditSettingsRequestModel } from "./edit-settings-request-model";
 import { SchedulerModelResources } from "./scheduler-model-resources";
 import { SchedulerToolbarModel } from "./scheduler-toolbar";
+import { SchedulerTooltipModel } from "./scheduler-tooltip-model";
 import { SubmitValueModelScheduler } from "./submit-value-model-scheduler";
 
 export class ScheduleModel {
@@ -29,4 +30,6 @@ export class ScheduleModel {
     convertSubmitValue?: SubmitValueModelScheduler[];
     displayFieldForSubject?: string[];
     toolbar?: SchedulerToolbarModel;
+    tooltip?: SchedulerTooltipModel;
+
 }

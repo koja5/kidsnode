@@ -54,6 +54,17 @@
     ]
   },
   {
+    "title": "Zaposleni",
+    "menu": [
+      {
+        "icon": "import_contacts",
+        "title": "Dnevnik rada",
+        "link": "/dashboard/employee/work-diary",
+        "rights": ""
+      }
+    ]
+  },
+  {
     "title": "Administracija",
     "menu": [
       {
@@ -96,7 +107,6 @@
           }
         ]
       }
-      
     ]
   }
 ]
