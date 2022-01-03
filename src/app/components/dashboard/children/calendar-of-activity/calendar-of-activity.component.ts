@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar-of-activity.component.scss'],
 })
 export class CalendarOfActivityComponent implements OnInit {
-  public path = '/schedule';
+  public path = 'scheduler';
   public file = 'calendar-of-activity-children.json';
 
   constructor() {}

@@ -98,7 +98,7 @@ export class DynamicSchedulerComponent implements OnInit {
       .getConfiguration(this.path, this.file)
       .subscribe((data) => {
         this.config = data;
-        this.getData();
+        this.getData(this.config?.request);
         if (this.config.resources) {
           this.getResources();
         }
@@ -115,32 +115,30 @@ export class DynamicSchedulerComponent implements OnInit {
 
   // proveri sta je problem u ovom delu
   // ne salje kao parametar id zaposlenog
-  getData() {
+  getData(request: any) {
     let dataValue = '';
-    if (this.config!.request!.parametars) {
+    if (request.parameters) {
       dataValue = this.helpService.getRequestDataParameters(
         this.router.snapshot.params,
-        this.config!.request!.parametars
+        request.parameters
       );
     }
-    this.apiService
-      .callGetMethod(this.config!.request!.api, dataValue)
-      .subscribe(
-        (data: any) => {
-          if (data) {
-            this.eventSettings.dataSource = data as [];
-          } else {
-            this.eventSettings.dataSource = [];
-          }
-          if (!this.config?.resources) {
-            this.loader = false;
-          }
-        },
-        (error: any) => {
+    this.apiService.callGetMethod(request.api, dataValue).subscribe(
+      (data: any) => {
+        if (data) {
+          this.eventSettings.dataSource = data as [];
+        } else {
           this.eventSettings.dataSource = [];
+        }
+        if (!this.config?.resources) {
           this.loader = false;
         }
-      );
+      },
+      (error: any) => {
+        this.eventSettings.dataSource = [];
+        this.loader = false;
+      }
+    );
   }
 
   getResources() {
