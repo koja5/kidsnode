@@ -14,7 +14,12 @@ export class DashboardComponent implements OnInit {
   public collapseMenuItems: string[][] = [];
   public activeParentNode: string[][] = [];
   public activeChildrenNode: string[][][] = [];
-  public currentActiveNode: CurrentActiveNodeModel = {group: 0, parent: 0, children: 0};
+  public dropDownNavigationMenu: string[] = [];
+  public currentActiveNode: CurrentActiveNodeModel = {
+    group: 0,
+    parent: 0,
+    children: 0,
+  };
   public transformContainerPosition = 'transform: translate3d(0px, 0px, 0px)';
   public sidebarClass = '';
   public profileUser = '';
@@ -40,10 +45,14 @@ export class DashboardComponent implements OnInit {
   public showHideCollapse = [];
   public activeGroup = [];
   public height!: string;
+  public layoutOrientation = 'horizontal';
+  public horizontalSideBar = '';
+  public mobile = false;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.checkMobileForSidebar();
+    this.mobile = this.helpService.checkForMobileLayout();
   }
 
   public configField = {
@@ -101,10 +110,12 @@ export class DashboardComponent implements OnInit {
 
   checkInitialLayoutSettings() {
     this.height = this.helpService.getHeightForGrid();
+    this.mobile = this.helpService.checkForMobileLayout();
     this.sidebarHeight = window.innerHeight - 60 + 'px';
     if (this.storageService.getLocalStorageSimple('sidebar')) {
       this.sidebar = this.storageService.getLocalStorageSimple('sidebar') ?? '';
     }
+    this.helpService.setLocalStorage('orientation', this.layoutOrientation);
   }
 
   initialCollapseMenu() {
@@ -157,6 +168,14 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  collapseHorizontalSidebar() {
+    if (this.horizontalSideBar === '') {
+      this.horizontalSideBar = 'show';
+    } else {
+      this.horizontalSideBar = '';
+    }
+  }
+
   collapseMenu(i: number, j: number) {
     if (this.collapseMenuItems[i][j] === '') {
       this.collapseMenuItems[i][j] = 'mm-show';
@@ -171,6 +190,14 @@ export class DashboardComponent implements OnInit {
     ] = '';
     this.currentActiveNode = { group: i, parent: j, children: 0 };
     this.activeParentNode[i][j] = 'mm-active';
+  }
+
+  showDropDownNavigationMenu(i: number) {
+    if (this.dropDownNavigationMenu[i] !== '') {
+      this.dropDownNavigationMenu[i] = '';
+    } else {
+      this.dropDownNavigationMenu[i] = 'show';
+    }
   }
 
   clickActiveChildrenNode(i: number, j: number, k: number) {

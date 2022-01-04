@@ -50,7 +50,7 @@
   ],
   "showQuickInfo": true,
   "startHour": "08:00",
-  "endHour": "18:00",
+  "endHour": "19:00",
   "interval": 30,
   "toolbar": {
     "exportToExcel": true,

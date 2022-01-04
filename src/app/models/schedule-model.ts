@@ -1,6 +1,7 @@
 import { Request } from "../components/dynamic-component/dynamic-forms/models/complex-properties/request";
 import { FieldConfig } from "../components/dynamic-component/dynamic-forms/models/field-config";
 import { EditSettingsRequestModel } from "./edit-settings-request-model";
+import { SchedulerEditOptionsModel } from "./scheduler-edit-options-model";
 import { SchedulerModelResources } from "./scheduler-model-resources";
 import { SchedulerToolbarModel } from "./scheduler-toolbar";
 import { SchedulerTooltipModel } from "./scheduler-tooltip-model";
@@ -31,5 +32,6 @@ export class ScheduleModel {
     displayFieldForSubject?: string[];
     toolbar?: SchedulerToolbarModel;
     tooltip?: SchedulerTooltipModel;
+    editOptions?: SchedulerEditOptionsModel;
 
 }

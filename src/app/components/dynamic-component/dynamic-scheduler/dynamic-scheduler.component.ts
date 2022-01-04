@@ -29,6 +29,7 @@ import {
   ToolbarActionArgs,
   ExportOptions,
 } from '@syncfusion/ej2-angular-schedule';
+import { RenderCellEventArgs } from '@syncfusion/ej2-schedule';
 import { ScheduleModel } from 'src/app/models/schedule-model';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
@@ -60,6 +61,7 @@ import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component'
 export class DynamicSchedulerComponent implements OnInit {
   @Input() path!: string;
   @Input() file!: string;
+  @Input() partOfTab!: boolean;
   @ViewChild(DynamicFormsComponent) form!: DynamicFormsComponent;
   @ViewChild('scheduleObj') public scheduleObj!: ScheduleComponent;
 
@@ -88,7 +90,9 @@ export class DynamicSchedulerComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.height = this.helpService.getHeightForSchedulerWithoutPx();
+    this.height = this.helpService.getHeightForSchedulerWithoutPx(
+      this.partOfTab
+    );
   }
 
   initializeConfig() {
@@ -103,13 +107,36 @@ export class DynamicSchedulerComponent implements OnInit {
           this.getResources();
         }
         this.initializeSchedulerConfig();
-        this.height = this.helpService.getHeightForSchedulerWithoutPx();
+        this.height = this.helpService.getHeightForSchedulerWithoutPx(
+          this.partOfTab
+        );
       });
   }
 
   initializeSchedulerConfig() {
     if (this.config?.tooltip && this.config?.tooltip?.display) {
       this.eventSettings.enableTooltip = this.config?.tooltip?.display;
+    }
+    if (this.config?.editOptions) {
+      if (
+        this.config?.editOptions.allowAdding !== undefined ||
+        this.config?.editOptions.allowAdding !== null
+      ) {
+        this.eventSettings.allowAdding = this.config?.editOptions.allowAdding;
+      }
+      if (
+        this.config.editOptions.allowEditing !== undefined ||
+        this.config?.editOptions.allowEditing
+      ) {
+        this.eventSettings.allowEditing = this.config.editOptions.allowEditing;
+      }
+      if (
+        this.config.editOptions.allowDeleting !== undefined ||
+        this.config?.editOptions.allowDeleting
+      ) {
+        this.eventSettings.allowDeleting =
+          this.config.editOptions.allowDeleting;
+      }
     }
   }
 
@@ -177,6 +204,12 @@ export class DynamicSchedulerComponent implements OnInit {
       tooltipObj.openDelay = this.config?.tooltip?.openDelay;
       tooltipObj.position = this.config?.tooltip?.position;
       this.isTootipDelayApplied = true;
+    }
+  }
+
+  onRenderCell(args: RenderCellEventArgs): void {
+    if (args.date! < new Date()) {
+      args.element.classList.add('e-disable-dates');
     }
   }
 

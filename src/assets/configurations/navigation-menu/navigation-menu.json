@@ -1,6 +1,7 @@
 [
   {
     "title": "Deca",
+    "icon": "child_care",
     "menu": [
       {
         "icon": "groups",
@@ -44,6 +45,7 @@
   },
   {
     "title": "Organizacija",
+    "icon": "corporate_fare",
     "menu": [
       {
         "icon": "badge",
@@ -55,6 +57,7 @@
   },
   {
     "title": "Zaposleni",
+    "icon": "business_center",
     "menu": [
       {
         "icon": "import_contacts",
@@ -66,6 +69,7 @@
   },
   {
     "title": "Administracija",
+    "icon": "admin_panel_settings",
     "menu": [
       {
         "icon": "work",

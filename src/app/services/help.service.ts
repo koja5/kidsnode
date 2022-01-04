@@ -17,11 +17,21 @@ export class HelpService {
   }
 
   getHeightForGridWithoutPx(partOfTab?: boolean) {
+    let innerHeight = window.innerHeight;
     if (partOfTab) {
-      return Number(window.innerHeight - 297);
+      innerHeight = Number(innerHeight - 297);
     } else {
-      return Number(window.innerHeight - 261);
+      innerHeight = Number(innerHeight - 261);
     }
+
+    if (this.getLocalStorageStringValue('orientation') === 'horizontal') {
+      if (window.innerWidth > 992) {
+        innerHeight = innerHeight - 60;
+      } else {
+        innerHeight = innerHeight - 20;
+      }
+    }
+    return innerHeight;
   }
 
   getHeightForGrid() {
@@ -32,8 +42,22 @@ export class HelpService {
     }
   }
 
-  getHeightForSchedulerWithoutPx() {
-    return Number(window.innerHeight - 70);
+  getHeightForSchedulerWithoutPx(partOfTab?: boolean) {
+    let innerHeight = window.innerHeight;
+    if (partOfTab) {
+      innerHeight = Number(innerHeight - 108);
+    } else {
+      innerHeight = Number(innerHeight - 70);
+    }
+
+    if (this.getLocalStorageStringValue('orientation') === 'horizontal') {
+      if (window.innerWidth > 992) {
+        innerHeight = innerHeight - 70;
+      } else {
+        innerHeight = innerHeight - 20;
+      }
+    }
+    return innerHeight;
   }
 
   concatenatePageLink(link: string, parameters: string[], data: any) {
@@ -89,6 +113,10 @@ export class HelpService {
     return JSON.parse(localStorage.getItem(key) ?? '{}');
   }
 
+  getLocalStorageStringValue(key: string) {
+    return localStorage.getItem(key);
+  }
+
   removeLocalStorageItem(key: string) {
     localStorage.removeItem(key);
   }
@@ -125,6 +153,14 @@ export class HelpService {
         return 'picture_as_pdf';
       default:
         return 'description';
+    }
+  }
+
+  checkForMobileLayout() {
+    if (window.innerWidth > 992) {
+      return false;
+    } else {
+      return true;
     }
   }
 }

@@ -18,6 +18,7 @@
   (actionBegin)="actionBegin($event)"
   (actionComplete)="actionComplete($event)"
   (dataBound)="onDataBound($event)"
+  (renderCell)="onRenderCell($event)"
 >
   <ng-template #editorTemplate let-data>
     <div ngForm>

@@ -1,4 +1,4 @@
-<body data-topbar="dark" class="{{ sidebarClass }}">
+<body data-topbar="dark" [ngClass]="[sidebarClass, layoutOrientation]">
   <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
   <!-- Begin page -->
@@ -28,6 +28,7 @@
           </div>
 
           <button
+            *ngIf="layoutOrientation === 'vertical'"
             type="button"
             class="btn btn-sm px-3 font-size-16 header-item waves-effect"
             id="vertical-menu-btn"
@@ -35,6 +36,15 @@
             <mat-icon (click)="collapseSidebar()" style="font-size: 30px"
               >swap_horiz</mat-icon
             >
+          </button>
+          <button
+            *ngIf="layoutOrientation === 'horizontal'&&mobile"
+            type="button"
+            class="btn btn-sm px-3 font-size-16 header-item waves-effect"
+            (click)="collapseHorizontalSidebar()"
+          >
+            <mat-icon *ngIf="horizontalSideBar === ''" style="font-size: 30px">expand_more</mat-icon>
+            <mat-icon *ngIf="horizontalSideBar !== ''" style="font-size: 30px">expand_less</mat-icon>
           </button>
 
           <!-- App Search-->
@@ -44,190 +54,6 @@
               <span class="bx bx-search-alt"></span>
             </div>
           </form>
-
-          <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
-            <button
-              type="button"
-              class="btn header-item waves-effect"
-              data-bs-toggle="dropdown"
-              aria-haspopup="false"
-              aria-expanded="false"
-            >
-              <span key="t-megamenu">Mega Menu</span>
-              <i class="mdi mdi-chevron-down"></i>
-            </button>
-            <div class="dropdown-menu dropdown-megamenu">
-              <div class="row">
-                <div class="col-sm-8">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <h5 class="font-size-14" key="t-ui-components">
-                        UI Components
-                      </h5>
-                      <ul class="list-unstyled megamenu-list">
-                        <li>
-                          <a href="javascript:void(0);" key="t-lightbox"
-                            >Lightbox</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-range-slider"
-                            >Range Slider</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-sweet-alert"
-                            >Sweet Alert</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-rating"
-                            >Rating</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-forms">Forms</a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-tables"
-                            >Tables</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-charts"
-                            >Charts</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="col-md-4">
-                      <h5 class="font-size-14" key="t-applications">
-                        Applications
-                      </h5>
-                      <ul class="list-unstyled megamenu-list">
-                        <li>
-                          <a href="javascript:void(0);" key="t-ecommerce"
-                            >Ecommerce</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-calendar"
-                            >Calendar</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-email">Email</a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-projects"
-                            >Projects</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-tasks">Tasks</a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-contacts"
-                            >Contacts</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="col-md-4">
-                      <h5 class="font-size-14" key="t-extra-pages">
-                        Extra Pages
-                      </h5>
-                      <ul class="list-unstyled megamenu-list">
-                        <li>
-                          <a href="javascript:void(0);" key="t-light-sidebar"
-                            >Light Sidebar</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-compact-sidebar"
-                            >Compact Sidebar</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-horizontal"
-                            >Horizontal layout</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-maintenance"
-                            >Maintenance</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-coming-soon"
-                            >Coming Soon</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-timeline"
-                            >Timeline</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-faqs">FAQs</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <h5 class="font-size-14" key="t-ui-components">
-                        UI Components
-                      </h5>
-                      <ul class="list-unstyled megamenu-list">
-                        <li>
-                          <a href="javascript:void(0);" key="t-lightbox"
-                            >Lightbox</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-range-slider"
-                            >Range Slider</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-sweet-alert"
-                            >Sweet Alert</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-rating"
-                            >Rating</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-forms">Forms</a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-tables"
-                            >Tables</a
-                          >
-                        </li>
-                        <li>
-                          <a href="javascript:void(0);" key="t-charts"
-                            >Charts</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="col-sm-5">
-                      <div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="d-flex">
@@ -320,7 +146,7 @@
     </header>
 
     <!-- ========== Left Sidebar Start ========== -->
-    <div class="vertical-menu">
+    <div *ngIf="layoutOrientation !== 'horizontal'" class="vertical-menu">
       <div data-simplebar="init" class="h-100 navigation-container">
         <div class="simplebar-wrapper" style="margin: 0px">
           <div class="simplebar-height-auto-observer-wrapper">
@@ -333,9 +159,7 @@
                 style="height: 100%; overflow: hidden"
               >
                 <div class="simplebar-content" style="padding: 0px">
-                  <!--- Sidemenu -->
                   <div id="sidebar-menu" class="mm-active">
-                    <!-- Left Menu Start -->
                     <ul
                       class="metismenu list-unstyled mm-show"
                       id="side-menu"
@@ -413,15 +237,10 @@
                       </li>
                     </ul>
                   </div>
-                  <!-- Sidebar -->
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div
-            class="simplebar-placeholder"
-            style="width: auto; height: 1250px"
-          ></div> -->
         </div>
         <div
           class="simplebar-track simplebar-horizontal"
@@ -449,9 +268,108 @@
     </div>
     <!-- Left Sidebar End -->
 
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
+    <!-- HORIZONTAL MENU -->
+
+    <div *ngIf="layoutOrientation !== 'vertical'" class="topnav">
+      <div class="container-fluid">
+        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+          <div
+            class="navbar-collapse active collapse {{ horizontalSideBar }}"
+            id="topnav-menu-content"
+          >
+            <ul class="metismenu navbar-nav active">
+              <li
+                class="nav-item dropdown"
+                *ngFor="let item of menu; let i = index"
+              >
+                <a
+                  class="nav-link dropdown-toggle arrow-none"
+                  id="topnav-dashboard"
+                  role="button"
+                  (click)="showDropDownNavigationMenu(i)"
+                >
+                  <i class="bx bx-home-circle me-2"></i
+                  ><span key="t-dashboards"
+                    ><div class="center-text">
+                      <mat-icon aria-hidden="false">{{ item.icon }}</mat-icon>
+                      <span key="t-dashboards">{{ item.title }}</span>
+                    </div></span
+                  >
+                </a>
+                <div class="dropdown-menu {{dropDownNavigationMenu[i]}}" aria-labelledby="topnav-dashboard">
+                  <div *ngFor="let parent of item.menu; let j = index">
+                    <a
+                      *ngIf="!parent.children"
+                      routerLink="{{ parent.link }}"
+                      (click)="clickParentActiveNode(i, j)"
+                      class="dropdown-item {{ activeParentNode[i][j] }}"
+                      id="topnav-email"
+                      ><div class="center-text">
+                        <mat-icon aria-hidden="false">{{
+                          parent.icon
+                        }}</mat-icon>
+                        <span key="t-dashboards">{{ parent.title }}</span>
+                      </div></a
+                    >
+                    <a
+                      *ngIf="parent.children"
+                      (click)="collapseMenu(i, j); clickParentActiveNode(i, j)"
+                      class="dropdown-item {{ activeParentNode[i][j] }}"
+                      ><div class="center-text">
+                        <mat-icon aria-hidden="false">{{
+                          parent.icon
+                        }}</mat-icon>
+                        <span key="t-dashboards">{{ parent.title }}</span>
+                      </div>
+                      <mat-icon
+                        class="expand-icon"
+                        *ngIf="
+                          parent.children &&
+                          collapseMenuItems[i][j] !== '' &&
+                          sidebarClass === ''
+                        "
+                        >expand_less</mat-icon
+                      >
+                      <mat-icon
+                        class="expand-icon"
+                        *ngIf="
+                          parent.children &&
+                          collapseMenuItems[i][j] === '' &&
+                          sidebarClass === ''
+                        "
+                        >expand_more</mat-icon
+                      >
+                    </a>
+
+                    <div
+                      class="sub-menu mm-collapse {{ collapseMenuItems[i][j] }}"
+                    >
+                      <div
+                        class="dropdown-item mm-{{
+                          activeChildrenNode[i][j][k]
+                        }}"
+                        *ngFor="let child of parent.children; let k = index"
+                      >
+                        <a
+                          routerLink="{{ child.link }}"
+                          (click)="clickActiveChildrenNode(i, j, k)"
+                          key="t-default"
+                          class="{{ activeChildrenNode[i][j][k] }}"
+                          >{{ child.title }}</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- HORIZONTAL MENU END-->
+
     <div class="main-content">
       <div class="page-content">
         <div class="container-fluid p-0">
