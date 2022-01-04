@@ -1,0 +1,136 @@
+.muted-link {
+  color: #afafaf;
+}
+
+.page-title-container h1 {
+  line-height: 1;
+}
+
+.display-4 {
+  font-family: "Montserrat", sans-seri;
+  font-size: 1.85em;
+  line-height: 1.2;
+  font-weight: 300;
+}
+
+.hover-scale-up:hover {
+  transform: scale(1.02);
+  z-index: 1;
+}
+
+.card {
+  box-shadow: 0 4px 10px rgb(0 0 0 / 3%) !important;
+  background: #ffffff;
+  border-radius: 16px;
+  border: initial;
+}
+
+.hover-scale-up {
+  backface-visibility: hidden;
+  transition: transform 200ms;
+}
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.card .card-body {
+  padding: 2rem;
+}
+
+.card-body {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1rem 1rem;
+}
+
+.col-auto {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.border-primary {
+    border-color: #1c2260 !important;
+}
+
+.rounded-xl {
+    border-radius: 50px !important;
+}
+
+.sw-6 {
+    width: 3rem !important;
+}
+
+.sh-6 {
+    height: 3rem !important;
+}
+
+.ps-card {
+  padding-left: 2rem;
+}
+
+.justify-content-start {
+  -webkit-box-pack: start !important;
+  -ms-flex-pack: start !important;
+  justify-content: flex-start !important;
+}
+
+.flex-column {
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+}
+
+.d-flex {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.heading {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-bottom: 0.7em;
+}
+
+.text-primary {
+  color: #1c2260 !important;
+}
+
+a {
+  transition: color 200ms;
+  text-decoration: initial;
+  color: #1c2260;
+  outline: initial !important;
+}
+
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+}
+
+.text-alternate {
+  color: #7c7c7c !important;
+}

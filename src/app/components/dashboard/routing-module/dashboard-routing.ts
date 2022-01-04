@@ -3,13 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChildrenComponent } from '../children/children/children.component';
 import { EmployeeComponent } from '../employee/employee/employee.component';
 import { ParametersComponent } from '../parameters/parameters/parameters.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'children',
-    pathMatch: 'full',
-  },
   {
     path: '',
     redirectTo: 'children',
@@ -37,6 +33,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('../parameters/routing-module/parameters.module').then(
         (m) => m.ParametersModule
+      ),
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    loadChildren: () =>
+      import('../settings/routing-module/settings.module').then(
+        (m) => m.SettingsModule
       ),
   },
 ];

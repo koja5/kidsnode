@@ -8,16 +8,16 @@
         <div class="d-flex">
           <!-- LOGO -->
           <div class="navbar-brand-box">
-            <a href="index.html" class="logo logo-dark">
+            <a routerLink="children" class="logo logo-dark">
               <span class="logo-sm">
                 <img src="./assets/logo_sm.png" alt="" height="45" />
               </span>
-              <span class="logo-lg">
+              <span>
                 <img src="./assets/logo.png" alt="" height="50" />
               </span>
             </a>
 
-            <a href="index.html" class="logo logo-light">
+            <a routerLink="children" class="logo logo-light">
               <span class="logo-sm">
                 <img src="./assets/logo_sm.png" alt="" height="45" />
               </span>
@@ -38,13 +38,17 @@
             >
           </button>
           <button
-            *ngIf="layoutOrientation === 'horizontal'&&mobile"
+            *ngIf="layoutOrientation === 'horizontal' && mobile"
             type="button"
             class="btn btn-sm px-3 font-size-16 header-item waves-effect"
             (click)="collapseHorizontalSidebar()"
           >
-            <mat-icon *ngIf="horizontalSideBar === ''" style="font-size: 30px">expand_more</mat-icon>
-            <mat-icon *ngIf="horizontalSideBar !== ''" style="font-size: 30px">expand_less</mat-icon>
+            <mat-icon *ngIf="horizontalSideBar === ''" style="font-size: 30px"
+              >expand_more</mat-icon
+            >
+            <mat-icon *ngIf="horizontalSideBar !== ''" style="font-size: 30px"
+              >expand_less</mat-icon
+            >
           </button>
 
           <!-- App Search-->
@@ -125,9 +129,8 @@
                 ><i class="bx bx-wallet font-size-16 align-middle me-1"></i>
                 <span key="t-my-wallet">My Wallet</span></a
               >
-              <a class="dropdown-item d-block" href="#"
-                ><span class="badge bg-success float-end">11</span
-                ><i class="bx bx-wrench font-size-16 align-middle me-1"></i>
+              <a class="dropdown-item d-block" routerLink="settings">
+                <i class="bx bx-wrench font-size-16 align-middle me-1"></i>
                 <span key="t-settings">Settings</span></a
               >
               <a class="dropdown-item" href="#"
@@ -296,7 +299,10 @@
                     </div></span
                   >
                 </a>
-                <div class="dropdown-menu {{dropDownNavigationMenu[i]}}" aria-labelledby="topnav-dashboard">
+                <div
+                  class="dropdown-menu {{ dropDownNavigationMenu[i] }}"
+                  aria-labelledby="topnav-dashboard"
+                >
                   <div *ngFor="let parent of item.menu; let j = index">
                     <a
                       *ngIf="!parent.children"
