@@ -9,13 +9,14 @@ import {
 } from 'ngx-perfect-scrollbar';
 import { MatIconModule } from '@angular/material/icon';
 import { PathComponent } from '../common/path/path.component';
+import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
 
 @NgModule({
   declarations: [DashboardComponent, PathComponent],
-  imports: [CommonModule, DynamicModuleModule, DashboardRouting, MatIconModule],
+  imports: [CommonModule, DynamicModuleModule, DashboardRouting, MatIconModule, DropDownButtonModule ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

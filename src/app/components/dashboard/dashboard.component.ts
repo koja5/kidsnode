@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuEventArgs } from '@syncfusion/ej2-angular-navigations';
+import { ItemModel } from '@syncfusion/ej2-angular-splitbuttons';
 import { CurrentActiveNodeModel } from 'src/app/models/navigation-menu/current-active-node-model';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
@@ -48,6 +50,20 @@ export class DashboardComponent implements OnInit {
   public layoutOrientation = 'horizontal';
   public horizontalSideBar = '';
   public mobile = false;
+  public items: ItemModel[] = [
+    {
+      text: 'Settings',
+      id: 'settings',
+      iconCss: 'e-icon e-user'
+    },
+    {
+      separator: true,
+    },
+    {
+      text: 'Logout',
+      id: 'logout',
+    },
+  ];
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -258,6 +274,20 @@ export class DashboardComponent implements OnInit {
       this.profileUser = 'show';
     } else {
       this.profileUser = '';
+    }
+  }
+
+  profileIconSelectEvent(event: MenuEventArgs) {
+    console.log(event);
+    switch (event.item.id) {
+      case 'settings':
+        this.router.navigate(['dashboard/settings']);
+        break;
+      case 'logout':
+        this.logout();
+        break;
+      default:
+        break;
     }
   }
 }

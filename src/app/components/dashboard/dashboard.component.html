@@ -106,43 +106,27 @@
             </button>
           </div>
 
-          <div class="dropdown d-inline-block">
-            <button
+          <div class="dropdown d-flex">
+            <!-- <button
               type="button"
               class="center-text btn header-item waves-effect {{ profileUser }}"
               id="page-header-user-dropdown"
               (click)="clickProfileUser()"
             >
-              <mat-icon class="person-account">account_circle</mat-icon>
               <span class="d-none d-xl-inline-block ms-1" key="t-henry"
                 >Henry</span
               >
               <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-end {{ profileUser }}">
-              <!-- item-->
-              <a class="dropdown-item" href="#"
-                ><i class="bx bx-user font-size-16 align-middle me-1"></i>
-                <span key="t-profile">Profile</span></a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="bx bx-wallet font-size-16 align-middle me-1"></i>
-                <span key="t-my-wallet">My Wallet</span></a
-              >
-              <a class="dropdown-item d-block" routerLink="settings">
-                <i class="bx bx-wrench font-size-16 align-middle me-1"></i>
-                <span key="t-settings">Settings</span></a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="bx bx-lock-open font-size-16 align-middle me-1"></i>
-                <span key="t-lock-screen">Lock screen</span></a
-              >
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item text-danger" (click)="logout()"
-                ><mat-icon>logout</mat-icon>
-                <span key="t-logout">Logout</span></a
-              >
-            </div>
+            </button> -->
+            <!-- <mat-icon class="person-account">account_circle</mat-icon> -->
+            <button
+              *ngIf="items"
+              ejs-dropdownbutton
+              class="background-none"
+              [items]="items"
+              content="Koja"
+              (select)="profileIconSelectEvent($event)"
+            ></button>
           </div>
         </div>
       </div>
