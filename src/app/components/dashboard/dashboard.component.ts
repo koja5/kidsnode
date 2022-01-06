@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
     {
       text: 'Settings',
       id: 'settings',
-      iconCss: 'e-icon e-user'
+      iconCss: 'e-icons e-settings'
     },
     {
       separator: true,

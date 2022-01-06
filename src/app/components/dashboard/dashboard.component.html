@@ -273,7 +273,6 @@
                   class="nav-link dropdown-toggle arrow-none"
                   id="topnav-dashboard"
                   role="button"
-                  (click)="showDropDownNavigationMenu(i)"
                 >
                   <i class="bx bx-home-circle me-2"></i
                   ><span key="t-dashboards"
@@ -339,10 +338,10 @@
                           activeChildrenNode[i][j][k]
                         }}"
                         *ngFor="let child of parent.children; let k = index"
+                        (click)="clickActiveChildrenNode(i, j, k)"
+                        routerLink="{{ child.link }}"
                       >
                         <a
-                          routerLink="{{ child.link }}"
-                          (click)="clickActiveChildrenNode(i, j, k)"
                           key="t-default"
                           class="{{ activeChildrenNode[i][j][k] }}"
                           >{{ child.title }}</a

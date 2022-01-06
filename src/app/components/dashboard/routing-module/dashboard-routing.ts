@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChildrenComponent } from '../children/children/children.component';
 import { EmployeeComponent } from '../employee/employee/employee.component';
 import { ParametersComponent } from '../parameters/parameters/parameters.component';
+import { ServicesComponent } from '../services/services.component';
 import { SettingsComponent } from '../settings/settings.component';
 
 const routes: Routes = [
@@ -41,6 +42,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('../settings/routing-module/settings.module').then(
         (m) => m.SettingsModule
+      ),
+  },
+  {
+    path: 'services',
+    component: ServicesComponent,
+    loadChildren: () =>
+      import('../services/routing-module/services.module').then(
+        (m) => m.ServicesModule
       ),
   },
 ];

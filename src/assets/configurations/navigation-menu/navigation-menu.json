@@ -68,6 +68,18 @@
     ]
   },
   {
+    "title": "Službe",
+    "icon": "home_repair_service",
+    "menu": [
+      {
+        "icon": "monitor_heart",
+        "title": "Zdravstvena zlužba",
+        "link": "/dashboard/services/health",
+        "rights": ""
+      }
+    ]
+  },
+  {
     "title": "Administracija",
     "icon": "admin_panel_settings",
     "menu": [
