@@ -66,14 +66,6 @@
       "schedule": true
     },
     {
-      "type": "checkbox",
-      "width": "col-md-12",
-      "class": "e-outline",
-      "title": "isAllDay",
-      "name": "IsAllDay",
-      "schedule": true
-    },
-    {
       "type": "datetimepicker",
       "width": "col-md-12",
       "class": "e-outline",
@@ -87,6 +79,7 @@
       "width": "col-md-12",
       "class": "e-outline",
       "fieldClass": "e-field e-input",
+      "title": "End",
       "name": "EndTime",
       "schedule": true
     }

@@ -18,7 +18,11 @@
     [ignoreAccent]="config.fieldConfig?.ignoreAccent"
     [filterBarPlaceholder]="config.fieldConfig?.filterPlaceholder"
     [formControlName]="config.name"
-  ></ejs-combobox>
+  >
+    <ng-template *ngIf="data" #noRecordsTemplate>
+      <span class="norecord"> {{language?.noRecords}}</span>
+    </ng-template>
+  </ejs-combobox>
 </div>
 
 <div *ngIf="config?.schedule && data" [ngClass]="[config?.width]">
@@ -37,7 +41,11 @@
         value="{{ item[config.field.value] }}"
         [selected]="item[config.field.value] === config.value ? true : false"
       >
-        {{ item[config.field.text] }}
+        {{
+          language[item[config.field.text]]
+            ? language[item[config.field.text]]
+            : item[config.field.text]
+        }}
       </option>
     </select>
   </div>

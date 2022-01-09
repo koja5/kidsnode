@@ -52,5 +52,6 @@
     "showProfile": "Prikaži profil",
     "recordArrival": "Evidentiraj dolazak",
     "recordAbsense": "Evidentiraj izostanak",
-    "evidentedAbsense": "Evidentiran izostanak"
+    "evidentedAbsense": "Evidentiran izostanak",
+    "noRecords": "Trazeni podatak ne postoji."
 }

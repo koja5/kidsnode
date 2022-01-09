@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
   public showHideCollapse = [];
   public activeGroup = [];
   public height!: string;
-  public layoutOrientation = 'horizontal';
+  public layoutOrientation = 'vertical';
   public horizontalSideBar = '';
   public mobile = false;
   public items: ItemModel[] = [

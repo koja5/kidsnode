@@ -98,11 +98,10 @@ export class LoginComponent implements OnInit {
     );
   }
   setUserInfoAndRoute(data: any) {
-    // this.storageService.setLocalStorage('token', data.token);
     this.storageService.setToken(data.token);
     setTimeout(() => {
       this.loader = false;
       this.router.navigate(['/dashboard']);
-    }, 100);
+    }, 150);
   }
 }
