@@ -9,10 +9,6 @@ const logger = require("./config/logger");
 const verifyToken = require("./config/auth");
 
 var connection = mysql.createPool({
-  connectionLimit: 1000,
-  connectTimeout: 60 * 60 * 1000,
-  acquireTimeout: 60 * 60 * 1000,
-  timeout: 60 * 60 * 1000,
   host: process.env.host,
   user: process.env.user,
   password: process.env.password,
@@ -27,8 +23,8 @@ var connection = mysql.createPool({
 });*/
 
 connection.getConnection(function (err, conn) {
-  console.log(err);
-  console.log(conn);
+	console.log(err);
+	console.log(conn);
 });
 
 /* GET api listing. */
@@ -2164,12 +2160,12 @@ router.post("/createChildrenHealthRecord", auth, function (req, res, next) {
         res.json(err);
       }
 
-      req.body.creation_date = new Date();
+      req.body.creation_date = new Date().toDateString();
       req.body.children_id = req.body.id;
       req.body.creator_id = req.user.user.id;
       req.body.kindergarden_id = req.user.user.kindergarden;
-      req.body.start_absense = new Date(req.body.start_absense);
-      req.body.end_absense = new Date(req.body.end_absense);
+
+      console.log(req.body);
 
       conn.query(
         "insert into children_health_records SET ?",
@@ -2179,7 +2175,6 @@ router.post("/createChildrenHealthRecord", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
-            logger.log("error", err);
             res.json(false);
           }
         }
@@ -2194,13 +2189,6 @@ router.post("/createChildrenHealthRecord", auth, function (req, res, next) {
 router.post("/updateChildrenHealthRecord", auth, function (req, res, next) {
   try {
     connection.getConnection(function (err, conn) {
-
-      req.body.creation_date = new Date();
-      req.body.children_id = req.body.id;
-      req.body.creator_id = req.user.user.id;
-      req.body.kindergarden_id = req.user.user.kindergarden;
-      req.body.start_absense = new Date(req.body.start_absense);
-      req.body.end_absense = new Date(req.body.end_absense);
 
       conn.query(
         "update children_health_records SET ? where id = ?",
@@ -2281,127 +2269,5 @@ router.post("/deleteChildrenHealthRecord", (req, res, next) => {
 });
 
 /* END HEALTH RECORD FOR CHILDREN */
-
-/* SUPPLIERS COMPANY */
-
-router.post("/createSupplierCompany", auth, function (req, res, next) {
-  try {
-    connection.getConnection(function (err, conn) {
-      if (err) {
-        logger.log("error", err.sql + ". " + err.sqlMessage);
-        res.json(err);
-      }
-      req.body.kindergarden_id = req.user.user.kindergarden;
-      conn.query(
-        "insert into suppliers_company SET ?",
-        [req.body],
-        function (err, rows) {
-          conn.release();
-          if (!err) {
-            res.json(true);
-          } else {
-            logger.log(
-              "error",
-              `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
-            res.json(false);
-          }
-        }
-      );
-    });
-  } catch (ex) {
-    logger.log("error", err.sql + ". " + err.sqlMessage);
-    res.json(ex);
-  }
-});
-
-router.post("/updateSupplierCompany", function (req, res, next) {
-  connection.getConnection(function (err, conn) {
-    if (err) {
-      logger.log("error", err.sql + ". " + err.sqlMessage);
-      res.json(err);
-    }
-
-    conn.query(
-      "update suppliers_company SET ? where id = ?",
-      [req.body, req.body.id],
-      function (err, rows) {
-        conn.release();
-        if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
-        } else {
-          logger.log("error", err.sql + ". " + err.sqlMessage);
-          res.json(err);
-        }
-      }
-    );
-  });
-});
-
-router.get("/getSuppliersCompany", auth, async (req, res, next) => {
-  try {
-    connection.getConnection(function (err, conn) {
-      if (err) {
-        logger.log("error", err.sql + ". " + err.sqlMessage);
-        res.json(err);
-      } else {
-        conn.query(
-          "select * from suppliers_company where kindergarden_id = ?",
-          [req.user.user.kindergarden],
-          function (err, rows, fields) {
-            conn.release();
-            if (err) {
-              res.json(err);
-              logger.log("error", err.sql + ". " + err.sqlMessage);
-            } else {
-              logger.log("info", "Test");
-
-              res.json(rows);
-            }
-          }
-        );
-      }
-    });
-  } catch (ex) {
-    logger.log("error", err.sql + ". " + err.sqlMessage);
-    res.json(ex);
-  }
-});
-
-router.post("/deleteSupplierCompany", (req, res, next) => {
-  try {
-    connection.getConnection(function (err, conn) {
-      if (err) {
-        console.error("SQL Connection error: ", err);
-        res.json({
-          code: 100,
-          status: err,
-        });
-      } else {
-        conn.query(
-          "delete from suppliers_company where id = '" + req.body.id + "'",
-          function (err, rows, fields) {
-            conn.release();
-            if (err) {
-              res.json(false);
-              logger.log("error", err.sql + ". " + err.sqlMessage);
-            } else {
-              res.json(true);
-            }
-          }
-        );
-      }
-    });
-  } catch (ex) {
-    logger.log("error", err.sql + ". " + err.sqlMessage);
-    res.json(ex);
-  }
-});
-
-/* END SUPPLIERS COMPANY */
 
 module.exports = router;

@@ -6,5 +6,6 @@ export class UploaderModel {
     requiredBaseData?: boolean;
     autoUpload?: boolean;
     config?: FieldConfig[];
+    url?: string[];
 
 }

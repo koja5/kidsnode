@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import {
   UploaderModule,
   UploadingEventArgs,
@@ -37,7 +38,8 @@ export class DynamicUploadComponent implements OnInit {
   constructor(
     private configurationService: ConfigurationService,
     private helpService: HelpService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +85,18 @@ export class DynamicUploadComponent implements OnInit {
       {
         additionalData: this.basicData ? JSON.stringify(this.basicData) : '',
       },
+      {
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJraW5kZXJnYXJkZW4iOjJ9LCJpYXQiOjE2NDI2MzQ2MzYsImV4cCI6MTY0MjY3NzgzNn0.MZwx8y9W-BAaJy59CrCb53fSHd7NAsDudIJR-3JrIrQ"
+      }
     ];
+    if (this.config.url) {
+      const dataValue = this.helpService.getValueFromUrl(
+        this.router.snapshot.params,
+        this.config.url
+      );
+
+      args.customFormData.push({ id: dataValue });
+    }
     this.messageService.sendRefreshGrid();
   }
 

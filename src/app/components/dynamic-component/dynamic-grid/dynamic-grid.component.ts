@@ -75,7 +75,9 @@ export class DynamicGridComponent implements OnInit {
       .getConfiguration(this.path, this.file)
       .subscribe((data) => {
         this.config = data;
-        this.height = this.helpService.getHeightForGridWithoutPx(this.partOfTab);
+        this.height = this.helpService.getHeightForGridWithoutPx(
+          this.partOfTab
+        );
         this.loader = false;
         this.callApi(data);
       });
@@ -148,7 +150,11 @@ export class DynamicGridComponent implements OnInit {
     }
 
     if (args.requestType === 'delete') {
-      this.deleteData(args);
+      if (!this.config.uploadConfig) {
+        this.deleteData(args);
+      } else {
+        this.deleteDocument(args);
+      }
     }
 
     this.typeOfModification = args.requestType as string;
@@ -199,6 +205,15 @@ export class DynamicGridComponent implements OnInit {
     for (let i = 0; i < event.data.length; i++) {
       this.callServerMethod(
         this.config.editSettingsRequest.delete,
+        event.data[i]
+      );
+    }
+  }
+
+  deleteDocument(event: any) {
+    for (let i = 0; i < event.data.length; i++) {
+      this.callServerMethod(
+        this.config.uploadConfig.delete,
         event.data[i]
       );
     }

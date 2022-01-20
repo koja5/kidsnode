@@ -9,8 +9,12 @@ const logger = require("./config/logger");
 const verifyToken = require("./config/auth");
 const bodyParser = require("body-parser");
 const multipart = require("connect-multiparty");
-const multipartMiddleware = multipart({ uploadDir: "./server/file_uploads" });
+const multipartMiddleware = multipart({
+  uploadDir: "./server/file_uploads",
+  auth,
+});
 const path = require("path");
+const fs = require("fs");
 
 var connection = mysql.createPool({
   host: process.env.host,
@@ -33,14 +37,9 @@ router.use(
   })
 );
 
-router.post("/save", multipartMiddleware, (req, res) => {
-  console.log(req);
-  res.json({
-    message: "File uploaded successfully",
-  });
-});
+// DOCUMENT ON CHILDREN PROFILE
 
-router.post("/saveChildrenDocuments", multipartMiddleware, (req, res) => {
+router.post("/saveChildrenDocument", multipartMiddleware, (req, res) => {
   try {
     console.log(req);
     connection.getConnection(function (err, conn) {
@@ -51,8 +50,10 @@ router.post("/saveChildrenDocuments", multipartMiddleware, (req, res) => {
           status: err,
         });
       } else {
+        console.log(req);
+        console.log(req.body);
         const document = {
-          children_id: 1,
+          children_id: req.body.id,
           name: req.files.UploadFiles.name,
           type: req.files.UploadFiles.type,
           path: req.files.UploadFiles.path,
@@ -63,8 +64,8 @@ router.post("/saveChildrenDocuments", multipartMiddleware, (req, res) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -83,7 +84,6 @@ router.post("/saveChildrenDocuments", multipartMiddleware, (req, res) => {
 
 router.get("/getChildrenDocuments/:id", auth, async (req, res, next) => {
   try {
-    console.log(req.user);
     connection.getConnection(function (err, conn) {
       if (err) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -95,11 +95,42 @@ router.get("/getChildrenDocuments/:id", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
-              // logger.log("info", "Test");
               res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/deleteChildrenDocument", auth, (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", "SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from children_documents where id = ?",
+          [req.body.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              fs.unlinkSync(req.body.path);
+              res.json(true);
             }
           }
         );
@@ -114,7 +145,7 @@ router.get("/getChildrenDocuments/:id", auth, async (req, res, next) => {
 router.post("/getDocument", async (req, res, next) => {
   console.log(req);
   req.body.path = req.body.path.toString().replace("server\\", "");
-  filepath = path.join(__dirname, req.body.path)
+  filepath = path.join(__dirname, req.body.path);
   res.sendFile(filepath, {
     headers: {
       "Content-Type": "application/json",
@@ -122,5 +153,212 @@ router.post("/getDocument", async (req, res, next) => {
     },
   });
 });
+
+// END DOCUMENT ON CHILDREN PROFILE
+
+// GENERAL CONTRACT
+
+router.post("/saveGeneralContract", multipartMiddleware, (req, res) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        const document = {
+          kindergarden_id: 2,
+          name: req.files.UploadFiles.name,
+          type: req.files.UploadFiles.type,
+          path: req.files.UploadFiles.path,
+        };
+        conn.query(
+          "insert into general_contract_documents set ?",
+          [document],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getGeneralContracts", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from general_contract_documents where kindergarden_id = ?",
+          [req.user.user.kindergarden],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/deleteGeneralContract",  auth, (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", "SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from general_contract_documents where id = ?",
+          [req.body.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              fs.unlinkSync(req.body.path);
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+// END GENERAL CONTRACT
+
+// DOCUMENT ON EMPLOYEE PROFILE
+
+router.post("/saveEmployeeDocument", multipartMiddleware, (req, res) => {
+  try {
+    console.log(req);
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        console.log(req);
+        console.log(req.body);
+        const document = {
+          employee_id: req.body.id,
+          name: req.files.UploadFiles.name,
+          type: req.files.UploadFiles.type,
+          path: req.files.UploadFiles.path,
+        };
+        conn.query(
+          "insert into employee_documents set ?",
+          [document],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getEmployeeDocuments/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from employee_documents where employee_id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/deleteEmployeeDocument", auth, (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", "SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from employee_documents where id = ?",
+          [req.body.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              fs.unlinkSync(req.body.path);
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+// END DOCUMENT ON EMPLOYEE PROFILE
 
 module.exports = router;

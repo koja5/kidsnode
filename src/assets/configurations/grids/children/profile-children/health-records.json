@@ -117,6 +117,24 @@
       }
     },
     {
+      "title": "Pocetak bolovanja",
+      "filterable": true,
+      "hideable": true,
+      "type": "date",
+      "format": "dd.MM.yyyy",
+      "class": "text-align-right",
+      "field": "start_absense"
+    },
+    {
+      "title": "Kraj bolovanja",
+      "filterable": true,
+      "hideable": true,
+      "type": "date",
+      "format": "dd.MM.yyyy",
+      "class": "text-align-right",
+      "field": "end_absense"
+    },
+    {
       "title": "Napomena",
       "filterable": true,
       "hideable": true,

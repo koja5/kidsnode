@@ -4,7 +4,9 @@
   "request": {
     "type": "GET",
     "api": "/api/upload/getChildrenDocuments",
-    "url": ["id"],
+    "url": [
+      "id"
+    ],
     "parameters": [],
     "fields": "",
     "root": ""
@@ -38,8 +40,6 @@
     "AutoFitAll",
     "SortAscending",
     "SortDescending",
-    "Copy",
-    "Edit",
     "Delete",
     "Save",
     "Cancel",
@@ -50,7 +50,12 @@
     "Group",
     "Ungroup"
   ],
-  "toolbar": ["Add", "Delete", "Print", "Search"],
+  "toolbar": [
+    "Add",
+    "Delete",
+    "Print",
+    "Search"
+  ],
   "editSettings": {
     "allowEditing": false,
     "allowAdding": true,
@@ -107,7 +112,6 @@
         "classIcon": "remove_red_eye"
       }
     },
-    
     {
       "title": "",
       "filterable": true,
@@ -126,6 +130,13 @@
   ],
   "uploadConfig": {
     "path": "/upload-config",
-    "file": "file-upload.json"
+    "file": "upload-children-documents.json",
+    "delete": {
+      "type": "POST",
+      "api": "/api/upload/deleteChildrenDocument",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    }
   }
 }

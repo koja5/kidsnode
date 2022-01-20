@@ -2,12 +2,9 @@ const { createLogger, format, winston, transports } = require("winston");
 const CustomTransport = require("./customTransport");
 const moment = require("moment");
 
-console.log(process.env.NODE_ENV);
-
 let logger = createLogger({});
 
 if (process.env.NODE_ENV !== "production") {
-  console.log("usao sam!");
   logger.add(
     new transports.Console({
       format: format.simple(),

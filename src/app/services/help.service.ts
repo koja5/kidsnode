@@ -80,6 +80,14 @@ export class HelpService {
     return value;
   }
 
+  getValueFromUrl(data: any, parameters: string[]) {
+    for (let i = 0; i < parameters.length; i++) {
+      if (data[parameters[i]]) {
+        return data[parameters[i]];
+      }
+    }
+  }
+
   postRequestDataParameters(body: any, data: any, parameters: string[]) {
     for (let i = 0; i < parameters.length; i++) {
       body[parameters[i]] = data[parameters[i]];

@@ -198,12 +198,11 @@ export class DynamicSchedulerComponent implements OnInit {
   }
 
   onDataBound() {
-    if (!this.isTootipDelayApplied && this.config?.tooltip?.display) {
+    if (this.config?.tooltip?.display) {
       let tooltipObj = (this.scheduleObj.element as any).ej2_instances[2];
       tooltipObj.mouseTrail = false;
       tooltipObj.openDelay = this.config?.tooltip?.openDelay;
       tooltipObj.position = this.config?.tooltip?.position;
-      this.isTootipDelayApplied = true;
     }
   }
 
