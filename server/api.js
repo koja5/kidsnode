@@ -242,13 +242,13 @@ router.post("/createKindergardenGroup", auth, function (req, res, next) {
           if (!err) {
             logger.log(
               "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
+              `Add new kindergarden group. UserID: ${req.user.user}.`
             );
             res.json(true);
           } else {
             logger.log(
               "error",
-              `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
+              `${err.sql}. ${err.sqlMessage}`
             );
             res.json(false);
           }

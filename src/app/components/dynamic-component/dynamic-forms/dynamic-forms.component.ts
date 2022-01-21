@@ -33,6 +33,10 @@ export class DynamicFormsComponent implements OnInit {
   additionalInfo!: FieldsWithAdditionalInfo;
   @Input() path!: string;
   @Input() file!: string;
+  @Input() hideActionButtons!: boolean;
+  @Input() disableEdit!: boolean;
+  @Input() partOfGrid!: boolean;
+  @Input() data!: any;
 
   @Output()
   submit: EventEmitter<any> = new EventEmitter<any>();
@@ -69,6 +73,16 @@ export class DynamicFormsComponent implements OnInit {
     } else {
       this.form = this.createGroup();
       this.loader = false;
+      if (!this.partOfGrid) {
+        if (this.disableEdit) {
+          this.setDisableEdit();
+        }
+        if (this.config.request && !this.data) {
+          this.getData(this.config);
+        } else {
+          this.setValueToForm(this.config.config, this.data);
+        }
+      }
     }
   }
 
@@ -77,8 +91,11 @@ export class DynamicFormsComponent implements OnInit {
       .getConfiguration(this.path, this.file)
       .subscribe((data) => {
         this.config = data as FormConfig;
+        if (this.disableEdit) {
+          this.setDisableEdit();
+        }
         this.form = this.createGroup();
-        if (this.config.request) {
+        if (this.config.request && !this.data) {
           this.getData(this.config);
         }
       });
@@ -88,8 +105,24 @@ export class DynamicFormsComponent implements OnInit {
     this.callApi(data);
   }
 
+  setDisableEdit() {
+    if (this.config?.config) {
+      for (let i = 0; i < this.config?.config.length; i++) {
+        this.config.config[i].readonly = true;
+        if (
+          this.config.config[i].type === 'button' &&
+          this.config.config[i].field === 'submit'
+        ) {
+          this.config?.config.splice(i, 1);
+        } else if (this.config.config[i].type === 'radio') {
+          this.config.config[i].disabled = true;
+        }
+      }
+    }
+  }
+
   callApi(data: any) {
-    if (data.type === 'POST') {
+    if (data.request.type === 'POST') {
       if (data.request.url) {
         data.body = this.helpService.postRequestDataParameters(
           data.body,
@@ -117,12 +150,14 @@ export class DynamicFormsComponent implements OnInit {
 
   callApiPost(api: string, body: any) {
     this.apiService.callPostMethod(api, body).subscribe((data) => {
+      this.data = data;
       this.setValueToForm(this.config.config, data);
     });
   }
 
   callApiGet(api: string, parameters?: string) {
     this.apiService.callGetMethod(api, parameters!).subscribe((data) => {
+      this.data = data;
       this.setValueToForm(this.config.config, data);
     });
   }
@@ -182,9 +217,19 @@ export class DynamicFormsComponent implements OnInit {
   }
 
   setValueToForm(fields: any, values: any) {
-    for (let i = 0; i < fields.length; i++) {
-      if (fields[i]['type'] !== FieldType.label) {
-        this.setValue(fields[i]['name'], values[fields[i]['name']]);
+    if (values && values.length > 0) {
+      for (let k = 0; k < values.length; k++) {
+        for (let i = 0; i < fields.length; i++) {
+          if (fields[i]['type'] !== FieldType.label) {
+            this.setValue(fields[i]['name'], values[k][fields[i]['name']]);
+          }
+        }
+      }
+    } else {
+      for (let i = 0; i < fields.length; i++) {
+        if (fields[i]['type'] !== FieldType.label) {
+          this.setValue(fields[i]['name'], values[fields[i]['name']]);
+        }
       }
     }
     this.loader = false;

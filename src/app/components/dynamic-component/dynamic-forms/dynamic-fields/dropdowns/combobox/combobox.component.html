@@ -18,6 +18,7 @@
     [ignoreAccent]="config.fieldConfig?.ignoreAccent"
     [filterBarPlaceholder]="config.fieldConfig?.filterPlaceholder"
     [formControlName]="config.name"
+    [readonly]="config.readonly"
   >
     <ng-template *ngIf="data" #noRecordsTemplate>
       <span class="norecord"> {{language?.noRecords}}</span>

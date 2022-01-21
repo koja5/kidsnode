@@ -7,22 +7,7 @@
     },
     "type": "forms",
     "path": "/forms/employee",
-    "file": "basic-information.json",
-    "actionButtons": {
-      "class": "text-right p-3",
-      "simpleButtons": [],
-      "dropDownButtons": {
-        "content": "More",
-        "items": [
-          { "text": "Delete", "id": "delete", "iconCss": "ddb-icons e-edit" },
-          { "text": "Rename", "id": "rename", "iconCss": "ddb-icons e-edit" }
-        ]
-      },
-      "splitButtons": {
-        "content": "",
-        "items": []
-      }
-    }
+    "file": "basic-information.json"
   },
   {
     "title": {

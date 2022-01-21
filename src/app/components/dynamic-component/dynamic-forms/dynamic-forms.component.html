@@ -2,6 +2,12 @@
   <app-loader></app-loader>
 </div>
 <div *ngIf="!loader">
+  <app-dynamic-action-button
+    *ngIf="config?.actionButtons&&!hideActionButtons"
+    [config]="config"
+    [data]="data"
+    [componentType]="'form'"
+  ></app-dynamic-action-button>
   <div *ngIf="config && config.additionalInfo">
     <div class="card card-form">
       <div class="row no-gutters">

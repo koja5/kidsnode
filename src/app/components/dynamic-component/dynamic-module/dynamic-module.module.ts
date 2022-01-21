@@ -46,6 +46,7 @@ import { DynamicUploadComponent } from '../dynamic-upload/dynamic-upload.compone
 import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
 import { DynamicPdfViewerComponent } from '../dynamic-pdf-viewer/dynamic-pdf-viewer.component';
 import { DynamicIconComponent } from '../common/dynamic-icon/dynamic-icon.component';
+
 @NgModule({
   declarations: [
     DynamicGridComponent,
