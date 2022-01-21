@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FileType } from '../enums/file-type';
-import { Type } from '../enums/type';
 
 @Injectable({
   providedIn: 'root',
