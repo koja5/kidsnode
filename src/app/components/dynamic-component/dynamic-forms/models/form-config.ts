@@ -5,6 +5,7 @@ import { FieldsWithAdditionalInfo } from "./fields-with-additional-info";
 export class FormConfig {
     actionButtons?: any;
     request?: RequestModel;
+    editSettingsRequest?: any;
     additionalInfo?: FieldsWithAdditionalInfo;
     config?: FieldConfig[];
 }

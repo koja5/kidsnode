@@ -46,6 +46,7 @@ import { DynamicUploadComponent } from '../dynamic-upload/dynamic-upload.compone
 import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
 import { DynamicPdfViewerComponent } from '../dynamic-pdf-viewer/dynamic-pdf-viewer.component';
 import { DynamicIconComponent } from '../common/dynamic-icon/dynamic-icon.component';
+import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { DynamicIconComponent } from '../common/dynamic-icon/dynamic-icon.compon
     RecurrenceEditorAllModule,
     DropDownButtonModule,
     SplitButtonModule,
-    UploaderModule
+    UploaderModule,
+    DialogAllModule
   ],
   providers: [
     EditService,

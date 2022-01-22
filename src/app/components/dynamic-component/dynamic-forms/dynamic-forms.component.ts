@@ -68,8 +68,10 @@ export class DynamicFormsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.path && this.file) {
+    if (this.path && this.file && !this.data) {
       this.initializeConfig();
+    } else if (this.data && this.hideActionButtons) {
+      this.getConfigurationFile();
     } else {
       this.form = this.createGroup();
       this.loader = false;
@@ -101,8 +103,21 @@ export class DynamicFormsComponent implements OnInit {
       });
   }
 
+  getConfigurationFile() {
+    this.configurationService
+      .getConfiguration(this.path, this.file)
+      .subscribe((data) => {
+        this.config = data as FormConfig;
+        this.form = this.createGroup();
+        this.setValueToForm(this.config.config, this.data);
+      });
+  }
+
   getData(data: any) {
-    this.callApi(data);
+    this.apiService.callApi(data, this.router).subscribe((data) => {
+      this.data = data;
+      this.setValueToForm(this.config.config, data);
+    });
   }
 
   setDisableEdit() {
@@ -121,32 +136,32 @@ export class DynamicFormsComponent implements OnInit {
     }
   }
 
-  callApi(data: any) {
-    if (data.request.type === 'POST') {
-      if (data.request.url) {
-        data.body = this.helpService.postRequestDataParameters(
-          data.body,
-          this.router.snapshot.params,
-          data.request.url
-        );
-      }
-      this.callApiPost(data.request.api, data.body);
-    } else {
-      if (data.request.url) {
-        const dataValue = this.helpService.getRequestDataParameters(
-          this.router.snapshot.params,
-          data.request.url
-        );
-        this.callApiGet(data.request.api, dataValue);
-      } else {
-        const dataValue = this.helpService.getRequestDataParameters(
-          this.router.snapshot.params,
-          data.request.parameters
-        );
-        this.callApiGet(data.request.api, dataValue);
-      }
-    }
-  }
+  // callApi(data: any) {
+  //   if (data.request.type === 'POST') {
+  //     if (data.request.url) {
+  //       data.body = this.helpService.postRequestDataParameters(
+  //         data.body,
+  //         this.router.snapshot.params,
+  //         data.request.url
+  //       );
+  //     }
+  //     this.callApiPost(data.request.api, data.body);
+  //   } else {
+  //     if (data.request.url) {
+  //       const dataValue = this.helpService.getRequestDataParameters(
+  //         this.router.snapshot.params,
+  //         data.request.url
+  //       );
+  //       this.callApiGet(data.request.api, dataValue);
+  //     } else {
+  //       const dataValue = this.helpService.getRequestDataParameters(
+  //         this.router.snapshot.params,
+  //         data.request.parameters
+  //       );
+  //       this.callApiGet(data.request.api, dataValue);
+  //     }
+  //   }
+  // }
 
   callApiPost(api: string, body: any) {
     this.apiService.callPostMethod(api, body).subscribe((data) => {
@@ -243,9 +258,8 @@ export class DynamicFormsComponent implements OnInit {
     }
   }
 
-  openModal() {
-    this.modalShow = true;
-    this.loader = false;
-    const componentModal = this.modal.open(DialogModalComponent);
+  refreshFormData(event: any) {
+    this.data = event;
+    this.setValueToForm(this.config.config, event);
   }
 }

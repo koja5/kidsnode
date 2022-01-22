@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
+import { HelpService } from './help.service';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrComponent } from '../components/dynamic-component/common/toastr/toastr.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CallApiService {
   private headers: HttpHeaders;
-  constructor(private http: HttpClient, private auth: AuthenticationService) {
+  constructor(
+    private http: HttpClient,
+    private auth: AuthenticationService,
+    private helpService: HelpService
+  ) {
     this.headers = new HttpHeaders(this.auth.getToken);
   }
 
@@ -59,5 +66,47 @@ export class CallApiService {
       responseType: 'blob',
       headers: new HttpHeaders().append('Content-Type', 'application/json'),
     });
+  }
+
+  callApi(data: any, router?: any) {
+    if (data.type === 'POST') {
+      if (data.request.url) {
+        data.body = this.helpService.postRequestDataParameters(
+          data.body,
+          router.snapshot.params,
+          data.request.url
+        );
+      }
+      return this.callPostMethod(data.request.api, data.body);
+    } else {
+      if (data.request.url) {
+        const dataValue = this.helpService.getRequestDataParameters(
+          router.snapshot.params,
+          data.request.url
+        );
+        return this.callGetMethod(data.request.api, dataValue);
+      } else {
+        const dataValue = this.helpService.getRequestDataParameters(
+          router.snapshot.params,
+          data.request.parameters
+        );
+        return this.callGetMethod(data.request.api, dataValue);
+      }
+    }
+  }
+
+  callServerMethod(request: any, data: any, router?: any) {
+    if (request.url) {
+      data = this.helpService.postRequestDataParameters(
+        data,
+        router.snapshot.params,
+        request.url
+      );
+    }
+    if (request.type === 'POST') {
+      return this.callPostMethod(request.api, data);
+    } else {
+      return this.callGetMethod(request.api, data);
+    }
   }
 }

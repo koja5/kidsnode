@@ -6,14 +6,14 @@
       "content": "More",
       "items": [
         {
-          "text": "Delete",
-          "id": "delete",
+          "text": "Edit",
+          "id": "edit",
           "iconCss": "ddb-icons e-edit"
         },
         {
-          "text": "Rename",
-          "id": "rename",
-          "iconCss": "ddb-icons e-edit"
+          "text": "Delete",
+          "id": "delete",
+          "iconCss": "ddb-icons e-remove"
         }
       ]
     },
@@ -31,6 +31,29 @@
     "parameters": [],
     "fields": "",
     "root": ""
+  },
+  "editSettingsRequest": {
+    "add": {
+      "type": "POST",
+      "api": "/api/createEmployee",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "edit": {
+      "type": "POST",
+      "api": "/api/updateEmployee",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "delete": {
+      "type": "POST",
+      "api": "/api/deleteEmployee",
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    }
   },
   "config": [
     {

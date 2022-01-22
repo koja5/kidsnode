@@ -183,7 +183,7 @@ router.post("/login", async (req, res, next) => {
           logger.log(
             "info",
             `UserID: ${
-              req.body.email
+              req.body.username
             } is LOGIN at ${new Date().toDateString()}.`
           );
           return res.json({
@@ -208,7 +208,9 @@ router.post("/login", async (req, res, next) => {
                 );
                 logger.log(
                   "info",
-                  `UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id} is SUCCESSFULY LOGIN!`
+                  `UserID: ${
+                    req.body.username
+                  } is LOGIN at ${new Date().toDateString()}.`
                 );
                 return res.json({
                   token: token,
@@ -246,10 +248,7 @@ router.post("/createKindergardenGroup", auth, function (req, res, next) {
             );
             res.json(true);
           } else {
-            logger.log(
-              "error",
-              `${err.sql}. ${err.sqlMessage}`
-            );
+            logger.log("error", `${err.sql}. ${err.sqlMessage}`);
             res.json(false);
           }
         }
@@ -304,7 +303,6 @@ router.get("/getKindergardenGroup", auth, async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              logger.log("info", "Test");
               res.json(rows);
             }
           }
@@ -401,10 +399,6 @@ router.post("/createKindergardenSubgroup", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
             res.json(true);
           } else {
             logger.log(
@@ -465,7 +459,6 @@ router.get("/getKindergardenSubgroup", auth, async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              logger.log("info", "Test");
               res.json(rows);
             }
           }
@@ -534,20 +527,11 @@ router.post("/createChildren", auth, function (req, res, next) {
         [father],
         function (err, father_res) {
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
             conn.query(
               "insert into parents SET ?",
               [mother],
               function (err, mother_res) {
                 if (!err) {
-                  logger.log(
-                    "info",
-                    `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-                  );
-
                   const children = {
                     firstname: req.body.children_firstname,
                     lastname: req.body.children_lastname,
@@ -564,10 +548,6 @@ router.post("/createChildren", auth, function (req, res, next) {
                     function (err, children_res) {
                       conn.release();
                       if (!err) {
-                        logger.log(
-                          "info",
-                          `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-                        );
                         res.json(true);
                       } else {
                         logger.log(
@@ -646,8 +626,6 @@ router.get("/getChildrens", auth, async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              logger.log("info", "Test");
-
               res.json(rows);
             }
           }
@@ -676,7 +654,6 @@ router.get("/getChildrenById/:id", auth, async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              logger.log("info", "Test");
               if (rows.length === 1) {
                 res.json(rows[0]);
               } else {
@@ -709,7 +686,6 @@ router.get("/getChildrenParentsById/:id", auth, async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              logger.log("info", "Test");
               if (rows.length === 1) {
                 res.json(rows[0]);
               } else {
@@ -779,7 +755,6 @@ router.get(
                 res.json(err);
                 logger.log("error", err.sql + ". " + err.sqlMessage);
               } else {
-                logger.log("info", "Test");
                 res.json(rows);
               }
             }
@@ -800,7 +775,6 @@ router.post("/createChildrenNotes", auth, function (req, res, next) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      req.body.creation_date = new Date().toDateString();
       req.body.children_id = req.body.id;
       req.body.educator_id = req.user.user.id;
       delete req.body.id;
@@ -811,10 +785,6 @@ router.post("/createChildrenNotes", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
             res.json(true);
           } else {
             logger.log(
@@ -912,7 +882,6 @@ router.get(
                 res.json(err);
                 logger.log("error", err.sql + ". " + err.sqlMessage);
               } else {
-                logger.log("info", "Test");
                 res.json(rows);
               }
             }
@@ -944,10 +913,6 @@ router.post("/createChildrenTaking", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
             res.json(true);
           } else {
             logger.log(
@@ -1041,12 +1006,9 @@ router.post("/createEmployee", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
             res.json(true);
           } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(false);
           }
         }
@@ -1074,6 +1036,7 @@ router.post("/updateEmployee", function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(false);
           }
         } else {
@@ -1183,7 +1146,6 @@ router.get("/getEmployeeById/:id", auth, async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              logger.log("info", "Test");
               if (rows.length === 1) {
                 res.json(rows[0]);
               } else {
@@ -1218,10 +1180,6 @@ router.post("/createWorkPlace", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
             res.json(true);
           } else {
             res.json(false);
@@ -1338,10 +1296,6 @@ router.post("/createTypeOfWork", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
             res.json(true);
           } else {
             res.json(false);
@@ -1455,10 +1409,6 @@ router.post("/createFood", auth, function (req, res, next) {
       conn.query("insert into foods SET ?", [req.body], function (err, rows) {
         conn.release();
         if (!err) {
-          logger.log(
-            "info",
-            `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-          );
           res.json(true);
         } else {
           res.json(false);
@@ -1607,10 +1557,6 @@ router.post("/createFoodMenu", auth, function (req, res, next) {
       conn.query("insert into food_menu SET ?", [data], function (err, rows) {
         conn.release();
         if (!err) {
-          logger.log(
-            "info",
-            `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-          );
           res.json(true);
         } else {
           res.json(false);
@@ -1746,10 +1692,6 @@ router.post("/recordAbsense", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
             res.json(true);
           } else {
             res.json(false);
@@ -1779,10 +1721,6 @@ router.post("/recordAbsenseSingle", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
             res.json(true);
           } else {
             res.json(false);
@@ -2164,7 +2102,6 @@ router.post("/createChildrenHealthRecord", auth, function (req, res, next) {
         res.json(err);
       }
 
-      req.body.creation_date = new Date();
       req.body.children_id = req.body.id;
       req.body.creator_id = req.user.user.id;
       req.body.kindergarden_id = req.user.user.kindergarden;
@@ -2194,8 +2131,6 @@ router.post("/createChildrenHealthRecord", auth, function (req, res, next) {
 router.post("/updateChildrenHealthRecord", auth, function (req, res, next) {
   try {
     connection.getConnection(function (err, conn) {
-
-      req.body.creation_date = new Date();
       req.body.children_id = req.body.id;
       req.body.creator_id = req.user.user.id;
       req.body.kindergarden_id = req.user.user.kindergarden;
@@ -2358,8 +2293,6 @@ router.get("/getSuppliersCompany", auth, async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              logger.log("info", "Test");
-
               res.json(rows);
             }
           }

@@ -3,10 +3,13 @@
 </div>
 <div *ngIf="!loader">
   <app-dynamic-action-button
-    *ngIf="config?.actionButtons&&!hideActionButtons"
+    *ngIf="config?.actionButtons && !hideActionButtons"
     [config]="config"
     [data]="data"
+    [path]="path"
+    [file]="file"
     [componentType]="'form'"
+    (refreshFormData)="refreshFormData($event)"
   ></app-dynamic-action-button>
   <div *ngIf="config && config.additionalInfo">
     <div class="card card-form">

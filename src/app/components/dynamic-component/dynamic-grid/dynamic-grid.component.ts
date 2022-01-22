@@ -79,55 +79,22 @@ export class DynamicGridComponent implements OnInit {
           this.partOfTab
         );
         this.loader = false;
-        this.callApi(data);
+        this.enableGridSpinner();
+        this.apiService.callApi(this.config, this.router).subscribe((data) => {
+          this.setResponseData(data);
+        });
       });
   }
 
   subscribeMessageServices() {
     this.subscription = this.messageService.getRefreshGrid().subscribe(() => {
-      this.callApi(this.config);
+      this.enableGridSpinner();
+      this.apiService.callApi(this.config, this.router).subscribe((data) => {
+        this.setResponseData(data);
+      });
       setTimeout(() => {
         this.operations.dialog.close();
       }, 50);
-    });
-  }
-
-  callApi(data: any) {
-    setTimeout(() => {
-      this.grid.showSpinner();
-    }, 100);
-
-    if (data.type === 'POST') {
-      this.callApiPost(data.request.api, data.body);
-    } else {
-      if (data.request.url) {
-        const dataValue = this.helpService.getRequestDataParameters(
-          this.router.snapshot.params,
-          data.request.url
-        );
-        this.callApiGet(data.request.api, dataValue);
-      } else {
-        const dataValue = this.helpService.getRequestDataParameters(
-          this.router.snapshot.params,
-          data.request.parameters
-        );
-        this.callApiGet(data.request.api, dataValue);
-      }
-    }
-  }
-
-  callApiPost(api: string, body: any) {
-    this.apiService.callPostMethod(api, body).subscribe((data) => {
-      this.grid.hideSpinner();
-    });
-  }
-
-  callApiGet(api: string, parameters?: string) {
-    this.apiService.callGetMethod(api, parameters!).subscribe((data) => {
-      this.data = data;
-      setTimeout(() => {
-        this.grid.hideSpinner();
-      }, 100);
     });
   }
 
@@ -163,6 +130,7 @@ export class DynamicGridComponent implements OnInit {
   }
 
   submitEmitter(event: any) {
+    this.enableGridSpinner();
     if (this.typeOfModification === 'add') {
       this.callServerMethod(this.config.editSettingsRequest.add, event);
     } else if (this.typeOfModification === 'beginEdit') {
@@ -172,33 +140,36 @@ export class DynamicGridComponent implements OnInit {
     this.operations.dialog.close();
   }
 
-  callServerMethod(request: any, data: any) {
-    if (request.type === 'POST') {
-      if (request.url) {
-        data = this.helpService.postRequestDataParameters(
-          data,
-          this.router.snapshot.params,
-          request.url
-        );
+  callServerMethod(request: any, event: any) {
+    this.apiService.callServerMethod(request, event, this.router).subscribe((data: any) => {
+      if (data) {
+        this.toastr.showSuccess();
+        this.apiService.callApi(this.config, this.router).subscribe((data) => {
+          this.setResponseData(data);
+        });
+      } else {
+        this.toastr.showError();
       }
-      this.apiService.callPostMethod(request.api, data).subscribe((res) => {
-        if (res) {
-          this.callApi(this.config);
-          this.toastr.showSuccess();
-        } else {
-          this.toastr.showError();
-        }
-      });
-    } else {
-      this.apiService.callGetMethod(request.api, data).subscribe((res) => {
-        if (res) {
-          this.callApi(this.config);
-          this.toastr.showSuccess();
-        } else {
-          this.toastr.showError();
-        }
-      });
+    });
+  }
+
+  setResponseData(data: any) {
+    if (this.config.request.type === 'GET') {
+      this.data = data;
     }
+    this.grid.hideSpinner();
+  }
+
+  enableGridSpinner() {
+    setTimeout(() => {
+      this.grid.showSpinner();
+    }, 100);
+  }
+
+  disabledGridSpinner() {
+    setTimeout(() => {
+      this.grid.hideSpinner();
+    }, 100);
   }
 
   deleteData(event: any) {
@@ -212,10 +183,7 @@ export class DynamicGridComponent implements OnInit {
 
   deleteDocument(event: any) {
     for (let i = 0; i < event.data.length; i++) {
-      this.callServerMethod(
-        this.config.uploadConfig.delete,
-        event.data[i]
-      );
+      this.callServerMethod(this.config.uploadConfig.delete, event.data[i]);
     }
   }
 

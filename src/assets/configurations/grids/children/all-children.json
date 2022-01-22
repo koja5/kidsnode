@@ -89,7 +89,7 @@
       "filter": "date",
       "type": "number",
       "class": "text-align-right",
-      "field": "children_id",
+      "field": "id",
       "isPrimaryKey": true,
       "allowEditing": false
     },

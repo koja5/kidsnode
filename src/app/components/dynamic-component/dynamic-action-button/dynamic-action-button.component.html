@@ -35,14 +35,28 @@
   ></ejs-splitbutton>
 </div>
 
-<div *ngIf="checkComponentType() && modal">
+<app-dialog-modal
+  *ngIf="modal"
+  [show]="modal"
+  (closeEventEmitter)="closeModal()"
+>
+  <div *ngIf="loader" style="height: 60vh">
+    <app-loader></app-loader>
+  </div>
   <app-dynamic-forms
-    *ngIf="config.config && config.config.length > 0"
+    *ngIf="
+      !loader &&
+      config.config &&
+      config.config.length > 0 &&
+      checkComponentType()
+    "
     [config]="config"
     [data]="data"
+    [path]="path"
+    [file]="file"
     [hideActionButtons]="true"
     (submit)="submitEmitter($event)"
     #form="dynamicForm"
   >
   </app-dynamic-forms>
-</div>
+</app-dialog-modal>

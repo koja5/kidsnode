@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class MessageService {
   public refreshGrid = new Subject<null>();
+  public refreshFormDataAfterUpdate = new Subject<null>();
 
   constructor() {}
 
@@ -15,5 +16,13 @@ export class MessageService {
 
   getRefreshGrid(): Observable<any> {
     return this.refreshGrid.asObservable();
+  }
+
+  sendRefreshFormDataAfterUpdate() {
+    this.refreshFormDataAfterUpdate.next();
+  }
+
+  getRefreshFormDataAfterUpdate(): Observable<any> {
+    return this.refreshFormDataAfterUpdate.asObservable();
   }
 }
