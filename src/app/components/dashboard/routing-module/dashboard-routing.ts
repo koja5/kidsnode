@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChildrenComponent } from '../children/children/children.component';
+import { ControlPanelComponent } from '../control-panel/control-panel/control-panel.component';
 import { EmployeeComponent } from '../employee/employee/employee.component';
 import { ParametersComponent } from '../parameters/parameters/parameters.component';
 import { ServicesComponent } from '../services/services.component';
@@ -50,6 +51,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('../services/routing-module/services.module').then(
         (m) => m.ServicesModule
+      ),
+  },
+  {
+    path: 'control-panel',
+    component: ControlPanelComponent,
+    loadChildren: () =>
+      import('../control-panel/routing-module/control-panel.module').then(
+        (m) => m.ControlPanelModule
       ),
   },
 ];

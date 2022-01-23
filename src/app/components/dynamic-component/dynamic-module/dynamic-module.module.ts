@@ -46,8 +46,7 @@ import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
 import { DynamicPdfViewerComponent } from '../dynamic-pdf-viewer/dynamic-pdf-viewer.component';
 import { DynamicIconComponent } from '../common/dynamic-icon/dynamic-icon.component';
 import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
-import { DynamicControlPanelComponent } from '../dynamic-control-panel/dynamic-control-panel.component';
-import { ChartModule } from '@syncfusion/ej2-angular-charts';
+import { DynamicControlPanelModule } from '../dynamic-control-panel/dynamic-control-panel.module';
 
 @NgModule({
   declarations: [
@@ -62,7 +61,6 @@ import { ChartModule } from '@syncfusion/ej2-angular-charts';
     DynamicUploadComponent,
     DynamicPdfViewerComponent,
     DynamicIconComponent,
-    DynamicControlPanelComponent
   ],
   exports: [
     DynamicGridComponent,
@@ -76,7 +74,6 @@ import { ChartModule } from '@syncfusion/ej2-angular-charts';
     DynamicUploadComponent,
     DynamicPdfViewerComponent,
     DynamicIconComponent,
-    DynamicControlPanelComponent
   ],
   imports: [
     CommonModule,
@@ -93,7 +90,7 @@ import { ChartModule } from '@syncfusion/ej2-angular-charts';
     SplitButtonModule,
     UploaderModule,
     DialogAllModule,
-    ChartModule
+    DynamicControlPanelModule,
   ],
   providers: [
     EditService,

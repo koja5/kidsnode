@@ -1,0 +1,26 @@
+<ejs-accumulationchart
+  [legendSettings]="legendSettings"
+  [tooltip]="tooltip"
+  [title]="config?.title"
+  (load)="load($event)"
+  [enableAnimation]="enableAnimation"
+  [center]="center"
+>
+  <e-accumulation-series-collection>
+    <e-accumulation-series
+      name="{{ config?.name }}"
+      [dataSource]="data"
+      xName="{{ config?.xName }}"
+      yName="{{ config?.yName }}"
+      [startAngle]="startAngle"
+      [endAngle]="endAngle"
+      innerRadius="0%"
+      radius="70%"
+      [dataLabel]="dataLabel"
+      [explode]="explode"
+      explodeOffset="10%"
+      [explodeIndex]="0"
+    >
+    </e-accumulation-series>
+  </e-accumulation-series-collection>
+</ejs-accumulationchart>

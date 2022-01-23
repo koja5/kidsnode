@@ -1,1 +1,12 @@
-<p>dynamic-control-panel works!</p>
+<div *ngIf="!loader">
+  <div *ngIf="config.charts" class="row">
+    <div
+      *ngFor="let item of config.charts"
+      class="{{ item.width ? item.width : 'col-md-6' }}"
+    >
+      <div *ngIf="item.type === 'pie'">
+        <app-dynamic-pie [config]="item"></app-dynamic-pie>
+      </div>
+    </div>
+  </div>
+</div>

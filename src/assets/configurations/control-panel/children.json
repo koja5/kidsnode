@@ -1,0 +1,33 @@
+{
+    "widgets": [],
+    "charts": [
+        {
+            "type": "pie",
+            "title": "Statistika dolaznosti",
+            "name": "statistic",
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getChildrensStatistic",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "xName": "number",
+            "yName": "kindergarden_subgroup_id"
+        },
+        {
+            "type": "pie",
+            "title": "Statistika dolaznosti 2",
+            "name": "statistic2",
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getChildrensStatistic",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "xName": "number",
+            "yName": "kindergarden_subgroup_id"
+        }
+    ]
+}

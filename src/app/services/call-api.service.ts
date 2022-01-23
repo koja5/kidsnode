@@ -69,7 +69,7 @@ export class CallApiService {
   }
 
   callApi(data: any, router?: any) {
-    if (data.type === 'POST') {
+    if (data.request.type === 'POST') {
       if (data.request.url) {
         data.body = this.helpService.postRequestDataParameters(
           data.body,
