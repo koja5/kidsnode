@@ -4,32 +4,11 @@
 
 <div
   *ngIf="data"
-  class="
-    col-lg-12
-    control-section
-    card-control-section
-    vertical_card_layout
-    mt-3
-  "
+  class="col-lg-12 control-section card-control-section vertical_card_layout mt-3"
 >
   <div class="options row mb-3">
-    <div class="col-xs-6 col-sm-6 col-md-6">
-      <!-- <button
-        ejs-button
-        class="e-btn e-danger e-btn-center"
-        (click)="recordAbsense()"
-      >
-        <app-dynamic-icon [icon]="'edit_note'"></app-dynamic-icon>
-        {{ language.recordAbsense }}
-      </button> -->
-      <!-- <app-button
-        [text]="'test'"
-        [icon]="'edit_note'"
-        [class]="'e-danger e-btn-center'"
-      ></app-button> -->
-    </div>
-    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-      {{ getTodayDate() }}
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+      <h5>{{ language.recordsOfArrivalFor }} {{ getTodayDate() }}</h5>
     </div>
   </div>
   <div class="row e-sample-resize-container e-card-resize-container">
@@ -41,9 +20,9 @@
         tabindex="0"
         class="e-card profile {{ selectedChildren[i] }}"
         style="justify-content: flex-start"
-        (click)="selectChildren(item.children_id, i)"
+        (click)="selectChildren(item.id, i)"
       >
-        <div class="e-card-header">
+        <div class="e-card-header p-0">
           <div class="e-card-header-image e-card-corner">
             <app-avatar
               [name]="item.firstname + ' ' + item.lastname"
@@ -53,43 +32,46 @@
         <div class="e-card-header">
           <div class="e-card-header-caption center">
             <div class="e-card-header-title">
-              {{ item.children_firstname }} {{ item.children_lastname }}
+              {{ item.firstname }} {{ item.lastname }}
             </div>
-            <!-- <div class="e-card-sub-title">Sales Coordinator</div> -->
           </div>
         </div>
         <div class="e-card-separator"></div>
-        <!-- <div class="e-card-content">
-          Laura received a BA in psychology from the University of Washington.
-          She has also completed a course in business French. She reads and
-          writes French.
-        </div> -->
-        <div class="e-card-actions center row">
+        <div *ngIf="!loaderEvidence" class="e-card-actions center row m-0">
+          <div class="e-input-group e-control-wrapper e-outline mb-2">
+            <input
+              value="{{ reason[item.id] }}"
+              [(ngModel)]="reason[item.id]"
+              class="e-control e-field e-input e-lib e-outline e-textbox"
+              name="title_of_activity"
+              type="textbox"
+              placeholder="{{
+                absenseEvidented[item.id]
+                  ? !reason[item.id]
+                    ? language.noEnteredReasonOfAbsense
+                    : ''
+                  : language.enterReasonOfAbsense
+              }}"
+            />
+          </div>
           <button
-            *ngIf="!absenseEvidented[item.children_id]"
+            *ngIf="!absenseEvidented[item.id]"
             class="e-btn e-danger mb-2"
             title="recordAbsense"
-            (click)="recordAbsenseSingle(item.children_id)"
+            (click)="recordAbsenseSingle(item.id)"
           >
             <app-dynamic-icon [icon]="'edit_note'"></app-dynamic-icon>
             {{ language.recordAbsense }}
           </button>
           <button
-            *ngIf="absenseEvidented[item.children_id]"
+            *ngIf="absenseEvidented[item.id]"
             class="e-btn e-success mb-2"
             title="evidentedAbsense"
+            (click)="deleteRecordAbsenseSingle(item.id)"
           >
             <app-dynamic-icon [icon]="'beenhere'"></app-dynamic-icon>
             {{ language.evidentedAbsense }}
           </button>
-          <!-- <button
-            class="e-btn e-danger mb-2"
-            title="showProfile"
-            (click)="showProfile(item.children_id)"
-          >
-            <app-dynamic-icon [icon]="'account_circle'"></app-dynamic-icon>
-            {{ language.showProfile }}
-          </button> -->
         </div>
       </div>
     </div>

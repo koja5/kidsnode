@@ -1734,6 +1734,63 @@ router.post("/recordAbsenseSingle", auth, function (req, res, next) {
   }
 });
 
+router.post("/deleteRecordAbsenseSingle", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      const date = new Date().toLocaleDateString("en-US");
+      req.body.date = date;
+      conn.query(
+        "delete from record_absense where children_id = ? and date = ?",
+        [req.body.children_id, date],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getChildrenEvidentedAbsense", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        const date = new Date().toLocaleDateString("en-US");
+        conn.query(
+          "select * from record_absense r where date = ?",
+          [date],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(err);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
 router.get("/getChildrensAndAbsense", auth, async (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {

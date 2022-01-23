@@ -10,6 +10,7 @@ import { RecordsOfArrivalsComponent } from '../records-of-arrivals/records-of-ar
 import { AvatarComponent } from 'src/app/components/dashboard/common/avatar/avatar.component';
 import { CommonModule } from '@angular/common';
 import { CalendarOfActivityComponent } from '../calendar-of-activity/calendar-of-activity.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { CalendarOfActivityComponent } from '../calendar-of-activity/calendar-of
     AvatarComponent,
     CalendarOfActivityComponent
   ],
-  imports: [CommonModule, ChildrenRouting, DynamicModuleModule],
+  imports: [FormsModule , CommonModule, ChildrenRouting, DynamicModuleModule],
   providers: [],
 })
 export class ChildrenModule {}

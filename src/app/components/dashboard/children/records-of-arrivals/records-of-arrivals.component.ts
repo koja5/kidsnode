@@ -14,8 +14,9 @@ export class RecordsOfArrivalsComponent implements OnInit {
   public data: any;
   public selectedChildren: any = {};
   public selectedChildrenData: any = [];
-  public reason!: string;
+  public reason: any = {};
   public absenseEvidented: string[] = [];
+  public loaderEvidence = true;
 
   constructor(
     private helpService: HelpService,
@@ -30,23 +31,47 @@ export class RecordsOfArrivalsComponent implements OnInit {
   }
 
   initializeData() {
-    this.apiService.callGetMethod('/api/getChildrensAndAbsense', '').subscribe((data) => {
-      this.data = data;
-    });
+    this.apiService
+      .callGetMethod('/api/getChildrensAndAbsense', '')
+      .subscribe((data) => {
+        this.data = data;
+        this.getEvidentedAbsense();
+      });
+  }
+
+  getEvidentedAbsense() {
+    this.apiService
+      .callGetMethod('/api/getChildrenEvidentedAbsense', '')
+      .subscribe((data) => {
+        this.setEvidentedAbsense(data);
+      });
+  }
+
+  setEvidentedAbsense(data: any) {
+    if (data) {
+      for (let i = 0; i < data.length; i++) {
+        this.absenseEvidented[data[i]['children_id']] = 'evidented';
+        if (data[i].reason) {
+          this.reason[data[i]['children_id']] = data[i].reason;
+        }
+      }
+    }
+    this.loaderEvidence = false;
   }
 
   showProfile(id: number) {
     this.router.navigate(['/dashboard/children/profile-children/' + id]);
   }
 
+  //select each item(border looks)
   selectChildren(item: any, index: number) {
-    if (!this.selectedChildren[index] || this.selectedChildren[index] === '') {
-      this.selectedChildren[index] = 'selected';
-      this.selectedChildrenData.push(item);
-    } else {
-      this.selectedChildren[index] = '';
-      this.removeFromArray(item);
-    }
+    // if (!this.selectedChildren[index] || this.selectedChildren[index] === '') {
+    //   this.selectedChildren[index] = 'selected';
+    //   this.selectedChildrenData.push(item);
+    // } else {
+    //   this.selectedChildren[index] = '';
+    //   this.removeFromArray(item);
+    // }
   }
 
   removeFromArray(item: any) {
@@ -85,13 +110,30 @@ export class RecordsOfArrivalsComponent implements OnInit {
   recordAbsenseSingle(children_id: number) {
     const data = {
       children_id: children_id,
-      reason: this.reason,
+      reason: this.reason[children_id],
     };
     this.apiService
       .callPostMethod('/api/recordAbsenseSingle', data)
       .subscribe((data) => {
         if (data) {
           this.absenseEvidented[children_id] = 'evidented';
+          this.toastr.showSuccess();
+        } else {
+          this.toastr.showError();
+        }
+      });
+  }
+
+  deleteRecordAbsenseSingle(children_id: number) {
+    const data = {
+      children_id: children_id,
+    };
+    this.apiService
+      .callPostMethod('/api/deleteRecordAbsenseSingle', data)
+      .subscribe((data) => {
+        if (data) {
+          this.absenseEvidented[children_id] = '';
+          this.reason[children_id] = '';
           this.toastr.showSuccess();
         } else {
           this.toastr.showError();

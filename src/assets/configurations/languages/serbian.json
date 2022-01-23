@@ -53,5 +53,8 @@
     "recordArrival": "Evidentiraj dolazak",
     "recordAbsense": "Evidentiraj izostanak",
     "evidentedAbsense": "Evidentiran izostanak",
-    "noRecords": "Trazeni podatak ne postoji."
+    "noRecords": "Trazeni podatak ne postoji.",
+    "enterReasonOfAbsense": "Unesite razlog izostanka (opciono).",
+    "noEnteredReasonOfAbsense": "Nije unet razlog izostanka!",
+    "recordsOfArrivalFor": "Evidencija dolazaka za "
 }

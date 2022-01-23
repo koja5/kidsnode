@@ -1,5 +1,31 @@
 [
   {
+    "title": "Kontrolni panel",
+    "icon": "admin_panel_settings",
+    "menu": [
+      {
+        "icon": "admin_panel_settings",
+        "title": "Kontrolni panel",
+        "rights": "",
+        "children": [
+          {
+            "icon": "text_snippet",
+            "title": "Deca",
+            "link": "/dashboard/control-panel/children",
+            "rights": "",
+            "isDefault": true
+          },
+          {
+            "icon": "speaker_notes",
+            "title": "Zaposleni",
+            "link": "/dashboard/control-panel/employee",
+            "rights": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "Deca",
     "icon": "child_care",
     "menu": [

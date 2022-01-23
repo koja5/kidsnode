@@ -37,7 +37,6 @@ import {
   MonthService,
   RecurrenceEditorAllModule,
   ScheduleAllModule,
-  ScheduleModule,
   WeekService,
   WorkWeekService,
 } from '@syncfusion/ej2-angular-schedule';
@@ -47,6 +46,8 @@ import { UploaderModule } from '@syncfusion/ej2-angular-inputs';
 import { DynamicPdfViewerComponent } from '../dynamic-pdf-viewer/dynamic-pdf-viewer.component';
 import { DynamicIconComponent } from '../common/dynamic-icon/dynamic-icon.component';
 import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
+import { DynamicControlPanelComponent } from '../dynamic-control-panel/dynamic-control-panel.component';
+import { ChartModule } from '@syncfusion/ej2-angular-charts';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
     DynamicSchedulerComponent,
     DynamicUploadComponent,
     DynamicPdfViewerComponent,
-    DynamicIconComponent
+    DynamicIconComponent,
+    DynamicControlPanelComponent
   ],
   exports: [
     DynamicGridComponent,
@@ -73,7 +75,8 @@ import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
     DynamicSchedulerComponent,
     DynamicUploadComponent,
     DynamicPdfViewerComponent,
-    DynamicIconComponent
+    DynamicIconComponent,
+    DynamicControlPanelComponent
   ],
   imports: [
     CommonModule,
@@ -89,7 +92,8 @@ import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
     DropDownButtonModule,
     SplitButtonModule,
     UploaderModule,
-    DialogAllModule
+    DialogAllModule,
+    ChartModule
   ],
   providers: [
     EditService,

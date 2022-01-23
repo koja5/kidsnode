@@ -8,8 +8,8 @@
 .card-control-section.vertical_card_layout
   .e-card.profile
   .e-card-header-image {
-  width: 132px;
-  height: 128px;
+  width: 98px;
+  height: 93px;
   background-size: cover;
   border-style: solid;
   border-color: rgb(28 34 96);
@@ -30,12 +30,12 @@
 }
 
 .e-card.selected {
-    border: 1px solid #c7c7c7;
-    box-shadow: 0px 0px 2px 2px #1c2260;
+  border: 1px solid #c7c7c7;
+  box-shadow: 0px 0px 2px 2px #1c2260;
 }
 
 .e-card.profile {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .card-control-section.vertical_card_layout
