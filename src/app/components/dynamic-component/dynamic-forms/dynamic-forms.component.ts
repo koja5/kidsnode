@@ -14,7 +14,6 @@ import { FieldType } from 'src/app/enums/field-type';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
-import { DialogModalComponent } from '../../common/dialog-modal/dialog-modal.component';
 
 import { FieldConfig } from './models/field-config';
 import { FieldsWithAdditionalInfo } from './models/fields-with-additional-info';

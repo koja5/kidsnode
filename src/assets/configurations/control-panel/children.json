@@ -1,10 +1,88 @@
 {
-    "widgets": [],
+    "widgets": [
+        {
+            "title": "Orders",
+            "width": "col-md-3",
+            "value": 1235,
+            "icon": "group"
+        },
+        {
+            "title": "Orders",
+            "width": "col-md-3",
+            "value": 1235,
+            "icon": "group"
+        },
+        {
+            "title": "Orders",
+            "width": "col-md-3",
+            "value": 1235,
+            "icon": "group"
+        },
+        {
+            "title": "Orders",
+            "width": "col-md-3",
+            "value": 1235,
+            "icon": "group"
+        },
+        {
+            "type": "complex",
+            "title": "Evidencija prisutnosti",
+            "items": [
+                {
+                    "width": "col-md-6",
+                    "title": "Prisutno",
+                    "value": 25
+                },
+                {
+                    "width": "col-md-6",
+                    "title": "Nije prisutno",
+                    "value": 2
+                }
+            ],
+            "buttons": [
+                {
+                    "title": "Pogledaj evidenciju dolazaka",
+                    "class": "button-action e-info e-control e-btn",
+                    "url": "/dashboard/children/records-of-arrivals"
+                }
+            ],
+            "width": "col-md-6",
+            "value": 1235,
+            "icon": "group"
+        },
+        {
+            "type": "complex",
+            "title": "Complex",
+            "items": [
+                {
+                    "width": "col-md-6",
+                    "title": "Prisutno",
+                    "value": 25
+                },
+                {
+                    "width": "col-md-6",
+                    "title": "Nije prisutno",
+                    "value": 2
+                }
+            ],
+            "buttons": [
+                {
+                    "title": "Pogledaj evidenciju dolazaka",
+                    "class": "button-action e-info e-control e-btn",
+                    "url": "/dashboard"
+                }
+            ],
+            "width": "col-md-6",
+            "value": 1235,
+            "icon": "group"
+        }
+    ],
     "charts": [
         {
             "type": "pie",
-            "title": "Statistika dolaznosti",
             "name": "statistic",
+            "title": "Statistika 2",
+            "width": "col-md-4",
             "request": {
                 "type": "GET",
                 "api": "/api/control-panel/getChildrensStatistic",
@@ -17,7 +95,23 @@
         },
         {
             "type": "pie",
-            "title": "Statistika dolaznosti 2",
+            "title": "Statistika 2",
+            "width": "col-md-4",
+            "name": "statistic2",
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getChildrensStatistic",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "xName": "number",
+            "yName": "kindergarden_subgroup_id"
+        },
+        {
+            "type": "pie",
+            "title": "Statistika 2",
+            "width": "col-md-4",
             "name": "statistic2",
             "request": {
                 "type": "GET",

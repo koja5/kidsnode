@@ -57,20 +57,20 @@ export class DynamicPieComponent implements OnInit {
     enable: true,
     format: '${point.x} : <b>${point.y}%</b>',
   };
-  public title: string = 'Mobile Browser Statistics';
+  public loader = true;
   constructor(
     private apiService: CallApiService,
     private router: ActivatedRoute
   ) {}
   ngOnInit(): void {
+    this.loader = true;
     this.getData();
   }
 
   getData() {
-    this.apiService
-      .callApi(this.config, this.router)
-      .subscribe((data) => {
-        this.data = data;
-      });
+    this.apiService.callApi(this.config, this.router).subscribe((data) => {
+      this.data = data;
+      this.loader = false;
+    });
   }
 }

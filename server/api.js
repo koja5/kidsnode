@@ -208,9 +208,7 @@ router.post("/login", async (req, res, next) => {
                 );
                 logger.log(
                   "info",
-                  `UserID: ${
-                    req.body.username
-                  } is LOGIN at ${new Date().toDateString()}.`
+                  `UserID: ${req.body.username} is LOGIN at ${new Date()}.`
                 );
                 return res.json({
                   token: token,

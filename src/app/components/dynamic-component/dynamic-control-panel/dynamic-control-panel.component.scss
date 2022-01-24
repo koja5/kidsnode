@@ -1,0 +1,36 @@
+.card-title {
+  font-size: 15px;
+  margin: 0 0 7px 0;
+  font-weight: 600;
+}
+
+
+.mat-no-height {
+    height: auto !important;
+    width: auto !important;
+    font-size: 35px;
+}
+
+.bg-primary.bg-soft {
+    background-color: rgba(85,110,230,.25)!important;
+}
+
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(85,110,230), 1)!important;
+}
+
+.img-fluid {
+    width: 120px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.profile-user-wid {
+    margin-top: -26px;
+}
+
+.avatar-md {
+    height: 4.5rem;
+    width: 4.5rem;
+}

@@ -10,7 +10,7 @@ import { SettingsComponent } from '../settings/settings.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'children',
+    redirectTo: 'control-panel',
     pathMatch: 'full',
   },
   {

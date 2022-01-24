@@ -1,7 +1,11 @@
+<div *ngIf="loader" style="height: 70vh">
+  <app-loader></app-loader>
+</div>
+
 <ejs-accumulationchart
+  *ngIf="!loader"
   [legendSettings]="legendSettings"
   [tooltip]="tooltip"
-  [title]="config?.title"
   (load)="load($event)"
   [enableAnimation]="enableAnimation"
   [center]="center"

@@ -1,0 +1,74 @@
+<div class="row">
+  <div
+    *ngFor="let item of config.widgets"
+    class="{{ item.width ? item.width : 'col-md-12' }}  pb-3"
+  >
+    <div class="card mini-stats-wid">
+      <div class="p-2">
+        <div class="d-flex" *ngIf="!item.type">
+          <div class="flex-grow-1">
+            <p class="text-muted fw-medium">
+              {{ language[item.title] ? language[item.title] : item.title }}
+            </p>
+            <h4 class="mb-0">{{ item.value }}</h4>
+          </div>
+
+          <div class="flex-shrink-0 align-self-center">
+            <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+              <span class="avatar-title">
+                <mat-icon
+                  role="img"
+                  aria-hidden="false"
+                  class="mat-icon notranslate material-icons mat-icon-no-color mat-no-height"
+                  data-mat-icon-type="font"
+                  >{{ item.icon }}</mat-icon
+                >
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex" *ngIf="item.type === 'complex'">
+          <div class="flex-grow-1">
+            <p class="text-muted fw-medium">
+              {{ language[item.title] ? language[item.title] : item.title }}
+            </p>
+            <div class="row" *ngIf="item.items">
+              <div
+                *ngFor="let children of item.items"
+                class="text-center"
+                [ngClass]="children.width ? children.width : 'col-md-12'"
+              >
+                <mat-icon
+                  *ngIf="children.icon"
+                  role="img"
+                  aria-hidden="false"
+                  class="mat-icon notranslate material-icons mat-icon-no-color mat-no-height"
+                  data-mat-icon-type="font"
+                  >{{ children.icon }}</mat-icon
+                >
+                <h4 class="mb-0 text-center">{{ children.value }}</h4>
+                <p class="text-muted">
+                  {{
+                    language[children.title]
+                      ? language[children.title]
+                      : children.title
+                  }}
+                </p>
+              </div>
+            </div>
+            <div class="text-center" *ngIf="item.buttons">
+              <div
+                *ngFor="let children of item.buttons"
+                class="{{ children.width }} text-center"
+              >
+                <a class="{{ children.class }}" routerLink="{{ children.url }}">
+                  {{ children.title }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

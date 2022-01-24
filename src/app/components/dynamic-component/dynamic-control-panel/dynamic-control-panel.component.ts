@@ -33,4 +33,16 @@ export class DynamicControlPanelComponent implements OnInit {
         this.loader = false;
       });
   }
+
+  getTodayDate() {
+    const date = new Date();
+    return (
+      date.getDate() +
+      '.' +
+      (date.getMonth() + 1) +
+      '.' +
+      date.getFullYear() +
+      '.'
+    );
+  }
 }
