@@ -3,30 +3,30 @@
         {
             "title": "Orders",
             "width": "col-md-3",
-            "value": 1235,
-            "icon": "group"
+            "value": 15,
+            "icon": "check_circle"
         },
         {
             "title": "Orders",
             "width": "col-md-3",
-            "value": 1235,
-            "icon": "group"
+            "value": 25,
+            "icon": "schedule"
         },
         {
             "title": "Orders",
             "width": "col-md-3",
-            "value": 1235,
-            "icon": "group"
+            "value": 120,
+            "icon": "fingerprint"
         },
         {
             "title": "Orders",
             "width": "col-md-3",
-            "value": 1235,
-            "icon": "group"
+            "value": 65,
+            "icon": "verified"
         },
         {
             "type": "complex",
-            "title": "Evidencija prisutnosti",
+            "title": "Evidencija prisutnosti - deca",
             "items": [
                 {
                     "width": "col-md-6",
@@ -52,17 +52,17 @@
         },
         {
             "type": "complex",
-            "title": "Complex",
+            "title": "Evidencija prisutnosti - zaposleni",
             "items": [
                 {
                     "width": "col-md-6",
                     "title": "Prisutno",
-                    "value": 25
+                    "value": 55
                 },
                 {
                     "width": "col-md-6",
                     "title": "Nije prisutno",
-                    "value": 2
+                    "value": 12
                 }
             ],
             "buttons": [
@@ -90,13 +90,13 @@
                 "fields": "",
                 "root": ""
             },
-            "xName": "number",
-            "yName": "kindergarden_subgroup_id"
+            "xName": "text",
+            "yName": "value"
         },
         {
             "type": "pie",
             "title": "Statistika 2",
-            "width": "col-md-4",
+            "width": "col-md-8",
             "name": "statistic2",
             "request": {
                 "type": "GET",
@@ -105,14 +105,14 @@
                 "fields": "",
                 "root": ""
             },
-            "xName": "number",
-            "yName": "kindergarden_subgroup_id"
+            "xName": "text",
+            "yName": "value"
         },
         {
-            "type": "pie",
-            "title": "Statistika 2",
-            "width": "col-md-4",
-            "name": "statistic2",
+            "type": "column",
+            "title": "Dolasci u prethodnim danima",
+            "width": "col-md-12",
+            "name": "arrives",
             "request": {
                 "type": "GET",
                 "api": "/api/control-panel/getChildrensStatistic",
@@ -120,8 +120,8 @@
                 "fields": "",
                 "root": ""
             },
-            "xName": "number",
-            "yName": "kindergarden_subgroup_id"
+            "xName": "text",
+            "yName": "value"
         }
     ]
 }

@@ -42,7 +42,21 @@ router.get("/getChildrensStatistic", auth, async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              res.json(rows);
+              const response = [
+                {
+                  text: "Prisutno",
+                  value: 13
+                },
+                {
+                  text: "Nije prisutno",
+                  value: 3
+                },
+                {
+                  text: "Nisu unete informacije",
+                  value: 5
+                }
+              ]
+              res.json(response);
             }
           }
         );

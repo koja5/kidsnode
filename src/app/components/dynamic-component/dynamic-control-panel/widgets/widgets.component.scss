@@ -16,3 +16,16 @@
   padding: 13px;
   border-radius: 50%;
 }
+
+.avatar-title:hover {
+  background: #449adf;
+  cursor: pointer;
+}
+
+.refresh mat-icon {
+  position: absolute;
+  font-size: 15px;
+  right: 0px;
+  top: 3px;
+  cursor: pointer;
+}

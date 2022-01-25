@@ -472,9 +472,10 @@ body[data-sidebar="dark"] .logo-light {
   display: block;
 }
 .vertical-collpsed .vertical-menu {
-  position: absolute;
+  position: fixed;
   width: 70px !important;
   z-index: 1000;
+  overflow: auto;
 }
 .vertical-collpsed .vertical-menu .simplebar-content-wrapper,
 .vertical-collpsed .vertical-menu .simplebar-mask {
