@@ -11,13 +11,23 @@
     },
     {
         "title": {
-            "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>receipt</mat-icon> Kontrolni pregledi</div>",
+            "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>receipt</mat-icon> Sistematski pregledi</div>",
             "class": "e-fill",
             "headerStyle": "e-fill"
         },
-        "type": "forms",
-        "path": "/forms/children/medical-records",
-        "file": "basic-condition.json"
+        "type": "grid",
+        "path": "/grids/children/profile-children/medical-records",
+        "file": "control-review.json"
+    },
+    {
+        "title": {
+            "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>control_point_duplicate</mat-icon> Kontrolni i ostali pregledi</div>",
+            "class": "e-fill",
+            "headerStyle": "e-fill"
+        },
+        "type": "grid",
+        "path": "/grids/children/profile-children/medical-records",
+        "file": "control-other-review.json"
     },
     {
         "title": {
@@ -25,9 +35,9 @@
             "class": "e-fill",
             "headerStyle": "e-fill"
         },
-        "type": "forms",
-        "path": "/forms/children/medical-records",
-        "file": "basic-condition.json"
+        "type": "grid",
+        "path": "/grids/children/profile-children/medical-records",
+        "file": "special-review.json"
     },
     {
         "title": {
@@ -45,9 +55,9 @@
             "class": "e-fill",
             "headerStyle": "e-fill"
         },
-        "type": "forms",
-        "path": "/forms/children/medical-records",
-        "file": "basic-condition.json"
+        "type": "grid",
+        "path": "/grids/children/profile-children/medical-records",
+        "file": "weight-height-review.json"
     },
     {
         "title": {
@@ -55,8 +65,8 @@
             "class": "e-fill",
             "headerStyle": "e-fill"
         },
-        "type": "forms",
-        "path": "/forms/children/medical-records",
-        "file": "basic-condition.json"
+        "type": "grid",
+        "path": "/grids/children/profile-children/medical-records",
+        "file": "observations.json"
     }
 ]

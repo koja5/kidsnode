@@ -49,7 +49,13 @@
     "Group",
     "Ungroup"
   ],
-  "toolbar": ["Add", "Edit", "Delete", "Print", "Search"],
+  "toolbar": [
+    "Add",
+    "Edit",
+    "Delete",
+    "Print",
+    "Search"
+  ],
   "editSettings": {
     "allowEditing": true,
     "allowAdding": true,
@@ -100,7 +106,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "firstname",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "lastname",
@@ -109,7 +117,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "lastname",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "birthday",
@@ -119,7 +129,9 @@
       "format": "dd.MM.yyyy",
       "class": "text-align-right",
       "field": "birthday",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "placeOfLiving",
@@ -128,7 +140,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "place_of_living",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "telephone",
@@ -137,7 +151,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "telephone",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "email",
@@ -146,7 +162,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "email",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "kindergardenSubgroupName",
@@ -155,7 +173,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "kindergarden_subgroup_name",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "userType",
@@ -164,7 +184,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "user_type_name",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "",
@@ -179,7 +201,9 @@
         "class": "btn btn-none button-text-center button-action text-center",
         "classIcon": "remove_red_eye",
         "link": "dashboard/employee/profile-employee",
-        "parameters": ["id"]
+        "parameters": [
+          "id"
+        ]
       }
     }
   ],
@@ -281,7 +305,10 @@
       "class": "e-outline",
       "name": "user_type_id",
       "title": "userType",
-      "field": { "text": "name", "value": "id" },
+      "field": {
+        "text": "name",
+        "value": "id"
+      },
       "request": {
         "type": "GET",
         "api": "/api/getUserOfType",
@@ -301,7 +328,10 @@
       "class": "e-outline",
       "name": "kindergarden_subgroup_id",
       "title": "kindergardenSubgroupName",
-      "field": { "text": "name", "value": "id" },
+      "field": {
+        "text": "name",
+        "value": "id"
+      },
       "request": {
         "type": "GET",
         "api": "/api/getKindergardenSubgroup",
@@ -318,7 +348,7 @@
     {
       "type": "button",
       "width": "col-md-12",
-      "class": "e-info  button-action",
+      "class": "e-info button-action",
       "name": "submit",
       "title": "saveButton",
       "field": "submit",
