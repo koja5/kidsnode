@@ -45,7 +45,7 @@ export class DynamicFormsComponent implements OnInit {
   public modalShow: boolean = false;
 
   get controls() {
-    return this.config.config!.filter(({ type }) => type !== 'button');
+    return this.config?.config!.filter(({ type }) => type !== 'button');
   }
   get changes() {
     return this.form.valueChanges;

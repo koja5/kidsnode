@@ -47,6 +47,7 @@ import { DynamicPdfViewerComponent } from '../dynamic-pdf-viewer/dynamic-pdf-vie
 import { DynamicIconComponent } from '../common/dynamic-icon/dynamic-icon.component';
 import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
 import { DynamicControlPanelModule } from '../dynamic-control-panel/dynamic-control-panel.module';
+import { DynamicBreadcrumbComponent } from '../common/dynamic-breadcrumb/dynamic-breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { DynamicControlPanelModule } from '../dynamic-control-panel/dynamic-cont
     DynamicUploadComponent,
     DynamicPdfViewerComponent,
     DynamicIconComponent,
+    DynamicBreadcrumbComponent
   ],
   exports: [
     DynamicGridComponent,
@@ -74,6 +76,7 @@ import { DynamicControlPanelModule } from '../dynamic-control-panel/dynamic-cont
     DynamicUploadComponent,
     DynamicPdfViewerComponent,
     DynamicIconComponent,
+    DynamicBreadcrumbComponent
   ],
   imports: [
     CommonModule,

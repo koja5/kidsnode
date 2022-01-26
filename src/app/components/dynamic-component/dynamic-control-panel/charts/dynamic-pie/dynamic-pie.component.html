@@ -4,6 +4,7 @@
 
 <ejs-accumulationchart
   *ngIf="!loader"
+  #pie
   [legendSettings]="legendSettings"
   [tooltip]="tooltip"
   (load)="load($event)"
