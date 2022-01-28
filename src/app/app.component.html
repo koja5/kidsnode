@@ -1,13 +1,7 @@
-
-<!-- 
-<app-checkbox></app-checkbox>
-<app-radio></app-radio>
-<app-button></app-button>
-<app-text-box></app-text-box>
-<app-numeric-textbox></app-numeric-textbox>
-<app-combobox></app-combobox>
-<app-multiselect></app-multiselect>
-
-<app-dynamic-grid></app-dynamic-grid> -->
 <router-outlet></router-outlet>
 
+<app-online-status *ngIf="connectionStatus"
+  [onlineStatusMessage]="connectionStatusMessage"
+  [onlineStatus]="connectionStatus"
+>
+</app-online-status>

@@ -15,11 +15,13 @@ import { LoginModule } from './components/login/routing-module/login.module';
 import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/common/not-found/not-found.component';
 import { DynamicBreadcrumbComponent } from './components/dynamic-component/common/dynamic-breadcrumb/dynamic-breadcrumb.component';
+import { OnlineStatusComponent } from './components/common/online-status/online-status.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    OnlineStatusComponent
   ],
   imports: [
     BrowserModule,

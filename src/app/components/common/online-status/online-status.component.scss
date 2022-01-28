@@ -1,0 +1,47 @@
+.online {
+  background-color: green;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  z-index: 1000000;
+  width: 100%;
+  bottom: 0px;
+
+  animation: online-response 0.5s 1;
+  -webkit-animation: online-response 0.5s 1;
+  animation-fill-mode: forwards;
+
+  animation-delay: 4s;
+  -webkit-animation-delay: 1s;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.offline {
+  background-color: red;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  z-index: 1000000;
+  width: 100%;
+  bottom: 0px;
+}
+
+@keyframes online-response {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes online-response {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

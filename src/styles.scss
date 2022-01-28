@@ -160,10 +160,6 @@ input:focus-visible {
   border-radius: 17px;
 }
 
-.e-input-group {
-  // border-radius: 0px !important;
-}
-
 .e-tab.e-fill .e-tab-header .e-toolbar-item.e-active .e-tab-wrap {
   background: #202562 !important;
 }
@@ -284,4 +280,8 @@ input:focus-visible {
 
 .background-none {
   background: none !important;
+}
+
+.normal .toast-container.toast-top-center .ngx-toastr, .normal .toast-container.toast-bottom-center .ngx-toastr {
+  width: 50% !important;
 }

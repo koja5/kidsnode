@@ -94,24 +94,9 @@
             "yName": "value"
         },
         {
-            "type": "pie",
-            "title": "Statistika 2",
-            "width": "col-md-8",
-            "name": "statistic2",
-            "request": {
-                "type": "GET",
-                "api": "/api/control-panel/getChildrensStatistic",
-                "parameters": [],
-                "fields": "",
-                "root": ""
-            },
-            "xName": "text",
-            "yName": "value"
-        },
-        {
             "type": "column",
             "title": "Dolasci u prethodnim danima",
-            "width": "col-md-12",
+            "width": "col-md-8",
             "name": "arrives",
             "request": {
                 "type": "GET",
