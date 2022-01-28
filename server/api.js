@@ -2392,4 +2392,132 @@ router.post("/deleteSupplierCompany", (req, res, next) => {
 
 /* END SUPPLIERS COMPANY */
 
+/* CHILDREN MEDICAL RECORDS OBSERVATIONS */
+
+router.get(
+  "/getMedicalRecordObservations/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select * from medical_record_observations where children_id = ?",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                res.json(err);
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+              } else {
+                res.json(rows);
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post("/createMedicalRecordObservation", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      req.body.children_id = req.body.id;
+      delete req.body.id;
+
+      conn.query(
+        "insert into medical_record_observations SET ?",
+        [req.body],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log(
+              "error",
+              `${err.sql}. ${err.sqlMessage}.`
+            );
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateMedicalRecordObservation", function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    conn.query(
+      "update medical_record_observations SET ? where id = ?",
+      [req.body, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          if (!err) {
+            res.json(true);
+          } else {
+            res.json(false);
+          }
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+router.post("/deleteMedicalRecordObservation", (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from medical_record_observations where id = '" +
+            req.body.id +
+            "'",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDREN MEDICAL RECORDS OBSERVATIONS END */
+
 module.exports = router;

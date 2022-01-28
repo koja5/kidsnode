@@ -15,5 +15,8 @@ export class OnlineStatusComponent implements OnInit {
 
   ngOnInit() {
     this.language = this.helpService.getLanguage();
+    // if (this.onlineStatus === 'online') {
+    //   location.reload();
+    // }
   }
 }

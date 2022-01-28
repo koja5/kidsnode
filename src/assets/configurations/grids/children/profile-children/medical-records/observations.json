@@ -2,7 +2,7 @@
     "pageSize": 10,
     "request": {
         "type": "GET",
-        "api": "/api/getAllChildrenNotesByChildrenId",
+        "api": "/api/getMedicalRecordObservations",
         "url": [
             "id"
         ],
@@ -68,7 +68,7 @@
     "editSettingsRequest": {
         "add": {
             "type": "POST",
-            "api": "/api/createChildrenNotes",
+            "api": "/api/createMedicalRecordObservation",
             "url": [
                 "id"
             ],
@@ -78,14 +78,14 @@
         },
         "edit": {
             "type": "POST",
-            "api": "/api/updateChildrenNotes",
+            "api": "/api/updateMedicalRecordObservation",
             "parameters": [],
             "fields": "",
             "root": ""
         },
         "delete": {
             "type": "POST",
-            "api": "/api/deleteChildrenNotes",
+            "api": "/api/deleteMedicalRecordObservation",
             "parameters": [],
             "fields": "",
             "root": ""
