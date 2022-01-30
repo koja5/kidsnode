@@ -2,7 +2,7 @@
     "pageSize": 10,
     "request": {
         "type": "GET",
-        "api": "/api/getAllChildrenNotesByChildrenId",
+        "api": "/api/getMedicalRecordSpecialReviews",
         "url": [
             "id"
         ],
@@ -68,7 +68,7 @@
     "editSettingsRequest": {
         "add": {
             "type": "POST",
-            "api": "/api/createChildrenNotes",
+            "api": "/api/createMedicalRecordSpecialReview",
             "url": [
                 "id"
             ],
@@ -78,14 +78,14 @@
         },
         "edit": {
             "type": "POST",
-            "api": "/api/updateChildrenNotes",
+            "api": "/api/updateMedicalRecordSpecialReview",
             "parameters": [],
             "fields": "",
             "root": ""
         },
         "delete": {
             "type": "POST",
-            "api": "/api/deleteChildrenNotes",
+            "api": "/api/deleteMedicalRecordSpecialReview",
             "parameters": [],
             "fields": "",
             "root": ""
@@ -111,21 +111,32 @@
             "type": "date",
             "format": "dd.MM.yyyy",
             "class": "text-align-right",
-            "field": "creation_date",
-            "validation": {
-                "required": true
-            }
+            "field": "creation_date"
         },
         {
-            "title": "Napomena",
+            "title": "Datum kontrole",
+            "filterable": true,
+            "hideable": true,
+            "type": "date",
+            "format": "dd.MM.yyyy",
+            "class": "text-align-right",
+            "field": "date_control"
+        },
+        {
+            "title": "Nalaz",
             "filterable": true,
             "hideable": true,
             "type": "string",
             "class": "text-align-right",
-            "field": "note",
-            "validation": {
-                "required": true
-            }
+            "field": "finding"
+        },
+        {
+            "title": "Preduzete mere",
+            "filterable": true,
+            "hideable": true,
+            "type": "string",
+            "class": "text-align-right",
+            "field": "measures_taken"
         }
     ],
     "config": [
@@ -144,7 +155,7 @@
             "class": "e-outline",
             "fieldClass": "e-field e-input",
             "title": "Datum pregleda",
-            "name": "date"
+            "name": "date_control"
         },
         {
             "type": "textbox",

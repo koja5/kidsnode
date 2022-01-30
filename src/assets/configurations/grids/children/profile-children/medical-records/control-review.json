@@ -3,7 +3,7 @@
     "width": "80%",
     "request": {
         "type": "GET",
-        "api": "/api/getAllChildrenNotesByChildrenId",
+        "api": "/api/getMedicalRecordControlReviews",
         "url": [
             "id"
         ],
@@ -69,7 +69,7 @@
     "editSettingsRequest": {
         "add": {
             "type": "POST",
-            "api": "/api/createChildrenNotes",
+            "api": "/api/createMedicalRecordControlReview",
             "url": [
                 "id"
             ],
@@ -79,14 +79,14 @@
         },
         "edit": {
             "type": "POST",
-            "api": "/api/updateChildrenNotes",
+            "api": "/api/updateMedicalRecordControlReview",
             "parameters": [],
             "fields": "",
             "root": ""
         },
         "delete": {
             "type": "POST",
-            "api": "/api/deleteChildrenNotes",
+            "api": "/api/deleteMedicalRecordControlReview",
             "parameters": [],
             "fields": "",
             "root": ""
@@ -112,10 +112,39 @@
             "type": "date",
             "format": "dd.MM.yyyy",
             "class": "text-align-right",
-            "field": "creation_date",
-            "validation": {
-                "required": true
-            }
+            "field": "creation_date"
+        },
+        {
+            "title": "Težina",
+            "filterable": true,
+            "hideable": true,
+            "type": "string",
+            "class": "text-align-right",
+            "field": "body_weight"
+        },
+        {
+            "title": "Visina",
+            "filterable": true,
+            "hideable": true,
+            "type": "string",
+            "class": "text-align-right",
+            "field": "body_height"
+        },
+        {
+            "title": "Statistički razvoj",
+            "filterable": true,
+            "hideable": true,
+            "type": "string",
+            "class": "text-align-right",
+            "field": "statistical_development"
+        },
+        {
+            "title": "Koža",
+            "filterable": true,
+            "hideable": true,
+            "type": "string",
+            "class": "text-align-right",
+            "field": "skin"
         },
         {
             "title": "Napomena",
@@ -123,10 +152,7 @@
             "hideable": true,
             "type": "string",
             "class": "text-align-right",
-            "field": "note",
-            "validation": {
-                "required": true
-            }
+            "field": "note"
         }
     ],
     "config": [
@@ -145,7 +171,7 @@
             "class": "e-outline",
             "fieldClass": "e-field e-input",
             "title": "Datum pregleda",
-            "name": "date"
+            "name": "date_control"
         },
         {
             "type": "textbox",

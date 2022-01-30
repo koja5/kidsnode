@@ -2392,6 +2392,405 @@ router.post("/deleteSupplierCompany", (req, res, next) => {
 
 /* END SUPPLIERS COMPANY */
 
+/* CHILDREN MEDICAL RECORDS CONTROL REVIEW */
+
+router.get(
+  "/getMedicalRecordControlReviews/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select * from medical_record_control_reviews where children_id = ?",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                res.json(err);
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+              } else {
+                res.json(rows);
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/createMedicalRecordControlReview",
+  auth,
+  function (req, res, next) {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+        req.body.children_id = req.body.id;
+        req.body.date_control = new Date(req.body.date_control);
+        delete req.body.id;
+
+        conn.query(
+          "insert into medical_record_control_reviews SET ?",
+          [req.body],
+          function (err, rows) {
+            conn.release();
+            if (!err) {
+              res.json(true);
+            } else {
+              logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
+              res.json(false);
+            }
+          }
+        );
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post("/updateMedicalRecordControlReview", function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    req.body.date_control = new Date(req.body.date_control);
+
+    conn.query(
+      "update medical_record_control_reviews SET ? where id = ?",
+      [req.body, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          if (!err) {
+            res.json(true);
+          } else {
+            res.json(false);
+          }
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+router.post("/deleteMedicalRecordControlReview", (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from medical_record_control_reviews where id = '" +
+            req.body.id +
+            "'",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDREN MEDICAL RECORDS CONTROL REVIEW */
+
+/* CHILDREN MEDICAL RECORDS CONTROL OTHER REVIEW */
+
+router.get(
+  "/getMedicalRecordControlOtherReviews/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select * from medical_record_control_other_reviews where children_id = ?",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                res.json(err);
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+              } else {
+                res.json(rows);
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/createMedicalRecordControlOtherReview",
+  auth,
+  function (req, res, next) {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+        req.body.children_id = req.body.id;
+        req.body.date_control = new Date(req.body.date_control);
+        delete req.body.id;
+
+        conn.query(
+          "insert into medical_record_control_other_reviews SET ?",
+          [req.body],
+          function (err, rows) {
+            conn.release();
+            if (!err) {
+              res.json(true);
+            } else {
+              logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
+              res.json(false);
+            }
+          }
+        );
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/updateMedicalRecordControlOtherReview",
+  function (req, res, next) {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+
+      req.body.date_control = new Date(req.body.date_control);
+
+      conn.query(
+        "update medical_record_control_other_reviews SET ? where id = ?",
+        [req.body, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            if (!err) {
+              res.json(true);
+            } else {
+              res.json(false);
+            }
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
+          }
+        }
+      );
+    });
+  }
+);
+
+router.post("/deleteMedicalRecordControlOtherReview", (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from medical_record_control_other_reviews where id = '" +
+            req.body.id +
+            "'",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDREN MEDICAL RECORDS CONTROL OTHER REVIEW */
+
+/* CHILDREN MEDICAL RECORDS SPECIAL REVIEW */
+
+router.get(
+  "/getMedicalRecordSpecialReviews/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select * from medical_record_special_reviews where children_id = ?",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                res.json(err);
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+              } else {
+                res.json(rows);
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/createMedicalRecordSpecialReview",
+  auth,
+  function (req, res, next) {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+        req.body.children_id = req.body.id;
+        req.body.date_control = new Date(req.body.date_control);
+        delete req.body.id;
+
+        conn.query(
+          "insert into medical_record_special_reviews SET ?",
+          [req.body],
+          function (err, rows) {
+            conn.release();
+            if (!err) {
+              res.json(true);
+            } else {
+              logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
+              res.json(false);
+            }
+          }
+        );
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post("/updateMedicalRecordSpecialReview", function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    req.body.date_control = new Date(req.body.date_control);
+
+    conn.query(
+      "update medical_record_special_reviews SET ? where id = ?",
+      [req.body, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          if (!err) {
+            res.json(true);
+          } else {
+            res.json(false);
+          }
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+router.post("/deleteMedicalRecordSpecialReview", (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from medical_record_special_reviews where id = '" +
+            req.body.id +
+            "'",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDREN MEDICAL RECORDS SPECIAL REVIEW */
+
 /* CHILDREN MEDICAL RECORDS OBSERVATIONS */
 
 router.get(
@@ -2444,10 +2843,7 @@ router.post("/createMedicalRecordObservation", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
-            logger.log(
-              "error",
-              `${err.sql}. ${err.sqlMessage}.`
-            );
+            logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
             res.json(false);
           }
         }
