@@ -9,13 +9,14 @@ import { SettingsComponent } from '../settings.component';
 import { DynamicModuleModule } from 'src/app/components/dynamic-component/dynamic-module/dynamic-module.module';
 import { SettingsRouting } from './settings-routing';
 import { ControlPanelComponent } from '../control-panel/control-panel.component';
+import { SettingGeneralComponent } from '../setting-items/setting-general/setting-general.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
 
 @NgModule({
   declarations: [SettingsComponent, 
-    ControlPanelComponent],
+    ControlPanelComponent, SettingGeneralComponent],
   imports: [CommonModule, DynamicModuleModule, SettingsRouting, MatIconModule],
   providers: [
     {

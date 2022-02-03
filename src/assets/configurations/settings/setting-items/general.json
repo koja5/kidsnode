@@ -1,0 +1,162 @@
+{
+    "class": "margin-auto width-60",
+    "actionButtons": {
+        "class": "text-right p-3",
+        "simpleButtons": [],
+        "dropDownButtons": {
+            "content": "More",
+            "items": [
+                {
+                    "text": "Edit",
+                    "id": "edit",
+                    "iconCss": "ddb-icons e-edit"
+                },
+                {
+                    "text": "Delete",
+                    "id": "delete",
+                    "iconCss": "ddb-icons e-remove"
+                }
+            ]
+        },
+        "splitButtons": {
+            "content": "",
+            "items": []
+        }
+    },
+    "request": {
+        "type": "GET",
+        "api": "/api/getEmployeeById/",
+        "url": [
+            "id"
+        ],
+        "parameters": [],
+        "fields": "",
+        "root": ""
+    },
+    "editSettingsRequest": {
+        "add": {
+            "type": "POST",
+            "api": "/api/createEmployee",
+            "parameters": [],
+            "fields": "",
+            "root": ""
+        },
+        "edit": {
+            "type": "POST",
+            "api": "/api/updateEmployee",
+            "parameters": [],
+            "fields": "",
+            "root": ""
+        },
+        "delete": {
+            "type": "POST",
+            "api": "/api/deleteEmployee",
+            "parameters": [],
+            "fields": "",
+            "root": ""
+        }
+    },
+    "config": [
+        {
+            "type": "label",
+            "width": "col-md-12",
+            "title": "Podaci o vrtiću",
+            "text": "U nastavku se nalaze osnovne informaicije o Vašem vrtiću!"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12 hide",
+            "class": "e-outline",
+            "name": "id",
+            "title": "ID",
+            "field": "id",
+            "readonly": true
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "firstname",
+            "title": "Ime vrtića",
+            "field": "firstname"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "lastname",
+            "title": "Adresa",
+            "field": "lastname"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "place_of_living",
+            "title": "Telefon",
+            "field": "place_of_living"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "professional_qualifications",
+            "title": "Email",
+            "field": "professional_qualifications"
+        },
+        {
+            "type": "label",
+            "width": "col-md-12",
+            "title": "Podaci o kontakt osobi"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "telephone",
+            "title": "Ime",
+            "field": "telephone"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "email",
+            "title": "Prezime",
+            "field": "email"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "telephone",
+            "title": "Adresa",
+            "field": "telephone"
+        }, 
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "telephone",
+            "title": "Telefon",
+            "field": "telephone"
+        }, 
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "telephone",
+            "title": "Email",
+            "field": "telephone"
+        },        
+        {
+            "type": "button",
+            "width": "col-md-12",
+            "class": "e-info  button-action",
+            "name": "submit",
+            "title": "saveButton",
+            "field": "submit",
+            "positionClass": "position-end mt-3 col-md-12"
+        }
+    ]
+}

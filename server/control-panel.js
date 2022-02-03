@@ -34,7 +34,7 @@ router.get("/getChildrensStatistic", auth, async (req, res, next) => {
         res.json(err);
       } else {
         conn.query(
-          "select count(*) as 'number', c.kindergarden_subgroup_id from childrens c join parents p1 on c.mother_id = p1.id join parents p2 on c.father_id = p2.id join kindergarden_subgroup ks on c.kindergarden_subgroup_id = ks.id where c.kindergarden_id = ? group by c.kindergarden_subgroup_id",
+          "select count(*) as 'number', date from record_absense where kindergarden_id = ? group by date order by date asc",
           [req.user.user.kindergarden],
           function (err, rows, fields) {
             conn.release();
@@ -42,21 +42,7 @@ router.get("/getChildrensStatistic", auth, async (req, res, next) => {
               res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
-              const response = [
-                {
-                  text: "Prisutno",
-                  value: 13
-                },
-                {
-                  text: "Nije prisutno",
-                  value: 3
-                },
-                {
-                  text: "Nisu unete informacije",
-                  value: 5
-                }
-              ]
-              res.json(response);
+              res.json(rows);
             }
           }
         );

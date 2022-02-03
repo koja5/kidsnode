@@ -12,16 +12,23 @@
       [componentType]="'form'"
       (refreshFormData)="refreshFormData($event)"
     ></app-dynamic-action-button>
-    <div *ngIf="config && config.additionalInfo">
+    <div
+      *ngIf="config && config.additionalInfo"
+      class="{{ !hideActionButtons ? config?.class : '' }}"
+    >
       <div class="card card-form">
         <div class="row no-gutters">
           <div class="col-lg-4 card-body">
             <p>
-              <strong class="headings-color">{{
-                config.additionalInfo.title
-              }}</strong>
+              <strong
+                *ngIf="config.additionalInfo.title"
+                class="headings-color"
+                >{{ config.additionalInfo.title }}</strong
+              >
             </p>
-            <p class="text-muted">{{ config.additionalInfo.text }}</p>
+            <p *ngIf="config.additionalInfo.text" class="text-muted">
+              {{ config.additionalInfo.text }}
+            </p>
           </div>
           <div class="col-lg-8 card-form__body card-body">
             <form [formGroup]="form" (submit)="handleSubmit($event)">
@@ -37,7 +44,10 @@
         </div>
       </div>
     </div>
-    <div *ngIf="config && config.additionalInfo === undefined">
+    <div
+      *ngIf="config && config.additionalInfo === undefined"
+      class="{{ !hideActionButtons ? config?.class : '' }}"
+    >
       <form [formGroup]="form" (submit)="handleSubmit($event)">
         <ng-container
           *ngFor="let field of config.config"

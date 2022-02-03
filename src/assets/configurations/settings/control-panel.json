@@ -1,9 +1,9 @@
 [
     {
-        "title": "General",
-        "description": "Lollipop apple pie lollipop toffee croissant. Sugar plum fruitcake cotton candy lemon drops. Carrot cake fruitcake dragée pie cotton candy sesame snaps lollipop croissant.",
-        "icon": "settings",
-        "link": "",
+        "title": "Informacije o vrtiću",
+        "description": "Osnovne informacije o vrtiću(naziv vrtića, lokacija, broj telefona, mail adresa...)",
+        "icon": "info",
+        "link": "/dashboard/settings/general",
         "rights": ""
     },
     {

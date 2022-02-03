@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ControlPanelComponent } from '../control-panel/control-panel.component';
+import { SettingGeneralComponent } from '../setting-items/setting-general/setting-general.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'control-panel',
     component: ControlPanelComponent,
+  },
+  {
+    path: 'general',
+    component: SettingGeneralComponent,
   },
 ];
 

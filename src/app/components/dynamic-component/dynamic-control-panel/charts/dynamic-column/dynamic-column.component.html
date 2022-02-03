@@ -1,44 +1,29 @@
+<div *ngIf="loader" style="height: 70vh">
+  <app-loader></app-loader>
+</div>
+
 <ejs-chart
+  *ngIf="!loader"
   style="display: block"
-  [chartArea]="chartArea"
-  [width]="width"
+  [chartArea]="config?.chartArea"
+  [width]="config?.width"
   align="center"
   id="chartcontainer"
-  [primaryXAxis]="primaryXAxis"
-  [primaryYAxis]="primaryYAxis"
-  [title]="title"
-  [tooltip]="tooltip"
+  [primaryXAxis]="config?.primaryXAxis"
+  [primaryYAxis]="config?.primaryYAxis"
+  [title]="config?.title"
+  [tooltip]="config?.tooltip"
   (load)="load($event)"
 >
   <e-series-collection>
     <e-series
       [dataSource]="data"
       type="Column"
-      xName="x"
-      yName="y"
-      name="Gold"
+      xName="{{ config?.xName }}"
+      yName="{{ config?.yName }}"
+      name="{{ config?.name }}"
       width="2"
-      [marker]="marker"
-    >
-    </e-series>
-    <e-series
-      [dataSource]="data1"
-      type="Column"
-      xName="x"
-      yName="y"
-      name="Silver"
-      width="2"
-      [marker]="marker"
-    >
-    </e-series>
-    <e-series
-      [dataSource]="data2"
-      type="Column"
-      xName="x"
-      yName="y"
-      name="Bronze"
-      width="2"
-      [marker]="marker"
+      [marker]="config?.marker"
     >
     </e-series>
   </e-series-collection>

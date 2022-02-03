@@ -99,6 +99,7 @@
                 ></app-dynamic-pie>
                 <app-dynamic-column
                   *ngIf="item.type === 'column'"
+                  [config]="item"
                 ></app-dynamic-column>
               </div>
             </div>

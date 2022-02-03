@@ -90,8 +90,8 @@
                 "fields": "",
                 "root": ""
             },
-            "xName": "text",
-            "yName": "value"
+            "xName": "date",
+            "yName": "number"
         },
         {
             "type": "column",
@@ -105,8 +105,47 @@
                 "fields": "",
                 "root": ""
             },
-            "xName": "text",
-            "yName": "value"
+            "xName": "date",
+            "yName": "number",
+            "primaryXAxis": {
+                "valueType": "Category",
+                "interval": 1,
+                "majorGridLines": {
+                    "width": 0
+                }
+            },
+            "primaryYAxis": {
+                " majorGridLines": {
+                    "width": 0
+                },
+                "majorTickLines": {
+                    "width": 0
+                },
+                "lineStyle": {
+                    "width": 0
+                },
+                "labelStyle": {
+                    "color": "transparent"
+                }
+            },
+            "marker": {
+                "dataLabel": {
+                    "visible": true,
+                    "position": "Top",
+                    "font": {
+                        "fontWeight": "600",
+                        "color": "#ffffff"
+                    }
+                }
+            },
+            "tooltip": {
+                "enable": true
+            },
+            "chartArea": {
+                "border": {
+                    "width": 0
+                }
+            }
         }
     ]
 }

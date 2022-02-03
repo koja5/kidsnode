@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChildrenComponent } from '../children/children/children.component';
 import { ControlPanelComponent } from '../control-panel/control-panel/control-panel.component';
 import { EmployeeComponent } from '../employee/employee/employee.component';
+import { InvoiceComponent } from '../invoice/invoice/invoice.component';
 import { ParametersComponent } from '../parameters/parameters/parameters.component';
 import { ServicesComponent } from '../services/services.component';
 import { SettingsComponent } from '../settings/settings.component';
@@ -59,6 +60,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('../control-panel/routing-module/control-panel.module').then(
         (m) => m.ControlPanelModule
+      ),
+  },
+  {
+    path: 'invoices',
+    component: InvoiceComponent,
+    loadChildren: () =>
+      import('../invoice/routing-module/invoice.module').then(
+        (m) => m.InvoiceModule
       ),
   },
 ];

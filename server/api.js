@@ -6,7 +6,6 @@ const expiresToken = "12h";
 const jwt = require("jsonwebtoken");
 const auth = require("./config/auth");
 const logger = require("./config/logger");
-const verifyToken = require("./config/auth");
 
 var connection = mysql.createPool({
   connectionLimit: 1000,
@@ -18,13 +17,6 @@ var connection = mysql.createPool({
   password: process.env.password,
   database: process.env.database,
 });
-
-/*var connection = mysql.createPool({
-  host: "116.203.85.82",
-  user: "appproduction_kids",
-  password: "Iva#$2019Iva#$",
-  database: "appproduction_kidsnode",
-});*/
 
 connection.getConnection(function (err, conn) {
   console.log(err);
@@ -240,10 +232,6 @@ router.post("/createKindergardenGroup", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
-            logger.log(
-              "info",
-              `Add new kindergarden group. UserID: ${req.user.user}.`
-            );
             res.json(true);
           } else {
             logger.log("error", `${err.sql}. ${err.sqlMessage}`);
@@ -298,8 +286,8 @@ router.get("/getKindergardenGroup", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -329,8 +317,8 @@ router.get(
             function (err, rows, fields) {
               conn.release();
               if (err) {
-                res.json(err);
                 logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
               } else {
                 logger.log(
                   "info",
@@ -364,8 +352,8 @@ router.post("/deleteKindergardenGroup", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -399,10 +387,7 @@ router.post("/createKindergardenSubgroup", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
-            logger.log(
-              "error",
-              `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
+            logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
             res.json(false);
           }
         }
@@ -427,11 +412,7 @@ router.post("/updateKindergardenSubgroup", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -454,8 +435,8 @@ router.get("/getKindergardenSubgroup", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -484,8 +465,8 @@ router.post("/deleteKindergardenSubgroup", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -548,28 +529,19 @@ router.post("/createChildren", auth, function (req, res, next) {
                       if (!err) {
                         res.json(true);
                       } else {
-                        logger.log(
-                          "error",
-                          `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-                        );
+                        logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
                         res.json(false);
                       }
                     }
                   );
                 } else {
-                  logger.log(
-                    "error",
-                    `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-                  );
+                  logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
                   res.json(false);
                 }
               }
             );
           } else {
-            logger.log(
-              "error",
-              `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
+            logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
             res.json(false);
           }
         }
@@ -621,8 +593,8 @@ router.get("/getChildrens", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -649,8 +621,8 @@ router.get("/getChildrenById/:id", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               if (rows.length === 1) {
                 res.json(rows[0]);
@@ -681,8 +653,8 @@ router.get("/getChildrenParentsById/:id", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               if (rows.length === 1) {
                 res.json(rows[0]);
@@ -715,8 +687,8 @@ router.post("/deleteChildren", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -750,8 +722,8 @@ router.get(
             function (err, rows, fields) {
               conn.release();
               if (err) {
-                res.json(err);
                 logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
               } else {
                 res.json(rows);
               }
@@ -785,10 +757,7 @@ router.post("/createChildrenNotes", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
-            logger.log(
-              "error",
-              `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
+            logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
             res.json(false);
           }
         }
@@ -842,8 +811,8 @@ router.post("/deleteChildrenNotes", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -877,8 +846,8 @@ router.get(
             function (err, rows, fields) {
               conn.release();
               if (err) {
-                res.json(err);
                 logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
               } else {
                 res.json(rows);
               }
@@ -913,11 +882,7 @@ router.post("/createChildrenTaking", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
-            logger.log(
-              "error",
-              `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
-
+            logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
             res.json(false);
           }
         }
@@ -942,11 +907,7 @@ router.post("/updateChildrenTaking", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -971,8 +932,8 @@ router.post("/deleteChildrenTaking", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -1031,12 +992,7 @@ router.post("/updateEmployee", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            logger.log("error", err.sql + ". " + err.sqlMessage);
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -1059,8 +1015,8 @@ router.get("/getEmployees", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -1089,8 +1045,8 @@ router.post("/deleteEmployee", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -1114,8 +1070,8 @@ router.get("/getUserOfType", auth, async (req, res, next) => {
         conn.query("select * from type_of_user", function (err, rows, fields) {
           conn.release();
           if (err) {
-            res.json(err);
             logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
           } else {
             res.json(rows);
           }
@@ -1141,8 +1097,8 @@ router.get("/getEmployeeById/:id", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               if (rows.length === 1) {
                 res.json(rows[0]);
@@ -1204,11 +1160,7 @@ router.post("/updateWorkPlace", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -1231,8 +1183,8 @@ router.get("/getWorkPlaces", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -1261,8 +1213,8 @@ router.post("/deleteWorkPlace", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -1320,11 +1272,7 @@ router.post("/updateTypeOfWork", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -1347,8 +1295,8 @@ router.get("/getTypeOfWorks", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -1377,8 +1325,8 @@ router.post("/deleteTypeOfWork", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -1432,11 +1380,7 @@ router.post("/updateFood", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -1459,8 +1403,8 @@ router.get("/getFoods", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -1489,8 +1433,8 @@ router.post("/deleteFood", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -1517,10 +1461,9 @@ router.get("/getTypeOfMeal", auth, async (req, res, next) => {
       } else {
         conn.query("select * from type_of_meal", function (err, rows, fields) {
           conn.release();
-
           if (err) {
-            res.json(err);
             logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
           } else {
             res.json(rows);
           }
@@ -1589,14 +1532,9 @@ router.post("/updateFoodMenu", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
-
           res.json(err);
         }
       }
@@ -1617,8 +1555,8 @@ router.get("/getFoodMenu", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -1647,8 +1585,8 @@ router.post("/deleteFoodMenu", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -1692,6 +1630,7 @@ router.post("/recordAbsense", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(false);
           }
         }
@@ -1711,8 +1650,9 @@ router.post("/recordAbsenseSingle", auth, function (req, res, next) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      const date = new Date().toLocaleDateString("en-US");
+      const date = new Date();
       req.body.date = date;
+      req.body.kindergarden_id = req.user.user.kindergarden;
       conn.query(
         "insert into record_absense SET ?",
         [req.body],
@@ -1721,6 +1661,7 @@ router.post("/recordAbsenseSingle", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(false);
           }
         }
@@ -1739,7 +1680,7 @@ router.post("/deleteRecordAbsenseSingle", auth, function (req, res, next) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      const date = new Date().toLocaleDateString("en-US");
+      const date = dateFormat(new Date(), "yyyy-mm-dd");
       req.body.date = date;
       conn.query(
         "delete from record_absense where children_id = ? and date = ?",
@@ -1749,6 +1690,7 @@ router.post("/deleteRecordAbsenseSingle", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(false);
           }
         }
@@ -1768,14 +1710,15 @@ router.get("/getChildrenEvidentedAbsense", auth, async (req, res, next) => {
         res.json(err);
       } else {
         const date = new Date().toLocaleDateString("en-US");
+        console.log(date);
         conn.query(
           "select * from record_absense r where date = ?",
           [date],
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -1803,8 +1746,8 @@ router.get("/getChildrensAndAbsense", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
+              logger.log("error", err);
               res.json(err);
-              logger.log("error", err.sql + ". " + err.sqlMessage);
             } else {
               res.json(rows);
             }
@@ -1849,6 +1792,7 @@ router.post(
             if (!err) {
               res.json(true);
             } else {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
               res.json(false);
             }
           }
@@ -1886,6 +1830,7 @@ router.post(
             if (!err) {
               res.json(true);
             } else {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
               res.json(false);
             }
           }
@@ -1911,8 +1856,8 @@ router.get("/getCalendarOfChildrenActivity", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -1942,8 +1887,8 @@ router.post("/deleteCalendarOfChildrenActivity", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -1972,10 +1917,9 @@ router.get("/getWorkStructureEmployee", auth, async (req, res, next) => {
           "select * from work_structure_employee",
           function (err, rows, fields) {
             conn.release();
-
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -2016,6 +1960,7 @@ router.post("/createWorkDiaryEmployee", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(false);
           }
         }
@@ -2048,6 +1993,7 @@ router.post("/updateWorkDiaryEmployee", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(false);
           }
         }
@@ -2072,8 +2018,8 @@ router.get("/getWorkDiaryEmployee", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -2100,8 +2046,8 @@ router.get("/getWorkDiaryEmployeeById/:id", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -2131,8 +2077,8 @@ router.post("/deleteWorkDiaryEmployee", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -2171,7 +2117,7 @@ router.post("/createChildrenHealthRecord", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
-            logger.log("error", err);
+            logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(false);
           }
         }
@@ -2200,6 +2146,7 @@ router.post("/updateChildrenHealthRecord", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(false);
           }
         }
@@ -2224,8 +2171,8 @@ router.get("/getChildrenHealthRecord/:id", auth, async (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(err);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
             } else {
               res.json(rows);
             }
@@ -2255,8 +2202,8 @@ router.post("/deleteChildrenHealthRecord", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -2290,10 +2237,7 @@ router.post("/createSupplierCompany", auth, function (req, res, next) {
           if (!err) {
             res.json(true);
           } else {
-            logger.log(
-              "error",
-              `${err.sql}. ${err.sqlMessage}. UserID: ${req.body.user_id.id}, KindergardenID: ${req.body.user_id.id}`
-            );
+            logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
             res.json(false);
           }
         }
@@ -2318,11 +2262,7 @@ router.post("/updateSupplierCompany", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -2375,8 +2315,8 @@ router.post("/deleteSupplierCompany", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -2410,8 +2350,8 @@ router.get(
             function (err, rows, fields) {
               conn.release();
               if (err) {
-                res.json(err);
                 logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
               } else {
                 res.json(rows);
               }
@@ -2476,11 +2416,7 @@ router.post("/updateMedicalRecordControlReview", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -2507,8 +2443,8 @@ router.post("/deleteMedicalRecordControlReview", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -2542,8 +2478,8 @@ router.get(
             function (err, rows, fields) {
               conn.release();
               if (err) {
-                res.json(err);
                 logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
               } else {
                 res.json(rows);
               }
@@ -2610,11 +2546,7 @@ router.post(
         function (err, rows) {
           conn.release();
           if (!err) {
-            if (!err) {
-              res.json(true);
-            } else {
-              res.json(false);
-            }
+            res.json(true);
           } else {
             logger.log("error", err.sql + ". " + err.sqlMessage);
             res.json(err);
@@ -2642,8 +2574,8 @@ router.post("/deleteMedicalRecordControlOtherReview", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -2677,8 +2609,8 @@ router.get(
             function (err, rows, fields) {
               conn.release();
               if (err) {
-                res.json(err);
                 logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
               } else {
                 res.json(rows);
               }
@@ -2743,11 +2675,7 @@ router.post("/updateMedicalRecordSpecialReview", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -2774,8 +2702,8 @@ router.post("/deleteMedicalRecordSpecialReview", (req, res, next) => {
           function (err, rows, fields) {
             conn.release();
             if (err) {
-              res.json(false);
               logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
             } else {
               res.json(true);
             }
@@ -2809,8 +2737,8 @@ router.get(
             function (err, rows, fields) {
               conn.release();
               if (err) {
-                res.json(err);
                 logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
               } else {
                 res.json(rows);
               }
@@ -2868,11 +2796,7 @@ router.post("/updateMedicalRecordObservation", function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
-          if (!err) {
-            res.json(true);
-          } else {
-            res.json(false);
-          }
+          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);

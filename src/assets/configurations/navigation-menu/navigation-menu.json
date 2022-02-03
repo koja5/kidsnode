@@ -1,7 +1,6 @@
 [
   {
     "title": "Kontrolni panel",
-    "icon": "admin_panel_settings",
     "menu": [
       {
         "icon": "admin_panel_settings",
@@ -27,7 +26,6 @@
   },
   {
     "title": "Deca",
-    "icon": "child_care",
     "menu": [
       {
         "icon": "groups",
@@ -71,7 +69,6 @@
   },
   {
     "title": "Organizacija",
-    "icon": "corporate_fare",
     "menu": [
       {
         "icon": "badge",
@@ -82,8 +79,18 @@
     ]
   },
   {
+    "title": "Finansije",
+    "menu": [
+      {
+        "icon": "paid",
+        "title": "Uplate",
+        "link": "/dashboard/invoices/children-invoices",
+        "rights": ""
+      }
+    ]
+  },
+  {
     "title": "Zaposleni",
-    "icon": "business_center",
     "menu": [
       {
         "icon": "import_contacts",
@@ -95,7 +102,6 @@
   },
   {
     "title": "Službe",
-    "icon": "home_repair_service",
     "menu": [
       {
         "icon": "monitor_heart",
@@ -107,7 +113,6 @@
   },
   {
     "title": "Administracija",
-    "icon": "admin_panel_settings",
     "menu": [
       {
         "icon": "work",

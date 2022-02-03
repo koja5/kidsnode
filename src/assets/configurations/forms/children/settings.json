@@ -1,0 +1,35 @@
+{
+    "request": {
+      "type": "GET",
+      "api": "/api/getChildrenById/",
+      "url": ["id"],
+      "parameters": [],
+      "fields": "",
+      "root": ""
+    },
+    "config": [
+      {
+        "type": "label",
+        "width": "col-md-12 pt-2",
+        "title": "Podešavanja"
+      },
+      {
+        "type": "textbox",
+        "width": "col-md-12 hide",
+        "class": "e-outline",
+        "name": "id",
+        "title": "ID",
+        "field": "id",
+        "readonly": true
+      },
+      {
+        "type": "textbox",
+        "width": "col-md-12",
+        "class": "e-outline",
+        "name": "firstname",
+        "title": "Mesečno plaćanje",
+        "field": "firstname"
+      }
+    ]
+  }
+  

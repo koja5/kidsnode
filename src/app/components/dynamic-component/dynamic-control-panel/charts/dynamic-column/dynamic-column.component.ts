@@ -1,6 +1,18 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
-import { ILoadedEventArgs, ChartComponent, ChartTheme } from '@syncfusion/ej2-angular-charts';
+import {
+  Component,
+  ViewEncapsulation,
+  ViewChild,
+  OnInit,
+  Input,
+} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import {
+  ILoadedEventArgs,
+  ChartComponent,
+  ChartTheme,
+} from '@syncfusion/ej2-angular-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { CallApiService } from 'src/app/services/call-api.service';
 
 @Component({
   selector: 'app-dynamic-column',
@@ -8,21 +20,9 @@ import { Browser } from '@syncfusion/ej2-base';
   styleUrls: ['./dynamic-column.component.scss'],
 })
 export class DynamicColumnComponent implements OnInit {
-  public data: Object[] = [
-    { x: 'USA', y: 46 },
-    { x: 'GBR', y: 27 },
-    { x: 'CHN', y: 26 },
-  ];
-  public data1: Object[] = [
-    { x: 'USA', y: 37 },
-    { x: 'GBR', y: 23 },
-    { x: 'CHN', y: 18 },
-  ];
-  public data2: Object[] = [
-    { x: 'USA', y: 38 },
-    { x: 'GBR', y: 17 },
-    { x: 'CHN', y: 26 },
-  ];
+  @Input() config!: any;
+  public data: any;
+  public loader = true;
   //Initializing Primary X Axis
   public primaryXAxis: Object = {
     valueType: 'Category',
@@ -43,7 +43,6 @@ export class DynamicColumnComponent implements OnInit {
       font: { fontWeight: '600', color: '#ffffff' },
     },
   };
-  public title: string = 'Olympic Medal Counts - RIO';
   public tooltip: Object = {
     enable: true,
   };
@@ -68,9 +67,20 @@ export class DynamicColumnComponent implements OnInit {
   };
   public width: string = Browser.isDevice ? '100%' : '60%';
 
-  constructor() {
-    //code
+  constructor(
+    private apiService: CallApiService,
+    private router: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.loader = true;
+    this.getData();
   }
 
-  ngOnInit(): void {}
+  getData() {
+    this.apiService.callApi(this.config, this.router).subscribe((data) => {
+      this.data = data;
+      this.loader = false;
+    });
+  }
 }
