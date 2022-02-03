@@ -39,7 +39,6 @@ import { DatetimepickerComponent } from './dynamic-fields/inputs/datetimepicker/
     ButtonComponent,
     DatepickerComponent,
     LabelComponent,
-    LoaderSvgComponent,
     DatetimepickerComponent
   ],
   imports: [
@@ -64,8 +63,7 @@ import { DatetimepickerComponent } from './dynamic-fields/inputs/datetimepicker/
     MultiselectComponent,
     CheckboxComponent,
     RadioComponent,
-    ButtonComponent,
-    LoaderSvgComponent
+    ButtonComponent
   ],
 })
 export class DynamicFormsModule {}

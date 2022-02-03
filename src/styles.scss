@@ -282,7 +282,8 @@ input:focus-visible {
   background: none !important;
 }
 
-.normal .toast-container.toast-top-center .ngx-toastr, .normal .toast-container.toast-bottom-center .ngx-toastr {
+.normal .toast-container.toast-top-center .ngx-toastr,
+.normal .toast-container.toast-bottom-center .ngx-toastr {
   width: 50% !important;
 }
 
@@ -290,34 +291,36 @@ input:focus-visible {
   margin: auto;
 }
 
-.width-20 {
-  width: 20%;
-}
+@media (min-width: 992px) {
+  .width-20 {
+    width: 20%;
+  }
 
-.width-30 {
-  width: 30%;
-}
+  .width-30 {
+    width: 30%;
+  }
 
-.width-40 {
-  width: 40%;
-}
+  .width-40 {
+    width: 40%;
+  }
 
-.width-50 {
-  width: 50%;
-}
+  .width-50 {
+    width: 50%;
+  }
 
-.width-60 {
-  width: 60%;
-}
+  .width-60 {
+    width: 60%;
+  }
 
-.width-70 {
-  width: 70%;
-}
+  .width-70 {
+    width: 70%;
+  }
 
-.width-80 {
-  width: 80%;
-}
+  .width-80 {
+    width: 80%;
+  }
 
-.width-90 {
-  width: 20%;
+  .width-90 {
+    width: 20%;
+  }
 }

@@ -21,25 +21,25 @@ export class DialogModalComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.returnWidth(window.innerWidth);
+    this.returnWidth();
     setTimeout(() => {
       this.ejDialog.show();
     }, 50);
   }
 
   onResize(event: any) {
-    this.returnWidth(event.target.innerWidth);
+    this.returnWidth();
   }
 
   closeModal() {
     this.closeEventEmitter.emit();
   }
 
-  returnWidth(innerWidth: any) {
-    if (innerWidth > 992) {
-      return 35;
+  returnWidth() {
+    if (window.innerWidth > 992) {
+      return '35%';
     } else {
-      return 100;
+      return '100%';
     }
   }
 }

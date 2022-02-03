@@ -1,38 +1,41 @@
 .control-section {
-    min-height: 450px;
+  min-height: 450px;
 }
 
 #button-control {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 #control-container {
-    padding: 0px !important;
+  padding: 0px !important;
 }
 .e-print-icon::before {
-    content: '\e34b';
+  content: "\e34b";
 }
 
-.e-view.fabric .e-print-icon::before, .e-view.fabric-dark .e-print-icon::before {
-    content: '\e7df';
+.e-view.fabric .e-print-icon::before,
+.e-view.fabric-dark .e-print-icon::before {
+  content: "\e7df";
 }
 
 .e-view.bootstrap .e-print-icon::before {
-    content: '\ebd2';
+  content: "\ebd2";
 }
 
 .e-view.bootstrap4 .e-print-icon::before {
-    content: '\e743';
+  content: "\e743";
 }
 
-.e-view.tailwind .e-print-icon::before, .e-view.tailwind-dark .e-print-icon::before {
-    content: '\e76c';
+.e-view.tailwind .e-print-icon::before,
+.e-view.tailwind-dark .e-print-icon::before {
+  content: "\e76c";
 }
 
 .e-view.highcontrast .e-print-icon::before {
-    content: '\ebf9';
+  content: "\ebf9";
 }
 
-.e-view.bootstrap5 .e-print-icon::before, .e-view.bootstrap5-dark .e-print-icon::before {
-    content: '\e75d';
+.e-view.bootstrap5 .e-print-icon::before,
+.e-view.bootstrap5-dark .e-print-icon::before {
+  content: "\e75d";
 }

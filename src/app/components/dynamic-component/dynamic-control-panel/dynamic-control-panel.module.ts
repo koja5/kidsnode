@@ -26,6 +26,8 @@ import { DynamicPieComponent } from './charts/dynamic-pie/dynamic-pie.component'
 import { DynamicControlPanelComponent } from './dynamic-control-panel.component';
 import { WidgetsComponent } from './widgets/widgets.component';
 import { DynamicColumnComponent } from './charts/dynamic-column/dynamic-column.component';
+import { LoaderSvgComponent } from '../../common/loader-svg/loader-svg.component';
+import { LoaderContentComponent } from '../common/loader-content/loader-content.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +35,19 @@ import { DynamicColumnComponent } from './charts/dynamic-column/dynamic-column.c
     DynamicPieComponent,
     WidgetsComponent,
     DynamicColumnComponent,
+    LoaderContentComponent
   ],
   exports: [
     DynamicControlPanelComponent,
     DynamicPieComponent,
     WidgetsComponent,
   ],
-  imports: [CommonModule, RouterModule, ChartAllModule, AccumulationChartModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ChartAllModule,
+    AccumulationChartModule,
+  ],
   providers: [
     PieSeriesService,
     AccumulationLegendService,
