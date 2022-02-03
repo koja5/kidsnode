@@ -1680,7 +1680,7 @@ router.post("/deleteRecordAbsenseSingle", auth, function (req, res, next) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      const date = dateFormat(new Date(), "yyyy-mm-dd");
+      const date = new Date().toISOString().slice(0, 10);
       req.body.date = date;
       conn.query(
         "delete from record_absense where children_id = ? and date = ?",
@@ -1709,8 +1709,7 @@ router.get("/getChildrenEvidentedAbsense", auth, async (req, res, next) => {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       } else {
-        const date = new Date().toLocaleDateString("en-US");
-        console.log(date);
+        const date = new Date().toISOString().slice(0, 10);
         conn.query(
           "select * from record_absense r where date = ?",
           [date],
