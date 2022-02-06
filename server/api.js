@@ -2839,4 +2839,93 @@ router.post("/deleteMedicalRecordObservation", (req, res, next) => {
 
 /* CHILDREN MEDICAL RECORDS OBSERVATIONS END */
 
+/* KINDERGARDEN GENERAL INFO */
+
+router.get("/getKindergardenGeneralInfo", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from kindergarden_general_info where kindergarden_id = ?",
+          [req.user.user.kindergarden],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateKindergardenGeneralInfo", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      conn.query(
+        "select * from kindergarden_general_info where kindergarden_id = ?",
+        [req.user.user.kindergarden],
+        function (err, rows, fields) {
+          console.log(rows);
+          if (rows.length === 0) {
+            req.body.kindergarden_id = req.user.user.kindergarden;
+            delete req.body.id;
+
+            conn.query(
+              "insert into kindergarden_general_info SET ?",
+              [req.body],
+              function (err, rows) {
+                conn.release();
+                if (!err) {
+                  res.json(true);
+                } else {
+                  logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
+                  res.json(false);
+                }
+              }
+            );
+          } else {
+            conn.query(
+              "update kindergarden_general_info SET ? where id = ?",
+              [req.body, req.body.id],
+              function (err, rows) {
+                conn.release();
+                if (!err) {
+                  if (!err) {
+                    res.json(true);
+                  } else {
+                    res.json(false);
+                  }
+                } else {
+                  logger.log("error", err.sql + ". " + err.sqlMessage);
+                  res.json(err);
+                }
+              }
+            );
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* KINDERGARDEN GENERAL INFO END */
+
 module.exports = router;

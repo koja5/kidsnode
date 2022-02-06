@@ -10,11 +10,6 @@
                     "text": "Edit",
                     "id": "edit",
                     "iconCss": "ddb-icons e-edit"
-                },
-                {
-                    "text": "Delete",
-                    "id": "delete",
-                    "iconCss": "ddb-icons e-remove"
                 }
             ]
         },
@@ -25,10 +20,8 @@
     },
     "request": {
         "type": "GET",
-        "api": "/api/getEmployeeById/",
-        "url": [
-            "id"
-        ],
+        "api": "/api/getKindergardenGeneralInfo/",
+        "url": [],
         "parameters": [],
         "fields": "",
         "root": ""
@@ -36,21 +29,14 @@
     "editSettingsRequest": {
         "add": {
             "type": "POST",
-            "api": "/api/createEmployee",
+            "api": "/api/createKindergardenGeneralInfo",
             "parameters": [],
             "fields": "",
             "root": ""
         },
         "edit": {
             "type": "POST",
-            "api": "/api/updateEmployee",
-            "parameters": [],
-            "fields": "",
-            "root": ""
-        },
-        "delete": {
-            "type": "POST",
-            "api": "/api/deleteEmployee",
+            "api": "/api/updateKindergardenGeneralInfo",
             "parameters": [],
             "fields": "",
             "root": ""
@@ -76,33 +62,33 @@
             "type": "textbox",
             "width": "col-md-12",
             "class": "e-outline",
-            "name": "firstname",
+            "name": "name",
             "title": "Ime vrtića",
-            "field": "firstname"
+            "field": "name"
         },
         {
             "type": "textbox",
             "width": "col-md-12",
             "class": "e-outline",
-            "name": "lastname",
+            "name": "address",
             "title": "Adresa",
-            "field": "lastname"
+            "field": "address"
         },
         {
             "type": "textbox",
             "width": "col-md-6",
             "class": "e-outline",
-            "name": "place_of_living",
+            "name": "telephone",
             "title": "Telefon",
-            "field": "place_of_living"
+            "field": "telephone"
         },
         {
             "type": "textbox",
             "width": "col-md-6",
             "class": "e-outline",
-            "name": "professional_qualifications",
+            "name": "email",
             "title": "Email",
-            "field": "professional_qualifications"
+            "field": "email"
         },
         {
             "type": "label",
@@ -113,42 +99,42 @@
             "type": "textbox",
             "width": "col-md-6",
             "class": "e-outline",
-            "name": "telephone",
+            "name": "contact_person_firstname",
             "title": "Ime",
-            "field": "telephone"
+            "field": "contact_person_firstname"
         },
         {
             "type": "textbox",
             "width": "col-md-6",
             "class": "e-outline",
-            "name": "email",
+            "name": "contact_person_lastname",
             "title": "Prezime",
-            "field": "email"
+            "field": "contact_person_lastname"
         },
         {
             "type": "textbox",
             "width": "col-md-12",
             "class": "e-outline",
-            "name": "telephone",
+            "name": "contact_person_address",
             "title": "Adresa",
-            "field": "telephone"
-        }, 
+            "field": "contact_person_address"
+        },
         {
             "type": "textbox",
             "width": "col-md-6",
             "class": "e-outline",
-            "name": "telephone",
+            "name": "contact_person_telephone",
             "title": "Telefon",
-            "field": "telephone"
-        }, 
+            "field": "contact_person_telephone"
+        },
         {
             "type": "textbox",
             "width": "col-md-6",
             "class": "e-outline",
-            "name": "telephone",
+            "name": "contact_person_email",
             "title": "Email",
-            "field": "telephone"
-        },        
+            "field": "contact_person_email"
+        },
         {
             "type": "button",
             "width": "col-md-12",

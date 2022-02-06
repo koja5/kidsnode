@@ -15,6 +15,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class DashboardComponent implements OnInit {
   public collapseMenuItems: string[][] = [];
   public activeParentNode: string[][] = [];
+  public activeGroupNode: string[] = [];
   public activeChildrenNode: string[][][] = [];
   public dropDownNavigationMenu: string[] = [];
   public currentActiveNode: CurrentActiveNodeModel = {
@@ -47,14 +48,14 @@ export class DashboardComponent implements OnInit {
   public showHideCollapse = [];
   public activeGroup = [];
   public height!: string;
-  public layoutOrientation = 'horizontal';
+  public layoutOrientation = 'vertical';
   public horizontalSideBar = '';
   public mobile = false;
   public items: ItemModel[] = [
     {
       text: 'Settings',
       id: 'settings',
-      iconCss: 'e-icons e-settings'
+      iconCss: 'e-icons e-settings',
     },
     {
       separator: true,
@@ -198,6 +199,12 @@ export class DashboardComponent implements OnInit {
     } else {
       this.collapseMenuItems[i][j] = '';
     }
+  }
+
+  clickGroupActiveNode(i: number) {
+    this.activeGroupNode[this.currentActiveNode.group] = '';
+    this.currentActiveNode = { group: i, parent: 0, children: 0 };
+    this.activeGroupNode[i] = 'show';
   }
 
   clickParentActiveNode(i: number, j: number) {

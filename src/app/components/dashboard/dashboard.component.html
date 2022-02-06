@@ -283,7 +283,9 @@
                   >
                 </a>
                 <div
-                  class="dropdown-menu {{ dropDownNavigationMenu[i] }}"
+                  class="dropdown-menu {{ dropDownNavigationMenu[i] }} {{
+                    activeGroupNode[i]
+                  }}"
                   aria-labelledby="topnav-dashboard"
                 >
                   <div *ngFor="let parent of item.menu; let j = index">
