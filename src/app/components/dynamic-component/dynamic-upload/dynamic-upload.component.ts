@@ -28,12 +28,6 @@ export class DynamicUploadComponent implements OnInit {
   public language: any;
   public basicData: any;
   public loader = false;
-  public title = {
-    text: "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>info</mat-icon> Osnovne informacije</div>",
-  };
-  public title2 = {
-    text: "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>description</mat-icon> Dokumentacija</div>",
-  };
 
   constructor(
     private configurationService: ConfigurationService,
@@ -84,9 +78,6 @@ export class DynamicUploadComponent implements OnInit {
       },
       {
         additionalData: this.basicData ? JSON.stringify(this.basicData) : '',
-      },
-      {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJraW5kZXJnYXJkZW4iOjJ9LCJpYXQiOjE2NDI2MzQ2MzYsImV4cCI6MTY0MjY3NzgzNn0.MZwx8y9W-BAaJy59CrCb53fSHd7NAsDudIJR-3JrIrQ"
       }
     ];
     if (this.config.url) {

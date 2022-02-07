@@ -27,6 +27,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/getChildrensStatistic", auth, async (req, res, next) => {
+  console.log(req.user.user);
   try {
     connection.getConnection(function (err, conn) {
       if (err) {

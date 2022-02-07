@@ -223,7 +223,7 @@ router.get("/getGeneralContracts", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteGeneralContract",  auth, (req, res, next) => {
+router.post("/deleteGeneralContract", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -360,5 +360,46 @@ router.post("/deleteEmployeeDocument", auth, (req, res, next) => {
 });
 
 // END DOCUMENT ON EMPLOYEE PROFILE
+
+// UPLOAD KINDERGARDEN LOGO
+
+router.post("/uploadKindergardenLogo", multipartMiddleware, (req, res) => {
+  try {
+    console.log(req);
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        const body = {
+          kindergarden_id: 2,
+          logo: req.files.UploadFiles.path,
+        };
+        console.log(body);
+        conn.query(
+          "update kindergarden_general_info set logo = ? where kindergarden_id = ?",
+          [body.logo, body.kindergarden_id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+// UPLOAD KINDERGARDEN LOGO END
 
 module.exports = router;

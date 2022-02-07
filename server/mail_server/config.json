@@ -1,0 +1,22 @@
+{
+    "activate_mail": {
+        "template": "activate_mail.hjs",
+        "email": "kidsnode@gmail.com",
+        "subject": "Aktivirajte nalog!",
+        "fields": {
+            "title": "Molimo Vas aktivitajte Vaš nalog!",
+            "text": "Uspešno ste kreirali nalog, molimo Vas da putem linka u nastavku potvrdite Vaš mail i nakon toga možete uspešno da se prijavite!",
+            "buttonText": "Aktivirajte nalog"
+        }
+    },
+    "new_account": {
+        "template": "new_account.hjs",
+        "email": "kidsnode@gmail.com",
+        "subject": "Kreiran je nalog za vas!",
+        "fields": {
+            "title": "Kreiran je nalog za Vas!",
+            "text": "Uspešno je kreiran nalog za Vas. U nastavku imate podatke za pristup!",
+            "buttonText": "Prijavite se"
+        }
+    }
+}

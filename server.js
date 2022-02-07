@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const api = require("./server/api");
 const upload = require("./server/upload");
 const controlPanel = require("./server/control-panel");
+const mailServer = require("./server/mail_server/mail-server");
 
 app.use(function (req, res, next) {
   //allow cross origin requests
@@ -33,6 +34,7 @@ app.use(
 app.use("/api", api);
 app.use("/api/upload", upload);
 app.use("/api/control-panel", controlPanel);
+app.use("/api/mail-server", mailServer);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "src/index.html"));

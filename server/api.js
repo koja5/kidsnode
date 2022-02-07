@@ -6,6 +6,8 @@ const expiresToken = "12h";
 const jwt = require("jsonwebtoken");
 const auth = require("./config/auth");
 const logger = require("./config/logger");
+const request = require("request");
+const fs = require("fs");
 
 var connection = mysql.createPool({
   connectionLimit: 1000,
@@ -164,7 +166,11 @@ router.post("/login", async (req, res, next) => {
           // treba ovde spakovati i tip user-a(uzmi iz enum-a)
           const token = jwt.sign(
             {
-              user: { id: rows[0].id, kindergarden: rows[0].kindergarden },
+              user: {
+                id: rows[0].id,
+                kindergarden: rows[0].kindergarden,
+                type: process.env.owner,
+              },
               email,
             },
             process.env.TOKEN_KEY,
@@ -213,6 +219,17 @@ router.post("/login", async (req, res, next) => {
         }
       }
     );
+    var body = JSON.parse(
+      fs.readFileSync("./server/mail_server/config.json", "utf-8")
+    );
+    body.activate_mail.fields["link"] = process.env.link_client;
+    var options = {
+      url: process.env.link_api + "mail-server/sendMail",
+      method: "POST",
+      body: body.activate_mail,
+      json: true,
+    };
+    request(options, function (error, response, body) {});
   });
 });
 
@@ -958,6 +975,7 @@ router.post("/createEmployee", auth, function (req, res, next) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
+      console.log(req.body);
       req.body.kindergarden_id = req.user.user.kindergarden;
       conn.query(
         "insert into employees SET ?",
@@ -965,6 +983,20 @@ router.post("/createEmployee", auth, function (req, res, next) {
         function (err, rows) {
           conn.release();
           if (!err) {
+            var body = JSON.parse(
+              fs.readFileSync("./server/mail_server/config.json", "utf-8")
+            );
+            body.new_account.fields["email"] = req.body.email;
+            body.new_account.fields["password"] = "Test";
+            body.new_account.fields["link"] = process.env.link_client;
+            console.log(body);
+            var options = {
+              url: process.env.link_api + "mail-server/sendMail",
+              method: "POST",
+              body: body.new_account,
+              json: true,
+            };
+            request(options, function (error, response, body) {});
             res.json(true);
           } else {
             logger.log("error", err.sql + ". " + err.sqlMessage);

@@ -241,7 +241,7 @@ export class DynamicFormsComponent implements OnInit {
       }
     } else {
       for (let i = 0; i < fields.length; i++) {
-        if (fields[i]['type'] !== FieldType.label) {
+        if (fields[i]['type'] !== FieldType.label && values) {
           this.setValue(fields[i]['name'], values[fields[i]['name']]);
         }
       }
