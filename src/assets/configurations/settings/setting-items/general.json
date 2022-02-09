@@ -46,7 +46,7 @@
         {
             "type": "label",
             "width": "col-md-12",
-            "title": "Podaci o vrtiću",
+            "title": "Vrtić",
             "text": "U nastavku se nalaze osnovne informaicije o Vašem vrtiću!"
         },
         {
@@ -93,7 +93,8 @@
         {
             "type": "label",
             "width": "col-md-12",
-            "title": "Podaci o kontakt osobi"
+            "title": "Kontakt osoba",
+            "text": "Osnovne informacije o kontakt osobi."
         },
         {
             "type": "textbox",

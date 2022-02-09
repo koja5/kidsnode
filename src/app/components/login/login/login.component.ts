@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   public configField: LoginModel;
   public language: any;
   public loader: boolean = false;
-  public loginForgotPasswordIndicator = 'login';
+  public formIndicator = 'login';
   public loginData = new LoginDataModel();
   public notCorrect = false;
 

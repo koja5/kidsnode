@@ -17,18 +17,17 @@
                   ><img src="../../../../assets/logo.png" alt="image"
                 /></a>
               </div>
-              <div
-                *ngIf="loginForgotPasswordIndicator === 'login'"
-                class="login-container"
-              >
+              <div *ngIf="formIndicator === 'login'" class="login-container">
                 <h3>{{ language.welcomeTitle }}</h3>
                 <p>
                   {{ language.noHaveAccount }}
-                  <a class="signup-link" routerLink="signup">{{
+                  <a class="signup-link" routerLink="/signup">{{
                     language.signUp
                   }}</a>
                 </p>
-                <p *ngIf="notCorrect">Korisnicko ime ili lozinka nisu u redu!</p>
+                <p *ngIf="notCorrect">
+                  Korisnicko ime ili lozinka nisu u redu!
+                </p>
                 <form (submit)="login($event)">
                   <div class="form-group-login">
                     <input
@@ -53,10 +52,9 @@
                     }}<span></span>
                   </button>
                   <div class="forgot-password">
-                    <a
-                      (click)="loginForgotPasswordIndicator = 'forgotPassword'"
-                      >{{ language.forgotPassword }}</a
-                    >
+                    <a (click)="formIndicator = 'forgotPassword'">{{
+                      language.forgotPassword
+                    }}</a>
                   </div>
                   <div class="connect-with-social">
                     <button type="submit" class="facebook">
@@ -71,7 +69,7 @@
                 </form>
               </div>
               <div
-                *ngIf="loginForgotPasswordIndicator === 'forgotPassword'"
+                *ngIf="formIndicator === 'forgotPassword'"
                 class="forgot-container"
               >
                 <h5>{{ language.forgotPasswordTitle }}</h5>
@@ -92,11 +90,9 @@
                 </form>
                 <p>
                   {{ language.haveAccount }}
-                  <a
-                    class="signup-link"
-                    (click)="loginForgotPasswordIndicator = 'login'"
-                    >{{ language.loginButton }}</a
-                  >
+                  <a class="signup-link" (click)="formIndicator = 'login'">{{
+                    language.loginButton
+                  }}</a>
                 </p>
               </div>
             </div>

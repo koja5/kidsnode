@@ -1,11 +1,16 @@
 [
   {
     "title": "Kontrolni panel",
+    "rights": [
+      "superadmin",
+      "director",
+      "owner",
+      "parent"
+    ],
     "menu": [
       {
         "icon": "admin_panel_settings",
         "title": "Kontrolni panel",
-        "rights": "",
         "children": [
           {
             "icon": "text_snippet",
@@ -26,11 +31,16 @@
   },
   {
     "title": "Deca",
+    "rights": [
+      "superadmin",
+      "director",
+      "owner",
+      "parent"
+    ],
     "menu": [
       {
         "icon": "groups",
         "title": "Grupe",
-        "rights": "",
         "children": [
           {
             "icon": "text_snippet",
@@ -50,8 +60,7 @@
       {
         "icon": "child_care",
         "title": "Popis dece",
-        "link": "/dashboard/children/all-childrens",
-        "rights": ""
+        "link": "/dashboard/children/all-childrens"
       },
       {
         "icon": "assignment_turned_in",
@@ -69,6 +78,12 @@
   },
   {
     "title": "Organizacija",
+    "rights": [
+      "superadmin",
+      "director",
+      "owner",
+      "parent"
+    ],
     "menu": [
       {
         "icon": "badge",
@@ -80,6 +95,12 @@
   },
   {
     "title": "Finansije",
+    "rights": [
+      "superadmin",
+      "director",
+      "owner",
+      "parent"
+    ],
     "menu": [
       {
         "icon": "paid",
@@ -91,6 +112,12 @@
   },
   {
     "title": "Zaposleni",
+    "rights": [
+      "superadmin",
+      "director",
+      "owner",
+      "parent"
+    ],
     "menu": [
       {
         "icon": "import_contacts",
@@ -102,6 +129,12 @@
   },
   {
     "title": "Službe",
+    "rights": [
+      "superadmin",
+      "director",
+      "owner",
+      "parent"
+    ],
     "menu": [
       {
         "icon": "monitor_heart",
@@ -113,6 +146,12 @@
   },
   {
     "title": "Administracija",
+    "rights": [
+      "superadmin",
+      "director",
+      "owner",
+      "parent"
+    ],
     "menu": [
       {
         "icon": "work",

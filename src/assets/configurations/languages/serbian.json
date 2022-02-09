@@ -58,5 +58,16 @@
     "noEnteredReasonOfAbsense": "Nije unet razlog izostanka!",
     "recordsOfArrivalFor": "Evidencija dolazaka za ",
     "lostInternetConnection": "Vaša internet konekcija je izgubljena! Molimo proverite internet konekciju!",
-    "backOnline": "Vaša internet konekcija je uspostavljena! Nastavite sa radom!"
+    "backOnline": "Vaša internet konekcija je uspostavljena! Nastavite sa radom!",
+    "superadmin": "Superadmin",
+    "owner": "Vlasnik",
+    "director": "Direktor",
+    "educator": "Vaspitač",
+    "finance": "Finansije",
+    "speech_therapist": "Logoped",
+    "pedagogue": "Pedagog",
+    "psychologist": "Psiholog",
+    "pediatrician": "Pedijatar",
+    "cook": "Kuvar",
+    "parent": "Roditelj"
 }

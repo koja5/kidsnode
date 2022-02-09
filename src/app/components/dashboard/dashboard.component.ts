@@ -28,8 +28,9 @@ export class DashboardComponent implements OnInit {
   public profileUser = '';
   public mobileSidebarClass = 'display-none';
   public username!: any;
+  public type!: any;
   public profileInfo = '';
-  public menu: any;
+  public menu: any = [];
 
   public sidebar = '';
   public sidebarMobile = '';
@@ -48,7 +49,7 @@ export class DashboardComponent implements OnInit {
   public showHideCollapse = [];
   public activeGroup = [];
   public height!: string;
-  public layoutOrientation = 'horizontal';
+  public layoutOrientation = 'vertical';
   public horizontalSideBar = '';
   public mobile = false;
   public items: ItemModel[] = [
@@ -165,10 +166,33 @@ export class DashboardComponent implements OnInit {
   initializeConfigurations() {
     this.configurationService
       .getConfiguration('/navigation-menu', 'navigation-menu.json')
-      .subscribe((data) => {
-        this.menu = data;
+      .subscribe((data: any) => {
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].rights) {
+            if (this.checkNavigationMenuRights(data[i].rights)) {
+              this.menu.push(data[i]);
+            }
+          } else if (data[i].menu) {
+            for (let j = 0; j < data[i].menu.length; j++) {
+              if (this.checkNavigationMenuRights(data[i].menu[j].rights)) {
+                this.menu.push(data[i]);
+              }
+            }
+          }
+        }
         this.initialCollapseMenu();
       });
+  }
+
+  checkNavigationMenuRights(rights: any) {
+    if (rights) {
+      for (let i = 0; i < rights.length; i++) {
+        if (rights[i] === this.type) {
+          return true;
+        }
+      }
+      return false;
+    } else return false;
   }
 
   checkMobileForSidebar() {
@@ -232,7 +256,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.username = this.storageService.getLocalStorageSimple('username');
+    const token = this.helpService.getDecodeToken();
+    this.username = token.firstname ? token.firstname : token.lastname;
+    this.type = this.helpService.getTypeOfName(token.type);
   }
 
   myProfileInfo() {

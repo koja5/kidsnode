@@ -28,6 +28,10 @@ const routes: Routes = [
     component: SignupComponent,
   },
   {
+    path: 'not-found',
+    component: NotFoundComponent,
+  },
+  {
     path: '**',
     pathMatch: 'full',
     component: NotFoundComponent,

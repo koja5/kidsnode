@@ -8,6 +8,8 @@ const auth = require("./config/auth");
 const logger = require("./config/logger");
 const request = require("request");
 const fs = require("fs");
+const generatePassword = require("generate-password");
+const sha1 = require("sha1");
 
 var connection = mysql.createPool({
   connectionLimit: 1000,
@@ -154,22 +156,22 @@ router.post("/login", async (req, res, next) => {
     }
     const email = req.body.email;
     conn.query(
-      "SELECT o.id, k.id as kindergarden FROM owners o join directors d on o.id = d.owner_id join kindergardens k on d.id = k.director_id WHERE o.email=? AND o.password=?",
-      [req.body.username, req.body.password],
+      "SELECT o.id, k.id as kindergarden, o.firstname, o.lastname FROM owners o join directors d on o.id = d.owner_id join kindergardens k on d.id = k.director_id WHERE o.email=? AND o.password=?",
+      [req.body.username, sha1(req.body.password)],
       function (err, rows, fields) {
         if (err) {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         }
         if (rows.length > 0) {
-          // dodaj unutar tokena da pored id-a user-a stoji i id vrtica kome dati user pripada
-          // treba ovde spakovati i tip user-a(uzmi iz enum-a)
           const token = jwt.sign(
             {
               user: {
                 id: rows[0].id,
                 kindergarden: rows[0].kindergarden,
                 type: process.env.owner,
+                firstname: rows[0].firstname,
+                lastname: rows[0].lastname
               },
               email,
             },
@@ -180,7 +182,7 @@ router.post("/login", async (req, res, next) => {
           );
           logger.log(
             "info",
-            `UserID: ${
+            `OWNER: ${
               req.body.username
             } is LOGIN at ${new Date().toDateString()}.`
           );
@@ -189,16 +191,26 @@ router.post("/login", async (req, res, next) => {
           });
         } else {
           conn.query(
-            "SELECT * FROM directors WHERE email=? AND password=?",
-            [req.body.username, req.body.password],
+            "SELECT * FROM employees WHERE active = 1 AND email=? AND password=?",
+            [req.body.username, sha1(req.body.password)],
             function (err, rows, fields) {
               if (err) {
                 logger.log("error", err.sql + ". " + err.sqlMessage);
                 res.json(err);
               }
+              console.log(rows);
               if (rows.length > 0) {
                 const token = jwt.sign(
-                  { user: { id: rows[0].id, kindergarden: 1 }, email },
+                  {
+                    user: {
+                      id: rows[0].id,
+                      kindergarden: rows[0].kindergarden_id,
+                      type: rows[0].user_type_id,
+                      firstname: rows[0].firstname,
+                      lastname: rows[0].lastname
+                    },
+                    email,
+                  },
                   process.env.TOKEN_KEY,
                   {
                     expiresIn: expiresToken,
@@ -206,12 +218,18 @@ router.post("/login", async (req, res, next) => {
                 );
                 logger.log(
                   "info",
-                  `UserID: ${req.body.username} is LOGIN at ${new Date()}.`
+                  `EMPLOYEE: ${req.body.username} is LOGIN at ${new Date()}.`
                 );
                 return res.json({
                   token: token,
                 });
               } else {
+                logger.log(
+                  "error",
+                  `USER: ${
+                    req.body.username
+                  } is NOT SUCCESSFULY LOGIN at ${new Date()}.`
+                );
                 res.json(false);
               }
             }
@@ -219,7 +237,7 @@ router.post("/login", async (req, res, next) => {
         }
       }
     );
-    var body = JSON.parse(
+    /*var body = JSON.parse(
       fs.readFileSync("./server/mail_server/config.json", "utf-8")
     );
     body.activate_mail.fields["link"] = process.env.link_client;
@@ -229,7 +247,7 @@ router.post("/login", async (req, res, next) => {
       body: body.activate_mail,
       json: true,
     };
-    request(options, function (error, response, body) {});
+    request(options, function (error, response, body) {});*/
   });
 });
 
@@ -975,8 +993,12 @@ router.post("/createEmployee", auth, function (req, res, next) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      console.log(req.body);
+      const password = generatePassword.generate({
+        length: 10,
+        numbers: true,
+      });
       req.body.kindergarden_id = req.user.user.kindergarden;
+      req.body.password = sha1(password);
       conn.query(
         "insert into employees SET ?",
         [req.body],
@@ -987,9 +1009,8 @@ router.post("/createEmployee", auth, function (req, res, next) {
               fs.readFileSync("./server/mail_server/config.json", "utf-8")
             );
             body.new_account.fields["email"] = req.body.email;
-            body.new_account.fields["password"] = "Test";
+            body.new_account.fields["password"] = password;
             body.new_account.fields["link"] = process.env.link_client;
-            console.log(body);
             var options = {
               url: process.env.link_api + "mail-server/sendMail",
               method: "POST",

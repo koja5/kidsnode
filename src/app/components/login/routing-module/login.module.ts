@@ -15,6 +15,7 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoaderBrandComponent } from '../../common/loader-brand/loader-brand.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LoaderBrandComponent } from '../../common/loader-brand/loader-brand.com
     FormsModule,
     NgbModule,
     HttpClientModule,
+    RouterModule
   ],
   providers: [CookieService],
   bootstrap: [],

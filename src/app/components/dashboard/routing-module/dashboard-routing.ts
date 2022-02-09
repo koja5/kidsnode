@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserTypeGuardService } from 'src/app/services/login-guard/user-type-guard.service';
 import { ChildrenComponent } from '../children/children/children.component';
 import { ControlPanelComponent } from '../control-panel/control-panel/control-panel.component';
 import { EmployeeComponent } from '../employee/employee/employee.component';
@@ -17,6 +18,8 @@ const routes: Routes = [
   {
     path: 'children',
     component: ChildrenComponent,
+    canActivate: [UserTypeGuardService],
+    data: { roles: ['educator'] },
     loadChildren: () =>
       import('../children/routing-module/children.module').then(
         (m) => m.ChildrenModule

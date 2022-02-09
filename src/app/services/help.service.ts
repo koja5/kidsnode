@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { FileType } from '../enums/file-type';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { StorageService } from './storage.service';
+import { UserType } from '../enums/user-type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HelpService {
-  constructor() {}
+  helper = new JwtHelperService();
+
+  constructor(private storageService: StorageService) {}
 
   public checkMobileDevice() {
     if (window.innerWidth < 992) {
@@ -169,5 +174,20 @@ export class HelpService {
     } else {
       return true;
     }
+  }
+
+  getDecodeToken() {
+    return this.helper.decodeToken(this.storageService.getToken()).user;
+  }
+
+  getTypeOfName(type: any) {
+    console.log(UserType);
+
+    for (var item in UserType) {
+      if (Number(item) === type) {
+        return UserType[item];
+      }
+    }
+    return UserType[UserType.educator];
   }
 }

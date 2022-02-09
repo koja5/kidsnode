@@ -10,18 +10,28 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { PathComponent } from '../common/path/path.component';
 import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
+import { UserTypeGuardService } from 'src/app/services/login-guard/user-type-guard.service';
+import { ActivatedRoute } from '@angular/router';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
 
 @NgModule({
   declarations: [DashboardComponent, PathComponent],
-  imports: [CommonModule, DynamicModuleModule, DashboardRouting, MatIconModule, DropDownButtonModule ],
+  imports: [
+    CommonModule,
+    DynamicModuleModule,
+    DashboardRouting,
+    MatIconModule,
+    DropDownButtonModule
+    
+  ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
+    UserTypeGuardService
   ],
 })
 export class DashboardModule {}

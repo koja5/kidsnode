@@ -13,6 +13,11 @@ export class DynamicControlPanelComponent implements OnInit {
   public language: any;
   public config: any;
   public loader = true;
+  public user = {
+    name: '',
+    type: '',
+    typeName: '',
+  };
 
   constructor(
     private helpService: HelpService,
@@ -21,6 +26,7 @@ export class DynamicControlPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeConfig();
+    this.getUserInfo();
   }
 
   initializeConfig() {
@@ -32,6 +38,20 @@ export class DynamicControlPanelComponent implements OnInit {
         this.config = data;
         this.loader = false;
       });
+  }
+
+  getUserInfo() {
+    const token = this.helpService.getDecodeToken();
+    this.user.name =
+      (token.firstname ? token.firstname : '') +
+      ' ' +
+      (token.lastname ? token.lastname : '');
+    this.user.type = token.type;
+    this.user.typeName = this.language[
+      this.helpService.getTypeOfName(token.type)
+    ]
+      ? this.language[this.helpService.getTypeOfName(token.type)]
+      : this.helpService.getTypeOfName(token.type);
   }
 
   getTodayDate() {
