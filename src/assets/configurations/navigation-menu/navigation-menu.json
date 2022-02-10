@@ -134,14 +134,17 @@
       "superadmin",
       "director",
       "owner",
-      "parent"
+      "parent",
+      "speech_therapist",
+      "pedagogue",
+      "psychologist",
+      "pediatrician"
     ],
     "menu": [
       {
         "icon": "monitor_heart",
         "title": "Zdravstvena zlužba",
-        "link": "/dashboard/services/health",
-        "rights": ""
+        "link": "/dashboard/services/health"
       }
     ]
   },

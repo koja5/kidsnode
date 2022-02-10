@@ -190,4 +190,16 @@ export class HelpService {
     }
     return UserType[UserType.educator];
   }
+
+  checkRights(rights: any) {
+    const type = this.getTypeOfName(this.getDecodeToken().type);
+    if (rights) {
+      for (let i = 0; i < rights.length; i++) {
+        if (rights[i] === type) {
+          return true;
+        }
+      }
+      return false;
+    } else return true;
+  }
 }

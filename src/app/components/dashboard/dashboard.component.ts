@@ -169,12 +169,12 @@ export class DashboardComponent implements OnInit {
       .subscribe((data: any) => {
         for (let i = 0; i < data.length; i++) {
           if (data[i].rights) {
-            if (this.checkNavigationMenuRights(data[i].rights)) {
+            if (this.helpService.checkRights(data[i].rights)) {
               this.menu.push(data[i]);
             }
           } else if (data[i].menu) {
             for (let j = 0; j < data[i].menu.length; j++) {
-              if (this.checkNavigationMenuRights(data[i].menu[j].rights)) {
+              if (this.helpService.checkRights(data[i].menu[j].rights)) {
                 this.menu.push(data[i]);
               }
             }
@@ -182,17 +182,6 @@ export class DashboardComponent implements OnInit {
         }
         this.initialCollapseMenu();
       });
-  }
-
-  checkNavigationMenuRights(rights: any) {
-    if (rights) {
-      for (let i = 0; i < rights.length; i++) {
-        if (rights[i] === this.type) {
-          return true;
-        }
-      }
-      return false;
-    } else return false;
   }
 
   checkMobileForSidebar() {

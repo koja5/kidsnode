@@ -1,4 +1,7 @@
-<div *ngIf="language && config" [ngClass]="[config.positionClass]">
+<div
+  *ngIf="language && config && checkRights()"
+  [ngClass]="[config.positionClass]"
+>
   <button
     ejs-button
     [disabled]="config.disabled"

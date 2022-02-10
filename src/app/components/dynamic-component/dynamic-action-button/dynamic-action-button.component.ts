@@ -116,4 +116,8 @@ export class DynamicActionButtonComponent implements OnInit {
   closeModal() {
     this.modal = false;
   }
+
+  checkRights() {
+    return this.helpService.checkRights(this.config?.actionButtons.rights);
+  }
 }

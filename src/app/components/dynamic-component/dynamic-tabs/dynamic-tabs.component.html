@@ -1,21 +1,21 @@
 <ejs-tab #element *ngIf="config" id="tab_default">
   <e-tabitems>
     <e-tabitem *ngFor="let item of config" [header]="item.title">
-      <ng-template #content *ngIf="item.type === 'grid'">
+      <ng-template #content *ngIf="item.type === 'grid' && helpService.checkRights(item.rights)">
         <app-dynamic-grid
           [path]="item.path"
           [file]="item.file"
           [partOfTab]="true"
         ></app-dynamic-grid>
       </ng-template>
-      <ng-template #content *ngIf="item.type === 'forms'">
+      <ng-template #content *ngIf="item.type === 'forms' && helpService.checkRights(item.rights)">
         <app-dynamic-forms
           [path]="item.path"
           [file]="item.file"
           [disableEdit]="true"
         ></app-dynamic-forms>
       </ng-template>
-      <ng-template #content *ngIf="item.type === 'scheduler'">
+      <ng-template #content *ngIf="item.type === 'scheduler' && helpService.checkRights(item.rights)">
         <app-dynamic-action-button
           *ngIf="item.actionButtons"
           [data]="item.actionButtons"
@@ -26,8 +26,7 @@
           [partOfTab]="true"
         ></app-dynamic-scheduler>
       </ng-template>
-
-      <ng-template #content *ngIf="item.type === 'tabs'">
+      <ng-template #content *ngIf="item.type === 'tabs' && helpService.checkRights(item.rights)">
         <app-dynamic-tabs
           [path]="item.path"
           [file]="item.file"

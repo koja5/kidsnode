@@ -7,7 +7,16 @@
     },
     "type": "forms",
     "path": "/forms/children",
-    "file": "basic-information.json"
+    "file": "basic-information.json",
+    "rights": [
+      "owner",
+      "director",
+      "educator",
+      "speech_therapist",
+      "pedagogue",
+      "psychologist",
+      "pediatrician"
+    ]
   },
   {
     "title": {
@@ -15,7 +24,12 @@
     },
     "type": "forms",
     "path": "/forms/children",
-    "file": "parents-information.json"
+    "file": "parents-information.json",
+    "rights": [
+      "owner",
+      "director",
+      "educator"
+    ]
   },
   {
     "title": {
@@ -23,7 +37,12 @@
     },
     "type": "grid",
     "path": "/grids/children/profile-children",
-    "file": "children-taking.json"
+    "file": "children-taking.json",
+    "rights": [
+      "owner",
+      "director",
+      "educator"
+    ]
   },
   {
     "title": {
@@ -31,7 +50,16 @@
     },
     "type": "tabs",
     "path": "/tabs/children",
-    "file": "medical-record.json"
+    "file": "medical-record.json",
+    "rights": [
+      "owner",
+      "director",
+      "educator",
+      "speech_therapist",
+      "pedagogue",
+      "psychologist",
+      "pediatrician"
+    ]
   },
   {
     "title": {
@@ -39,7 +67,12 @@
     },
     "type": "grid",
     "path": "/grids/children/profile-children",
-    "file": "documents.json"
+    "file": "documents.json",
+    "rights": [
+      "owner",
+      "director",
+      "educator"
+    ]
   },
   {
     "title": {
@@ -47,7 +80,12 @@
     },
     "type": "grid",
     "path": "/grids/children/profile-children",
-    "file": "children-notes.json"
+    "file": "children-notes.json",
+    "rights": [
+      "owner",
+      "director",
+      "educator"
+    ]
   },
   {
     "title": {
@@ -55,6 +93,10 @@
     },
     "type": "forms",
     "path": "/forms/children",
-    "file": "settings.json"
+    "file": "settings.json",
+    "rights": [
+      "owner",
+      "director"
+    ]
   }
 ]

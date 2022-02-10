@@ -16,7 +16,11 @@
         "splitButtons": {
             "content": "",
             "items": []
-        }
+        },
+        "rights": [
+            "owner",
+            "director"
+        ]
     },
     "request": {
         "type": "GET",
@@ -143,7 +147,11 @@
             "name": "submit",
             "title": "saveButton",
             "field": "submit",
-            "positionClass": "position-end mt-3 col-md-12"
+            "positionClass": "position-end mt-3 col-md-12",
+            "rights": [
+                "owner",
+                "director"
+            ]
         }
     ]
 }

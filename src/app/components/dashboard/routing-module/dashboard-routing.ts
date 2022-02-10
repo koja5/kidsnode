@@ -19,7 +19,17 @@ const routes: Routes = [
     path: 'children',
     component: ChildrenComponent,
     canActivate: [UserTypeGuardService],
-    data: { roles: ['educator'] },
+    data: {
+      roles: [
+        'director',
+        'owner',
+        'educator',
+        'speech_therapist',
+        'pedagogue',
+        'psychologist',
+        'pediatrician',
+      ],
+    },
     loadChildren: () =>
       import('../children/routing-module/children.module').then(
         (m) => m.ChildrenModule
