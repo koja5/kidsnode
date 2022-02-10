@@ -13,8 +13,6 @@ export class UserTypeGuardService {
   constructor(private router: Router, private helpService: HelpService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    // this.router.navigate(['/not-found']);
-    console.log(route);
     const token = this.helpService.getDecodeToken();
     const typeOfName = this.helpService.getTypeOfName(token.type);
     if (route.data.roles && route.data.roles.length) {

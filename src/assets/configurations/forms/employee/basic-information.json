@@ -3,15 +3,15 @@
     "class": "text-right p-3",
     "simpleButtons": [],
     "dropDownButtons": {
-      "content": "More",
+      "content": "Opcije",
       "items": [
         {
-          "text": "Edit",
+          "text": "Uredi",
           "id": "edit",
           "iconCss": "ddb-icons e-edit"
         },
         {
-          "text": "Delete",
+          "text": "Obriši",
           "id": "delete",
           "iconCss": "ddb-icons e-remove"
         }

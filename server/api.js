@@ -169,9 +169,9 @@ router.post("/login", async (req, res, next) => {
               user: {
                 id: rows[0].id,
                 kindergarden: rows[0].kindergarden,
-                type: process.env.owner,
+                type: Number(process.env.owner),
                 firstname: rows[0].firstname,
-                lastname: rows[0].lastname
+                lastname: rows[0].lastname,
               },
               email,
             },
@@ -207,7 +207,7 @@ router.post("/login", async (req, res, next) => {
                       kindergarden: rows[0].kindergarden_id,
                       type: rows[0].user_type_id,
                       firstname: rows[0].firstname,
-                      lastname: rows[0].lastname
+                      lastname: rows[0].lastname,
                     },
                     email,
                   },
@@ -281,7 +281,7 @@ router.post("/createKindergardenGroup", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateKindergardenGroup", function (req, res, next) {
+router.post("/updateKindergardenGroup", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -372,7 +372,7 @@ router.get(
   }
 );
 
-router.post("/deleteKindergardenGroup", (req, res, next) => {
+router.post("/deleteKindergardenGroup", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -434,7 +434,7 @@ router.post("/createKindergardenSubgroup", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateKindergardenSubgroup", function (req, res, next) {
+router.post("/updateKindergardenSubgroup", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -485,7 +485,7 @@ router.get("/getKindergardenSubgroup", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteKindergardenSubgroup", (req, res, next) => {
+router.post("/deleteKindergardenSubgroup", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -588,7 +588,7 @@ router.post("/createChildren", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateChildren", function (req, res, next) {
+router.post("/updateChildren", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -707,7 +707,7 @@ router.get("/getChildrenParentsById/:id", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteChildren", (req, res, next) => {
+router.post("/deleteChildren", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -804,7 +804,7 @@ router.post("/createChildrenNotes", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateChildrenNotes", function (req, res, next) {
+router.post("/updateChildrenNotes", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -831,7 +831,7 @@ router.post("/updateChildrenNotes", function (req, res, next) {
   });
 });
 
-router.post("/deleteChildrenNotes", (req, res, next) => {
+router.post("/deleteChildrenNotes", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -929,7 +929,7 @@ router.post("/createChildrenTaking", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateChildrenTaking", function (req, res, next) {
+router.post("/updateChildrenTaking", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -952,7 +952,7 @@ router.post("/updateChildrenTaking", function (req, res, next) {
   });
 });
 
-router.post("/deleteChildrenTaking", (req, res, next) => {
+router.post("/deleteChildrenTaking", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -1032,7 +1032,7 @@ router.post("/createEmployee", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateEmployee", function (req, res, next) {
+router.post("/updateEmployee", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1083,7 +1083,7 @@ router.get("/getEmployees", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteEmployee", (req, res, next) => {
+router.post("/deleteEmployee", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -1200,7 +1200,7 @@ router.post("/createWorkPlace", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateWorkPlace", function (req, res, next) {
+router.post("/updateWorkPlace", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1251,7 +1251,7 @@ router.get("/getWorkPlaces", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteWorkPlace", (req, res, next) => {
+router.post("/deleteWorkPlace", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -1312,7 +1312,7 @@ router.post("/createTypeOfWork", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateTypeOfWork", function (req, res, next) {
+router.post("/updateTypeOfWork", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1363,7 +1363,7 @@ router.get("/getTypeOfWorks", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteTypeOfWork", (req, res, next) => {
+router.post("/deleteTypeOfWork", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -1420,7 +1420,7 @@ router.post("/createFood", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateFood", function (req, res, next) {
+router.post("/updateFood", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1471,7 +1471,7 @@ router.get("/getFoods", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteFood", (req, res, next) => {
+router.post("/deleteFood", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -1563,7 +1563,7 @@ router.post("/createFoodMenu", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateFoodMenu", function (req, res, next) {
+router.post("/updateFoodMenu", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -1623,7 +1623,7 @@ router.get("/getFoodMenu", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteFoodMenu", (req, res, next) => {
+router.post("/deleteFoodMenu", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -1923,7 +1923,7 @@ router.get("/getCalendarOfChildrenActivity", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteCalendarOfChildrenActivity", (req, res, next) => {
+router.post("/deleteCalendarOfChildrenActivity", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -2113,7 +2113,7 @@ router.get("/getWorkDiaryEmployeeById/:id", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteWorkDiaryEmployee", (req, res, next) => {
+router.post("/deleteWorkDiaryEmployee", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -2238,7 +2238,7 @@ router.get("/getChildrenHealthRecord/:id", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteChildrenHealthRecord", (req, res, next) => {
+router.post("/deleteChildrenHealthRecord", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -2301,7 +2301,7 @@ router.post("/createSupplierCompany", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateSupplierCompany", function (req, res, next) {
+router.post("/updateSupplierCompany", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -2352,7 +2352,7 @@ router.get("/getSuppliersCompany", auth, async (req, res, next) => {
   }
 });
 
-router.post("/deleteSupplierCompany", (req, res, next) => {
+router.post("/deleteSupplierCompany", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -2453,32 +2453,36 @@ router.post(
   }
 );
 
-router.post("/updateMedicalRecordControlReview", function (req, res, next) {
-  connection.getConnection(function (err, conn) {
-    if (err) {
-      logger.log("error", err.sql + ". " + err.sqlMessage);
-      res.json(err);
-    }
-
-    req.body.date_control = new Date(req.body.date_control);
-
-    conn.query(
-      "update medical_record_control_reviews SET ? where id = ?",
-      [req.body, req.body.id],
-      function (err, rows) {
-        conn.release();
-        if (!err) {
-          res.json(true);
-        } else {
-          logger.log("error", err.sql + ". " + err.sqlMessage);
-          res.json(err);
-        }
+router.post(
+  "/updateMedicalRecordControlReview",
+  auth,
+  function (req, res, next) {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
       }
-    );
-  });
-});
 
-router.post("/deleteMedicalRecordControlReview", (req, res, next) => {
+      req.body.date_control = new Date(req.body.date_control);
+
+      conn.query(
+        "update medical_record_control_reviews SET ? where id = ?",
+        [req.body, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
+          }
+        }
+      );
+    });
+  }
+);
+
+router.post("/deleteMedicalRecordControlReview", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -2583,6 +2587,7 @@ router.post(
 
 router.post(
   "/updateMedicalRecordControlOtherReview",
+  auth,
   function (req, res, next) {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -2609,37 +2614,41 @@ router.post(
   }
 );
 
-router.post("/deleteMedicalRecordControlOtherReview", (req, res, next) => {
-  try {
-    connection.getConnection(function (err, conn) {
-      if (err) {
-        console.error("SQL Connection error: ", err);
-        res.json({
-          code: 100,
-          status: err,
-        });
-      } else {
-        conn.query(
-          "delete from medical_record_control_other_reviews where id = '" +
-            req.body.id +
-            "'",
-          function (err, rows, fields) {
-            conn.release();
-            if (err) {
-              logger.log("error", err.sql + ". " + err.sqlMessage);
-              res.json(false);
-            } else {
-              res.json(true);
+router.post(
+  "/deleteMedicalRecordControlOtherReview",
+  auth,
+  (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          console.error("SQL Connection error: ", err);
+          res.json({
+            code: 100,
+            status: err,
+          });
+        } else {
+          conn.query(
+            "delete from medical_record_control_other_reviews where id = '" +
+              req.body.id +
+              "'",
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(false);
+              } else {
+                res.json(true);
+              }
             }
-          }
-        );
-      }
-    });
-  } catch (ex) {
-    logger.log("error", err.sql + ". " + err.sqlMessage);
-    res.json(ex);
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
   }
-});
+);
 
 /* CHILDREN MEDICAL RECORDS CONTROL OTHER REVIEW */
 
@@ -2712,32 +2721,36 @@ router.post(
   }
 );
 
-router.post("/updateMedicalRecordSpecialReview", function (req, res, next) {
-  connection.getConnection(function (err, conn) {
-    if (err) {
-      logger.log("error", err.sql + ". " + err.sqlMessage);
-      res.json(err);
-    }
-
-    req.body.date_control = new Date(req.body.date_control);
-
-    conn.query(
-      "update medical_record_special_reviews SET ? where id = ?",
-      [req.body, req.body.id],
-      function (err, rows) {
-        conn.release();
-        if (!err) {
-          res.json(true);
-        } else {
-          logger.log("error", err.sql + ". " + err.sqlMessage);
-          res.json(err);
-        }
+router.post(
+  "/updateMedicalRecordSpecialReview",
+  auth,
+  function (req, res, next) {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
       }
-    );
-  });
-});
 
-router.post("/deleteMedicalRecordSpecialReview", (req, res, next) => {
+      req.body.date_control = new Date(req.body.date_control);
+
+      conn.query(
+        "update medical_record_special_reviews SET ? where id = ?",
+        [req.body, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
+          }
+        }
+      );
+    });
+  }
+);
+
+router.post("/deleteMedicalRecordSpecialReview", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -2835,7 +2848,7 @@ router.post("/createMedicalRecordObservation", auth, function (req, res, next) {
   }
 });
 
-router.post("/updateMedicalRecordObservation", function (req, res, next) {
+router.post("/updateMedicalRecordObservation", auth, function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -2858,7 +2871,7 @@ router.post("/updateMedicalRecordObservation", function (req, res, next) {
   });
 });
 
-router.post("/deleteMedicalRecordObservation", (req, res, next) => {
+router.post("/deleteMedicalRecordObservation", auth, (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -2980,5 +2993,32 @@ router.post("/updateKindergardenGeneralInfo", auth, function (req, res, next) {
 });
 
 /* KINDERGARDEN GENERAL INFO END */
+
+/* CHANGE PASSWORD */
+
+router.post("/changePassword", auth, function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    conn.query(
+      "update employees SET password = ? where id = ?",
+      [sha1(req.body.new_password), req.user.user.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          res.json(true);
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+/* END CHANGE PASSWORD */
 
 module.exports = router;

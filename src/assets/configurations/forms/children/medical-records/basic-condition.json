@@ -5,15 +5,15 @@
                 "class": "text-right pr-3 pl-3 pt-3 pb-0",
                 "simpleButtons": [],
                 "dropDownButtons": {
-                    "content": "More",
+                    "content": "Opcije",
                     "items": [
                         {
-                            "text": "Edit",
+                            "text": "Uredi",
                             "id": "edit",
                             "iconCss": "ddb-icons e-edit"
                         },
                         {
-                            "text": "Delete",
+                            "text": "Obriši",
                             "id": "delete",
                             "iconCss": "ddb-icons e-remove"
                         }
@@ -146,15 +146,15 @@
                 "class": "text-right border-top pr-3 pl-3 pt-3 pb-0",
                 "simpleButtons": [],
                 "dropDownButtons": {
-                    "content": "More",
+                    "content": "Opcije",
                     "items": [
                         {
-                            "text": "Edit",
+                            "text": "Uredi",
                             "id": "edit",
                             "iconCss": "ddb-icons e-edit"
                         },
                         {
-                            "text": "Delete",
+                            "text": "Obriši",
                             "id": "delete",
                             "iconCss": "ddb-icons e-remove"
                         }

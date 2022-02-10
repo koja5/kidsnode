@@ -7,10 +7,10 @@
         "rights": ""
     },
     {
-        "title": "Company",
-        "description": "Cheesecake bonbon chocolate bar. Tart sugar plum candy canes toffee sweet roll muffin oat cake. Chupa chups cookie icing tart tiramisu chocolate cake.",
-        "icon": "settings",
-        "link": "",
+        "title": "Promeni lozinku",
+        "description": "Promenite vasu trenutnu lozinku.",
+        "icon": "lock",
+        "link": "/dashboard/settings/change-password",
         "rights": ""
     },
     {

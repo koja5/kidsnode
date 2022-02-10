@@ -257,6 +257,7 @@ export class DashboardComponent implements OnInit {
 
   getUserInfo() {
     const token = this.helpService.getDecodeToken();
+    console.log(token);
     this.username = token.firstname ? token.firstname : token.lastname;
     this.type = this.helpService.getTypeOfName(token.type);
   }
