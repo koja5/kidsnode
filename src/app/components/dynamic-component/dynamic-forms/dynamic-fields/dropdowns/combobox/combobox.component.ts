@@ -84,7 +84,6 @@ export class ComboboxComponent implements OnInit {
   }
 
   onChange(event: any) {
-    console.log(event);
     this.config.value = Number(event);
   }
 }

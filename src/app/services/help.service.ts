@@ -181,8 +181,6 @@ export class HelpService {
   }
 
   getTypeOfName(type: any) {
-    console.log(UserType);
-
     for (var item in UserType) {
       if (Number(item) === type) {
         return UserType[item];

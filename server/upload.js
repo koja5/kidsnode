@@ -41,7 +41,6 @@ router.use(
 
 router.post("/saveChildrenDocument", multipartMiddleware, (req, res) => {
   try {
-    console.log(req);
     connection.getConnection(function (err, conn) {
       if (err) {
         console.error("SQL Connection error: ", err);
@@ -50,8 +49,6 @@ router.post("/saveChildrenDocument", multipartMiddleware, (req, res) => {
           status: err,
         });
       } else {
-        console.log(req);
-        console.log(req.body);
         const document = {
           children_id: req.body.id,
           name: req.files.UploadFiles.name,
@@ -143,7 +140,6 @@ router.post("/deleteChildrenDocument", auth, (req, res, next) => {
 });
 
 router.post("/getDocument", async (req, res, next) => {
-  console.log(req);
   req.body.path = req.body.path.toString().replace("server\\", "");
   filepath = path.join(__dirname, req.body.path);
   res.sendFile(filepath, {
@@ -261,7 +257,6 @@ router.post("/deleteGeneralContract", auth, (req, res, next) => {
 
 router.post("/saveEmployeeDocument", multipartMiddleware, (req, res) => {
   try {
-    console.log(req);
     connection.getConnection(function (err, conn) {
       if (err) {
         console.error("SQL Connection error: ", err);
@@ -270,8 +265,6 @@ router.post("/saveEmployeeDocument", multipartMiddleware, (req, res) => {
           status: err,
         });
       } else {
-        console.log(req);
-        console.log(req.body);
         const document = {
           employee_id: req.body.id,
           name: req.files.UploadFiles.name,
@@ -365,7 +358,6 @@ router.post("/deleteEmployeeDocument", auth, (req, res, next) => {
 
 router.post("/uploadKindergardenLogo", multipartMiddleware, (req, res) => {
   try {
-    console.log(req);
     connection.getConnection(function (err, conn) {
       if (err) {
         console.error("SQL Connection error: ", err);
@@ -378,7 +370,6 @@ router.post("/uploadKindergardenLogo", multipartMiddleware, (req, res) => {
           kindergarden_id: 2,
           logo: req.files.UploadFiles.path,
         };
-        console.log(body);
         conn.query(
           "update kindergarden_general_info set logo = ? where kindergarden_id = ?",
           [body.logo, body.kindergarden_id],

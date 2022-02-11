@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/common/not-found/not-found.component';
-import { KindergardenGroupComponent } from './components/dashboard/children/kindergarden-group/kindergarden-group.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { SignupComponent } from './components/login/signup/signup.component';
 import { LoggedGuardService } from './services/login-guard/logged-guard.service';
@@ -22,6 +22,11 @@ const routes: Routes = [
     path: 'login',
     canActivate: [LoggedGuardService],
     component: LoginComponent,
+  },
+  {
+    path: 'login/change-password/:id',
+    canActivate: [LoggedGuardService],
+    component: ForgotPasswordComponent,
   },
   {
     path: 'signup',

@@ -58,8 +58,6 @@ export class DynamicActionButtonComponent implements OnInit {
   }
 
   clickAction(action: any) {
-    console.log(action);
-    console.log(action.item.properties.id);
     switch (action.item.properties.id) {
       case 'edit':
         // this.ejDialog.show();

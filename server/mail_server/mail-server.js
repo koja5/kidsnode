@@ -39,22 +39,20 @@ router.post("/sendMail", function (req, res) {
     subject: req.body.subject,
     html: compiledTemplate.render(req.body.fields),
   };
-  console.log(smtpTransport);
 
   smtpTransport.sendMail(mailOptions, function (error, response) {
-    console.log(response);
     if (error) {
       logger.log(
         "error",
         `Error to sent mail for VERIFICATION MAIL on EMAIL: ${req.body.email}. Error: ${error}`
       );
-      res.end("error");
+      res.end(false);
     } else {
       logger.log(
         "info",
         `Sent mail for VERIFICATION MAIL for USER: ${req.body.shortname} on EMAIL: ${req.body.email}`
       );
-      res.end("sent");
+      res.end(true);
     }
   });
 });

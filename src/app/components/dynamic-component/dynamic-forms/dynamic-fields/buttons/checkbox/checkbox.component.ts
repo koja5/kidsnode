@@ -20,6 +20,5 @@ export class CheckboxComponent implements OnInit {
 
   ngOnInit(): void {
     this.language = this.helpService.getLanguage();
-    console.log(this.config.value);
   }
 }

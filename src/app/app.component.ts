@@ -26,7 +26,6 @@ export class AppComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.connectionStatus = 'online';
         }, 100);
-        console.log('Online...');
       })
     );
 
@@ -36,7 +35,6 @@ export class AppComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.connectionStatus = 'offline';
         }, 100);
-        console.log('Offline...');
       })
     );
   }
@@ -44,7 +42,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => {
       subscription.unsubscribe();
-      console.log('usao sam!');
       this.connectionStatus = '';
     });
   }

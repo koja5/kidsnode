@@ -198,7 +198,6 @@ router.post("/login", async (req, res, next) => {
                 logger.log("error", err.sql + ". " + err.sqlMessage);
                 res.json(err);
               }
-              console.log(rows);
               if (rows.length > 0) {
                 const token = jwt.sign(
                   {
@@ -248,6 +247,47 @@ router.post("/login", async (req, res, next) => {
       json: true,
     };
     request(options, function (error, response, body) {});*/
+  });
+});
+
+router.post("/sendMessageForResetPassword", function (req, res, next) {
+  var body = JSON.parse(
+    fs.readFileSync("./server/mail_server/config.json", "utf-8")
+  );
+  body.reset_password.fields["email"] = req.body.username;
+  body.reset_password.fields["link"] =
+    process.env.link_client + "/change-password/" + sha1(req.body.username);
+  var options = {
+    url: process.env.link_api + "mail-server/sendMail",
+    method: "POST",
+    body: body.reset_password,
+    json: true,
+  };
+  request(options, function (error, response, body) {});
+  res.json(true);
+});
+
+router.post("/changeForgotPassword", function (req, res, next) {
+  console.log(req.body);
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    conn.query(
+      "update employees SET password = ? where sha1(email) = ?",
+      [sha1(req.body.password), req.body.username],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          res.json(true);
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
   });
 });
 
@@ -2946,7 +2986,6 @@ router.post("/updateKindergardenGeneralInfo", auth, function (req, res, next) {
         "select * from kindergarden_general_info where kindergarden_id = ?",
         [req.user.user.kindergarden],
         function (err, rows, fields) {
-          console.log(rows);
           if (rows.length === 0) {
             req.body.kindergarden_id = req.user.user.kindergarden;
             delete req.body.id;

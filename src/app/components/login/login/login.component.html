@@ -26,7 +26,7 @@
                   }}</a>
                 </p>
                 <p *ngIf="notCorrect">
-                  Korisnicko ime ili lozinka nisu u redu!
+                  {{ language.notCorrectUserOrPassword }}
                 </p>
                 <form (submit)="login($event)">
                   <div class="form-group-login">
@@ -73,6 +73,9 @@
                 class="forgot-container"
               >
                 <h5>{{ language.forgotPasswordTitle }}</h5>
+                <p *ngIf="successfulySendMessage">
+                  {{ language.successfulySendMailForForgotPassword }}
+                </p>
                 <form (submit)="resetPassword($event)">
                   <div class="form-group-login">
                     <input
@@ -90,9 +93,13 @@
                 </form>
                 <p>
                   {{ language.haveAccount }}
-                  <a class="signup-link" (click)="formIndicator = 'login'">{{
-                    language.loginButton
-                  }}</a>
+                  <a
+                    class="signup-link"
+                    (click)="
+                      formIndicator = 'login'; successfulySendMessage = false
+                    "
+                    >{{ language.loginButton }}</a
+                  >
                 </p>
               </div>
             </div>

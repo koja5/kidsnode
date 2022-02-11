@@ -18,5 +18,15 @@
             "text": "Uspešno je kreiran nalog za Vas. U nastavku imate podatke za pristup!",
             "buttonText": "Prijavite se"
         }
+    },
+    "reset_password": {
+        "template": "reset_password.hjs",
+        "email": "kidsnode@gmail.com",
+        "subject": "Zahtev za obnavljanje lozinke",
+        "fields": {
+            "title": "Zahtev za obnavljanje lozinke",
+            "text": "Zatražili ste zahtev za obnavljanje lozinke. Klikom na link u nastavku, dobićete formu za unos nove lozinke za Vaš profil!",
+            "buttonText": "Obnovi lozinku"
+        }
     }
 }

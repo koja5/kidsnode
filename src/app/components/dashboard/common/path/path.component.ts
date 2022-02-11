@@ -24,7 +24,6 @@ export class PathComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        console.log(event.url);
         this.path = event.url.split('/');
         this.node = this.path[this.path.length - 1];
       }

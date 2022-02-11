@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   public formIndicator = 'login';
   public loginData = new LoginDataModel();
   public notCorrect = false;
+  public successfulySendMessage = false;
 
   constructor(
     private callApiService: CallApiService,
@@ -96,6 +97,15 @@ export class LoginComponent implements OnInit {
         this.notCorrect = true;
       }
     );
+  }
+  resetPassword() {
+    this.callApiService
+      .callPostMethod('api/sendMessageForResetPassword', this.loginData)
+      .subscribe((data) => {
+        if (data) {
+          this.successfulySendMessage = true;
+        }
+      });
   }
   setUserInfoAndRoute(data: any) {
     this.storageService.setToken(data.token);

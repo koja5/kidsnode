@@ -222,9 +222,7 @@ export class DynamicGridComponent implements OnInit {
 
   previewDocument(body: any) {
     this.apiService.getDocument(body).subscribe((data: any) => {
-      console.log(data);
       let file = new Blob([data], { type: 'application/pdf' });
-      console.log(file);
       var fileURL = URL.createObjectURL(file);
       window.open(fileURL);
     });

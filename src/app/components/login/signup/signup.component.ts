@@ -304,7 +304,6 @@ export class SignupComponent implements OnInit {
   }
 
   submitData(event: any) {
-    console.log(event);
     if (this.step === 0) {
       this.kinderGardenData = event;
     } else if (this.step === 1) {
