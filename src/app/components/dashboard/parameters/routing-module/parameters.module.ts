@@ -3,6 +3,7 @@ import { DynamicModuleModule } from 'src/app/components/dynamic-component/dynami
 import { FoodMenuComponent } from '../food-menu/food-menu.component';
 import { FoodComponent } from '../food/food.component';
 import { GeneralContractsComponent } from '../general-contracts/general-contracts.component';
+import { InvoiceSuppliersComponent } from '../invoice-suppliers/invoice-suppliers.component';
 import { ParametersComponent } from '../parameters/parameters.component';
 import { SuppliersCompanyComponent } from '../suppliers-company/suppliers-company.component';
 import { TypeOfWorkComponent } from '../type-of-work/type-of-work.component';
@@ -17,7 +18,8 @@ import { ParametersRouting } from './parameters-routing';
     FoodComponent,
     FoodMenuComponent,
     GeneralContractsComponent,
-    SuppliersCompanyComponent
+    SuppliersCompanyComponent,
+    InvoiceSuppliersComponent
   ],
   imports: [ParametersRouting, DynamicModuleModule],
   providers: [],

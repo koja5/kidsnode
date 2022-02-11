@@ -213,6 +213,11 @@
             "title": "Spisak dobavljaca",
             "link": "/dashboard/parameters/suppliers-company",
             "rights": ""
+          },
+          {
+            "title": "Računi",
+            "link": "/dashboard/parameters/invoice-suppliers",
+            "rights": ""
           }
         ]
       }

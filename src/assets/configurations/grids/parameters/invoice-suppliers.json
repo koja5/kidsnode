@@ -2,10 +2,7 @@
     "pageSize": 10,
     "request": {
         "type": "GET",
-        "api": "/api/getAllChildrenNotesByChildrenId",
-        "url": [
-            "id"
-        ],
+        "api": "/api/getInvoiceSupplier",
         "parameters": [],
         "fields": "",
         "root": ""
@@ -68,24 +65,21 @@
     "editSettingsRequest": {
         "add": {
             "type": "POST",
-            "api": "/api/createChildrenNotes",
-            "url": [
-                "id"
-            ],
+            "api": "/api/createInvoiceSupplier",
             "parameters": [],
             "fields": "",
             "root": ""
         },
         "edit": {
             "type": "POST",
-            "api": "/api/updateChildrenNotes",
+            "api": "/api/updateInvoiceSupplier",
             "parameters": [],
             "fields": "",
             "root": ""
         },
         "delete": {
             "type": "POST",
-            "api": "/api/deleteChildrenNotes",
+            "api": "/api/deleteInvoiceSupplier",
             "parameters": [],
             "fields": "",
             "root": ""
@@ -105,75 +99,105 @@
             "allowEditing": false
         },
         {
-            "title": "Datum kreiranja",
-            "filterable": true,
-            "hideable": true,
-            "type": "date",
-            "format": "dd.MM.yyyy",
-            "class": "text-align-right",
-            "field": "creation_date",
-            "validation": {
-                "required": true
-            }
-        },
-        {
-            "title": "Napomena",
+            "title": "Dobavljač",
             "filterable": true,
             "hideable": true,
             "type": "string",
             "class": "text-align-right",
-            "field": "note",
-            "validation": {
-                "required": true
-            }
+            "field": "supplier_name"
         },
         {
-            "title": "Napomena",
+            "title": "Cena",
+            "filterable": true,
+            "hideable": true,
+            "type": "string",
+            "class": "text-align-right",
+            "field": "price"
+        },
+        {
+            "title": "Opis",
+            "filterable": true,
+            "hideable": true,
+            "type": "string",
+            "class": "text-align-right",
+            "field": "description"
+        },
+        {
+            "title": "Status",
             "template": {
-                "custom": "<h6>TEst</h6>"
-            }
+                "choices": [
+                    {
+                        "field": "price",
+                        "value": 550,
+                        "operator": "=",
+                        "html": "<span class='label-success'>Plaćeno</span>"
+                    },
+                    {
+                        "field": "price",
+                        "value": 550,
+                        "operator": "!=",
+                        "html": "<span class='label-error'>Nije plaćeno</span>"
+                    }
+                ]
+            },
+            "field": "price"
         }
     ],
     "config": [
         {
             "type": "textbox",
             "width": "col-md-12 hide",
-            "class": "e-outline",
+            "class": "e-outline hide",
             "name": "id",
             "title": "ID",
-            "field": "id",
-            "readonly": true
+            "field": "id"
+        },
+        {
+            "type": "combobox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "supplier_id",
+            "title": "Dostavljač",
+            "field": {
+                "text": "name",
+                "value": "id"
+            },
+            "request": {
+                "type": "GET",
+                "api": "/api/getSuppliersCompany",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "fieldConfig": {
+                "ignoreAccent": false,
+                "filter": true
+            },
+            "required": true
         },
         {
             "type": "textbox",
-            "width": "col-md-6",
+            "width": "col-md-12",
             "class": "e-outline",
-            "name": "firstname",
-            "title": "Ime deteta",
-            "field": "firstname"
+            "name": "price",
+            "title": "Cena",
+            "field": "price"
         },
         {
             "type": "textbox",
-            "width": "col-md-6",
+            "multiline": true,
+            "width": "col-md-12",
             "class": "e-outline",
-            "name": "lastname",
-            "title": "Prezime deteta",
-            "field": "lastname"
-        },
-        {
-            "type": "checkbox",
-            "width": "col-md-12 text-center",
-            "class": "e-outline",
-            "name": "paid",
-            "title": "Plaćena faktura",
-            "field": "paid"
+            "name": "description",
+            "title": "Opis usluge",
+            "field": "description"
         },
         {
             "type": "button",
             "width": "col-md-12",
-            "class": "e-info",
+            "class": "e-info button-action",
             "name": "submit",
-            "title": "Sacuvaj",
+            "title": "Sačuvaj",
             "field": "submit",
             "positionClass": "position-end mt-3 col-md-12"
         }

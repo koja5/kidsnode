@@ -324,3 +324,15 @@ input:focus-visible {
     width: 20%;
   }
 }
+
+.label-success {
+  background-color: #cfc;
+  color: #0c0;
+  padding: 5px 10px;
+}
+
+.label-error {
+  background-color: #ffd7cc;
+  color: #e60000;
+  padding: 5px 10px;
+}
