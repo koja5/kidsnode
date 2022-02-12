@@ -82,6 +82,7 @@
     "invoiceDate": "Datum",
     "invoiceBillNo": "Broj fakture",
     "invoiceOrderDetails": "Detalji fakture",
+    "invoiceAddNewProduct": "Dodaj novu stavku",
     "invoiceProduct": "Naslov",
     "invoicePrice": "Cena",
     "invoiceQuantity": "Količina",
