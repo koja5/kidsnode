@@ -108,6 +108,12 @@
         "title": "Uplate",
         "link": "/dashboard/invoices/children-invoices",
         "rights": ""
+      },
+      {
+        "icon": "receipt",
+        "title": "Generiši fakturu",
+        "link": "/dashboard/invoices/invoice-form",
+        "rights": ""
       }
     ]
   },

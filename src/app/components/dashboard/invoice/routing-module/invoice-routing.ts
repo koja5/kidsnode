@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChildrenInvoicesComponent } from '../children-invoices/children-invoices.component';
+import { CustomInvoiceFormComponent } from '../custom-invoice-form/custom-invoice-form.component';
 
 const routes: Routes = [
   {
@@ -10,8 +11,12 @@ const routes: Routes = [
   },
   {
     path: 'children-invoices',
-    component: ChildrenInvoicesComponent
-  }
+    component: ChildrenInvoicesComponent,
+  },
+  {
+    path: 'invoice-form',
+    component: CustomInvoiceFormComponent,
+  },
 ];
 
 @NgModule({

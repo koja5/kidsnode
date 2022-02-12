@@ -48,6 +48,7 @@ import { DynamicIconComponent } from '../common/dynamic-icon/dynamic-icon.compon
 import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
 import { DynamicControlPanelModule } from '../dynamic-control-panel/dynamic-control-panel.module';
 import { DynamicBreadcrumbComponent } from '../common/dynamic-breadcrumb/dynamic-breadcrumb.component';
+import { DynamicInvoiceComponent } from '../dynamic-invoice/dynamic-invoice.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { DynamicBreadcrumbComponent } from '../common/dynamic-breadcrumb/dynamic
     DynamicUploadComponent,
     DynamicPdfViewerComponent,
     DynamicIconComponent,
-    DynamicBreadcrumbComponent
+    DynamicBreadcrumbComponent,
+    DynamicInvoiceComponent,
   ],
   exports: [
     DynamicGridComponent,
@@ -76,7 +78,8 @@ import { DynamicBreadcrumbComponent } from '../common/dynamic-breadcrumb/dynamic
     DynamicUploadComponent,
     DynamicPdfViewerComponent,
     DynamicIconComponent,
-    DynamicBreadcrumbComponent
+    DynamicBreadcrumbComponent,
+    DynamicInvoiceComponent,
   ],
   imports: [
     CommonModule,
