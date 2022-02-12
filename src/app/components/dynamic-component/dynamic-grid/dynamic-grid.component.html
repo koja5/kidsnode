@@ -98,7 +98,7 @@
           <div *ngIf="item.template.choices">
             <div *ngFor="let item of item.template.choices">
               <div
-                *ngIf="item.operator === '=' && data[item.field] === item.value"
+                *ngIf="item.operator === '==' && data[item.field] === item.value"
                 [innerHtml]="item.html"
               ></div>
               <div

@@ -3173,4 +3173,35 @@ router.post("/changePassword", auth, function (req, res, next) {
 
 /* END CHANGE PASSWORD */
 
+/* PAYMENT STATUS */
+
+router.get("/getPaymentStatus", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from payment_status",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END PAYMENT STATUS */
+
 module.exports = router;

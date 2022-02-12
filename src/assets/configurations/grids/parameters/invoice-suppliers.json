@@ -127,20 +127,20 @@
             "template": {
                 "choices": [
                     {
-                        "field": "price",
-                        "value": 550,
-                        "operator": "=",
+                        "field": "payment_status",
+                        "value": 1,
+                        "operator": "==",
                         "html": "<span class='label-success'>Plaćeno</span>"
                     },
                     {
-                        "field": "price",
-                        "value": 550,
-                        "operator": "!=",
+                        "field": "payment_status",
+                        "value": 2,
+                        "operator": "==",
                         "html": "<span class='label-error'>Nije plaćeno</span>"
                     }
                 ]
             },
-            "field": "price"
+            "field": "paymeny_status"
         }
     ],
     "config": [
@@ -191,6 +191,29 @@
             "name": "description",
             "title": "Opis usluge",
             "field": "description"
+        },
+        {
+            "type": "combobox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "payment_status",
+            "title": "Status plaćanja",
+            "field": {
+                "text": "name",
+                "value": "id"
+            },
+            "request": {
+                "type": "GET",
+                "api": "/api/getPaymentStatus",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "fieldConfig": {
+                "ignoreAccent": false,
+                "filter": true
+            },
+            "required": true
         },
         {
             "type": "button",
