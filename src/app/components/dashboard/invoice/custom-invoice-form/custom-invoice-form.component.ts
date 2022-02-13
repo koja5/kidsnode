@@ -167,7 +167,7 @@ export class CustomInvoiceFormComponent implements OnInit {
     };
 
     if (action === 'download') {
-      pdfMake.createPdf(docDefinition).download();
+      pdfMake.createPdf(docDefinition).download(this.invoice.customerName);
     } else if (action === 'print') {
       pdfMake.createPdf(docDefinition).print();
     } else {
