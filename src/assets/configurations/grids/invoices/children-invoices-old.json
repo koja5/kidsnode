@@ -3,7 +3,7 @@
     "width": "30%",
     "request": {
         "type": "GET",
-        "api": "/api/getInvoiceChildren",
+        "api": "/api/getOldInvoiceChildren",
         "url": [],
         "parameters": [],
         "fields": "",
@@ -51,26 +51,17 @@
         "Ungroup"
     ],
     "toolbar": [
-        "Edit",
         "Print",
         "Search"
     ],
     "editSettings": {
-        "allowEditing": true,
+        "allowEditing": false,
         "allowAdding": false,
         "allowDeleting": false,
         "showDeleteConfirmDialog": true,
         "mode": "Dialog"
     },
-    "editSettingsRequest": {
-        "edit": {
-            "type": "POST",
-            "api": "/api/updateInvoiceChildrenPayment",
-            "parameters": [],
-            "fields": "",
-            "root": ""
-        }
-    },
+    "editSettingsRequest": {},
     "columns": [
         {
             "title": "ID",

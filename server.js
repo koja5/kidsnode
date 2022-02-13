@@ -7,6 +7,11 @@ const api = require("./server/api");
 const upload = require("./server/upload");
 const controlPanel = require("./server/control-panel");
 const mailServer = require("./server/mail_server/mail-server");
+const schedule = require("node-schedule");
+
+//AUTOMATE SCRIPTS
+const createChildrenInvoice = require("./server/automate_scripts/create-children-invoice");
+//END AUTOMATE SCRIPTS
 
 app.use(function (req, res, next) {
   //allow cross origin requests
@@ -44,3 +49,9 @@ const port = process.env.PORT || "3001";
 app.set("port", port);
 const server = http.createServer(app);
 server.listen(port, () => console.log(`API running on localhost:${port}`));
+
+// AUTOMATE WORK
+
+schedule.scheduleJob("15 36 23 * * *", function () {
+  createChildrenInvoice();
+});

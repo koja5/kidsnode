@@ -944,7 +944,6 @@ router.post("/createChildrenTaking", auth, function (req, res, next) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      req.body.creation_date = new Date().toDateString();
       req.body.children_id = req.body.id;
       req.body.educator_id = req.user.user.id;
       delete req.body.id;
@@ -3203,5 +3202,94 @@ router.get("/getPaymentStatus", auth, async (req, res, next) => {
 });
 
 /* END PAYMENT STATUS */
+
+/* CHILDREN INVOICES */
+
+router.get("/getInvoiceChildren", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select i.*, c.firstname, c.lastname from invoice_children i join childrens c on i.children_id = c.id where i.kindergarden_id = ? and MONTH(i.creation_date) = MONTH(CURRENT_DATE())",
+          [req.user.user.kindergarden],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getOldInvoiceChildren", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select i.*, c.firstname, c.lastname from invoice_children i join childrens c on i.children_id = c.id where i.kindergarden_id = ? and MONTH(i.creation_date) < MONTH(CURRENT_DATE())",
+          [req.user.user.kindergarden],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateInvoiceChildrenPayment", auth, function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    if (req.body.payment_status === 1) {
+      req.body.payment_date = new Date();
+    } else {
+      req.body.payment_date = null;
+    }
+
+    conn.query(
+      "update invoice_children SET payment_status = ?, payment_date = ? where id = ?",
+      [req.body.payment_status, req.body.payment_date, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          res.json(true);
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+/* END CHILDREN INVOICES */
 
 module.exports = router;
