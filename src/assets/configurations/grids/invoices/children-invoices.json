@@ -40,7 +40,6 @@
         "SortDescending",
         "Copy",
         "Edit",
-        "Delete",
         "Save",
         "Cancel",
         "FirstPage",
@@ -161,6 +160,40 @@
             "validation": {
                 "required": true
             }
+        },
+        {
+            "type": "button",
+            "title": "",
+            "filterable": true,
+            "hideable": true,
+            "class": "text-align-right",
+            "field": "description",
+            "template": {
+                "type": "dropdownbutton",
+                "content": "Opcije",
+                "items": [
+                    {
+                        "text": "Pošalji podsetnik za plaćanje",
+                        "id": "sendReminder"
+                    },
+                    {
+                        "separator": true
+                    },
+                    {
+                        "text": "Logout",
+                        "id": 2
+                    }
+                ],
+                "itemsRequest": {
+                    "sendReminder": {
+                        "type": "POST",
+                        "api": "/api/sendManualInvoiceChildren",
+                        "parameters": [],
+                        "fields": "",
+                        "root": ""
+                    }
+                }
+            }
         }
     ],
     "config": [
@@ -172,6 +205,31 @@
             "title": "ID",
             "field": "id",
             "readonly": true
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12 hide",
+            "class": "e-outline",
+            "name": "creation_date",
+            "title": "Datum kreiranja",
+            "field": "creation_date",
+            "readonly": true
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12 hide",
+            "class": "e-outline",
+            "name": "father_name",
+            "title": "Ime oca",
+            "field": "father_name"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12 hide",
+            "class": "e-outline",
+            "name": "name",
+            "title": "Ime vrtića",
+            "field": "name"
         },
         {
             "type": "textbox",

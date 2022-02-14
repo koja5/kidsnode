@@ -141,16 +141,20 @@ export class DynamicGridComponent implements OnInit {
   }
 
   callServerMethod(request: any, event: any) {
-    this.apiService.callServerMethod(request, event, this.router).subscribe((data: any) => {
-      if (data) {
-        this.toastr.showSuccess();
-        this.apiService.callApi(this.config, this.router).subscribe((data) => {
-          this.setResponseData(data);
-        });
-      } else {
-        this.toastr.showError();
-      }
-    });
+    this.apiService
+      .callServerMethod(request, event, this.router)
+      .subscribe((data: any) => {
+        if (data) {
+          this.toastr.showSuccess();
+          this.apiService
+            .callApi(this.config, this.router)
+            .subscribe((data) => {
+              this.setResponseData(data);
+            });
+        } else {
+          this.toastr.showError();
+        }
+      });
   }
 
   setResponseData(data: any) {
@@ -230,5 +234,22 @@ export class DynamicGridComponent implements OnInit {
 
   getFileTypeIcon(data: any, field: string) {
     return this.helpService.getFileTypeIcon(data[field]);
+  }
+
+  clickDropDownButton(event: any, value: any, requiest: any) {
+    console.log(event);
+    if (event.item.properties.id) {
+      const data = {
+        request: requiest[event.item.properties.id],
+        body: value,
+      };
+      this.apiService.callApi(data, this.router).subscribe((data) => {
+        if (data) {
+          this.toastr.showSuccess();
+        } else {
+          this.toastr.showError();
+        }
+      });
+    }
   }
 }

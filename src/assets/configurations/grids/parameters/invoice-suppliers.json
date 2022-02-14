@@ -141,6 +141,40 @@
                 ]
             },
             "field": "paymeny_status"
+        },
+        {
+            "type": "button",
+            "title": "",
+            "filterable": true,
+            "hideable": true,
+            "class": "text-align-right",
+            "field": "description",
+            "template": {
+                "type": "dropdownbutton",
+                "content": "Opcije",
+                "items": [
+                    {
+                        "text": "Settings",
+                        "id": "settings"
+                    },
+                    {
+                        "separator": true
+                    },
+                    {
+                        "text": "Logout",
+                        "id": 2
+                    }
+                ],
+                "itemsRequest": {
+                    "settings": {
+                        "type": "POST",
+                        "api": "/api/createInvoiceSupplier",
+                        "parameters": [],
+                        "fields": "",
+                        "root": ""
+                    }
+                }
+            }
         }
     ],
     "config": [

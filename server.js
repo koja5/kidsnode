@@ -11,6 +11,7 @@ const schedule = require("node-schedule");
 
 //AUTOMATE SCRIPTS
 const createChildrenInvoice = require("./server/automate_scripts/create-children-invoice");
+const sendChildrenInvoice = require("./server/automate_scripts/send_children_invoice");
 //END AUTOMATE SCRIPTS
 
 app.use(function (req, res, next) {
@@ -54,4 +55,8 @@ server.listen(port, () => console.log(`API running on localhost:${port}`));
 
 schedule.scheduleJob("15 36 23 * * *", function () {
   createChildrenInvoice();
+});
+
+schedule.scheduleJob("15 01 16 * * *", function () {
+  sendChildrenInvoice();
 });

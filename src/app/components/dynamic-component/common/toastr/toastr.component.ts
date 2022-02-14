@@ -46,8 +46,8 @@ export class ToastrComponent implements OnInit {
 
   showSuccess() {
     this.toastr.success(
-      this.helpService.getLanguage().toastrSuccessExecutedActionTitle,
       this.helpService.getLanguage().toastrSuccessExecutedActionText,
+      this.helpService.getLanguage().toastrSuccessExecutedActionTitle,
       {
         timeOut: 7000,
         positionClass: 'toast-bottom-right',
@@ -57,8 +57,8 @@ export class ToastrComponent implements OnInit {
 
   showInfo() {
     this.toastr.info(
-      this.helpService.getLanguage().toastrInfoExecutedActionTitle,
       this.helpService.getLanguage().toastrInfoExecutedActionText,
+      this.helpService.getLanguage().toastrInfoExecutedActionTitle,
       {
         timeOut: 7000,
         positionClass: 'toast-bottom-right',
@@ -68,8 +68,8 @@ export class ToastrComponent implements OnInit {
 
   showError() {
     this.toastr.error(
-      this.helpService.getLanguage().toastrErrorExecutedActionTitle,
       this.helpService.getLanguage().toastrErrorExecutedActionText,
+      this.helpService.getLanguage().toastrErrorExecutedActionTitle,
       {
         timeOut: 7000,
         positionClass: 'toast-bottom-right',

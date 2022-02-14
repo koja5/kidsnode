@@ -87,6 +87,23 @@
             </button>
           </div>
 
+          <div *ngIf="item.template.type === 'dropdownbutton'">
+            <button
+              *ngIf="item.template.items"
+              ejs-dropdownbutton
+              class="background-none"
+              [items]="item.template.items"
+              content="{{
+                language[item.template.content]
+                  ? language[item.template.content]
+                  : item.template.content
+              }}"
+              (select)="
+                clickDropDownButton($event, data, item.template.itemsRequest)
+              "
+            ></button>
+          </div>
+
           <div *ngIf="item.template.type === 'fileType'">
             <mat-icon
               class="mat-icon notranslate material-icons mat-icon-no-color"
@@ -98,7 +115,9 @@
           <div *ngIf="item.template.choices">
             <div *ngFor="let item of item.template.choices">
               <div
-                *ngIf="item.operator === '==' && data[item.field] === item.value"
+                *ngIf="
+                  item.operator === '==' && data[item.field] === item.value
+                "
                 [innerHtml]="item.html"
               ></div>
               <div

@@ -33,8 +33,11 @@ router.post("/sendMail", function (req, res) {
     "utf-8"
   );
   var compiledTemplate = hogan.compile(confirmTemplate);
+  console.log(req.body);
   var mailOptions = {
-    from: '"KidsNode"' + process.env.smtp_user,
+    from: req.body.sender
+      ? "\'" + req.body.sender + "\'" + process.env.smtp_user
+      : '"KidsNode"' + process.env.smtp_user,
     to: "kojaaa95@gmail.com",
     subject: req.body.subject,
     html: compiledTemplate.render(req.body.fields),

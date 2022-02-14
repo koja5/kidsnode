@@ -3213,7 +3213,7 @@ router.get("/getInvoiceChildren", auth, async (req, res, next) => {
         res.json(err);
       } else {
         conn.query(
-          "select i.*, c.firstname, c.lastname from invoice_children i join childrens c on i.children_id = c.id where i.kindergarden_id = ? and MONTH(i.creation_date) = MONTH(CURRENT_DATE())",
+          "select i.*, c.firstname, c.lastname, k.name, p1.firstname as 'father_name', p2.firstname as 'mother_name' from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id join parents p1 on c.father_id = p1.id join parents p2 on c.mother_id = p2.id where i.kindergarden_id = ? and MONTH(i.creation_date) = MONTH(CURRENT_DATE())",
           [req.user.user.kindergarden],
           function (err, rows, fields) {
             conn.release();
@@ -3241,7 +3241,7 @@ router.get("/getOldInvoiceChildren", auth, async (req, res, next) => {
         res.json(err);
       } else {
         conn.query(
-          "select i.*, c.firstname, c.lastname from invoice_children i join childrens c on i.children_id = c.id where i.kindergarden_id = ? and MONTH(i.creation_date) < MONTH(CURRENT_DATE())",
+          "select i.*, c.firstname, c.lastname, k.name from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id where i.kindergarden_id = ? and MONTH(i.creation_date) < MONTH(CURRENT_DATE())",
           [req.user.user.kindergarden],
           function (err, rows, fields) {
             conn.release();
@@ -3280,6 +3280,43 @@ router.post("/updateInvoiceChildrenPayment", auth, function (req, res, next) {
       function (err, rows) {
         conn.release();
         if (!err) {
+          if (req.body.payment_status === 1) {
+            var body = JSON.parse(
+              fs.readFileSync("./server/mail_server/config.json", "utf-8")
+            );
+            body.children_invoice_paied["sender"] = req.body.name;
+            body.children_invoice_paied.fields["email"] = req.body.email;
+            body.children_invoice_paied.fields["greeting"] =
+              body.children_invoice_paied.fields["greeting"].replace(
+                "{firstname}",
+                req.body.father_name
+              );
+            body.children_invoice_paied.fields["text"] =
+              body.children_invoice_paied.fields["text"].replace(
+                "{month}",
+                new Date(req.body.creation_date).getMonth() +
+                  1 +
+                  "." +
+                  new Date(req.body.creation_date).getFullYear()
+              );
+            body.children_invoice_paied.fields["text"] =
+              body.children_invoice_paied.fields["text"].replace(
+                "{firstname}",
+                req.body.firstname
+              );
+            body.children_invoice_paied.fields["text"] =
+              body.children_invoice_paied.fields["text"].replace(
+                "{lastname}",
+                req.body.lastname
+              );
+            var options = {
+              url: process.env.link_api + "mail-server/sendMail",
+              method: "POST",
+              body: body.children_invoice_paied,
+              json: true,
+            };
+            request(options, function (error, response, body) {});
+          }
           res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -3291,5 +3328,48 @@ router.post("/updateInvoiceChildrenPayment", auth, function (req, res, next) {
 });
 
 /* END CHILDREN INVOICES */
+
+/* SEND MANUAL INVOICE CHILDREN */
+
+router.post("/sendManualInvoiceChildren", auth, function (req, res, next) {
+  var body = JSON.parse(
+    fs.readFileSync("./server/mail_server/config.json", "utf-8")
+  );
+  body.send_children_invoice.fields["email"] = req.body.email;
+  body.send_children_invoice.fields["greeting"] =
+    body.send_children_invoice.fields["greeting"].replace(
+      "{firstname}",
+      req.body.father_name
+    );
+  body.send_children_invoice.fields["text"] = body.send_children_invoice.fields[
+    "text"
+  ].replace(
+    "{month}",
+    new Date(req.body.creation_date).getMonth() +
+      1 +
+      "." +
+      new Date(req.body.creation_date).getFullYear()
+  );
+  body.send_children_invoice.fields["text"] = body.send_children_invoice.fields[
+    "text"
+  ].replace("{firstname}", req.body.firstname);
+  body.send_children_invoice.fields["text"] = body.send_children_invoice.fields[
+    "text"
+  ].replace("{lastname}", req.body.lastname);
+  body.send_children_invoice.fields["payee"] = req.body.name;
+  var options = {
+    url: process.env.link_api + "mail-server/sendMail",
+    method: "POST",
+    body: body.send_children_invoice,
+    json: true,
+  };
+  request(options, function (error, response, body) {
+    if (!error) {
+      return true;
+    }
+  });
+});
+
+/* END SEND MANUAL INVOICE CHILDREN */
 
 module.exports = router;
