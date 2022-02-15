@@ -1,55 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { InvoiceModel } from '../../../models/invoice-model';
 
 const pdfMake = require('pdfmake/build/pdfmake.js');
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { HelpService } from 'src/app/services/help.service';
+import { ProductItemModel } from 'src/app/models/product-item-model';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
-class Product {
-  name!: string;
-  price!: number;
-  qty!: number;
-}
-class Invoice {
-  customerName!: string;
-  address!: string;
-  contactNo!: number;
-  email!: string;
-
-  products: Product[] = [];
-  additionalDetails!: string;
-
-  constructor() {
-    this.products.push(new Product());
-  }
-}
 
 @Component({
   selector: 'app-dynamic-invoice',
   templateUrl: './dynamic-invoice.component.html',
   styleUrls: ['./dynamic-invoice.component.scss'],
 })
-export class DynamicInvoiceComponent {
-  invoice = new Invoice();
+export class DynamicInvoiceComponent implements OnInit {
+  // invoice = new InvoiceModel();
+  @Input() invoice!: InvoiceModel;
+  @Input() action!: string;
+  public language: any;
 
-  generatePDF(action = 'open') {
+  constructor(private helpService: HelpService) {}
+
+  ngOnInit(): void {
+    this.language = this.helpService.getLanguage();
+    this.generatePDF(this.action);
+  }
+
+  generatePDF(action: string) {
     let docDefinition = {
       content: [
         {
-          text: 'ELECTRONIC SHOP',
-          fontSize: 16,
-          alignment: 'center',
-          color: '#047886',
+          columns: [
+            [
+              {
+                text: 'KidsNode',
+                fontSize: 16,
+                bold: true,
+                alignment: 'left',
+                color: '#1E2462',
+              },
+            ],
+            [
+              {
+                text: this.language.invoiceTitle,
+                fontSize: 16,
+                bold: true,
+                alignment: 'right',
+                color: '#1E2462',
+              },
+            ],
+          ],
         },
         {
-          text: 'INVOICE',
-          fontSize: 20,
-          bold: true,
-          alignment: 'center',
-          decoration: 'underline',
-          color: 'skyblue',
-        },
-        {
-          text: 'Customer Details',
+          text: this.language.invoiceCustomerDetails,
           style: 'sectionHeader',
         },
         {
@@ -60,23 +62,27 @@ export class DynamicInvoiceComponent {
                 bold: true,
               },
               { text: this.invoice.address },
+              { text: this.invoice.phone },
               { text: this.invoice.email },
-              { text: this.invoice.contactNo },
             ],
             [
               {
-                text: `Date: ${new Date().toLocaleString()}`,
+                text: `${
+                  this.language.invoiceDate
+                } : ${new Date().toLocaleString()}`,
                 alignment: 'right',
               },
               {
-                text: `Bill No : ${(Math.random() * 1000).toFixed(0)}`,
+                text: `${this.language.invoiceBillNo} : ${(
+                  Math.random() * 1000
+                ).toFixed(0)}`,
                 alignment: 'right',
               },
             ],
           ],
         },
         {
-          text: 'Order Details',
+          text: this.language.invoiceOrderDetails,
           style: 'sectionHeader',
         },
         {
@@ -84,7 +90,12 @@ export class DynamicInvoiceComponent {
             headerRows: 1,
             widths: ['*', 'auto', 'auto', 'auto'],
             body: [
-              ['Product', 'Price', 'Quantity', 'Amount'],
+              [
+                this.language.invoiceProduct,
+                this.language.invoicePrice,
+                this.language.invoiceQuantity,
+                this.language.invoiceAmount,
+              ],
               ...this.invoice.products.map((p) => [
                 p.name,
                 p.price,
@@ -92,7 +103,7 @@ export class DynamicInvoiceComponent {
                 (p.price * p.qty).toFixed(2),
               ]),
               [
-                { text: 'Total Amount', colSpan: 3 },
+                { text: this.language.invoiceTotalAmount, colSpan: 3 },
                 {},
                 {},
                 this.invoice.products
@@ -103,7 +114,7 @@ export class DynamicInvoiceComponent {
           },
         },
         {
-          text: 'Additional Details',
+          text: this.language.invoiceAdditionalDetails,
           style: 'sectionHeader',
         },
         {
@@ -113,20 +124,22 @@ export class DynamicInvoiceComponent {
         {
           columns: [
             [{ qr: `${this.invoice.customerName}`, fit: '50' }],
-            [{ text: 'Signature', alignment: 'right', italics: true }],
+            [
+              {
+                text: this.language.invoiceSignature,
+                alignment: 'right',
+                italics: true,
+              },
+            ],
           ],
         },
-        {
-          text: 'Terms and Conditions',
-          style: 'sectionHeader',
-        },
-        {
-          ul: [
-            'Order can be return in max 10 days.',
-            'Warrenty of the product will be subject to the manufacturer terms and conditions.',
-            'This is system generated invoice.',
-          ],
-        },
+        // {
+        //   text: this.language.invoiceTermsandConditions,
+        //   style: 'sectionHeader',
+        // },
+        // {
+        //   ul: [this.language.invoiceTermsandConditionsContent],
+        // },
       ],
       styles: {
         sectionHeader: {
@@ -139,7 +152,7 @@ export class DynamicInvoiceComponent {
     };
 
     if (action === 'download') {
-      pdfMake.createPdf(docDefinition).download();
+      pdfMake.createPdf(docDefinition).download(this.invoice.customerName);
     } else if (action === 'print') {
       pdfMake.createPdf(docDefinition).print();
     } else {
@@ -148,6 +161,6 @@ export class DynamicInvoiceComponent {
   }
 
   addProduct() {
-    this.invoice.products.push(new Product());
+    this.invoice.products.push(new ProductItemModel());
   }
 }

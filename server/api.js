@@ -23,8 +23,8 @@ var connection = mysql.createPool({
 });
 
 connection.getConnection(function (err, conn) {
-  console.log(err);
-  console.log(conn);
+  // console.log(err);
+  // console.log(conn);
 });
 
 /* GET api listing. */
@@ -148,7 +148,7 @@ router.post("/createAccountForKinderGarden", async function (req, res, next) {
   } catch (err) {}
 });
 
-router.post("/login", async (req, res, next) => {
+router.post("/login", function (req, res, next) {
   connection.getConnection(function (err, conn) {
     if (err) {
       logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -263,7 +263,13 @@ router.post("/sendMessageForResetPassword", function (req, res, next) {
     body: body.reset_password,
     json: true,
   };
-  request(options, function (error, response, body) {});
+  request(options, function (error, response, body) {
+    if (!error) {
+      res.json(true);
+    } else {
+      res.json(false);
+    }
+  });
   res.json(true);
 });
 
@@ -1023,6 +1029,42 @@ router.post("/deleteChildrenTaking", auth, (req, res, next) => {
 
 /* CHILDREN TAKING END */
 
+/* CHILDREN PAYMENT */
+
+router.get(
+  "/getInvoiceChildrenByChildrenId/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select i.*, c.firstname, c.lastname, k.name, k.account_number, k.email as 'kindergarden_email', p1.firstname as 'father_name', p2.firstname as 'mother_name' from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id join parents p1 on c.father_id = p1.id join parents p2 on c.mother_id = p2.id where c.id = ? order by i.creation_date desc",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
+              } else {
+                res.json(rows);
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+/* CHILDREN PAYMENT END */
+
 /* KINDERGARDEN EMPLOYEE */
 
 router.post("/createEmployee", auth, function (req, res, next) {
@@ -1056,7 +1098,13 @@ router.post("/createEmployee", auth, function (req, res, next) {
               body: body.new_account,
               json: true,
             };
-            request(options, function (error, response, body) {});
+            request(options, function (error, response, body) {
+              if (!error) {
+                res.json(true);
+              } else {
+                res.json(false);
+              }
+            });
             res.json(true);
           } else {
             logger.log("error", err.sql + ". " + err.sqlMessage);
@@ -3213,7 +3261,7 @@ router.get("/getInvoiceChildren", auth, async (req, res, next) => {
         res.json(err);
       } else {
         conn.query(
-          "select i.*, c.firstname, c.lastname, k.name, p1.firstname as 'father_name', p2.firstname as 'mother_name' from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id join parents p1 on c.father_id = p1.id join parents p2 on c.mother_id = p2.id where i.kindergarden_id = ? and MONTH(i.creation_date) = MONTH(CURRENT_DATE())",
+          "select i.*, c.firstname, c.lastname, k.name, k.account_number, k.email as 'kindergarden_email', p1.firstname as 'father_name', p2.firstname as 'mother_name' from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id join parents p1 on c.father_id = p1.id join parents p2 on c.mother_id = p2.id where i.kindergarden_id = ? and MONTH(i.creation_date) = MONTH(CURRENT_DATE())",
           [req.user.user.kindergarden],
           function (err, rows, fields) {
             conn.release();
@@ -3241,7 +3289,7 @@ router.get("/getOldInvoiceChildren", auth, async (req, res, next) => {
         res.json(err);
       } else {
         conn.query(
-          "select i.*, c.firstname, c.lastname, k.name from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id where i.kindergarden_id = ? and MONTH(i.creation_date) < MONTH(CURRENT_DATE())",
+          "select i.*, c.firstname, c.lastname, k.name, k.account_number from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id where i.kindergarden_id = ? and MONTH(i.creation_date) < MONTH(CURRENT_DATE())",
           [req.user.user.kindergarden],
           function (err, rows, fields) {
             conn.release();
@@ -3285,7 +3333,8 @@ router.post("/updateInvoiceChildrenPayment", auth, function (req, res, next) {
               fs.readFileSync("./server/mail_server/config.json", "utf-8")
             );
             body.children_invoice_paied["sender"] = req.body.name;
-            body.children_invoice_paied.fields["email"] = req.body.email;
+            body.children_invoice_paied.fields["email"] =
+              req.body.kindergarden_email;
             body.children_invoice_paied.fields["greeting"] =
               body.children_invoice_paied.fields["greeting"].replace(
                 "{firstname}",
@@ -3315,9 +3364,16 @@ router.post("/updateInvoiceChildrenPayment", auth, function (req, res, next) {
               body: body.children_invoice_paied,
               json: true,
             };
-            request(options, function (error, response, body) {});
+            request(options, function (error, response, body) {
+              if (!error) {
+                res.json(true);
+              } else {
+                res.json(false);
+              }
+            });
+          } else {
+            res.json(true);
           }
-          res.json(true);
         } else {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
@@ -3335,6 +3391,8 @@ router.post("/sendManualInvoiceChildren", auth, function (req, res, next) {
   var body = JSON.parse(
     fs.readFileSync("./server/mail_server/config.json", "utf-8")
   );
+  body.send_children_invoice["sender"] = req.body.name;
+  body.send_children_invoice["sender_mail"] = req.body.kindergarden_email;
   body.send_children_invoice.fields["email"] = req.body.email;
   body.send_children_invoice.fields["greeting"] =
     body.send_children_invoice.fields["greeting"].replace(
@@ -3357,6 +3415,8 @@ router.post("/sendManualInvoiceChildren", auth, function (req, res, next) {
     "text"
   ].replace("{lastname}", req.body.lastname);
   body.send_children_invoice.fields["payee"] = req.body.name;
+  body.send_children_invoice.fields["account_number"] = req.body.account_number;
+  body.send_children_invoice.fields["id_invoice"] = req.body.id;
   var options = {
     url: process.env.link_api + "mail-server/sendMail",
     method: "POST",
@@ -3365,7 +3425,9 @@ router.post("/sendManualInvoiceChildren", auth, function (req, res, next) {
   };
   request(options, function (error, response, body) {
     if (!error) {
-      return true;
+      res.json(true);
+    } else {
+      res.json(false);
     }
   });
 });

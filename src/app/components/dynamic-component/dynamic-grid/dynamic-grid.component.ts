@@ -21,6 +21,7 @@ import { MessageService } from 'src/app/services/message.service';
 import { ToastrComponent } from '../common/toastr/toastr.component';
 import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
 import { saveAs } from 'file-saver';
+import { InvoiceModel } from 'src/app/models/invoice-model';
 
 @Component({
   selector: 'app-dynamic-grid',
@@ -46,6 +47,9 @@ export class DynamicGridComponent implements OnInit {
   public loader = false;
   public subscription!: Subscription;
   private unsubscribe: Subject<null> = new Subject();
+  public invoice: any = {};
+  public invoiceAction!: string;
+  public generateInvoice = false;
 
   constructor(
     private configurationService: ConfigurationService,
@@ -236,20 +240,48 @@ export class DynamicGridComponent implements OnInit {
     return this.helpService.getFileTypeIcon(data[field]);
   }
 
-  clickDropDownButton(event: any, value: any, requiest: any) {
-    console.log(event);
+  clickDropDownButton(event: any, value: any, template: any) {
     if (event.item.properties.id) {
-      const data = {
-        request: requiest[event.item.properties.id],
-        body: value,
-      };
-      this.apiService.callApi(data, this.router).subscribe((data) => {
-        if (data) {
-          this.toastr.showSuccess();
-        } else {
-          this.toastr.showError();
+      if (template.request && template.request[event.item.properties.id]) {
+        const data = {
+          request: template.request[event.item.properties.id],
+          body: value,
+        };
+        this.apiService.callApi(data, this.router).subscribe((data) => {
+          if (data) {
+            this.toastr.showSuccess();
+          } else {
+            this.toastr.showError();
+          }
+        });
+      } else {
+        if (template.fields && template.fields[event.item.properties.id]) {
+          for (
+            let i = 0;
+            i < template.fields[event.item.properties.id].length;
+            i++
+          ) {
+            this.invoice[template.fields[event.item.properties.id][i].key] =
+              value[template.fields[event.item.properties.id][i].value];
+          }
         }
-      });
+        this.invoice['products'] = [];
+        /*this.invoice = {
+          customerName: 'Test',
+          address: 'Test',
+          contactNo: 1234,
+          email: 'Test',
+          phone: 'Test',
+
+          products: [],
+          additionalDetails: 'Test',
+        };*/
+        this.invoiceAction = event.item.properties.id;
+        this.generateInvoice = true;
+        setTimeout(() => {
+          this.generateInvoice = false;
+        }, 100);
+      }
     }
   }
 }

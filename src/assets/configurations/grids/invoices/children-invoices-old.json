@@ -74,18 +74,6 @@
             "allowEditing": false
         },
         {
-            "title": "ID Deteta",
-            "width": 70,
-            "filterable": true,
-            "hideable": true,
-            "filter": "date",
-            "type": "number",
-            "class": "text-align-right",
-            "field": "children_id",
-            "isPrimaryKey": true,
-            "allowEditing": false
-        },
-        {
             "title": "Datum kreiranja",
             "filterable": true,
             "hideable": true,

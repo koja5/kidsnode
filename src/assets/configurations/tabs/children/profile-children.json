@@ -76,6 +76,20 @@
   },
   {
     "title": {
+      "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>paid</mat-icon> Uplate</div>"
+    },
+    "type": "grid",
+    "path": "/grids/children/profile-children",
+    "file": "children-payment.json",
+    "rights": [
+      "owner",
+      "director",
+      "educator",
+      "finance"
+    ]
+  },
+  {
+    "title": {
       "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>note_alt</mat-icon> Napomene</div>"
     },
     "type": "grid",

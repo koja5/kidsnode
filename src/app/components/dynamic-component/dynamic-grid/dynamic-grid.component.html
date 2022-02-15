@@ -99,7 +99,7 @@
                   : item.template.content
               }}"
               (select)="
-                clickDropDownButton($event, data, item.template.itemsRequest)
+                clickDropDownButton($event, data, item.template)
               "
             ></button>
           </div>
@@ -163,3 +163,5 @@
     </ng-template>
   </ejs-grid>
 </div>
+
+<app-dynamic-invoice *ngIf="generateInvoice" [invoice]="invoice" [action]="invoiceAction"></app-dynamic-invoice>

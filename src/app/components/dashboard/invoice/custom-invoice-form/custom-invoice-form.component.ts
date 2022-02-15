@@ -2,28 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 const pdfMake = require('pdfmake/build/pdfmake.js');
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { InvoiceModel } from 'src/app/models/invoice-model';
+import { ProductItemModel } from 'src/app/models/product-item-model';
 import { HelpService } from 'src/app/services/help.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
-class Product {
-  name!: string;
-  price!: number;
-  qty!: number;
-}
-class Invoice {
-  customerName!: string;
-  address!: string;
-  contactNo!: number;
-  email!: string;
-  phone!: string;
-
-  products: Product[] = [];
-  additionalDetails!: string;
-
-  constructor() {
-    this.products.push(new Product());
-  }
-}
 
 @Component({
   selector: 'app-custom-invoice-form',
@@ -31,7 +13,7 @@ class Invoice {
   styleUrls: ['./custom-invoice-form.component.scss'],
 })
 export class CustomInvoiceFormComponent implements OnInit {
-  invoice = new Invoice();
+  invoice = new InvoiceModel();
   public language: any;
 
   constructor(private helpService: HelpService) {}
@@ -176,7 +158,7 @@ export class CustomInvoiceFormComponent implements OnInit {
   }
 
   addProduct() {
-    this.invoice.products.push(new Product());
+    this.invoice.products.push(new ProductItemModel());
   }
 
   removeProduct(i: number) {

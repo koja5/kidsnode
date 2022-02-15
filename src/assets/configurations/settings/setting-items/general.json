@@ -141,6 +141,20 @@
             "field": "contact_person_email"
         },
         {
+            "type": "label",
+            "width": "col-md-12",
+            "title": "Finansije",
+            "text": "Broj ziro racuna vrtića na kome stizati uplate"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "account_number",
+            "title": "Broj žiro računa vrtića",
+            "field": "account_number"
+        },
+        {
             "type": "button",
             "width": "col-md-12",
             "class": "e-info  button-action",

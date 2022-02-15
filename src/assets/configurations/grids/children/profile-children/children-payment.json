@@ -1,10 +1,11 @@
 {
     "pageSize": 10,
-    "width": "30%",
     "request": {
         "type": "GET",
-        "api": "/api/getInvoiceChildren",
-        "url": [],
+        "api": "/api/getInvoiceChildrenByChildrenId",
+        "url": [
+            "id"
+        ],
         "parameters": [],
         "fields": "",
         "root": ""
@@ -96,28 +97,6 @@
             }
         },
         {
-            "title": "Ime",
-            "filterable": true,
-            "hideable": true,
-            "type": "string",
-            "class": "text-align-right",
-            "field": "firstname",
-            "validation": {
-                "required": true
-            }
-        },
-        {
-            "title": "Prezime",
-            "filterable": true,
-            "hideable": true,
-            "type": "string",
-            "class": "text-align-right",
-            "field": "lastname",
-            "validation": {
-                "required": true
-            }
-        },
-        {
             "title": "Status",
             "template": {
                 "choices": [
@@ -161,15 +140,23 @@
                 "content": "Opcije",
                 "items": [
                     {
-                        "text": "Pošalji podsetnik za plaćanje",
-                        "id": "sendReminder"
+                        "text": "Pregledaj fakturu",
+                        "id": "open"
+                    },
+                    {
+                        "text": "Štampaj fakturu",
+                        "id": "print"
+                    },
+                    {
+                        "text": "Preuzmi fakturu",
+                        "id": "download"
                     },
                     {
                         "separator": true
                     },
                     {
-                        "text": "Logout",
-                        "id": 2
+                        "text": "Pošalji na mail",
+                        "id": "sendReminder"
                     }
                 ],
                 "itemsRequest": {
@@ -180,6 +167,30 @@
                         "fields": "",
                         "root": ""
                     }
+                },
+                "fields": {
+                    "open": [
+                        {
+                            "key": "customerName",
+                            "value": "name"
+                        },
+                        {
+                            "key": "address",
+                            "value": ""
+                        },
+                        {
+                            "key": "contactNo",
+                            "value": ""
+                        },
+                        {
+                            "key": "email",
+                            "value": ""
+                        },
+                        {
+                            "key": "phone",
+                            "value": ""
+                        }
+                    ]
                 }
             }
         }
@@ -229,7 +240,7 @@
         },
         {
             "type": "textbox",
-            "width": "col-md-12",
+            "width": "col-md-12 hide",
             "class": "e-outline",
             "name": "firstname",
             "title": "Ime deteta",
@@ -238,7 +249,7 @@
         },
         {
             "type": "textbox",
-            "width": "col-md-12",
+            "width": "col-md-12 hide",
             "class": "e-outline",
             "name": "lastname",
             "title": "Prezime deteta",

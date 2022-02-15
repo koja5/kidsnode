@@ -117,7 +117,7 @@
                             <td
                               style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;"
                             >
-                             {{payee}}</td>
+                              {{payee}}</td>
                           </tr>
                           <tr>
                             <td
@@ -127,7 +127,7 @@
                             <td
                               style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;"
                             >
-                              XYZ-101</td>
+                              {{account_number}}</td>
                           </tr>
                           <tr>
                             <td
@@ -147,7 +147,7 @@
                             <td
                               style="padding: 10px; border-bottom: 1px solid #ededed; color: #455056;"
                             >
-                              Russell Walker</td>
+                              {{id_invoice}}</td>
                           </tr>
                         </tbody>
                       </table>

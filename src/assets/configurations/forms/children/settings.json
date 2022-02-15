@@ -11,7 +11,8 @@
       {
         "type": "label",
         "width": "col-md-12 pt-2",
-        "title": "Podešavanja"
+        "title": "Podešavanja",
+        "text": "Osnovni podaci o mesečnom plaćanju vrtića"
       },
       {
         "type": "textbox",
@@ -24,7 +25,7 @@
       },
       {
         "type": "textbox",
-        "width": "col-md-12",
+        "width": "col-md-3",
         "class": "e-outline",
         "name": "firstname",
         "title": "Mesečno plaćanje",

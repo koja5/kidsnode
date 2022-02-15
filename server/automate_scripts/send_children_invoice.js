@@ -23,7 +23,7 @@ function sendChildrenInvoice() {
         res.json(err);
       }
       conn.query(
-        "select *, p1.firstname as 'father_name' from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id join parents p1 on c.father_id = p1.id join parents p2 on c.mother_id = p2.id  where MONTH(i.creation_date) = MONTH(CURRENT_DATE())",
+        "select *, i.id as 'id_invoice', k.email as 'kindergarden_email', p1.firstname as 'father_name' from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id join parents p1 on c.father_id = p1.id join parents p2 on c.mother_id = p2.id  where MONTH(i.creation_date) = MONTH(CURRENT_DATE())",
         function (err, rows) {
           try {
             if (rows) {
@@ -31,7 +31,8 @@ function sendChildrenInvoice() {
                 fs.readFileSync("./server/mail_server/config.json", "utf-8")
               );
               rows.forEach(function (to, i, array) {
-                body.send_children_invoice.fields["email"] = to.email;
+                body.send_children_invoice.fields["email"] =
+                  to.kindergarden_email;
                 body.send_children_invoice.fields["greeting"] =
                   body.send_children_invoice.fields["greeting"].replace(
                     "{firstname}",
@@ -53,6 +54,9 @@ function sendChildrenInvoice() {
                     to.lastname
                   );
                 body.send_children_invoice.fields["payee"] = to.name;
+                body.send_children_invoice.fields["account_number"] =
+                  to.account_number;
+                body.send_children_invoice.fields["id_invoice"] = to.id_invoice;
                 var options = {
                   url: process.env.link_api + "mail-server/sendMail",
                   method: "POST",
