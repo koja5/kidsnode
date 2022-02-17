@@ -10,8 +10,9 @@ const mailServer = require("./server/mail_server/mail-server");
 const schedule = require("node-schedule");
 
 //AUTOMATE SCRIPTS
-const createChildrenInvoice = require("./server/automate_scripts/create-children-invoice");
+const createChildrenInvoice = require("./server/automate_scripts/create_children_invoice");
 const sendChildrenInvoice = require("./server/automate_scripts/send_children_invoice");
+const childrenDailyNotification = require("./server/automate_scripts/children_daily_notification");
 //END AUTOMATE SCRIPTS
 
 app.use(function (req, res, next) {
@@ -59,4 +60,8 @@ schedule.scheduleJob("15 36 23 * * *", function () {
 
 schedule.scheduleJob("15 01 16 * * *", function () {
   sendChildrenInvoice();
+});
+
+schedule.scheduleJob("42 14 * * *", function () {
+  childrenDailyNotification();
 });

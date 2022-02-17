@@ -48,5 +48,15 @@
             "text": "Hvala Vam što ste izmirili dugovanje prema vrtiću za mesec {month} za dete {firstname} {lastname}.",
             "greeting": "Poštovani/na {firstname}"
         }
+    },
+    "children_daily_notification": {
+        "template": "children_daily_notification.hjs",
+        "email": "kidsnode@gmail.com",
+        "subject": "Dnevne informacije o detetu",
+        "fields": {
+            "title": "Dnevne informacije o detetu",
+            "text": "U nastavku se nalazi zapažanje za dete {firstname} {lastname} za dan {date}.",
+            "greeting": "Poštovani/na {firstname}"
+        }
     }
 }

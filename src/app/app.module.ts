@@ -15,9 +15,10 @@ import { LoginModule } from './components/login/routing-module/login.module';
 import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/common/not-found/not-found.component';
 import { OnlineStatusComponent } from './components/common/online-status/online-status.component';
+import { HomeComponent } from './components/home/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, OnlineStatusComponent],
+  declarations: [AppComponent, NotFoundComponent, OnlineStatusComponent, HomeComponent],
   imports: [
     BrowserModule,
     CommonModule,

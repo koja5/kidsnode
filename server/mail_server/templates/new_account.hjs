@@ -1,13 +1,10 @@
-<!DOCTYPE html>
 <html lang="en-US">
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <title>New Account Email Template</title>
     <meta name="description" content="New Account Email Template." />
     <style type="text/css">
-      a:hover {
-        text-decoration: underline !important;
-      }
+      a:hover { text-decoration: underline !important; }
     </style>
   </head>
 
@@ -41,7 +38,7 @@
             cellspacing="0"
           >
             <tr>
-              <td style="height: 80px">&nbsp;</td>
+              <td style="height: 20px">&nbsp;</td>
             </tr>
             <tr>
               <td style="text-align: center">
@@ -128,8 +125,7 @@
                             color: rgba(0, 0, 0, 0.64);
                             font-weight: normal;
                           "
-                          >Email</strong
-                        >{{email}}
+                        >Email</strong>{{email}}
                         <strong
                           style="
                             display: block;
@@ -138,8 +134,7 @@
                             font-weight: normal;
                             color: rgba(0, 0, 0, 0.64);
                           "
-                          >Lozinka</strong
-                        >{{password}}
+                        >Lozinka</strong>{{password}}
                       </p>
 
                       <a
@@ -157,8 +152,7 @@
                           display: inline-block;
                           border-radius: 50px;
                         "
-                        >{{buttonText}}</a
-                      >
+                      >{{buttonText}}</a>
                     </td>
                   </tr>
                   <tr>
@@ -173,19 +167,13 @@
             <tr>
               <td style="text-align: center">
                 <p
-                  style="
-                    font-size: 14px;
-                    color: rgba(69, 80, 86, 0.7411764705882353);
-                    line-height: 18px;
-                    margin: 0 0 0;
-                  "
-                >
-                  &copy; <strong>www.rakeshmandal.com</strong>
-                </p>
+                  style="font-size:13px; color:##485963bd; line-height:18px; font-style: italic;"
+                ><strong>Ovaj mail je automatski generisan. Molimo Vas da ne
+                    odgovarate na njega.</strong></p>
               </td>
             </tr>
             <tr>
-              <td style="height: 80px">&nbsp;</td>
+              <td style="height: 20px">&nbsp;</td>
             </tr>
           </table>
         </td>

@@ -138,6 +138,56 @@
             "validation": {
                 "required": true
             }
+        },
+        {
+            "type": "button",
+            "title": "",
+            "filterable": true,
+            "hideable": true,
+            "class": "text-align-right",
+            "field": "id",
+            "template": {
+                "type": "dropdownbutton",
+                "content": "Opcije",
+                "items": [
+                    {
+                        "text": "Pregledaj fakturu",
+                        "id": "open"
+                    },
+                    {
+                        "text": "Štampaj fakturu",
+                        "id": "print"
+                    },
+                    {
+                        "text": "Preuzmi fakturu",
+                        "id": "download"
+                    }
+                ],
+                "fields": {
+                    "open": [
+                        {
+                            "key": "customerName",
+                            "value": "name"
+                        },
+                        {
+                            "key": "address",
+                            "value": ""
+                        },
+                        {
+                            "key": "contactNo",
+                            "value": ""
+                        },
+                        {
+                            "key": "email",
+                            "value": ""
+                        },
+                        {
+                            "key": "phone",
+                            "value": ""
+                        }
+                    ]
+                }
+            }
         }
     ],
     "config": [

@@ -34,7 +34,7 @@ router.post("/sendMail", function (req, res) {
   );
   var compiledTemplate = hogan.compile(confirmTemplate);
   var mailOptions = {
-    from: req.body.sender
+    from: req.body?.sender
       ? '"' + req.body.sender + '"' + process.env.smtp_user
       : '"KidsNode"' + process.env.smtp_user,
     to: "kojaaa95@gmail.com",
@@ -57,7 +57,6 @@ router.post("/sendMail", function (req, res) {
       res.end(true);
     }
   });
-  res.end(true);
 });
 
 module.exports = router;

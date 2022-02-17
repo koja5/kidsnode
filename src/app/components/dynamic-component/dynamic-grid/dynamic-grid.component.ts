@@ -242,9 +242,12 @@ export class DynamicGridComponent implements OnInit {
 
   clickDropDownButton(event: any, value: any, template: any) {
     if (event.item.properties.id) {
-      if (template.request && template.request[event.item.properties.id]) {
+      if (
+        template.itemsRequest &&
+        template.itemsRequest[event.item.properties.id]
+      ) {
         const data = {
-          request: template.request[event.item.properties.id],
+          request: template.itemsRequest[event.item.properties.id],
           body: value,
         };
         this.apiService.callApi(data, this.router).subscribe((data) => {

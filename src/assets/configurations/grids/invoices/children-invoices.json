@@ -161,15 +161,23 @@
                 "content": "Opcije",
                 "items": [
                     {
-                        "text": "Pošalji podsetnik za plaćanje",
-                        "id": "sendReminder"
+                        "text": "Pregledaj fakturu",
+                        "id": "open"
+                    },
+                    {
+                        "text": "Štampaj fakturu",
+                        "id": "print"
+                    },
+                    {
+                        "text": "Preuzmi fakturu",
+                        "id": "download"
                     },
                     {
                         "separator": true
                     },
                     {
-                        "text": "Logout",
-                        "id": 2
+                        "text": "Pošalji podsetnik za plaćanje",
+                        "id": "sendReminder"
                     }
                 ],
                 "itemsRequest": {
@@ -180,6 +188,30 @@
                         "fields": "",
                         "root": ""
                     }
+                },
+                "fields": {
+                    "open": [
+                        {
+                            "key": "customerName",
+                            "value": "name"
+                        },
+                        {
+                            "key": "address",
+                            "value": ""
+                        },
+                        {
+                            "key": "contactNo",
+                            "value": ""
+                        },
+                        {
+                            "key": "email",
+                            "value": ""
+                        },
+                        {
+                            "key": "phone",
+                            "value": ""
+                        }
+                    ]
                 }
             }
         }

@@ -27,10 +27,11 @@ function sendChildrenInvoice() {
         function (err, rows) {
           try {
             if (rows) {
-              var body = JSON.parse(
+              var config = JSON.parse(
                 fs.readFileSync("./server/mail_server/config.json", "utf-8")
               );
               rows.forEach(function (to, i, array) {
+                var body = JSON.parse(JSON.stringify(config));
                 body.send_children_invoice.fields["email"] =
                   to.kindergarden_email;
                 body.send_children_invoice.fields["greeting"] =
@@ -41,7 +42,10 @@ function sendChildrenInvoice() {
                 body.send_children_invoice.fields["text"] =
                   body.send_children_invoice.fields["text"].replace(
                     "{month}",
-                    to.creation_date
+                    new Date(to.creation_date).getMonth() +
+                      1 +
+                      "." +
+                      new Date(to.creation_date).getFullYear()
                   );
                 body.send_children_invoice.fields["text"] =
                   body.send_children_invoice.fields["text"].replace(
