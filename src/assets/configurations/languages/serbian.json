@@ -98,5 +98,6 @@
     "invoicePhone": "Telefon",
     "invoiceDownloadInvoice": "Preuzmi",
     "invoicePrintInvoice": "Štampaj",
-    "invoiceOpenInvoice": "Pregledaj"
+    "invoiceOpenInvoice": "Pregledaj",
+    "editButton": "Uredi"
 }

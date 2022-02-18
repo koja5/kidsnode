@@ -3,7 +3,7 @@
   #ejDialog
   isModal="true"
   showCloseIcon="true"
-  [width]="returnWidth()"
+  [width]="width ? width : returnWidth()"
   [visible]="false"
   (close)="closeModal()"
 >

@@ -1,1 +1,71 @@
-<app-dynamic-scheduler [path]="path" [file]="file"></app-dynamic-scheduler>
+<!-- <app-dynamic-scheduler [path]="path" [file]="file"></app-dynamic-scheduler> -->
+
+<div class="p-2">
+  <button
+    type="button"
+    class="button-action e-info e-control e-btn e-lib mr-2"
+    (click)="openModal()"
+  >
+    {{ language.editButton }}
+  </button>
+</div>
+
+<div class="row food-menu-container">
+  <div *ngFor="let item of config" class="{{ item.class }}">
+    {{ item.label }}
+    <div class="border-none" *ngIf="item.id && data[item.id]">
+      <div class="border-none" *ngFor="let children of data[item.id]">
+        {{ children }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-dialog-modal
+  *ngIf="modal"
+  [show]="modal"
+  [width]="'70%'"
+  (closeEventEmitter)="closeModal()"
+>
+  <div class="row width-50 pb-2">
+    <div class="form-group col-sm-6">
+      <label class="custom-label">Datum od</label>
+      <ejs-datepicker
+        cssClass="e-outline"
+        id="dateFrom"
+        [(ngModel)]="dateFrom"
+      ></ejs-datepicker>
+    </div>
+    <div class="form-group col-sm-6">
+      <label class="custom-label">Datum od</label>
+      <ejs-datepicker
+        cssClass="e-outline"
+        id="dateTo"
+        [(ngModel)]="dateTo"
+      ></ejs-datepicker>
+    </div>
+  </div>
+  <div class="row food-menu-container" *ngIf="menu && data">
+    <div *ngFor="let item of config" class="{{ item.class }}">
+      {{ item.label }}
+      <ejs-multiselect
+        *ngIf="item.id"
+        cssClass="e-outline"
+        class="e-field e-input"
+        [id]="item.id"
+        [dataSource]="menu"
+        [fields]="field"
+        [(ngModel)]="data[item.id]"
+      ></ejs-multiselect>
+    </div>
+  </div>
+  <div class="pt-2 text-right">
+    <button
+      type="button"
+      class="button-action e-info e-control e-btn e-lib mr-2"
+      (click)="saveFoodMenu()"
+    >
+      {{ language.editButton }}
+    </button>
+  </div>
+</app-dialog-modal>

@@ -1,4 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { DynamicModuleModule } from 'src/app/components/dynamic-component/dynamic-module/dynamic-module.module';
 import { FoodMenuComponent } from '../food-menu/food-menu.component';
 import { FoodComponent } from '../food/food.component';
@@ -19,9 +23,16 @@ import { ParametersRouting } from './parameters-routing';
     FoodMenuComponent,
     GeneralContractsComponent,
     SuppliersCompanyComponent,
-    InvoiceSuppliersComponent
+    InvoiceSuppliersComponent,
   ],
-  imports: [ParametersRouting, DynamicModuleModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ParametersRouting,
+    DynamicModuleModule,
+    MultiSelectModule,
+    DatePickerModule,
+  ],
   providers: [],
 })
 export class ParametersModule {}

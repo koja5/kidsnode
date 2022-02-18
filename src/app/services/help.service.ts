@@ -78,8 +78,10 @@ export class HelpService {
 
   getRequestDataParameters(data: any, parameters: string[]) {
     let value = '';
-    for (let i = 0; i < parameters.length; i++) {
-      value += data[parameters[i]] + '/';
+    if (parameters) {
+      for (let i = 0; i < parameters.length; i++) {
+        value += data[parameters[i]] + '/';
+      }
     }
     return value;
   }

@@ -16,6 +16,7 @@ import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 export class DialogModalComponent implements OnInit {
   @ViewChild('ejDialog') ejDialog!: DialogComponent;
   @Input() show!: boolean;
+  @Input() width!: string;
   @Output() closeEventEmitter = new EventEmitter();
 
   constructor() {}

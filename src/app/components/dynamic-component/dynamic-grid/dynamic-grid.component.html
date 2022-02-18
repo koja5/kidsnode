@@ -6,6 +6,7 @@
     #grid
     *ngIf="config"
     width="100%"
+    allowTextWrap="true"
     [height]="height"
     [dataSource]="data"
     [editSettings]="config.editSettings"
@@ -98,9 +99,7 @@
                   ? language[item.template.content]
                   : item.template.content
               }}"
-              (select)="
-                clickDropDownButton($event, data, item.template)
-              "
+              (select)="clickDropDownButton($event, data, item.template)"
             ></button>
           </div>
 
@@ -164,4 +163,8 @@
   </ejs-grid>
 </div>
 
-<app-dynamic-invoice *ngIf="generateInvoice" [invoice]="invoice" [action]="invoiceAction"></app-dynamic-invoice>
+<app-dynamic-invoice
+  *ngIf="generateInvoice"
+  [invoice]="invoice"
+  [action]="invoiceAction"
+></app-dynamic-invoice>

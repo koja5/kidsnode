@@ -73,7 +73,7 @@ export class CallApiService {
       if (data.request.url) {
         data.body = this.helpService.postRequestDataParameters(
           data.body,
-          router.snapshot.params,
+          router?.snapshot.params,
           data.request.url
         );
       }
@@ -81,14 +81,14 @@ export class CallApiService {
     } else {
       if (data.request.url) {
         const dataValue = this.helpService.getRequestDataParameters(
-          router.snapshot.params,
+          router?.snapshot.params,
           data.request.url
         );
         return this.callGetMethod(data.request.api, dataValue);
       } else {
         const dataValue = this.helpService.getRequestDataParameters(
-          router.snapshot.params,
-          data.request.parameters
+          router?.snapshot?.params,
+          data?.request?.parameters
         );
         return this.callGetMethod(data.request.api, dataValue);
       }

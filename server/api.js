@@ -3434,4 +3434,91 @@ router.post("/sendManualInvoiceChildren", auth, function (req, res, next) {
 
 /* END SEND MANUAL INVOICE CHILDREN */
 
+/* FOODS MENU */
+
+router.post("/createFoodsMenu", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      req.body.from_date = new Date(req.body.from_date);
+      req.body.to_date = new Date(req.body.to_date);
+      req.body.kindergarden_id = req.user.user.kindergarden;
+      conn.query(
+        "insert into foods_menu SET ?",
+        [req.body],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", `${err.sql}. ${err.sqlMessage}`);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateFoodsMenu", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      req.body.from_date = new Date(req.body.from_date);
+      req.body.to_date = new Date(req.body.to_date);
+      req.body.kindergarden_id = req.user.user.kindergarden;
+      conn.query("update foods_menu SET ?", [req.body], function (err, rows) {
+        conn.release();
+        if (!err) {
+          res.json(true);
+        } else {
+          logger.log("error", `${err.sql}. ${err.sqlMessage}`);
+          res.json(false);
+        }
+      });
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getFoodsMenu", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from foods_menu where kindergarden_id = ?",
+          [req.user.user.kindergarden],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END FOODS MENU */
 module.exports = router;
