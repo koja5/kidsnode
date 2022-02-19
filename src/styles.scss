@@ -273,6 +273,22 @@ input:focus-visible {
   border: none !important;
 }
 
+.border-bottom-none {
+  border-bottom: none !important;
+}
+
+.border-top-none {
+  border-top: none !important;
+}
+
+.border-left-none {
+  border-left: none !important;
+}
+
+.border-right-none {
+  border-right: none !important;
+}
+
 .dropdown-toggle::after {
   vertical-align: 0.7em !important;
 }

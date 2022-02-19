@@ -10,62 +10,117 @@
   </button>
 </div>
 
-<div class="row food-menu-container">
-  <div *ngFor="let item of config" class="{{ item.class }}">
-    {{ item.label }}
-    <div class="border-none" *ngIf="item.id && data[item.id]">
-      <div class="border-none" *ngFor="let children of data[item.id]">
-        {{ children }}
-      </div>
-    </div>
-  </div>
+<div *ngIf="!data" style="height: 70vh">
+  <app-loader></app-loader>
 </div>
 
-<app-dialog-modal
-  *ngIf="modal"
-  [show]="modal"
-  [width]="'70%'"
-  (closeEventEmitter)="closeModal()"
->
-  <div class="row width-50 pb-2">
-    <div class="form-group col-sm-6">
-      <label class="custom-label">Datum od</label>
-      <ejs-datepicker
-        cssClass="e-outline"
-        id="dateFrom"
-        [(ngModel)]="dateFrom"
-      ></ejs-datepicker>
-    </div>
-    <div class="form-group col-sm-6">
-      <label class="custom-label">Datum od</label>
-      <ejs-datepicker
-        cssClass="e-outline"
-        id="dateTo"
-        [(ngModel)]="dateTo"
-      ></ejs-datepicker>
-    </div>
-  </div>
-  <div class="row food-menu-container" *ngIf="menu && data">
+<div>
+  <h4 class="food-menu-title pb-2 text-center">
+    Jelovnik za period od {{ dateFrom | date: "dd.MM.yyyy" }} do
+    {{ dateTo | date: "dd.MM.yyyy" }}
+  </h4>
+
+  <div class="row food-menu-container">
     <div *ngFor="let item of config" class="{{ item.class }}">
+      <div *ngIf="item.group" class="row border-none">
+        <div
+          *ngFor="let children of item.group"
+          class="{{ children.class }} border-none"
+        >
+          {{ children.label }}
+          <div class="border-none" *ngIf="children.id">
+            {{ data[children.id] }}
+          </div>
+        </div>
+      </div>
       {{ item.label }}
-      <ejs-multiselect
-        *ngIf="item.id"
-        cssClass="e-outline"
-        class="e-field e-input"
-        [id]="item.id"
-        [dataSource]="menu"
-        [fields]="field"
-        [(ngModel)]="data[item.id]"
-      ></ejs-multiselect>
+      <div class="border-none" *ngIf="item.id && data[item.id]">
+        <div class="border-none" *ngFor="let children of data[item.id]">
+          {{ children }}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 header text-left pl-4" *ngIf="note">
+      {{ note }}
     </div>
   </div>
-  <div class="pt-2 text-right">
-    <button
-      type="button"
-      class="button-action e-info e-control e-btn e-lib mr-2"
-      (click)="saveFoodMenu()"
-    >
-      {{ language.editButton }}
-    </button>
-  </div>
-</app-dialog-modal>
+
+  <app-dialog-modal
+    *ngIf="modal"
+    [show]="modal"
+    [width]="'90%'"
+    (closeEventEmitter)="closeModal()"
+  >
+    <div class="row width-50 pb-2">
+      <div class="form-group col-sm-6">
+        <label class="custom-label">Datum od</label>
+        <ejs-datepicker
+          cssClass="e-outline"
+          id="dateFrom"
+          [(ngModel)]="dateFrom"
+        ></ejs-datepicker>
+      </div>
+      <div class="form-group col-sm-6">
+        <label class="custom-label">Datum od</label>
+        <ejs-datepicker
+          cssClass="e-outline"
+          id="dateTo"
+          [(ngModel)]="dateTo"
+        ></ejs-datepicker>
+      </div>
+    </div>
+    <div class="row food-menu-container" *ngIf="menu && data">
+      <div *ngFor="let item of config" class="{{ item.class }}">
+        {{ item.label }}
+        <div *ngIf="item.group" class="row border-none">
+          <div
+            *ngFor="let children of item.group"
+            class="{{ children.class }} p-1 pt-2 border-none"
+          >
+            {{ children.label }}
+            <ejs-textbox
+              *ngIf="children.id && children.type === 'numeric'"
+              cssClass="e-outline"
+              [id]="children.id"
+              [(ngModel)]="data[children.id]"
+            ></ejs-textbox>
+          </div>
+        </div>
+        <ejs-multiselect
+          *ngIf="item.id && item.type === 'multiselect'"
+          cssClass="e-outline"
+          class="e-field e-input"
+          [id]="item.id"
+          [dataSource]="menu"
+          [fields]="field"
+          [(ngModel)]="data[item.id]"
+        ></ejs-multiselect>
+        <ejs-textbox
+          *ngIf="item.id && item.type === 'numeric'"
+          cssClass="e-outline"
+          [id]="item.id"
+          [(ngModel)]="data[item.id]"
+        ></ejs-textbox>
+      </div>
+    </div>
+    <div class="form-group col-sm-12 pt-4">
+      <label class="custom-label">Napomena(opciono)</label>
+      <ejs-textbox
+        cssClass="e-outline"
+        [id]="'note'"
+        [multiline]="true"
+        [(ngModel)]="note"
+      ></ejs-textbox>
+    </div>
+
+    <div class="pt-2 text-right">
+      <button
+        type="button"
+        class="button-action e-info e-control e-btn e-lib mr-2"
+        (click)="saveFoodMenu()"
+      >
+        {{ language.editButton }}
+      </button>
+    </div>
+  </app-dialog-modal>
+</div>

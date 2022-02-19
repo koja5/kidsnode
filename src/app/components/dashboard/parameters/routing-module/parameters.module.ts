@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
+import { TextBoxAllModule } from '@syncfusion/ej2-angular-inputs';
 import { DynamicModuleModule } from 'src/app/components/dynamic-component/dynamic-module/dynamic-module.module';
 import { FoodMenuComponent } from '../food-menu/food-menu.component';
 import { FoodComponent } from '../food/food.component';
@@ -32,6 +33,7 @@ import { ParametersRouting } from './parameters-routing';
     DynamicModuleModule,
     MultiSelectModule,
     DatePickerModule,
+    TextBoxAllModule
   ],
   providers: [],
 })

@@ -1497,6 +1497,7 @@ router.post("/createFood", auth, function (req, res, next) {
         if (!err) {
           res.json(true);
         } else {
+          logger.log("error", err);
           res.json(false);
         }
       });
