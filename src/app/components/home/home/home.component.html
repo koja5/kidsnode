@@ -27,15 +27,10 @@
 
         <a
           class="navbar-toggler position-absolute right-0 border-0"
-          href="#offcanvasWithBackdrop"
           role="button"
+          (click)="canvasNavigationMobile()"
         >
-          <span
-            class="far fa-bars"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasWithBackdrop"
-            aria-controls="offcanvasWithBackdrop"
-          ></span>
+          <span class="fa fa-bars"></span>
         </a>
 
         <div class="collapse navbar-collapse justify-content-center">
@@ -140,7 +135,7 @@
                   <div class="dropdown-grid-item">
                     <h6 class="drop-heading">Reusable Section</h6>
                     <a href="header.html" class="dropdown-link">
-                      <span class="me-2"><i class="far fa-bars"></i></span>
+                      <span class="me-2"><i class="fa fa-bars"></i></span>
                       <div class="drop-title">Navigations</div>
                     </a>
                     <a href="hero-sections.html" class="dropdown-link">
@@ -270,7 +265,7 @@
                       <div class="drop-title">Our Latest News</div>
                     </a>
                     <a href="blog-single.html" class="dropdown-link">
-                      <span class="me-2"><i class="far fa-bars"></i></span>
+                      <span class="me-2"><i class="fa fa-bars"></i></span>
                       <div class="drop-title">News Details</div>
                     </a>
                     <a href="career.html" class="dropdown-link px-0">
@@ -365,19 +360,19 @@
 
         <!--offcanvas menu start-->
         <div
-          class="offcanvas offcanvas-end"
+          class="offcanvas offcanvas-end {{ navigationMobile }}"
           tabindex="-1"
-          id="offcanvasWithBackdrop"
         >
           <div class="offcanvas-header d-flex align-items-center mt-4">
             <a
-              href="index.html"
+              routerLink="/"
               class="d-flex align-items-center mb-md-0 text-decoration-none"
             >
               <img
                 src="./assets/home/logo-color.png"
                 alt="logo"
                 class="img-fluid ps-2"
+                style="width: 150px"
               />
             </a>
             <button
@@ -385,8 +380,9 @@
               class="close-btn text-danger"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
+              (click)="canvasNavigationMobile()"
             >
-              <i class="far fa-close"></i>
+              <i class="fa fa-times"></i>
             </button>
           </div>
           <div class="offcanvas-body">
@@ -491,7 +487,7 @@
                     <div class="dropdown-grid-item">
                       <h6 class="drop-heading">Reusable Section</h6>
                       <a href="header.html" class="dropdown-link">
-                        <span class="me-2"><i class="far fa-bars"></i></span>
+                        <span class="me-2"><i class="fa fa-bars"></i></span>
                         <div class="drop-title">Navigations</div>
                       </a>
                       <a href="hero-sections.html" class="dropdown-link">
@@ -625,7 +621,7 @@
                         <div class="drop-title">Our Latest News</div>
                       </a>
                       <a href="blog-single.html" class="dropdown-link">
-                        <span class="me-2"><i class="far fa-bars"></i></span>
+                        <span class="me-2"><i class="fa fa-bars"></i></span>
                         <div class="drop-title">News Details</div>
                       </a>
                       <a href="career.html" class="dropdown-link px-0">
@@ -711,8 +707,8 @@
                 </div>
               </li>
             </ul>
-            <div class="action-btns mt-4 ps-3">
-              <a href="login.html" class="btn btn-outline-primary me-2"
+            <div class="action-btns mt-4 ps-3 text-center">
+              <a routerLink="/login" class="btn btn-outline-primary me-2"
                 >Sign In</a
               >
               <a href="request-demo.html" class="btn btn-primary"
@@ -1086,7 +1082,7 @@
               <div
                 class="icon-box d-inline-block rounded-circle bg-primary-soft mb-32"
               >
-                <i class="fal fa-analytics icon-sm text-primary"></i>
+                <i class="fa fa-user icon-sm text-primary"></i>
               </div>
               <div class="feature-content">
                 <h3 class="h5">Advanced analytics</h3>
@@ -1101,27 +1097,27 @@
                 <h6 class="mt-4">Included with...</h6>
                 <ul class="list-unstyled mb-0">
                   <li class="py-1">
-                    <i class="fad fa-check-circle me-2 text-primary"></i
+                    <i class="fa fa-check-circle me-2 text-primary"></i
                     >High-converting
                   </li>
                   <li class="py-1">
-                    <i class="fad fa-check-circle me-2 text-primary"></i
-                    >Personal branding
+                    <i class="fa fa-check-circle me-2 text-primary"></i>Personal
+                    branding
                   </li>
                   <li class="py-1">
-                    <i class="fad fa-check-circle me-2 text-primary"></i
+                    <i class="fa fa-check-circle me-2 text-primary"></i
                     >Modernized prospecting
                   </li>
                   <li class="py-1">
-                    <i class="fad fa-check-circle me-2 text-primary"></i>Clean
+                    <i class="fa fa-check-circle me-2 text-primary"></i>Clean
                     and modern
                   </li>
                   <li class="py-1">
-                    <i class="fad fa-check-circle me-2 text-primary"></i
+                    <i class="fa fa-check-circle me-2 text-primary"></i
                     >Showcasing success
                   </li>
                   <li class="py-1">
-                    <i class="fad fa-check-circle me-2 text-primary"></i
+                    <i class="fa fa-check-circle me-2 text-primary"></i
                     >Bootstrap latest version
                   </li>
                 </ul>
@@ -1136,7 +1132,7 @@
               <div
                 class="icon-box d-inline-block rounded-circle bg-success-soft mb-32"
               >
-                <i class="fal fa-file-chart-line icon-sm text-success"></i>
+                <i class="fa fa-user icon-sm text-success"></i>
               </div>
               <div class="feature-content">
                 <h3 class="h5">Automated Reports</h3>
@@ -1155,7 +1151,7 @@
               <div
                 class="icon-box d-inline-block rounded-circle bg-danger-soft mb-32"
               >
-                <i class="fal fa-user-friends icon-sm text-danger"></i>
+                <i class="fa fa-user icon-sm text-danger"></i>
               </div>
               <div class="feature-content">
                 <h3 class="h5">User Journey Flow</h3>
@@ -1174,7 +1170,7 @@
               <div
                 class="icon-box d-inline-block rounded-circle bg-dark-soft mb-32"
               >
-                <i class="fal fa-spell-check icon-sm text-dark"></i>
+                <i class="fa fa-user icon-sm text-dark"></i>
               </div>
               <div class="feature-content">
                 <h3 class="h5">Compare A/B Testing</h3>
@@ -1193,7 +1189,7 @@
               <div
                 class="icon-box d-inline-block rounded-circle bg-warning-soft mb-32"
               >
-                <i class="fal fa-cog icon-sm text-warning"></i>
+                <i class="fa fa-user text-warning"></i>
               </div>
               <div class="feature-content">
                 <h3 class="h5">Easy Customization</h3>
@@ -1238,7 +1234,7 @@
             <div
               class="process-icon border border-light bg-custom-light rounded-custom p-3"
             >
-              <i class="fad fa-folder-tree fa-2x"></i>
+              <i class="fa fa-user fa-2x"></i>
             </div>
             <h3 class="h5">Research</h3>
             <p class="mb-0">Uniquely pursue compelling initiatives expanded.</p>
@@ -1251,7 +1247,7 @@
             <div
               class="process-icon border border-light bg-custom-light rounded-custom p-3"
             >
-              <i class="fad fa-bezier-curve fa-2x"></i>
+              <i class="fa fa-bezier-curve fa-2x"></i>
             </div>
             <h3 class="h5">Designing</h3>
             <p class="mb-0">Uniquely pursue compelling initiatives expanded.</p>
@@ -1264,7 +1260,7 @@
             <div
               class="process-icon border border-light bg-custom-light rounded-custom p-3"
             >
-              <i class="fad fa-layer-group fa-2x"></i>
+              <i class="fa fa-layer-group fa-2x"></i>
             </div>
             <h3 class="h5">Building</h3>
             <p class="mb-0">Uniquely pursue compelling initiatives expanded.</p>
@@ -1277,7 +1273,7 @@
             <div
               class="process-icon border border-light bg-custom-light rounded-custom p-3"
             >
-              <i class="fad fa-truck fa-2x"></i>
+              <i class="fa fa-truck fa-2x"></i>
             </div>
             <h3 class="h5">Deliver</h3>
             <p class="mb-0">Uniquely pursue compelling initiatives expanded.</p>

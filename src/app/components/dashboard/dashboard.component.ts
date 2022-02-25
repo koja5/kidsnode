@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
 
   public sidebar = '';
   public sidebarMobile = '';
+  public mobileClass = '';
   public profile = '';
   public language: any;
   public allThemes: any;
@@ -187,6 +188,9 @@ export class DashboardComponent implements OnInit {
   checkMobileForSidebar() {
     if (!this.helpService.checkMobileDevice()) {
       this.mobileSidebarClass = '';
+      this.mobileClass = '';
+    } else {
+      this.mobileClass = 'mobile';
     }
   }
 

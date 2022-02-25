@@ -5,11 +5,12 @@ import { StorageService } from './storage.service';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private storageService: StorageService) {}
+  constructor(public storageService: StorageService) {}
 
   public get getToken() {
-      return {
-        'x-access-token': this.storageService.getToken()?.split("\"").join("") + ""
-      };
+    return {
+      'x-access-token':
+        this.storageService.getToken()?.split('"').join('') + '',
+    };
   }
 }

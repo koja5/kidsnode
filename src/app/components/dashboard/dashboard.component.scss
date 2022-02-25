@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;display=swap);
-@import url('../../../assets/css/navigation-menu.css');
+@import url("../../../assets/css/navigation-menu.css");
 
 .person-account {
   font-size: 25px;
@@ -25,4 +25,13 @@
 .expand-icon {
   position: absolute;
   right: 5px;
+}
+
+.sidebar-enable.mobile .page-content {
+  margin-left: 68px;
+  transition: 0.3s;
+}
+
+.vertical {
+  transition: 0.3s;
 }

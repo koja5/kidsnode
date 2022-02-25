@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HelpService } from 'src/app/services/help.service';
 import { FieldConfig } from '../../../models/field-config';
 
 @Component({
-  selector: 'app-numeric-textbox',
-  templateUrl: './numeric-textbox.component.html',
-  styleUrls: ['./numeric-textbox.component.sass'],
+  selector: 'app-switch',
+  templateUrl: './switch.component.html',
+  styleUrls: ['./switch.component.scss'],
 })
-export class NumericTextboxComponent implements OnInit {
+export class SwitchComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
   public language: any;
@@ -20,5 +20,11 @@ export class NumericTextboxComponent implements OnInit {
 
   ngOnInit(): void {
     this.language = this.helpService.getLanguage();
+    console.log(this.config);
+    console.log(this.group.get('active'));
+  }
+
+  checkRights() {
+    return this.helpService.checkRights(this.config?.rights);
   }
 }

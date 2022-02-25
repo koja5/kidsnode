@@ -197,7 +197,11 @@ export class DynamicGridComponent implements OnInit {
 
   setValue(fields: any, values: any) {
     for (let i = 0; i < fields.length; i++) {
-      this.form.setValue(fields[i]['name'], values[fields[i]['name']]);
+      this.form.setValue(
+        fields[i]['name'],
+        values[fields[i]['name']],
+        fields[i]['type']
+      );
     }
   }
 

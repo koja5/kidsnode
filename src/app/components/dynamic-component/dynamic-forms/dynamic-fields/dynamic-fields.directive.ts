@@ -6,16 +6,19 @@ import { FieldConfig } from '../models/field-config';
 import { ButtonComponent } from './buttons/button/button.component';
 import { CheckboxComponent } from './buttons/checkbox/checkbox.component';
 import { RadioComponent } from './buttons/radio/radio.component';
+import { SwitchComponent } from './buttons/switch/switch.component';
 import { ComboboxComponent } from './dropdowns/combobox/combobox.component';
 import { MultiselectComponent } from './dropdowns/multiselect/multiselect.component';
 import { DatepickerComponent } from './inputs/datepicker/datepicker.component';
 import { DatetimepickerComponent } from './inputs/datetimepicker/datetimepicker.component';
+import { NumericTextboxComponent } from './inputs/numeric-textbox/numeric-textbox.component';
 import { TextBoxComponent } from './inputs/text-box/text-box.component';
 import { LabelComponent } from './text/label/label.component';
 
 const components: {[type: string]: Type<Field>} = {
   textbox: TextBoxComponent,
   password: TextBoxComponent,
+  numeric: NumericTextboxComponent,
   combobox: ComboboxComponent,
   multiselect: MultiselectComponent,
   button: ButtonComponent,
@@ -23,7 +26,8 @@ const components: {[type: string]: Type<Field>} = {
   checkbox: CheckboxComponent,
   datepicker: DatepickerComponent,
   datetimepicker: DatetimepickerComponent,
-  label: LabelComponent
+  label: LabelComponent,
+  switch: SwitchComponent
 };
 
 @Directive({

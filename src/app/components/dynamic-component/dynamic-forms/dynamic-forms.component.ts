@@ -235,25 +235,47 @@ export class DynamicFormsComponent implements OnInit {
       for (let k = 0; k < values.length; k++) {
         for (let i = 0; i < fields.length; i++) {
           if (fields[i]['type'] !== FieldType.label) {
-            this.setValue(fields[i]['name'], values[k][fields[i]['name']]);
+            this.setValue(
+              fields[i]['name'],
+              values[k][fields[i]['name']],
+              fields[i]['type']
+            );
           }
         }
       }
     } else {
       for (let i = 0; i < fields.length; i++) {
         if (fields[i]['type'] !== FieldType.label && values) {
-          this.setValue(fields[i]['name'], values[fields[i]['name']]);
+          this.setValue(
+            fields[i]['name'],
+            values[fields[i]['name']],
+            fields[i]['type']
+          );
         }
       }
     }
     this.loader = false;
   }
 
-  setValue(name: string, value: any) {
+  setValue(name: string, value: any, type: string) {
     if (name) {
       if (this.form.controls[name]) {
-        this.form.controls[name].setValue(value, { emitEvent: true });
+        if (type === 'switch' || type === 'checkbox') {
+          this.form.controls[name].setValue(this.convertBooleanValue(value), {
+            emitEvent: true,
+          });
+        } else {
+          this.form.controls[name].setValue(value, { emitEvent: true });
+        }
       }
+    }
+  }
+
+  convertBooleanValue(value: number) {
+    if (value === 1) {
+      return true;
+    } else {
+      return false;
     }
   }
 

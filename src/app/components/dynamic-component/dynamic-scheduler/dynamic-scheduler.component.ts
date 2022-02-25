@@ -346,7 +346,8 @@ export class DynamicSchedulerComponent implements OnInit {
             this.helpService.convertValueToSpecificType(
               values[fields[i]['name']],
               this.config!.config![i].type
-            )
+            ),
+            fields[i]['type']
           );
         }
         this.config!.config![i].value =
@@ -361,7 +362,8 @@ export class DynamicSchedulerComponent implements OnInit {
             this.helpService.convertValueToSpecificType(
               values[fields[i]['name']],
               this.config!.config![i].type
-            )
+            ),
+            fields[i]['type']
           );
         }
         this.config!.config![i].value =

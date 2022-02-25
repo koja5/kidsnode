@@ -48,7 +48,11 @@ export class StorageService {
   }
 
   setToken(token: any) {
-    this.cookieService.set('token', token, { expires: 1, path: '/', sameSite: 'Lax' });
+    this.cookieService.set('token', token, {
+      expires: 1,
+      path: '/',
+      sameSite: 'Lax',
+    });
   }
 
   getToken() {

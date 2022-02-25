@@ -45,9 +45,9 @@
             "class": "e-fill",
             "headerStyle": "e-fill"
         },
-        "type": "forms",
-        "path": "/forms/children/medical-records",
-        "file": "basic-condition.json"
+        "type": "grid",
+        "path": "/grids/children/profile-children/medical-records",
+        "file": "dental-review.json"
     },
     {
         "title": {

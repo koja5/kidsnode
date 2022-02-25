@@ -167,6 +167,26 @@
       }
     },
     {
+      "title": "Status",
+      "template": {
+        "choices": [
+          {
+            "field": "active",
+            "value": 1,
+            "operator": "==",
+            "html": "<span class='label-success'>Aktivan</span>"
+          },
+          {
+            "field": "active",
+            "value": 0,
+            "operator": "==",
+            "html": "<span class='label-error'>Nije aktivan</span>"
+          }
+        ]
+      },
+      "field": "active"
+    },
+    {
       "title": "kindergardenSubgroupName",
       "filterable": true,
       "hideable": true,
@@ -344,6 +364,16 @@
         "filter": true
       },
       "required": true
+    },
+    {
+      "type": "switch",
+      "width": "col-md-12 mt-3 text-center",
+      "class": "e-outline",
+      "name": "active",
+      "title": "Aktiviraj/deaktiviraj",
+      "field": "active",
+      "onLabel": "Aktivan",
+      "offLabel": "Neaktivan"
     },
     {
       "type": "button",

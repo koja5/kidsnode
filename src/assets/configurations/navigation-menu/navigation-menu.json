@@ -33,31 +33,16 @@
     "title": "Deca",
     "rights": [
       "superadmin",
-      "director",
       "owner",
+      "director",
+      "educator",
       "parent",
-      "educator"
+      "speech_therapist",
+      "pedagogue",
+      "psychologist",
+      "pediatrician"
     ],
     "menu": [
-      {
-        "icon": "groups",
-        "title": "Grupe",
-        "children": [
-          {
-            "icon": "text_snippet",
-            "title": "Upisne grupe",
-            "link": "/dashboard/children/group",
-            "rights": "",
-            "isDefault": true
-          },
-          {
-            "icon": "speaker_notes",
-            "title": "Grupe u vrticu",
-            "link": "/dashboard/children/subgroup",
-            "rights": ""
-          }
-        ]
-      },
       {
         "icon": "child_care",
         "title": "Popis dece",
@@ -81,9 +66,9 @@
     "title": "Organizacija",
     "rights": [
       "superadmin",
-      "director",
       "owner",
-      "parent"
+      "director",
+      "finance"
     ],
     "menu": [
       {
@@ -100,7 +85,7 @@
       "superadmin",
       "director",
       "owner",
-      "parent"
+      "finance"
     ],
     "menu": [
       {
@@ -123,7 +108,7 @@
       "superadmin",
       "director",
       "owner",
-      "parent"
+      "finance"
     ],
     "menu": [
       {
@@ -140,7 +125,6 @@
       "superadmin",
       "director",
       "owner",
-      "parent",
       "speech_therapist",
       "pedagogue",
       "psychologist",
@@ -155,12 +139,45 @@
     ]
   },
   {
-    "title": "Administracija",
+    "title": "Hrana",
     "rights": [
       "superadmin",
       "director",
       "owner",
-      "parent"
+      "speech_therapist",
+      "pedagogue",
+      "psychologist",
+      "pediatrician"
+    ],
+    "menu": [
+      {
+        "icon": "restaurant",
+        "title": "Hrana",
+        "link": "",
+        "rights": "",
+        "children": [
+          {
+            "icon": "work",
+            "title": "Jela",
+            "link": "/dashboard/parameters/food",
+            "rights": ""
+          },
+          {
+            "icon": "receipt_long",
+            "title": "Jelovnik",
+            "link": "/dashboard/parameters/food-menu",
+            "rights": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Administracija",
+    "rights": [
+      "superadmin",
+      "director",
+      "owner"
     ],
     "menu": [
       {
@@ -190,26 +207,6 @@
         ]
       },
       {
-        "icon": "restaurant",
-        "title": "Hrana",
-        "link": "",
-        "rights": "",
-        "children": [
-          {
-            "icon": "work",
-            "title": "Jela",
-            "link": "/dashboard/parameters/food",
-            "rights": ""
-          },
-          {
-            "icon": "receipt_long",
-            "title": "Jelovnik",
-            "link": "/dashboard/parameters/food-menu",
-            "rights": ""
-          }
-        ]
-      },
-      {
         "icon": "local_shipping",
         "title": "Dobavljaci",
         "link": "",
@@ -223,6 +220,25 @@
           {
             "title": "Računi",
             "link": "/dashboard/parameters/invoice-suppliers",
+            "rights": ""
+          }
+        ]
+      },
+      {
+        "icon": "groups",
+        "title": "Grupe",
+        "children": [
+          {
+            "icon": "text_snippet",
+            "title": "Upisne grupe",
+            "link": "/dashboard/children/group",
+            "rights": "",
+            "isDefault": true
+          },
+          {
+            "icon": "speaker_notes",
+            "title": "Grupe u vrticu",
+            "link": "/dashboard/children/subgroup",
             "rights": ""
           }
         ]

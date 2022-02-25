@@ -355,3 +355,7 @@ input:focus-visible {
 .full-width {
   width: 100%;
 }
+
+.e-bigger .e-responsive-dialog .e-dlg-header-content, .e-bigger.e-responsive-dialog .e-dlg-header-content {
+  margin-bottom: 15px !important;
+}

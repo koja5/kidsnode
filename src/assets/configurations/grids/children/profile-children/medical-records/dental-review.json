@@ -2,7 +2,7 @@
     "pageSize": 10,
     "request": {
         "type": "GET",
-        "api": "/api/getMedicalRecordWeightHeight",
+        "api": "/api/getMedicalRecordDentalReviews",
         "url": [
             "id"
         ],
@@ -68,7 +68,7 @@
     "editSettingsRequest": {
         "add": {
             "type": "POST",
-            "api": "/api/createMedicalRecordWeightHeight",
+            "api": "/api/createMedicalRecordDentalReview",
             "url": [
                 "id"
             ],
@@ -78,14 +78,14 @@
         },
         "edit": {
             "type": "POST",
-            "api": "/api/updateMedicalRecordWeightHeight",
+            "api": "/api/updateMedicalRecordDentalReview",
             "parameters": [],
             "fields": "",
             "root": ""
         },
         "delete": {
             "type": "POST",
-            "api": "/api/deleteMedicalRecordWeightHeight",
+            "api": "/api/deleteMedicalRecordDentalReview",
             "parameters": [],
             "fields": "",
             "root": ""
@@ -111,32 +111,32 @@
             "type": "date",
             "format": "dd.MM.yyyy",
             "class": "text-align-right",
-            "field": "creation_date",
-            "validation": {
-                "required": true
-            }
+            "field": "creation_date"
         },
         {
-            "title": "Visina",
+            "title": "Datum kontrole",
             "filterable": true,
             "hideable": true,
-            "type": "text",
+            "type": "date",
+            "format": "dd.MM.yyyy",
             "class": "text-align-right",
-            "field": "height",
-            "validation": {
-                "required": true
-            }
+            "field": "date_control"
         },
         {
-            "title": "Težina",
+            "title": "Nalaz",
             "filterable": true,
             "hideable": true,
-            "type": "text",
+            "type": "string",
             "class": "text-align-right",
-            "field": "weight",
-            "validation": {
-                "required": true
-            }
+            "field": "finding"
+        },
+        {
+            "title": "Preduzete mere",
+            "filterable": true,
+            "hideable": true,
+            "type": "string",
+            "class": "text-align-right",
+            "field": "measures_taken"
         }
     ],
     "config": [
@@ -154,24 +154,26 @@
             "width": "col-md-12",
             "class": "e-outline",
             "fieldClass": "e-field e-input",
-            "title": "Datum merenja",
-            "name": "creation_date"
+            "title": "Datum pregleda",
+            "name": "date_control"
         },
         {
-            "type": "numeric",
-            "width": "col-md-6",
+            "type": "textbox",
+            "width": "col-md-12",
             "class": "e-outline",
-            "name": "height",
-            "title": "Telesna težina",
-            "field": "height"
+            "name": "finding",
+            "title": "Nalaz",
+            "multiline": true,
+            "field": "finding"
         },
         {
-            "type": "numeric",
-            "width": "col-md-6",
+            "type": "textbox",
+            "width": "col-md-12",
             "class": "e-outline",
-            "name": "weight",
-            "title": "Telesna visina",
-            "field": "weight"
+            "name": "measures_taken",
+            "title": "Preduzete mere",
+            "multiline": true,
+            "field": "measures_taken"
         },
         {
             "type": "button",

@@ -2985,6 +2985,138 @@ router.post("/deleteMedicalRecordSpecialReview", auth, (req, res, next) => {
 
 /* CHILDREN MEDICAL RECORDS SPECIAL REVIEW */
 
+/* CHILDREN MEDICAL RECORDS SPECIAL REVIEW */
+
+router.get(
+  "/getMedicalRecordDentalReviews/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select * from medical_record_dental_reviews where children_id = ?",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
+              } else {
+                res.json(rows);
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/createMedicalRecordDentalReview",
+  auth,
+  function (req, res, next) {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+        req.body.children_id = req.body.id;
+        req.body.date_control = new Date(req.body.date_control);
+        delete req.body.id;
+
+        conn.query(
+          "insert into medical_record_dental_reviews SET ?",
+          [req.body],
+          function (err, rows) {
+            conn.release();
+            if (!err) {
+              res.json(true);
+            } else {
+              logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
+              res.json(false);
+            }
+          }
+        );
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/updateMedicalRecordDentalReview",
+  auth,
+  function (req, res, next) {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+
+      req.body.date_control = new Date(req.body.date_control);
+
+      conn.query(
+        "update medical_record_dental_reviews SET ? where id = ?",
+        [req.body, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
+          }
+        }
+      );
+    });
+  }
+);
+
+router.post("/deleteMedicalRecordDentalReview", auth, (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from medical_record_dental_reviews where id = '" +
+            req.body.id +
+            "'",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDREN MEDICAL RECORDS SPECIAL REVIEW */
+
 /* CHILDREN MEDICAL RECORDS OBSERVATIONS */
 
 router.get(
@@ -3105,6 +3237,142 @@ router.post("/deleteMedicalRecordObservation", auth, (req, res, next) => {
 });
 
 /* CHILDREN MEDICAL RECORDS OBSERVATIONS END */
+
+/* CHILDREN MEDICAL RECORDS WEIGHT HEIGHT */
+
+router.get(
+  "/getMedicalRecordWeightHeight/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select * from medical_record_weight_height where children_id = ?",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
+              } else {
+                res.json(rows);
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/createMedicalRecordWeightHeight",
+  auth,
+  function (req, res, next) {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+        req.body.children_id = req.body.id;
+        if (req.body.creation_date) {
+          req.body.creation_date = new Date(req.body.creation_date);
+        }
+        delete req.body.id;
+
+        conn.query(
+          "insert into medical_record_weight_height SET ?",
+          [req.body],
+          function (err, rows) {
+            conn.release();
+            if (!err) {
+              res.json(true);
+            } else {
+              logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
+              res.json(false);
+            }
+          }
+        );
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/updateMedicalRecordWeightHeight",
+  auth,
+  function (req, res, next) {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+
+      if (req.body.creation_date) {
+        req.body.creation_date = new Date(req.body.creation_date);
+      }
+
+      conn.query(
+        "update medical_record_weight_height SET ? where id = ?",
+        [req.body, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
+          }
+        }
+      );
+    });
+  }
+);
+
+router.post("/deleteMedicalRecordWeightHeight", auth, (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "delete from medical_record_weight_height where id = '" +
+            req.body.id +
+            "'",
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              res.json(false);
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDREN MEDICAL RECORDS WEIGHT HEIGHT END */
 
 /* KINDERGARDEN GENERAL INFO */
 
