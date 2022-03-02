@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from 'src/app/services/configuration.service';
+import { HelpService } from 'src/app/services/help.service';
 
 @Component({
   selector: 'app-control-panel',
@@ -11,7 +12,10 @@ export class ControlPanelComponent implements OnInit {
   private file = 'control-panel.json';
   public configuration: any;
 
-  constructor(private configurationService: ConfigurationService) {}
+  constructor(
+    private configurationService: ConfigurationService,
+    private helpService: HelpService
+  ) {}
 
   ngOnInit(): void {
     this.initConfiguration();
@@ -23,5 +27,9 @@ export class ControlPanelComponent implements OnInit {
       .subscribe((data) => {
         this.configuration = data;
       });
+  }
+
+  checkRights(rights: any) {
+    return this.helpService.checkRights(rights);
   }
 }

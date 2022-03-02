@@ -49,6 +49,7 @@ import { DialogAllModule } from '@syncfusion/ej2-angular-popups';
 import { DynamicControlPanelModule } from '../dynamic-control-panel/dynamic-control-panel.module';
 import { DynamicBreadcrumbComponent } from '../common/dynamic-breadcrumb/dynamic-breadcrumb.component';
 import { DynamicInvoiceComponent } from '../dynamic-invoice/dynamic-invoice.component';
+import { DynamicLabelListComponent } from '../dynamic-label-list/dynamic-label-list.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,7 @@ import { DynamicInvoiceComponent } from '../dynamic-invoice/dynamic-invoice.comp
     DynamicPdfViewerComponent,
     DynamicIconComponent,
     DynamicBreadcrumbComponent,
-    DynamicInvoiceComponent,
+    DynamicInvoiceComponent
   ],
   imports: [
     CommonModule,

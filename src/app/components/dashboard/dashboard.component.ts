@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
   public mobile = false;
   public items: ItemModel[] = [
     {
-      text: 'Settings',
+      text: 'Podešavanja',
       id: 'settings',
       iconCss: 'e-icons e-settings',
     },
@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
       separator: true,
     },
     {
-      text: 'Logout',
+      text: 'Odjavi se',
       id: 'logout',
     },
   ];

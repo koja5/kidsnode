@@ -12,7 +12,10 @@ import { LoginGuardService } from './services/login-guard/login-guard.service';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    loadChildren: () =>
+      import('./components/home/routing-module/home.module').then(
+        (m) => m.HomedModule
+      ),
   },
   {
     path: 'dashboard',
@@ -49,7 +52,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

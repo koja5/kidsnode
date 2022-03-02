@@ -4,55 +4,17 @@
         "description": "Osnovne informacije o vrtiću(naziv vrtića, lokacija, broj telefona, mail adresa...)",
         "icon": "info",
         "link": "/dashboard/settings/general",
-        "rights": ""
+        "rights": [
+            "superadmin",
+            "director",
+            "owner"
+        ]
     },
     {
         "title": "Promeni lozinku",
         "description": "Promenite vasu trenutnu lozinku.",
         "icon": "lock",
         "link": "/dashboard/settings/change-password",
-        "rights": ""
-    },
-    {
-        "title": "Categories",
-        "description": "Marshmallow donut sweet roll. Wafer tootsie roll gingerbread croissant ice cream. Sweet roll ice cream marzipan croissant soufflé fruitcake.",
-        "icon": "settings",
-        "link": "",
-        "rights": ""
-    },
-    {
-        "title": "Localisation",
-        "description": "Chocolate bar sesame snaps tootsie roll donut apple pie. Tart chocolate cake pastry cupcake croissant chocolate. Gingerbread danish tiramisu.",
-        "icon": "settings",
-        "link": "",
-        "rights": ""
-    },
-    {
-        "title": "Currencies",
-        "description": "Halvah jujubes bonbon gummies caramels. Carrot cake pie caramels caramels. Wafer tootsie roll gingerbread croissant ice cream.",
-        "icon": "settings",
-        "link": "",
-        "rights": ""
-    },
-    {
-        "title": "Payment",
-        "description": "Dessert sweet roll cake lollipop. Jelly-o danish donut tiramisu biscuit toffee tart tootsie roll lemon drops. Lemon drops powder.",
-        "icon": "settings",
-        "link": "",
-        "rights": ""
-    },
-    {
-        "title": "Billing",
-        "description": "Macaroon candy ice cream candy canes chocolate bar sesame snaps jelly pudding caramels. Dragée macaroon lemon drops icing cupcake gingerbread.",
-        "icon": "settings",
-        "link": "",
-        "rights": ""
-    },
-    {
-        "title": "Taxes",
-        "description": "Dragée macaroon lemon drops icing cupcake gingerbread. Apple pie caramels tart. Caramels brownie gummies.",
-        "icon": "settings",
-        "link": "",
         "rights": ""
     }
 ]

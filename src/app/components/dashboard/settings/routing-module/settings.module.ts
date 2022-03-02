@@ -11,6 +11,7 @@ import { SettingsRouting } from './settings-routing';
 import { ControlPanelComponent } from '../control-panel/control-panel.component';
 import { SettingGeneralComponent } from '../setting-items/setting-general/setting-general.component';
 import { SettingChangePasswordComponent } from '../setting-items/setting-change-password/setting-change-password.component';
+import { BackButtonComponent } from 'src/app/components/common/back-button/back-button.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -21,6 +22,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ControlPanelComponent,
     SettingGeneralComponent,
     SettingChangePasswordComponent,
+    BackButtonComponent,
   ],
   imports: [CommonModule, DynamicModuleModule, SettingsRouting, MatIconModule],
   providers: [

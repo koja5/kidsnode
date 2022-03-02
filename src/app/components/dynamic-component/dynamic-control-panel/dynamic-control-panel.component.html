@@ -7,7 +7,7 @@
             <div class="col-7">
               <div class="text-primary p-3">
                 <h5 class="text-primary">{{ language.welcomeTitle }}</h5>
-                <p>{{ getTodayDate() }}</p>
+                <p class="text-primary">{{ getTodayDate() }}</p>
               </div>
             </div>
             <div class="col-5 align-self-end">
@@ -70,7 +70,7 @@
   <div *ngIf="!loader">
     <div *ngIf="config.charts" class="row">
       <div
-        *ngFor="let item of config.charts"
+        *ngFor="let item of config.charts; let i = index"
         class="{{ item.width ? item.width : 'col-md-12' }}  mb-4"
       >
         <div>
@@ -84,26 +84,20 @@
                     }}
                   </h4>
                 </div>
-                <div class="refresh-chart">
-                  <a class="text-muted">
-                    <mat-icon
-                      role="img"
-                      aria-hidden="false"
-                      class="mat-icon notranslate material-icons mat-icon-no-color"
-                      data-mat-icon-type="font"
-                      >refresh</mat-icon
-                    >
-                  </a>
-                </div>
               </div>
               <div id="stacked-column-chart" class="apex-charts">
                 <app-dynamic-pie
-                  *ngIf="item.type === 'pie'"
+                  #{{i}}
+                  *ngIf="item.type === 'Pie'"
                   [config]="item"
+                  [id]="i"
                 ></app-dynamic-pie>
                 <app-dynamic-column
-                  *ngIf="item.type === 'column'"
+                  #{{i}}
+                  *ngIf="item.type !== 'Pie'"
                   [config]="item"
+                  [id]="i"
+                  [type]="item?.type"
                 ></app-dynamic-column>
               </div>
             </div>

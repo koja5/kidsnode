@@ -163,6 +163,7 @@ router.post("/login", function (req, res, next) {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         }
+        console.log(rows);
         if (rows.length > 0) {
           const token = jwt.sign(
             {
@@ -2585,6 +2586,336 @@ router.post("/deleteInvoiceSupplier", auth, (req, res, next) => {
 
 /* END INVOICE SUPPLIERS */
 
+/* CHILDREN MEDICAL RECORDS HEALTH CARD */
+
+router.get("/getMedicalRecordHealthCard/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from medical_health_card where children_id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/createMedicalRecordHealthCard", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      req.body.children_id = req.body.id;
+      delete req.body.id;
+
+      conn.query(
+        "insert into medical_health_card SET ?",
+        [req.body],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateMedicalRecordHealthCard", auth, function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    conn.query(
+      "update medical_health_card SET ? where children_id = ?",
+      [req.body, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          res.json(true);
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+/* END CHILDREN MEDICAL RECORDS HEALTH CARD */
+
+/* CHILDREN MEDICAL RECORDS CONTROL CONDITION */
+
+router.get(
+  "/getMedicalRecordBasicCondition/:id",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          conn.query(
+            "select * from medical_basic_condition where children_id = ?",
+            [req.params.id],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
+              } else {
+                res.json(rows);
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/createMedicalRecordBasicCondition",
+  auth,
+  function (req, res, next) {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+        req.body.children_id = req.body.id;
+        delete req.body.id;
+
+        conn.query(
+          "insert into medical_basic_condition SET ?",
+          [req.body],
+          function (err, rows) {
+            conn.release();
+            if (!err) {
+              res.json(true);
+            } else {
+              logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
+              res.json(false);
+            }
+          }
+        );
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.post(
+  "/updateMedicalRecordBasicCondition",
+  auth,
+  function (req, res, next) {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+
+      conn.query(
+        "update medical_basic_condition SET ? where children_id = ?",
+        [req.body, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
+          }
+        }
+      );
+    });
+  }
+);
+
+/* END CHILDREN MEDICAL RECORDS CONTROL CONDITION */
+
+/* CHILDREN MEDICAL RECORDS IMUNIZATION */
+
+router.get("/getMedicalRecordImunization/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from medical_record_imunization where children_id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/createMedicalRecordImunization", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      req.body.children_id = req.body.id;
+      req.body.bcg = req.body.bcg ? new Date(req.body.bcg) : null;
+      req.body.mmrv = req.body.mmrv ? new Date(req.body.mmrv) : null;
+      req.body.dtp_first = req.body.dtp_first
+        ? new Date(req.body.dtp_first)
+        : null;
+      req.body.opv_first = req.body.opv_first
+        ? new Date(req.body.opv_first)
+        : req.body.opv_first;
+      req.body.dtp_two = req.body.dtp_two
+        ? new Date(req.body.dtp_two)
+        : req.body.dtp_two;
+      req.body.opv_two = req.body.opv_two ? new Date(req.body.opv_two) : null;
+      req.body.dtp_three = req.body.dtp_three
+        ? new Date(req.body.dtp_three)
+        : null;
+      req.body.opv_three = req.body.opv_three
+        ? new Date(req.body.opv_three)
+        : null;
+      req.body.dtp_r_first = req.body.dtp_r_first
+        ? new Date(req.body.dtp_r_first)
+        : null;
+      req.body.opv_r_first = req.body.opv_r_first
+        ? new Date(req.body.opv_r_first)
+        : null;
+      req.body.dtp_r_two = req.body.dtp_r_two
+        ? new Date(req.body.dtp_r_two)
+        : null;
+      req.body.pertussts_r = req.body.pertussts_r
+        ? new Date(req.body.pertussts_r)
+        : null;
+      req.body.hep_b = req.body.hep_b ? new Date(req.body.hep_b) : null;
+      delete req.body.id;
+
+      conn.query(
+        "insert into medical_record_imunization SET ?",
+        [req.body],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateMedicalRecordImunization", auth, function (req, res, next) {
+  connection.getConnection(function (err, conn) {
+    if (err) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(err);
+    }
+
+    req.body.bcg = req.body.bcg ? new Date(req.body.bcg) : null;
+    req.body.mmrv = req.body.mmrv ? new Date(req.body.mmrv) : null;
+    req.body.dtp_first = req.body.dtp_first
+      ? new Date(req.body.dtp_first)
+      : null;
+    req.body.opv_first = req.body.opv_first
+      ? new Date(req.body.opv_first)
+      : req.body.opv_first;
+    req.body.dtp_two = req.body.dtp_two
+      ? new Date(req.body.dtp_two)
+      : req.body.dtp_two;
+    req.body.opv_two = req.body.opv_two ? new Date(req.body.opv_two) : null;
+    req.body.dtp_three = req.body.dtp_three
+      ? new Date(req.body.dtp_three)
+      : null;
+    req.body.opv_three = req.body.opv_three
+      ? new Date(req.body.opv_three)
+      : null;
+    req.body.dtp_r_first = req.body.dtp_r_first
+      ? new Date(req.body.dtp_r_first)
+      : null;
+    req.body.opv_r_first = req.body.opv_r_first
+      ? new Date(req.body.opv_r_first)
+      : null;
+    req.body.dtp_r_two = req.body.dtp_r_two
+      ? new Date(req.body.dtp_r_two)
+      : null;
+    req.body.pertussts_r = req.body.pertussts_r
+      ? new Date(req.body.pertussts_r)
+      : null;
+    req.body.hep_b = req.body.hep_b ? new Date(req.body.hep_b) : null;
+
+    conn.query(
+      "update medical_record_imunization SET ? where children_id = ?",
+      [req.body, req.body.id],
+      function (err, rows) {
+        conn.release();
+        if (!err) {
+          res.json(true);
+        } else {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        }
+      }
+    );
+  });
+});
+
+/* END CHILDREN MEDICAL RECORDS IMUNIZATION */
+
 /* CHILDREN MEDICAL RECORDS CONTROL REVIEW */
 
 router.get(
@@ -3471,6 +3802,9 @@ router.post("/changePassword", auth, function (req, res, next) {
       res.json(err);
     }
 
+    console.log("USER:");
+    console.log(req);
+
     conn.query(
       "update employees SET password = ? where id = ?",
       [sha1(req.body.new_password), req.user.user.id],
@@ -3790,4 +4124,5 @@ router.get("/getFoodsMenu", auth, async (req, res, next) => {
 });
 
 /* END FOODS MENU */
+
 module.exports = router;

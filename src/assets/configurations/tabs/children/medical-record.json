@@ -1,6 +1,16 @@
 [
     {
         "title": {
+            "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>badge</mat-icon> Knjižica</div>",
+            "class": "e-fill",
+            "headerStyle": "e-fill"
+        },
+        "type": "forms",
+        "path": "/forms/children/medical-records",
+        "file": "health_card.json"
+    },
+    {
+        "title": {
             "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>medication</mat-icon> Opšte stanje</div>",
             "class": "e-fill",
             "headerStyle": "e-fill"
@@ -8,6 +18,16 @@
         "type": "forms",
         "path": "/forms/children/medical-records",
         "file": "basic-condition.json"
+    },
+    {
+        "title": {
+            "text": "<div class='center-text'><mat-icon class='mat-icon notranslate material-icons mat-icon-no-color mr-1'>vaccines</mat-icon> Imunizacija</div>",
+            "class": "e-fill",
+            "headerStyle": "e-fill"
+        },
+        "type": "forms",
+        "path": "/forms/children/medical-records",
+        "file": "imunization.json"
     },
     {
         "title": {

@@ -1,31 +1,11 @@
-<div class="ml-3 mr-3">
+<div class="m-3">
   <div class="h-100 row">
     <div id="contentArea" class="h-100 col" style="opacity: 1">
-      <div class="page-title-container">
-        <a
-          aria-current="page"
-          class="muted-link pb-1 d-inline-block hidden breadcrumb-back active"
-          href="/"
-          ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="13"
-            height="13"
-            viewBox="0 0 20 20"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="cs-icon chevron-left"
-          >
-            <path
-              d="M13 16L7.35355 10.3536C7.15829 10.1583 7.15829 9.84171 7.35355 9.64645L13 4"
-            ></path></svg
-          ><span class="align-middle text-small ms-1">Home</span></a
-        >
-      </div>
       <div class="row-cols-1 row-cols-md-2 g-2 row">
-        <div class="col mb-4" *ngFor="let item of configuration">
+        <div
+          class="col mb-4 {{ checkRights(item.rights) ? '' : 'display-none' }}"
+          *ngFor="let item of configuration"
+        >
           <div class="hover-scale-up h-100 card">
             <div class="card-body">
               <div class="g-0 row">

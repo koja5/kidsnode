@@ -238,7 +238,7 @@
       {
         "type": "button",
         "width": "col-md-12",
-        "class": "e-info",
+        "class": "button-action e-info",
         "name": "submit",
         "title": "saveButton",
         "field": "submit",

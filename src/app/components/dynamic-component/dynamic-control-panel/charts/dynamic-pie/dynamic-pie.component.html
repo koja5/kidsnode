@@ -1,12 +1,27 @@
-<div *ngIf="loader" style="height: 60vh">
+<div *ngIf="loader" style="height: 48vh">
   <app-loader-content></app-loader-content>
+</div>
+
+<div class="refresh-chart">
+  <a class="text-muted" (click)="refresh()">
+    <mat-icon
+      role="img"
+      aria-hidden="false"
+      class="mat-icon notranslate material-icons mat-icon-no-color"
+      data-mat-icon-type="font"
+      >refresh</mat-icon
+    >
+  </a>
 </div>
 
 <ejs-accumulationchart
   *ngIf="!loader"
+  id="container{{ id }}"
   #pie
-  [legendSettings]="legendSettings"
-  [tooltip]="tooltip"
+  style="display: block; width: 92%"
+  [legendSettings]="config?.legendSettings"
+  [tooltip]="config?.tooltip"
+  [title]="config?.title"
   (load)="load($event)"
   [enableAnimation]="enableAnimation"
   [center]="center"

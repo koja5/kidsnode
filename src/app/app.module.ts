@@ -18,7 +18,12 @@ import { OnlineStatusComponent } from './components/common/online-status/online-
 import { HomeComponent } from './components/home/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, OnlineStatusComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    NotFoundComponent,
+    OnlineStatusComponent,
+    HomeComponent,
+  ],
   imports: [
     BrowserModule,
     CommonModule,

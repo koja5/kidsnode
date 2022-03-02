@@ -1,9 +1,4 @@
-<ejs-tab
-  #element
-  *ngIf="config"
-  id="tab_default"
-  overflowMode="Scrollable"
->
+<ejs-tab #element *ngIf="config" id="tab_default" overflowMode="Popup">
   <e-tabitems>
     <e-tabitem *ngFor="let item of config" [header]="item.title">
       <ng-template

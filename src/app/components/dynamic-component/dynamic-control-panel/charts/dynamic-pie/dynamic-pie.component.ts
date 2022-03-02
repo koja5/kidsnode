@@ -23,45 +23,15 @@ export class DynamicPieComponent implements OnInit {
   @ViewChild('pie')
   public pie!: AccumulationChartComponent | AccumulationChart;
   @Input() config!: any;
+  @Input() id?: number;
   public data: any;
-  public animation: Object = {
-    enable: false,
-  };
-  public legendSettings: Object = {
-    visible: false,
-  };
-  public dataLabel: Object = {
-    visible: true,
-    position: 'Inside',
-    name: 'text',
-    font: {
-      fontWeight: '600',
-    },
-  };
-  public load(args: IAccLoadedEventArgs): void {
-    let selectedTheme: string = location.hash.split('/')[1];
-    selectedTheme = selectedTheme ? selectedTheme : 'Material';
-    args.accumulation.theme = <AccumulationTheme>(
-      (selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(
-        /-dark/i,
-        'Dark'
-      )
-    );
-  }
-  public center: Object = { x: '50%', y: '50%' };
-  public startAngle: number = 0;
-  public endAngle: number = 360;
-  public explode: boolean = true;
-  public enableAnimation: boolean = false;
-  public tooltip: Object = {
-    enable: true,
-    format: '${point.x} : <b>${point.y}%</b>',
-  };
   public loader = true;
+
   constructor(
     private apiService: CallApiService,
     private router: ActivatedRoute
   ) {}
+
   ngOnInit(): void {
     this.loader = true;
     this.getData();
@@ -72,5 +42,20 @@ export class DynamicPieComponent implements OnInit {
       this.data = data;
       this.loader = false;
     });
+  }
+
+  refresh() {
+    this.ngOnInit();
+  }
+
+  public load(args: IAccLoadedEventArgs): void {
+    let selectedTheme: string = location.hash.split('/')[1];
+    selectedTheme = selectedTheme ? selectedTheme : 'Material';
+    args.accumulation.theme = <AccumulationTheme>(
+      (selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(
+        /-dark/i,
+        'Dark'
+      )
+    );
   }
 }

@@ -3,11 +3,16 @@ const jwt = require("jsonwebtoken");
 const config = process.env;
 
 const verifyToken = (req, res, next) => {
-  const token =
-    req.body.token || req.query.token || req.headers["x-access-token"];
-  
+  let token =
+    req.body.token ||
+    req.query.token ||
+    req.headers["x-access-token"] ||
+    req.headers["cookie"];
+  if (token.startsWith("token")) {
+    token = token.toString().split("=")[1];
+  }
+
   if (!token) {
-    // return res.redirect("/login");
     return res.status(403).send("A token is required for authentication");
   }
   try {

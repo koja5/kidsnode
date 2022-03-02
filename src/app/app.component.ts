@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   connectionStatusMessage!: string;
   connectionStatus!: string;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.onlineEvent = fromEvent(window, 'online');
@@ -38,6 +39,10 @@ export class AppComponent implements OnInit, OnDestroy {
         }, 100);
       })
     );
+
+    this.router.events.subscribe((evt) => {
+      window.scrollTo(0, 0);
+    });
   }
 
   ngOnDestroy(): void {

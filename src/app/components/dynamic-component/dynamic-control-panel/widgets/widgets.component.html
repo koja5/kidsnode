@@ -1,7 +1,7 @@
 <div class="row">
   <div
     *ngFor="let item of config.widgets"
-    class="{{ item.width ? item.width : 'col-md-12' }}  pb-3"
+    class="{{ item.width ? item.width : 'col-md-12' }}  pb-2"
   >
     <div class="card mini-stats-wid">
       <div class="p-2">
@@ -10,7 +10,16 @@
             <p class="text-muted fw-medium">
               {{ language[item.title] ? language[item.title] : item.title }}
             </p>
-            <h4 class="mb-0">{{ item.value }}</h4>
+            <h4 class="mb-0" *ngIf="item.value">{{ item.value }}</h4>
+            <div *ngIf="item.name && loader[item.name]">
+              <app-loader-content></app-loader-content>
+            </div>
+            <h4
+              class="mb-0"
+              *ngIf="item.name && data[item.name] && !loader[item.name]"
+            >
+              {{ data[item.name] }}
+            </h4>
           </div>
 
           <div class="flex-shrink-0 align-self-center">
@@ -26,7 +35,7 @@
               </span>
             </div>
           </div>
-          <div class="refresh">
+          <!-- <div class="refresh">
             <mat-icon
               role="img"
               aria-hidden="false"
@@ -34,7 +43,7 @@
               data-mat-icon-type="font"
               >refresh</mat-icon
             >
-          </div>
+          </div> -->
         </div>
         <div class="d-flex" *ngIf="item.type === 'complex'">
           <div class="flex-grow-1">
@@ -76,7 +85,7 @@
               </div>
             </div>
 
-            <div class="refresh">
+            <!-- <div class="refresh">
               <mat-icon
                 role="img"
                 aria-hidden="false"
@@ -84,7 +93,7 @@
                 data-mat-icon-type="font"
                 >refresh</mat-icon
               >
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

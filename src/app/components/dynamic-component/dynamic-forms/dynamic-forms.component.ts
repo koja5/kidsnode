@@ -95,6 +95,9 @@ export class DynamicFormsComponent implements OnInit {
         if (this.disableEdit) {
           this.setDisableEdit();
         }
+        if (this.config.actionButtons) {
+          this.setDisableEdit();
+        }
         this.form = this.createGroup();
         if (this.config.request && !this.data) {
           this.getData(this.config);

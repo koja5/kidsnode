@@ -28,6 +28,11 @@ import { WidgetsComponent } from './widgets/widgets.component';
 import { DynamicColumnComponent } from './charts/dynamic-column/dynamic-column.component';
 import { LoaderSvgComponent } from '../../common/loader-svg/loader-svg.component';
 import { LoaderContentComponent } from '../common/loader-content/loader-content.component';
+import { DynamicLabelListComponent } from '../dynamic-label-list/dynamic-label-list.component';
+import { FormsModule } from '@angular/forms';
+import { DynamicFormsModule } from '../dynamic-forms/dynamic-forms.module';
+import { MatIconModule } from '@angular/material/icon';
+import { DynamicLineComponent } from './charts/dynamic-line/dynamic-line.component';
 
 @NgModule({
   declarations: [
@@ -35,18 +40,22 @@ import { LoaderContentComponent } from '../common/loader-content/loader-content.
     DynamicPieComponent,
     WidgetsComponent,
     DynamicColumnComponent,
-    LoaderContentComponent
+    LoaderContentComponent,
+    DynamicLabelListComponent,
+    DynamicLineComponent,
   ],
   exports: [
     DynamicControlPanelComponent,
     DynamicPieComponent,
     WidgetsComponent,
+    DynamicLabelListComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ChartAllModule,
     AccumulationChartModule,
+    MatIconModule,
   ],
   providers: [
     PieSeriesService,

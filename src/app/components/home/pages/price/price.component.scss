@@ -1,0 +1,23 @@
+.pricing-header .package-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.pricing-header h4 span {
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 5px;
+}
+.pricing-feature-list li {
+  font-size: 15px;
+  padding: 5px 0;
+}
+.single-pricing-wrap {
+  transition: transform 300ms ease;
+}
+.transform-hover:hover {
+  transform: translate(0px, -10px);
+}
+.transition-base {
+  transition: all 0.3s ease;
+}
