@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
+import { ToastrComponent } from '../common/toastr/toastr.component';
 
 @Component({
   selector: 'app-dynamic-control-panel',
@@ -18,15 +20,20 @@ export class DynamicControlPanelComponent implements OnInit {
     type: '',
     typeName: '',
   };
+  public signInIndicator!: number;
+  public signWorkDate: any = {};
 
   constructor(
     private helpService: HelpService,
-    private configurationService: ConfigurationService
+    private configurationService: ConfigurationService,
+    private apiService: CallApiService,
+    private toastr: ToastrComponent
   ) {}
 
   ngOnInit(): void {
     this.initializeConfig();
     this.getUserInfo();
+    this.getReportingPresenceEmployee();
   }
 
   initializeConfig() {
@@ -54,6 +61,26 @@ export class DynamicControlPanelComponent implements OnInit {
       : this.helpService.getTypeOfName(token.type);
   }
 
+  getReportingPresenceEmployee() {
+    this.apiService
+      .callGetMethod('/api/control-panel/getReportingPresenceEmployee', '')
+      .subscribe((data: any) => {
+        console.log(data);
+        if (data && data?.start_date && !data?.end_date) {
+          this.signWorkDate.start_date = data?.start_date;
+          this.signInIndicator = 0;
+        } else if (data && data?.end_date) {
+          this.signWorkDate = {
+            start_date: data?.start_date,
+            end_date: data?.end_date,
+          };
+          this.signInIndicator = -1;
+        } else {
+          this.signInIndicator = 1;
+        }
+      });
+  }
+
   getTodayDate() {
     const date = new Date();
     return (
@@ -64,5 +91,35 @@ export class DynamicControlPanelComponent implements OnInit {
       date.getFullYear() +
       '.'
     );
+  }
+
+  signInWork() {
+    this.apiService
+      .callPostMethod('/api/control-panel/signInWork', {})
+      .subscribe((data) => {
+        if (data) {
+          this.toastr.showSuccessCustom(
+            this.language.successfulySignInWork,
+            ''
+          );
+          this.signInIndicator = 0;
+          this.signWorkDate['start_date'] = data;
+        }
+      });
+  }
+
+  signOutWork() {
+    this.apiService
+      .callPostMethod('/api/control-panel/signOutWork', {})
+      .subscribe((data) => {
+        if (data) {
+          this.toastr.showSuccessCustom(
+            this.language.successfulySignInWork,
+            ''
+          );
+          this.signInIndicator = -1;
+          this.signWorkDate['end_date'] = data;
+        }
+      });
   }
 }

@@ -195,4 +195,105 @@ router.get("/getRecordsOfArrivalByGroup", auth, async (req, res, next) => {
   } catch (ex) {}
 });
 
+/* REPORTING PRESENCE EMPLOYEES */
+
+router.post("/signInWork", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      const date = new Date();
+      req.body.start_date = date;
+      req.body.kindergarden_id = req.user.user.kindergarden;
+      req.body.employee_id = req.user.user.id;
+      conn.query(
+        "insert into reporting_presence_employees SET ?",
+        [req.body],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(date);
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/signOutWork", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      const date = new Date();
+      const today = new Date().toISOString().slice(0, 10);
+      req.body.start_date = date;
+      req.body.kindergarden_id = req.user.user.kindergarden;
+      req.body.employee_id = req.user.user.id;
+      conn.query(
+        "update reporting_presence_employees SET end_date = ? where employee_id = ? and creation_date = ?",
+        [date, req.body.employee_id, today],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(date);
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getReportingPresenceEmployee", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        const date = new Date().toISOString().slice(0, 10);
+        console.log(req.user.user.id);
+        conn.query(
+          "select * from reporting_presence_employees r where employee_id = ? and creation_date = ?",
+          [req.user.user.id, date],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              if (rows.length) {
+                res.json(rows[0]);
+              } else {
+                res.json(rows);
+              }
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END REPORTING PRESENCE EMPLOYEES */
+
 module.exports = router;

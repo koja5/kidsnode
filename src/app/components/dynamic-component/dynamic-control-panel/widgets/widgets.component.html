@@ -14,10 +14,7 @@
             <div *ngIf="item.name && loader[item.name]">
               <app-loader-content></app-loader-content>
             </div>
-            <h4
-              class="mb-0"
-              *ngIf="item.name && data[item.name] && !loader[item.name]"
-            >
+            <h4 class="mb-0" *ngIf="item.name && !loader[item.name]">
               {{ data[item.name] }}
             </h4>
           </div>

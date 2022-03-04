@@ -99,5 +99,11 @@
     "invoiceDownloadInvoice": "Preuzmi",
     "invoicePrintInvoice": "Štampaj",
     "invoiceOpenInvoice": "Pregledaj",
-    "editButton": "Uredi"
+    "editButton": "Uredi",
+    "signInWork": "Prijavi se",
+    "signOutWork": "Odjavi se",
+    "signInWorkDate": "Prijavili ste se:",
+    "signOutWorkDate": "Odjavi ste se:",
+    "successfulySignInWork": "Uspešno ste se prijavili na posao!",
+    "successfulySignOutWork": "Uspešno ste se odjavili sa posla!"
 }
