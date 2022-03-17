@@ -11,6 +11,7 @@ import { AvatarComponent } from 'src/app/components/dashboard/common/avatar/avat
 import { CommonModule } from '@angular/common';
 import { CalendarOfActivityComponent } from '../calendar-of-activity/calendar-of-activity.component';
 import { FormsModule } from '@angular/forms';
+import { CommonDashboardModule } from '../../common/common-dashboard.module';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,15 @@ import { FormsModule } from '@angular/forms';
     AllChildrenComponent,
     ProfileChildrenComponent,
     RecordsOfArrivalsComponent,
-    AvatarComponent,
-    CalendarOfActivityComponent
+    CalendarOfActivityComponent,
   ],
-  imports: [FormsModule , CommonModule, ChildrenRouting, DynamicModuleModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    ChildrenRouting,
+    DynamicModuleModule,
+    CommonDashboardModule,
+  ],
   providers: [],
 })
 export class ChildrenModule {}

@@ -24,7 +24,7 @@
     },
     "request": {
         "type": "GET",
-        "api": "/api/getKindergardenGeneralInfo/",
+        "api": "/api/getKindergardenInfo/",
         "url": [],
         "parameters": [],
         "fields": "",
@@ -33,14 +33,14 @@
     "editSettingsRequest": {
         "add": {
             "type": "POST",
-            "api": "/api/createKindergardenGeneralInfo",
+            "api": "/api/createKindergardenInfo",
             "parameters": [],
             "fields": "",
             "root": ""
         },
         "edit": {
             "type": "POST",
-            "api": "/api/updateKindergardenGeneralInfo",
+            "api": "/api/updateKindergardenInfo",
             "parameters": [],
             "fields": "",
             "root": ""
@@ -80,6 +80,22 @@
         },
         {
             "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "city",
+            "title": "Grad",
+            "field": "city"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "zip_code",
+            "title": "Postanski broj",
+            "field": "zip_code"
+        },
+        {
+            "type": "textbox",
             "width": "col-md-6",
             "class": "e-outline",
             "name": "telephone",
@@ -93,6 +109,14 @@
             "name": "email",
             "title": "Email",
             "field": "email"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "pib",
+            "title": "PIB",
+            "field": "pib"
         },
         {
             "type": "label",

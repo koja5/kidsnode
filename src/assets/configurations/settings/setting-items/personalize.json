@@ -1,0 +1,79 @@
+{
+    "class": "margin-auto width-60",
+    "actionButtons": {
+        "class": "text-right p-3",
+        "simpleButtons": [],
+        "dropDownButtons": {
+            "content": "Opcije",
+            "items": [
+                {
+                    "text": "Uredi",
+                    "id": "edit",
+                    "iconCss": "ddb-icons e-edit"
+                }
+            ]
+        },
+        "splitButtons": {
+            "content": "",
+            "items": []
+        }
+    },
+    "request": {
+        "type": "GET",
+        "api": "/api/getKindergardenInfo/",
+        "url": [],
+        "parameters": [],
+        "fields": "",
+        "root": ""
+    },
+    "editSettingsRequest": {
+        "add": {
+            "type": "POST",
+            "api": "/api/createKindergardenGeneralInfo",
+            "parameters": [],
+            "fields": "",
+            "root": ""
+        },
+        "edit": {
+            "type": "POST",
+            "api": "/api/changePassword",
+            "parameters": [],
+            "fields": "",
+            "root": ""
+        }
+    },
+    "config": [
+        {
+            "type": "label",
+            "width": "col-md-12",
+            "title": "Promenite lozinku"
+        },
+        {
+            "type": "radio",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "gender",
+            "title": "gender",
+            "field": "gender",
+            "itemFields": [
+                {
+                    "title": "Muski",
+                    "value": "man"
+                },
+                {
+                    "title": "Zenski",
+                    "value": "femaly"
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "width": "col-md-12",
+            "class": "e-info  button-action",
+            "name": "submit",
+            "title": "saveButton",
+            "field": "submit",
+            "positionClass": "position-end mt-3 col-md-12"
+        }
+    ]
+}

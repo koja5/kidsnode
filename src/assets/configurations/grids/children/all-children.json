@@ -49,7 +49,13 @@
     "Group",
     "Ungroup"
   ],
-  "toolbar": ["Add", "Edit", "Delete", "Print", "Search"],
+  "toolbar": [
+    "Add",
+    "Edit",
+    "Delete",
+    "Print",
+    "Search"
+  ],
   "editSettings": {
     "allowEditing": true,
     "allowAdding": true,
@@ -89,7 +95,7 @@
       "filter": "date",
       "type": "number",
       "class": "text-align-right",
-      "field": "id",
+      "field": "children_id",
       "isPrimaryKey": true,
       "allowEditing": false
     },
@@ -100,7 +106,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "children_firstname",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "Children lastname",
@@ -109,7 +117,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "children_lastname",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "Children birthday",
@@ -119,16 +129,29 @@
       "format": "dd.MM.yyyy",
       "class": "text-align-right",
       "field": "children_birthday",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
-      "title": "Children gender",
-      "filterable": true,
-      "hideable": true,
-      "type": "string",
-      "class": "text-align-right",
-      "field": "children_gender",
-      "validation": { "required": true }
+      "title": "Pol",
+      "template": {
+        "choices": [
+          {
+            "field": "children_gender",
+            "value": "femaly",
+            "operator": "==",
+            "html": "<img src='./assets/icons/female.png' class='gender-icon'>"
+          },
+          {
+            "field": "children_gender",
+            "value": "man",
+            "operator": "==",
+            "html": "<img src='./assets/icons/male.png' class='gender-icon'>"
+          }
+        ]
+      },
+      "field": "children_gender"
     },
     {
       "title": "Mother firstname",
@@ -137,7 +160,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "mother_firstname",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "Father firstname",
@@ -146,7 +171,9 @@
       "type": "string",
       "class": "text-align-right",
       "field": "father_firstname",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
       "title": "",
@@ -161,7 +188,9 @@
         "class": "btn btn-none button-text-center button-action text-center",
         "classIcon": "remove_red_eye",
         "link": "dashboard/children/profile-children",
-        "parameters": ["children_id"]
+        "parameters": [
+          "children_id"
+        ]
       }
     }
   ],
@@ -229,7 +258,10 @@
       "class": "e-outline",
       "name": "kindergarden_subgroup_id",
       "title": "Kindergarden subgroup",
-      "field": { "text": "name", "value": "id" },
+      "field": {
+        "text": "name",
+        "value": "id"
+      },
       "request": {
         "type": "GET",
         "api": "/api/getKindergardenSubgroup",
@@ -291,7 +323,6 @@
       "title": "Broj telefona",
       "field": "father_telephone"
     },
-
     {
       "type": "label",
       "width": "col-md-12 border-top mt-3 pt-3",

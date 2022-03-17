@@ -268,7 +268,6 @@ router.get("/getReportingPresenceEmployee", auth, async (req, res, next) => {
         res.json(err);
       } else {
         const date = new Date().toISOString().slice(0, 10);
-        console.log(req.user.user.id);
         conn.query(
           "select * from reporting_presence_employees r where employee_id = ? and creation_date = ?",
           [req.user.user.id, date],
@@ -293,6 +292,40 @@ router.get("/getReportingPresenceEmployee", auth, async (req, res, next) => {
     res.json(ex);
   }
 });
+
+router.get(
+  "/getReportingPresenceEmployeeByKindergarden",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          const date = new Date().toISOString().slice(0, 10);
+          console.log(req.user.user.id);
+          conn.query(
+            "select * from reporting_presence_employees r where kindergarden_id = ? and creation_date = ?",
+            [req.user.user.kindergarden, date],
+            function (err, rows, fields) {
+              conn.release();
+              if (err) {
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
+              } else {
+                res.json(rows);
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
 
 /* END REPORTING PRESENCE EMPLOYEES */
 

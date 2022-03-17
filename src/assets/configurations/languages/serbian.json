@@ -104,6 +104,13 @@
     "signOutWork": "Odjavi se",
     "signInWorkDate": "Prijavili ste se:",
     "signOutWorkDate": "Odjavi ste se:",
+    "employeeSignInWorkDate": "Zaposleni se prijavio:",
+    "employeeSignOutWorkDate": "Zaposleni se odjavio:",
     "successfulySignInWork": "Uspešno ste se prijavili na posao!",
-    "successfulySignOutWork": "Uspešno ste se odjavili sa posla!"
+    "successfulySignOutWork": "Uspešno ste se odjavili sa posla!",
+    "employeeOnline": "Prisutan na poslu",
+    "employeeOffline": "Nije prisutan na poslu",
+    "noInputDataForShowCurrent": "Još uvek nisu uneti podaci za prikaz!",
+    "profileImage": "Profilna slika",
+    "profileImageText": "Profilna slika vrtića se koristi u fakturama, izveštajima..."
 }

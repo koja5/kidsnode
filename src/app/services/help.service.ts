@@ -202,4 +202,21 @@ export class HelpService {
       return false;
     } else return true;
   }
+
+  getTodayDate() {
+    const date = new Date();
+    return (
+      date.getDate() +
+      '.' +
+      (date.getMonth() + 1) +
+      '.' +
+      date.getFullYear() +
+      '.'
+    );
+  }
+
+  getKindergardenLogo() {
+    const token = this.getDecodeToken();
+    return token.kindergarden_logo;
+  }
 }

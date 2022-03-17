@@ -356,6 +356,20 @@ input:focus-visible {
   width: 100%;
 }
 
-.e-bigger .e-responsive-dialog .e-dlg-header-content, .e-bigger.e-responsive-dialog .e-dlg-header-content {
+.e-bigger .e-responsive-dialog .e-dlg-header-content,
+.e-bigger.e-responsive-dialog .e-dlg-header-content {
   margin-bottom: 15px !important;
+}
+
+.gender-icon {
+  width: 25px;
+}
+
+.radius-logo {
+  width: 120px;
+  border: 1px solid lightgray;
+  border-radius: 50%;
+  padding: 7px;
+  height: 120px;
+  margin-bottom: 10px;
 }

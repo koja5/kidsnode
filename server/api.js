@@ -173,6 +173,7 @@ router.post("/login", function (req, res, next) {
                 type: Number(process.env.owner),
                 firstname: rows[0].firstname,
                 lastname: rows[0].lastname,
+                profile: rows[0].logo,
               },
               email,
             },
@@ -3707,7 +3708,7 @@ router.post("/deleteMedicalRecordWeightHeight", auth, (req, res, next) => {
 
 /* KINDERGARDEN GENERAL INFO */
 
-router.get("/getKindergardenGeneralInfo", auth, async (req, res, next) => {
+router.get("/getKindergardenInfo", auth, async (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -3715,7 +3716,7 @@ router.get("/getKindergardenGeneralInfo", auth, async (req, res, next) => {
         res.json(err);
       } else {
         conn.query(
-          "select * from kindergarden_general_info where kindergarden_id = ?",
+          "select * from kindergardens where id = ?",
           [req.user.user.kindergarden],
           function (err, rows, fields) {
             conn.release();
@@ -3735,7 +3736,7 @@ router.get("/getKindergardenGeneralInfo", auth, async (req, res, next) => {
   }
 });
 
-router.post("/updateKindergardenGeneralInfo", auth, function (req, res, next) {
+router.post("/updateKindergardenInfo", auth, function (req, res, next) {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -3743,44 +3744,19 @@ router.post("/updateKindergardenGeneralInfo", auth, function (req, res, next) {
         res.json(err);
       }
       conn.query(
-        "select * from kindergarden_general_info where kindergarden_id = ?",
-        [req.user.user.kindergarden],
-        function (err, rows, fields) {
-          if (rows.length === 0) {
-            req.body.kindergarden_id = req.user.user.kindergarden;
-            delete req.body.id;
-
-            conn.query(
-              "insert into kindergarden_general_info SET ?",
-              [req.body],
-              function (err, rows) {
-                conn.release();
-                if (!err) {
-                  res.json(true);
-                } else {
-                  logger.log("error", `${err.sql}. ${err.sqlMessage}.`);
-                  res.json(false);
-                }
-              }
-            );
+        "update kindergardens SET ? where id = ?",
+        [req.body, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            if (!err) {
+              res.json(true);
+            } else {
+              res.json(false);
+            }
           } else {
-            conn.query(
-              "update kindergarden_general_info SET ? where id = ?",
-              [req.body, req.body.id],
-              function (err, rows) {
-                conn.release();
-                if (!err) {
-                  if (!err) {
-                    res.json(true);
-                  } else {
-                    res.json(false);
-                  }
-                } else {
-                  logger.log("error", err.sql + ". " + err.sqlMessage);
-                  res.json(err);
-                }
-              }
-            );
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
           }
         }
       );
@@ -3792,6 +3768,134 @@ router.post("/updateKindergardenGeneralInfo", auth, function (req, res, next) {
 });
 
 /* KINDERGARDEN GENERAL INFO END */
+
+/* DIRECTOR PROFILE */
+
+router.get("/getOwnerProfile", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        console.log(req.user.user);
+        conn.query(
+          "select * from owners where id = ?",
+          [req.user.user.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateOwnerProfile", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      conn.query(
+        "update owners SET ? where id = ?",
+        [req.body, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            if (!err) {
+              res.json(true);
+            } else {
+              res.json(false);
+            }
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* DIRECTOR PROFILE END */
+
+/* EMPLOYEE PROFILE */
+
+router.get("/getEmployeeProfile", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        console.log(req.user.user);
+        conn.query(
+          "select * from employees where id = ?",
+          [req.user.user.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateEmployeeProfile", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      conn.query(
+        "update employees SET ? where id = ?",
+        [req.body, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            if (!err) {
+              res.json(true);
+            } else {
+              res.json(false);
+            }
+          } else {
+            logger.log("error", err.sql + ". " + err.sqlMessage);
+            res.json(err);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* EMPLOYEE PROFILE END */
 
 /* CHANGE PASSWORD */
 

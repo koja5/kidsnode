@@ -13,6 +13,7 @@ import {
 } from '@syncfusion/ej2-angular-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { CallApiService } from 'src/app/services/call-api.service';
+import { HelpService } from 'src/app/services/help.service';
 
 @Component({
   selector: 'app-dynamic-column',
@@ -26,13 +27,16 @@ export class DynamicColumnComponent implements OnInit {
   public data: any;
   public loader = true;
   public width: string = Browser.isDevice ? '100%' : '60%';
+  public language: any;
   constructor(
     private apiService: CallApiService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private helpService: HelpService
   ) {}
 
   ngOnInit(): void {
     this.loader = true;
+    this.language = this.helpService.getLanguage();
     this.getData();
   }
 

@@ -13,6 +13,7 @@ import {
   AccumulationTheme,
 } from '@syncfusion/ej2-angular-charts';
 import { CallApiService } from 'src/app/services/call-api.service';
+import { HelpService } from 'src/app/services/help.service';
 
 @Component({
   selector: 'app-dynamic-pie',
@@ -26,14 +27,17 @@ export class DynamicPieComponent implements OnInit {
   @Input() id?: number;
   public data: any;
   public loader = true;
+  public language: any;
 
   constructor(
     private apiService: CallApiService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private helpService: HelpService
   ) {}
 
   ngOnInit(): void {
     this.loader = true;
+    this.language = this.helpService.getLanguage();
     this.getData();
   }
 

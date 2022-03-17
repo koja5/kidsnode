@@ -13,6 +13,7 @@ const verifyToken = (req, res, next) => {
   }
 
   if (!token) {
+    res.clearCookie("token");
     return res.status(403).send("A token is required for authentication");
   }
   try {
@@ -20,6 +21,7 @@ const verifyToken = (req, res, next) => {
     req.user = decoded;
   } catch (err) {
     // return res.redirect("/login");
+    res.clearCookie("token");
     return res.status(401).send("Invalid Token");
   }
   return next();

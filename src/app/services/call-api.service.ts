@@ -68,6 +68,32 @@ export class CallApiService {
     });
   }
 
+  getImage(body: any) {
+    if (!body.path) {
+      body = {
+        path: body,
+      };
+    }
+    return this.http.post('/api/upload/getImage', body, {
+      responseType: 'blob',
+    });
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener(
+      'load',
+      () => {
+        return reader.result;
+      },
+      false
+    );
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
+
   callApi(data: any, router?: any) {
     if (data.request.type === 'POST') {
       if (data.request.url) {

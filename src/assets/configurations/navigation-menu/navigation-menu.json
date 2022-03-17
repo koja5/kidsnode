@@ -116,6 +116,12 @@
         "title": "Dnevnik rada",
         "link": "/dashboard/employee/work-diary",
         "rights": ""
+      },
+      {
+        "icon": "event_note",
+        "title": "Evidencija prisutnosti",
+        "link": "/dashboard/employee/reporting-presence",
+        "rights": ""
       }
     ]
   },

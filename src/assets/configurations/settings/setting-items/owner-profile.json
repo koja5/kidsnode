@@ -1,0 +1,117 @@
+{
+    "class": "margin-auto width-60",
+    "actionButtons": {
+        "class": "text-right p-3",
+        "simpleButtons": [],
+        "dropDownButtons": {
+            "content": "Opcije",
+            "items": [
+                {
+                    "text": "Uredi",
+                    "id": "edit",
+                    "iconCss": "ddb-icons e-edit"
+                }
+            ]
+        },
+        "splitButtons": {
+            "content": "",
+            "items": []
+        },
+        "rights": [
+            "owner"
+        ]
+    },
+    "request": {
+        "type": "GET",
+        "api": "/api/getOwnerProfile/",
+        "url": [],
+        "parameters": [],
+        "fields": "",
+        "root": ""
+    },
+    "editSettingsRequest": {
+        "edit": {
+            "type": "POST",
+            "api": "/api/updateOwnerProfile",
+            "parameters": [],
+            "fields": "",
+            "root": ""
+        }
+    },
+    "config": [
+        {
+            "type": "textbox",
+            "width": "col-md-12 hide",
+            "class": "e-outline",
+            "name": "id",
+            "title": "ID",
+            "field": "id",
+            "readonly": true
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "firstname",
+            "title": "Ime",
+            "field": "firstname"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "lastname",
+            "title": "Prezime",
+            "field": "lastname"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "address",
+            "title": "Adresa",
+            "field": "address"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "city",
+            "title": "Grad",
+            "field": "city"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-12",
+            "class": "e-outline",
+            "name": "zip_code",
+            "title": "Postanski broj",
+            "field": "zip_code"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "telephone",
+            "title": "Telefon",
+            "field": "telephone"
+        },
+        {
+            "type": "textbox",
+            "width": "col-md-6",
+            "class": "e-outline",
+            "name": "email",
+            "title": "Email",
+            "field": "email"
+        },
+        {
+            "type": "button",
+            "width": "col-md-12",
+            "class": "e-info  button-action",
+            "name": "submit",
+            "title": "saveButton",
+            "field": "submit",
+            "positionClass": "position-end mt-3 col-md-12"
+        }
+    ]
+}

@@ -14,6 +14,17 @@
   </a>
 </div>
 
+<div class="outer" *ngIf="!data || !data.length" style="height: 48vh">
+  <div class="middle">
+    <div class="inner">
+      <mat-icon aria-hidden="false" class="no-data-chart text-muted"
+        >query_stats</mat-icon
+      >
+      <h6 class="text-muted">{{ language.noInputDataForShowCurrent }}</h6>
+    </div>
+  </div>
+</div>
+
 <ejs-accumulationchart
   *ngIf="!loader"
   id="container{{ id }}"

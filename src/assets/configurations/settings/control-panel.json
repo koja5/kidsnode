@@ -1,9 +1,33 @@
 [
     {
+        "title": "Moj profil",
+        "description": "Osnovne informacije o meni",
+        "icon": "account_circle",
+        "link": "/dashboard/settings/owner-profile",
+        "rights": [
+            "owner"
+        ]
+    },
+    {
+        "title": "Moj profil",
+        "description": "Osnovne informacije o meni",
+        "icon": "account_circle",
+        "link": "/dashboard/settings/employee-profile",
+        "rights": [
+            "educator"
+        ]
+    },
+    {
+        "title": "Personalizacija",
+        "description": "Prilagodite izgled aplikacije onakako kako vi zelite...",
+        "icon": "palette",
+        "link": "/dashboard/settings/personalize"
+    },
+    {
         "title": "Informacije o vrtiću",
         "description": "Osnovne informacije o vrtiću(naziv vrtića, lokacija, broj telefona, mail adresa...)",
         "icon": "info",
-        "link": "/dashboard/settings/general",
+        "link": "/dashboard/settings/kindergarden-profile",
         "rights": [
             "superadmin",
             "director",

@@ -1,0 +1,25 @@
+<app-back-button></app-back-button>
+<app-dynamic-forms
+  [path]="path"
+  [file]="file"
+  (submit)="submitEmitter($event)"
+></app-dynamic-forms>
+
+<div class="text-center mt-2">
+  <div class="kindergarden-container">
+    <div class="form-group text-muted full-width">
+      <label class="custom-label">{{ language.profileImage }}</label>
+      <p class="label-text text-muted">
+        {{ language.profileImageText }}
+      </p>
+    </div>
+    <img class="radius-logo" [src]="logo" />
+    <div class="kindergarden-upload">
+      <app-dynamic-upload
+        *ngIf="config.uploadConfig"
+        [path]="config.uploadConfig.path"
+        [file]="config.uploadConfig.file"
+      ></app-dynamic-upload>
+    </div>
+  </div>
+</div>

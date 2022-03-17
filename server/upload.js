@@ -150,6 +150,12 @@ router.post("/getDocument", async (req, res, next) => {
   });
 });
 
+router.post("/getImage", async (req, res, next) => {
+  req.body.path = req.body.path.toString().replace("server\\", "");
+  filepath = path.join(__dirname, req.body.path);
+  res.sendFile(filepath);
+});
+
 // END DOCUMENT ON CHILDREN PROFILE
 
 // GENERAL CONTRACT
@@ -371,7 +377,7 @@ router.post("/uploadKindergardenLogo", multipartMiddleware, (req, res) => {
           logo: req.files.UploadFiles.path,
         };
         conn.query(
-          "update kindergarden_general_info set logo = ? where kindergarden_id = ?",
+          "update kindergardens set logo = ? where id = ?",
           [body.logo, body.kindergarden_id],
           function (err, rows, fields) {
             conn.release();

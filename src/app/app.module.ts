@@ -16,16 +16,19 @@ import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/common/not-found/not-found.component';
 import { OnlineStatusComponent } from './components/common/online-status/online-status.component';
 import { HomeComponent } from './components/home/home/home.component';
+import { RouterModule } from '@angular/router';
+import { SettingPersonalizeComponent } from './components/dashboard/settings/setting-items/setting-personalize/setting-personalize.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     OnlineStatusComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     CommonModule,
     FormsModule,
     AppRoutingModule,
