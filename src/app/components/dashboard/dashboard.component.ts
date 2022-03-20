@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import { MenuEventArgs } from '@syncfusion/ej2-angular-navigations';
 import { ItemModel } from '@syncfusion/ej2-angular-splitbuttons';
 import { CurrentActiveNodeModel } from 'src/app/models/navigation-menu/current-active-node-model';
+import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
+import { MessageService } from 'src/app/services/message.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -118,7 +120,9 @@ export class DashboardComponent implements OnInit {
     private helpService: HelpService,
     private storageService: StorageService,
     private configurationService: ConfigurationService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService,
+    private callApi: CallApiService
   ) {}
 
   ngOnInit(): void {
@@ -183,6 +187,27 @@ export class DashboardComponent implements OnInit {
         }
         this.initialCollapseMenu();
       });
+    this.messageService.getOrientation().subscribe((data) => {
+      this.layoutOrientation = data;
+      this.helpService.setLocalStorage('orientation', this.layoutOrientation);
+    });
+    this.initializeLayoutOrientation();
+  }
+
+  initializeLayoutOrientation() {
+    if (this.helpService.getLocalStorageStringValue('orientation')) {
+      this.callApi
+        .callGetMethod('/api/getPersonalize', '')
+        .subscribe((data: any) => {
+          if (data) {
+            this.layoutOrientation = data[0].orientation;
+            this.helpService.setLocalStorage(
+              'orientation',
+              this.layoutOrientation
+            );
+          }
+        });
+    }
   }
 
   checkMobileForSidebar() {

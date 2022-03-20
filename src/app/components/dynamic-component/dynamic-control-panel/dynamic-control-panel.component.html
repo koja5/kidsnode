@@ -23,10 +23,12 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="avatar-md profile-user-wid mb-4">
+                <app-loader-content *ngIf="!imageToShow"></app-loader-content>
                 <img
+                  *ngIf="imageToShow"
                   [src]="imageToShow"
                   alt=""
-                  class="img-thumbnail rounded-circle"
+                  class="img-thumbnail rounded-circle image-profile"
                 />
               </div>
               <h6 class="font-size-15 text-truncate">{{ user.name }}</h6>
@@ -96,7 +98,7 @@
           <div class="card">
             <div class="card-body" style="position: relative">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <h4 class="card-title mb-4 text-muted">
                     {{
                       language[item.title] ? language[item.title] : item.title

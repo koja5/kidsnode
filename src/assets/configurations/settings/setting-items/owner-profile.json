@@ -23,7 +23,7 @@
     },
     "request": {
         "type": "GET",
-        "api": "/api/getOwnerProfile/",
+        "api": "/api/getOwnerInfo/",
         "url": [],
         "parameters": [],
         "fields": "",
@@ -32,7 +32,7 @@
     "editSettingsRequest": {
         "edit": {
             "type": "POST",
-            "api": "/api/updateOwnerProfile",
+            "api": "/api/updateOwnerInfo",
             "parameters": [],
             "fields": "",
             "root": ""

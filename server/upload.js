@@ -399,4 +399,43 @@ router.post("/uploadKindergardenLogo", multipartMiddleware, (req, res) => {
 
 // UPLOAD KINDERGARDEN LOGO END
 
+// UPLOAD OWNER LOGO
+
+router.post("/uploadOwnerLogo", multipartMiddleware, (req, res) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        const body = {
+          kindergarden_id: 3,
+          logo: req.files.UploadFiles.path,
+        };
+        conn.query(
+          "update owners set logo = ? where id = ?",
+          [body.logo, body.kindergarden_id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+// UPLOAD OWNER LOGO END
+
 module.exports = router;

@@ -11,11 +11,13 @@ import { SettingsRouting } from './settings-routing';
 import { ControlPanelComponent } from '../control-panel/control-panel.component';
 
 import { SettingChangePasswordComponent } from '../setting-items/setting-change-password/setting-change-password.component';
-import { BackButtonComponent } from 'src/app/components/common/back-button/back-button.component';
 import { SettingKindergardenProfileComponent } from '../setting-items/setting-kindergarden-profile/setting-kindergarden-profile.component';
 import { SettingOwnerProfileComponent } from '../setting-items/setting-owner-profile/setting-owner-profile.component';
 import { SettingEmployeeProfileComponent } from '../setting-items/setting-employee-profile/setting-employee-profile.component';
 import { SettingPersonalizeComponent } from '../setting-items/setting-personalize/setting-personalize.component';
+import { CommonCustomModule } from 'src/app/components/common/common-custom.module';
+import { RouterModule } from '@angular/router';
+import { BackButtonComponent } from 'src/app/components/common/back-button/back-button.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -26,10 +28,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ControlPanelComponent,
     SettingKindergardenProfileComponent,
     SettingChangePasswordComponent,
-    BackButtonComponent,
     SettingOwnerProfileComponent,
     SettingEmployeeProfileComponent,
     SettingPersonalizeComponent,
+    BackButtonComponent,
   ],
   imports: [CommonModule, DynamicModuleModule, SettingsRouting, MatIconModule],
   providers: [

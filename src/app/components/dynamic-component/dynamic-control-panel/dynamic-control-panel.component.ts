@@ -46,13 +46,6 @@ export class DynamicControlPanelComponent implements OnInit {
         this.config = data;
         this.loader = false;
       });
-
-    const body = {
-      path: 'server\\file_uploads\\mvl8a-jBSMCdI2AWhiOT4fdk.jpg',
-    };
-    this.apiService.getImage(body).subscribe((data: any) => {
-      this.createImageFromBlob(data);
-    });
   }
 
   getUserInfo() {
@@ -67,6 +60,19 @@ export class DynamicControlPanelComponent implements OnInit {
     ]
       ? this.language[this.helpService.getTypeOfName(token.type)]
       : this.helpService.getTypeOfName(token.type);
+
+    this.getProfileIcon(
+      this.helpService.getLocalStorageStringValue('logo') as string
+    );
+  }
+
+  getProfileIcon(logo: string) {
+    const body = {
+      path: logo,
+    };
+    this.apiService.getImage(body).subscribe((data: any) => {
+      this.createImageFromBlob(data);
+    });
   }
 
   createImageFromBlob(image: Blob) {

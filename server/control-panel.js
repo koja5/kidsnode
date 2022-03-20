@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
   res.send("api works");
 });
 
-router.get("/getChildrensStatistic", auth, async (req, res, next) => {
+router.get("/getChildrenAbsenseForLast7Days", auth, async (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -34,7 +34,7 @@ router.get("/getChildrensStatistic", auth, async (req, res, next) => {
         res.json(err);
       } else {
         conn.query(
-          "select count(*) as 'number', DATE_FORMAT(date, '%d.%M') as date from record_absense where kindergarden_id = ? group by date order by date asc",
+          "select count(*) as 'number', DATE_FORMAT(date, '%d.%M') as date from record_absense where kindergarden_id = ? group by date order by cast(date as datetime) desc limit 7",
           [req.user.user.kindergarden],
           function (err, rows, fields) {
             conn.release();
@@ -328,5 +328,160 @@ router.get(
 );
 
 /* END REPORTING PRESENCE EMPLOYEES */
+
+/* GET RECORD ABSENSE FOR TODAY */
+
+router.get(
+  "/getChildrenRecordAbsenseForToday",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          const date = new Date().toISOString().slice(0, 10);
+
+          conn.query(
+            "select count(*) as 'count' from childrens where kindergarden_id = ?",
+            [req.user.user.kindergarden],
+            function (err, childrens, fields) {
+              if (err) {
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
+              } else {
+                conn.query(
+                  "select count(*) as 'count' from record_absense r where kindergarden_id = ? and date = ?",
+                  [req.user.user.kindergarden, date],
+                  function (err, record_absense, fields) {
+                    conn.release();
+                    if (err) {
+                      logger.log("error", err.sql + ". " + err.sqlMessage);
+                      res.json(err);
+                    } else {
+                      const body = {
+                        childrens: childrens[0].count,
+                        record_absense: record_absense[0].count,
+                      };
+                      res.json(body);
+                    }
+                  }
+                );
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+/* END GET RECORD ABSENSE FOR TODAY */
+
+/* GET REPORTING PRESENCE EMPLOYEE FOR TODAY */
+
+router.get(
+  "/getEmployeeReportingPresenceForToday",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          const date = new Date().toISOString().slice(0, 10);
+
+          conn.query(
+            "select count(*) as 'count' from employees where kindergarden_id = ?",
+            [req.user.user.kindergarden],
+            function (err, employees, fields) {
+              if (err) {
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
+              } else {
+                conn.query(
+                  "select count(*) as 'count' from reporting_presence_employees r where kindergarden_id = ? and creation_date = ?",
+                  [req.user.user.kindergarden, date],
+                  function (err, reporting_presence_employees, fields) {
+                    conn.release();
+                    if (err) {
+                      logger.log("error", err.sql + ". " + err.sqlMessage);
+                      res.json(err);
+                    } else {
+                      const body = {
+                        employees: employees[0].count,
+                        reporting_presence_employees:
+                          reporting_presence_employees[0].count,
+                      };
+                      res.json(body);
+                    }
+                  }
+                );
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+/* END GET REPORTING PRESENCE EMPLOYEE FOR TODAY */
+
+/* GET INVOICE CHILDREN */
+
+router.get("/getInvoiceChildrenPaidUnpaid", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        const date = new Date().toISOString().slice(0, 10);
+
+        conn.query(
+          "select count(*) as 'count' from invoice_children where kindergarden_id = ? and payment_date IS NOT NULL",
+          [req.user.user.kindergarden],
+          function (err, paid, fields) {
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              conn.query(
+                "select count(*) as 'count' from invoice_children r where kindergarden_id = ? and payment_date IS NULL",
+                [req.user.user.kindergarden],
+                function (err, unpaid, fields) {
+                  conn.release();
+                  if (err) {
+                    logger.log("error", err.sql + ". " + err.sqlMessage);
+                    res.json(err);
+                  } else {
+                    var body = [];
+                    body.push({ name: "Placeno", value: paid[0].count });
+                    body.push({ name: "Neplaceno", value: unpaid[0].count });
+                    res.json(body);
+                  }
+                }
+              );
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END GET INVOICE CHILDREN */
 
 module.exports = router;

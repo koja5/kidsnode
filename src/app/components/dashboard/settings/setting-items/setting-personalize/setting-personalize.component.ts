@@ -11,8 +11,4 @@ export class SettingPersonalizeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  submitEmitter(event: string) {
-    console.log(event);
-  }
 }

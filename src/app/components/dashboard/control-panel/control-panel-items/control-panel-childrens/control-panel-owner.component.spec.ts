@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ControlPanelChildrensComponent } from './control-panel-childrens.component';
+import { ControlPanelOwnerComponent } from './control-panel-owner.component';
 
 describe('ControlPanelChildrensComponent', () => {
-  let component: ControlPanelChildrensComponent;
-  let fixture: ComponentFixture<ControlPanelChildrensComponent>;
+  let component: ControlPanelOwnerComponent;
+  let fixture: ComponentFixture<ControlPanelOwnerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ControlPanelChildrensComponent ]
-    })
-    .compileComponents();
+      declarations: [ControlPanelOwnerComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ControlPanelChildrensComponent);
+    fixture = TestBed.createComponent(ControlPanelOwnerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

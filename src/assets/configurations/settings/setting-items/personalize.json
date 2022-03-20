@@ -20,7 +20,7 @@
     },
     "request": {
         "type": "GET",
-        "api": "/api/getKindergardenInfo/",
+        "api": "/api/getPersonalize/",
         "url": [],
         "parameters": [],
         "fields": "",
@@ -29,14 +29,14 @@
     "editSettingsRequest": {
         "add": {
             "type": "POST",
-            "api": "/api/createKindergardenGeneralInfo",
+            "api": "/api/createPersonalize",
             "parameters": [],
             "fields": "",
             "root": ""
         },
         "edit": {
             "type": "POST",
-            "api": "/api/changePassword",
+            "api": "/api/updatePersonalize",
             "parameters": [],
             "fields": "",
             "root": ""
@@ -49,20 +49,29 @@
             "title": "Promenite lozinku"
         },
         {
+            "type": "textbox",
+            "width": "col-md-12 hide",
+            "class": "e-outline",
+            "name": "id",
+            "title": "ID",
+            "field": "id",
+            "readonly": true
+        },
+        {
             "type": "radio",
             "width": "col-md-6",
             "class": "e-outline",
-            "name": "gender",
-            "title": "gender",
-            "field": "gender",
+            "name": "orientation",
+            "title": "orientation",
+            "field": "orientation",
             "itemFields": [
                 {
-                    "title": "Muski",
-                    "value": "man"
+                    "title": "Horizontalni",
+                    "value": "horizontal"
                 },
                 {
-                    "title": "Zenski",
-                    "value": "femaly"
+                    "title": "Vertikalni",
+                    "value": "vertical"
                 }
             ]
         },

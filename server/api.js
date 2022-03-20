@@ -156,7 +156,7 @@ router.post("/login", function (req, res, next) {
     }
     const email = req.body.email;
     conn.query(
-      "SELECT o.id, k.id as kindergarden, o.firstname, o.lastname FROM owners o join directors d on o.id = d.owner_id join kindergardens k on d.id = k.director_id WHERE o.email=? AND o.password=?",
+      "SELECT o.id, k.id as kindergarden, o.firstname, o.lastname, o.logo FROM owners o join directors d on o.id = d.owner_id join kindergardens k on d.id = k.director_id WHERE o.email=? AND o.password=?",
       [req.body.username, sha1(req.body.password)],
       function (err, rows, fields) {
         if (err) {
@@ -173,7 +173,7 @@ router.post("/login", function (req, res, next) {
                 type: Number(process.env.owner),
                 firstname: rows[0].firstname,
                 lastname: rows[0].lastname,
-                profile: rows[0].logo,
+                logo: rows[0].logo,
               },
               email,
             },
@@ -209,6 +209,7 @@ router.post("/login", function (req, res, next) {
                       type: rows[0].user_type_id,
                       firstname: rows[0].firstname,
                       lastname: rows[0].lastname,
+                      logo: rows[0].logo,
                     },
                     email,
                   },
@@ -1066,6 +1067,102 @@ router.get(
 );
 
 /* CHILDREN PAYMENT END */
+
+/* CHILDREN SETTING */
+
+router.get("/getChildrenSetting/:id", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from children_setting where children_id = ?",
+          [req.params.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/createChildrenSetting", auth, (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        req.body.children_id = req.body.id;
+        delete req.body.id;
+        conn.query(
+          "insert into children_setting set ?",
+          [req.body],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updateChildrenSetting", auth, (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        console.error("SQL Connection error: ", err);
+        res.json({
+          code: 100,
+          status: err,
+        });
+      } else {
+        conn.query(
+          "update children_setting set ? where id = ?",
+          [req.body, req.body.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(false);
+            } else {
+              res.json(true);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDREN SETTING END */
 
 /* KINDERGARDEN EMPLOYEE */
 
@@ -3771,7 +3868,7 @@ router.post("/updateKindergardenInfo", auth, function (req, res, next) {
 
 /* DIRECTOR PROFILE */
 
-router.get("/getOwnerProfile", auth, async (req, res, next) => {
+router.get("/getOwnerInfo", auth, async (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -3800,7 +3897,7 @@ router.get("/getOwnerProfile", auth, async (req, res, next) => {
   }
 });
 
-router.post("/updateOwnerProfile", auth, function (req, res, next) {
+router.post("/updateOwnerInfo", auth, function (req, res, next) {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -4228,5 +4325,94 @@ router.get("/getFoodsMenu", auth, async (req, res, next) => {
 });
 
 /* END FOODS MENU */
+
+/* PERSONALIZE */
+
+router.post("/createPersonalize", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      req.body.from_date = new Date(req.body.from_date);
+      req.body.to_date = new Date(req.body.to_date);
+      req.body.kindergarden_id = req.user.user.kindergarden;
+      conn.query(
+        "insert into foods_menu SET ?",
+        [req.body],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", `${err.sql}. ${err.sqlMessage}`);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.post("/updatePersonalize", auth, function (req, res, next) {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      }
+      conn.query(
+        "update personalize SET orientation = ? where id = ?",
+        [req.body.orientation, req.body.id],
+        function (err, rows) {
+          conn.release();
+          if (!err) {
+            res.json(true);
+          } else {
+            logger.log("error", `${err.sql}. ${err.sqlMessage}`);
+            res.json(false);
+          }
+        }
+      );
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+router.get("/getPersonalize", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select * from personalize where user_id = ?",
+          [req.user.user.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END PERSONALIZE */
 
 module.exports = router;

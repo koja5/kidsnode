@@ -109,6 +109,8 @@ export class LoginComponent implements OnInit {
   }
   setUserInfoAndRoute(data: any) {
     this.storageService.setToken(data.token);
+    const token = this.helpService.getDecodeToken();
+    this.helpService.setLocalStorage('logo', token.logo);
     setTimeout(() => {
       this.loader = false;
       this.router.navigate(['/dashboard']);

@@ -5,11 +5,11 @@
   <div class="kindergarden-container">
     <div class="form-group text-muted full-width">
       <label class="custom-label">{{ language.profileImage }}</label>
-      <p class="label-text text-muted">
-        {{ language.profileImageText }}
-      </p>
     </div>
-    <img class="radius-logo" [src]="logo" />
+    <div *ngIf="!logo">
+      <app-loader-content></app-loader-content>
+    </div>
+    <img *ngIf="logo" class="radius-logo" [src]="logo" />
     <div class="kindergarden-upload">
       <app-dynamic-upload
         *ngIf="config.uploadConfig"

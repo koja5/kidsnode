@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 export class MessageService {
   public refreshGrid = new Subject<null>();
   public refreshFormDataAfterUpdate = new Subject<null>();
+  public orientation = new Subject<string>();
 
   constructor() {}
 
@@ -24,5 +25,13 @@ export class MessageService {
 
   getRefreshFormDataAfterUpdate(): Observable<any> {
     return this.refreshFormDataAfterUpdate.asObservable();
+  }
+
+  sendOrientation(value: string) {
+    this.orientation.next(value);
+  }
+
+  getOrientation(): Observable<string> {
+    return this.orientation.asObservable();
   }
 }

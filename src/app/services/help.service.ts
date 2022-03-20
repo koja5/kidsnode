@@ -219,4 +219,10 @@ export class HelpService {
     const token = this.getDecodeToken();
     return token.kindergarden_logo;
   }
+
+  setLogoInToken(value: string) {
+    const token = this.getDecodeToken();
+    token.logo = value;
+    this.storageService.setToken(token);
+  }
 }

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WorkPlacesComponent } from '../../parameters/work-places/work-places.component';
-import { ControlPanelChildrensComponent } from '../control-panel-items/control-panel-childrens/control-panel-childrens.component';
+import { ControlPanelOwnerComponent } from '../control-panel-items/control-panel-childrens/control-panel-owner.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'childrens',
+    redirectTo: 'owner',
     pathMatch: 'full',
   },
   {
-    path: 'childrens',
-    component: ControlPanelChildrensComponent,
+    path: 'owner',
+    component: ControlPanelOwnerComponent,
   },
 ];
 

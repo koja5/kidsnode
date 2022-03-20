@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { HelpService } from 'src/app/services/help.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-setting-owner-profile',
@@ -21,25 +22,31 @@ export class SettingOwnerProfileComponent implements OnInit {
 
   constructor(
     private helpService: HelpService,
-    private apiService: CallApiService
+    private apiService: CallApiService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.language = this.helpService.getLanguage();
     this.initalizeData();
+
+    this.messageService.getRefreshGrid().subscribe((data) => {
+      this.initalizeData();
+    });
   }
 
   initalizeData() {
     this.apiService
-      .callGetMethod('api/getKindergardenInfo', '')
+      .callGetMethod('api/getOwnerInfo', '')
       .subscribe((data: any) => {
         if (data && data.length > 0) {
           if (data[0].logo) {
+            this.helpService.setLocalStorage('logo', data[0].logo);
             this.apiService.getImage(data[0].logo).subscribe((data: any) => {
               this.createImageFromBlob(data);
             });
           } else {
-            this.logo = './assets/icons/k_director.png';
+            this.logo = './assets/icons/k_owner.png';
           }
         }
       });

@@ -62,19 +62,28 @@
         },
         {
             "type": "complex",
-            "title": "Evidencija prisutnosti - deca",
+            "title": "Odsutna deca za danas",
             "items": [
                 {
                     "width": "col-md-6",
-                    "title": "Prisutno",
-                    "value": 25
+                    "title": "Ukupan broj dece",
+                    "valueField": "childrens",
+                    "name": "childrens"
                 },
                 {
                     "width": "col-md-6",
-                    "title": "Nije prisutno",
-                    "value": 2
+                    "title": "Odsutna deca",
+                    "valueField": "record_absense",
+                    "name": "record_absense"
                 }
             ],
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getChildrenRecordAbsenseForToday",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
             "buttons": [
                 {
                     "title": "Pogledaj evidenciju dolazaka",
@@ -83,54 +92,61 @@
                 }
             ],
             "width": "col-md-6",
-            "value": 1235,
             "icon": "group"
         },
         {
             "type": "complex",
-            "title": "Evidencija prisutnosti - zaposleni",
+            "title": "Evidencija prisutnosti zaposlenih",
             "items": [
                 {
                     "width": "col-md-6",
-                    "title": "Prisutno",
-                    "value": 55
+                    "title": "Ukupan broj zaposlenih",
+                    "valueField": "employees",
+                    "name": "employees"
                 },
                 {
                     "width": "col-md-6",
-                    "title": "Nije prisutno",
-                    "value": 12
+                    "title": "Trenutno prisutno",
+                    "valueField": "reporting_presence_employees",
+                    "name": "reporting_presence_employees"
                 }
             ],
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getEmployeeReportingPresenceForToday",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
             "buttons": [
                 {
-                    "title": "Pogledaj evidenciju dolazaka",
+                    "title": "Pogledaj evidenciju prisutnosti",
                     "class": "button-action e-info e-control e-btn",
-                    "url": "/dashboard"
+                    "url": "/dashboard/employee/reporting-presence"
                 }
             ],
             "width": "col-md-6",
-            "value": 1235,
             "icon": "group"
         }
     ],
     "charts": [
         {
             "type": "Pie",
-            "name": "Broj dolazaka dece po danima",
-            "title": "Statistika 2",
+            "name": "Statistika",
+            "title": "Ukupan broj plaćenih/neplaćenih rata za vrtić",
             "width": "col-md-4",
             "request": {
                 "type": "GET",
-                "api": "/api/control-panel/getChildrensStatistic",
+                "api": "/api/control-panel/getInvoiceChildrenPaidUnpaid",
                 "parameters": [],
                 "fields": "",
                 "root": ""
             },
-            "xName": "date",
-            "yName": "number",
+            "xName": "name",
+            "yName": "value",
             "tooltip": {
                 "enable": true,
-                "format": "${point.x}: <b>${point.y}</b>"
+                "format": "${point.x}: <b>${point.y} rata</b>"
             },
             "center": {
                 "x": "50%",
@@ -154,12 +170,12 @@
         },
         {
             "type": "Area",
-            "title": "Dolasci u prethodnim danima",
+            "title": "Broj odsutne dece u proteklih 7 dana",
             "width": "col-md-8",
             "name": "Broj dolazaka dece u prethodnoj nedelji",
             "request": {
                 "type": "GET",
-                "api": "/api/control-panel/getChildrensStatistic",
+                "api": "/api/control-panel/getChildrenAbsenseForLast7Days",
                 "parameters": [],
                 "fields": "",
                 "root": ""
@@ -196,9 +212,9 @@
         },
         {
             "type": "Column",
-            "title": "Dolasci u prethodnim danima",
+            "title": "Broj odsutne dece po grupama",
             "width": "col-md-12",
-            "name": "Broj dolazaka dece u prethodnoj nedelji 2",
+            "name": "Broj odsutne dece po grupama",
             "request": {
                 "type": "GET",
                 "api": "/api/control-panel/getRecordsOfArrivalByGroup",
@@ -249,7 +265,7 @@
             "width": "col-md-4",
             "request": {
                 "type": "GET",
-                "api": "/api/control-panel/getChildrensStatistic",
+                "api": "/api/control-panel/getChildrenAbsenseForLast7Days",
                 "parameters": [],
                 "fields": "",
                 "root": ""

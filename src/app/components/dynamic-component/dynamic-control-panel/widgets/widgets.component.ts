@@ -32,14 +32,28 @@ export class WidgetsComponent implements OnInit {
         this.apiService
           .callApi(this.config.widgets[i], this.router)
           .subscribe((data: any) => {
-            if (this.config.widgets[i].root) {
-              this.data[this.config.widgets[i].name] =
-                data[this.config.widgets[i].root][
-                  this.config.widgets[i].valueField
-                ];
+            if (this.config.widgets[i].items) {
+              for (let j = 0; j < this.config.widgets[i].items.length; j++) {
+                if (this.config.widgets[i].root) {
+                  this.data[this.config.widgets[i].items[j].name] =
+                    data[this.config.widgets[i].items[j].root][
+                      this.config.widgets[i].items[j].valueField
+                    ];
+                } else {
+                  this.data[this.config.widgets[i].items[j].name] =
+                    data[this.config.widgets[i].items[j].valueField];
+                }
+              }
             } else {
-              this.data[this.config.widgets[i].name] =
-                data[this.config.widgets[i].valueField];
+              if (this.config.widgets[i].root) {
+                this.data[this.config.widgets[i].name] =
+                  data[this.config.widgets[i].root][
+                    this.config.widgets[i].valueField
+                  ];
+              } else {
+                this.data[this.config.widgets[i].name] =
+                  data[this.config.widgets[i].valueField];
+              }
             }
 
             this.loader[this.config.widgets[i].name] = false;

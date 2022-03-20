@@ -14,6 +14,7 @@ import { FieldType } from 'src/app/enums/field-type';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
+import { MessageService } from 'src/app/services/message.service';
 
 import { FieldConfig } from './models/field-config';
 import { FieldsWithAdditionalInfo } from './models/fields-with-additional-info';
@@ -62,7 +63,7 @@ export class DynamicFormsComponent implements OnInit {
     private configurationService: ConfigurationService,
     private apiService: CallApiService,
     private router: ActivatedRoute,
-    private helpService: HelpService,
+    private messageService: MessageService,
     public modal: NgbModal
   ) {}
 
@@ -216,6 +217,9 @@ export class DynamicFormsComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.submit.emit(this.value);
+    if (this.file === 'personalize.json') {
+      this.messageService.sendOrientation(this.value.orientation);
+    }
   }
 
   setDisabled(name: string, disable: boolean) {
