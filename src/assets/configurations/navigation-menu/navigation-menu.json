@@ -1,6 +1,6 @@
 [
   {
-    "title": "Kontrolni panel",
+    "title": "Statistika",
     "rights": [
       "superadmin",
       "director",
@@ -11,21 +11,7 @@
       {
         "icon": "admin_panel_settings",
         "title": "Kontrolni panel",
-        "children": [
-          {
-            "icon": "text_snippet",
-            "title": "Deca",
-            "link": "/dashboard/control-panel/owner",
-            "rights": "",
-            "isDefault": true
-          },
-          {
-            "icon": "speaker_notes",
-            "title": "Zaposleni",
-            "link": "/dashboard/control-panel/employee",
-            "rights": ""
-          }
-        ]
+        "link": "/dashboard/control-panel/owner"
       }
     ]
   },

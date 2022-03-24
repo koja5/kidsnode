@@ -48,6 +48,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.5.0",
     "connect-multiparty": "^2.2.0",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^10.0.0",
     "file-saver": "^2.0.5",
     "generate-password": "^1.7.0",

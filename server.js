@@ -8,6 +8,7 @@ const upload = require("./server/upload");
 const controlPanel = require("./server/control-panel");
 const mailServer = require("./server/mail_server/mail-server");
 const schedule = require("node-schedule");
+const cookieParser = require('cookie-parser');
 
 //AUTOMATE SCRIPTS
 const createChildrenInvoice = require("./server/automate_scripts/create_children_invoice");
@@ -37,6 +38,7 @@ app.use(
     extended: false,
   })
 );
+app.use(cookieParser());
 
 app.use("/api", api);
 app.use("/api/upload", upload);
@@ -58,10 +60,10 @@ schedule.scheduleJob("15 36 23 * * *", function () {
   createChildrenInvoice();
 });
 
-schedule.scheduleJob("15 01 16 * * *", function () {
+schedule.scheduleJob("55 01 21 * * *", function () {
   sendChildrenInvoice();
 });
 
-schedule.scheduleJob("42 14 * * *", function () {
+schedule.scheduleJob("04 01 * * *", function () {
   childrenDailyNotification();
 });

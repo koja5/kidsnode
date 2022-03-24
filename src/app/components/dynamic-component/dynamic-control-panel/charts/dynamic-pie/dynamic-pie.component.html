@@ -32,10 +32,10 @@
   style="display: block; width: 92%"
   [legendSettings]="config?.legendSettings"
   [tooltip]="config?.tooltip"
-  [title]="config?.title"
   (load)="load($event)"
   [enableAnimation]="enableAnimation"
   [center]="center"
+  [palettes]="palette"
 >
   <e-accumulation-series-collection>
     <e-accumulation-series
@@ -51,6 +51,7 @@
       [explode]="explode"
       explodeOffset="10%"
       [explodeIndex]="0"
+      [palettes]="config?.palette"
     >
     </e-accumulation-series>
   </e-accumulation-series-collection>

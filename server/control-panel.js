@@ -361,7 +361,7 @@ router.get(
                       res.json(err);
                     } else {
                       const body = {
-                        childrens: childrens[0].count,
+                        present: childrens[0].count - record_absense[0].count,
                         record_absense: record_absense[0].count,
                       };
                       res.json(body);
@@ -414,7 +414,9 @@ router.get(
                       res.json(err);
                     } else {
                       const body = {
-                        employees: employees[0].count,
+                        absense:
+                          employees[0].count -
+                          reporting_presence_employees[0].count,
                         reporting_presence_employees:
                           reporting_presence_employees[0].count,
                       };
@@ -438,7 +440,55 @@ router.get(
 
 /* GET INVOICE CHILDREN */
 
-router.get("/getInvoiceChildrenPaidUnpaid", auth, async (req, res, next) => {
+router.get(
+  "/getInvoiceChildrenCountPaidUnpaid",
+  auth,
+  async (req, res, next) => {
+    try {
+      connection.getConnection(function (err, conn) {
+        if (err) {
+          logger.log("error", err.sql + ". " + err.sqlMessage);
+          res.json(err);
+        } else {
+          const date = new Date().toISOString().slice(0, 10);
+
+          conn.query(
+            "select count(*) as 'count' from invoice_children where kindergarden_id = ? and payment_date IS NOT NULL",
+            [req.user.user.kindergarden],
+            function (err, paid, fields) {
+              if (err) {
+                logger.log("error", err.sql + ". " + err.sqlMessage);
+                res.json(err);
+              } else {
+                conn.query(
+                  "select count(*) as 'count' from invoice_children where kindergarden_id = ? and payment_date IS NULL",
+                  [req.user.user.kindergarden],
+                  function (err, unpaid, fields) {
+                    conn.release();
+                    if (err) {
+                      logger.log("error", err.sql + ". " + err.sqlMessage);
+                      res.json(err);
+                    } else {
+                      var body = [];
+                      body.push({ name: "Uplaćeno", value: paid[0].count });
+                      body.push({ name: "Nije uplaćeno", value: unpaid[0].count });
+                      res.json(body);
+                    }
+                  }
+                );
+              }
+            }
+          );
+        }
+      });
+    } catch (ex) {
+      logger.log("error", err.sql + ". " + err.sqlMessage);
+      res.json(ex);
+    }
+  }
+);
+
+router.get("/getInvoiceChildrenSumPaidUnpaid", auth, async (req, res, next) => {
   try {
     connection.getConnection(function (err, conn) {
       if (err) {
@@ -448,7 +498,7 @@ router.get("/getInvoiceChildrenPaidUnpaid", auth, async (req, res, next) => {
         const date = new Date().toISOString().slice(0, 10);
 
         conn.query(
-          "select count(*) as 'count' from invoice_children where kindergarden_id = ? and payment_date IS NOT NULL",
+          "select SUM(c.price) as 'count' from invoice_children i join children_setting c on i.children_id = c.children_id where kindergarden_id = ? and payment_date IS NOT NULL",
           [req.user.user.kindergarden],
           function (err, paid, fields) {
             if (err) {
@@ -456,7 +506,7 @@ router.get("/getInvoiceChildrenPaidUnpaid", auth, async (req, res, next) => {
               res.json(err);
             } else {
               conn.query(
-                "select count(*) as 'count' from invoice_children r where kindergarden_id = ? and payment_date IS NULL",
+                "select SUM(c.price) as 'count' from invoice_children  i join children_setting c on i.children_id = c.children_id where kindergarden_id = ? and payment_date IS NULL",
                 [req.user.user.kindergarden],
                 function (err, unpaid, fields) {
                   conn.release();
@@ -465,8 +515,8 @@ router.get("/getInvoiceChildrenPaidUnpaid", auth, async (req, res, next) => {
                     res.json(err);
                   } else {
                     var body = [];
-                    body.push({ name: "Placeno", value: paid[0].count });
-                    body.push({ name: "Neplaceno", value: unpaid[0].count });
+                    body.push({ name: "Uplaćeno", value: paid[0].count });
+                    body.push({ name: "Nije uplaćeno", value: unpaid[0].count });
                     res.json(body);
                   }
                 }

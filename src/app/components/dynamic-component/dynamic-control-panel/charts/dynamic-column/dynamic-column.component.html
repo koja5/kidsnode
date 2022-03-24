@@ -17,7 +17,9 @@
 <div class="outer" *ngIf="!data || !data.length" style="height: 48vh">
   <div class="middle">
     <div class="inner">
-      <mat-icon aria-hidden="false" class="no-data-chart text-muted">query_stats</mat-icon>
+      <mat-icon aria-hidden="false" class="no-data-chart text-muted"
+        >query_stats</mat-icon
+      >
       <h6 class="text-muted">{{ language.noInputDataForShowCurrent }}</h6>
     </div>
   </div>
@@ -32,14 +34,14 @@
   id="{{ id }}"
   [primaryXAxis]="config?.primaryXAxis"
   [primaryYAxis]="config?.primaryYAxis"
-  [title]="config?.title"
   [tooltip]="config?.tooltip"
   (load)="load($event)"
+  [palettes]="config?.palette"
 >
   <e-series-collection>
     <e-series
       [dataSource]="data"
-      type="{{ type ? type : 'Column' }}"
+      type="{{ type ? type : 'Pie' }}"
       xName="{{ config?.xName }}"
       yName="{{ config?.yName }}"
       name="{{ config?.name }}"

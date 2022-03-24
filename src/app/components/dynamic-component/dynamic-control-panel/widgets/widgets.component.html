@@ -65,7 +65,10 @@
                 <div *ngIf="children.name && loader[children.name]">
                   <app-loader-content></app-loader-content>
                 </div>
-                <h4 class="mb-0 text-center">
+                <h4
+                  class="mb-0 text-center"
+                  *ngIf="children.name && !loader[children.name]"
+                >
                   {{ data[children.name] }}
                 </h4>
                 <p class="text-muted">

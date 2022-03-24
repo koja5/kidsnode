@@ -28,6 +28,7 @@ export class DynamicPieComponent implements OnInit {
   public data: any;
   public loader = true;
   public language: any;
+  public palette = ["#E94649", "#F6B53F", "#6FAAB0", "#C4C24A", "#C4C2DD", "#CC5456"];
 
   constructor(
     private apiService: CallApiService,

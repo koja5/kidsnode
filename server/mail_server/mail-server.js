@@ -44,10 +44,7 @@ router.post("/sendMail", function (req, res) {
 
   smtpTransport.sendMail(mailOptions, function (error, response) {
     if (error) {
-      logger.log(
-        "error",
-        `Error to sent mail for VERIFICATION MAIL on EMAIL: ${req.body.email}. Error: ${error}`
-      );
+      logger.log("error", `${req.body.email}: ${error}`);
       res.end(false);
     } else {
       logger.log(

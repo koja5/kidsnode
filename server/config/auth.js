@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-
 const config = process.env;
 
 const verifyToken = (req, res, next) => {
@@ -20,7 +19,6 @@ const verifyToken = (req, res, next) => {
     const decoded = jwt.verify(token, config.TOKEN_KEY);
     req.user = decoded;
   } catch (err) {
-    // return res.redirect("/login");
     res.clearCookie("token");
     return res.status(401).send("Invalid Token");
   }

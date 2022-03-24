@@ -62,17 +62,17 @@
         },
         {
             "type": "complex",
-            "title": "Odsutna deca za danas",
+            "title": "Evidencija prisutnosti dece",
             "items": [
                 {
                     "width": "col-md-6",
-                    "title": "Ukupan broj dece",
-                    "valueField": "childrens",
-                    "name": "childrens"
+                    "title": "Prisutno",
+                    "valueField": "present",
+                    "name": "present"
                 },
                 {
                     "width": "col-md-6",
-                    "title": "Odsutna deca",
+                    "title": "Odsutno",
                     "valueField": "record_absense",
                     "name": "record_absense"
                 }
@@ -100,15 +100,15 @@
             "items": [
                 {
                     "width": "col-md-6",
-                    "title": "Ukupan broj zaposlenih",
-                    "valueField": "employees",
-                    "name": "employees"
+                    "title": "Prisutno",
+                    "valueField": "reporting_presence_employees",
+                    "name": "reporting_presence_employees"
                 },
                 {
                     "width": "col-md-6",
-                    "title": "Trenutno prisutno",
-                    "valueField": "reporting_presence_employees",
-                    "name": "reporting_presence_employees"
+                    "title": "Odsutno",
+                    "valueField": "absense",
+                    "name": "absense"
                 }
             ],
             "request": {
@@ -132,12 +132,12 @@
     "charts": [
         {
             "type": "Pie",
-            "name": "Statistika",
-            "title": "Ukupan broj plaćenih/neplaćenih rata za vrtić",
+            "name": "Informacije o uplatama",
+            "title": "Uplate za tekući mesec",
             "width": "col-md-4",
             "request": {
                 "type": "GET",
-                "api": "/api/control-panel/getInvoiceChildrenPaidUnpaid",
+                "api": "/api/control-panel/getInvoiceChildrenSumPaidUnpaid",
                 "parameters": [],
                 "fields": "",
                 "root": ""
@@ -146,7 +146,7 @@
             "yName": "value",
             "tooltip": {
                 "enable": true,
-                "format": "${point.x}: <b>${point.y} rata</b>"
+                "format": "${point.x}: <b>${point.y} dinara</b>"
             },
             "center": {
                 "x": "50%",
@@ -166,7 +166,11 @@
             },
             "animation": {
                 "enable": false
-            }
+            },
+            "palette": [
+                "#52a318",
+                "#bc4825"
+            ]
         },
         {
             "type": "Area",
@@ -208,12 +212,57 @@
                 "border": {
                     "width": 0
                 }
-            }
+            },
+            "palette": [
+                "#1267ce"
+            ]
+        },
+        {
+            "type": "Pie",
+            "name": "Statistika",
+            "title": "Uplate za tekući mesec(izraženo u ratama)",
+            "width": "col-md-4",
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getInvoiceChildrenCountPaidUnpaid",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "xName": "name",
+            "yName": "value",
+            "tooltip": {
+                "enable": true,
+                "format": "${point.x}: <b>${point.y} rata</b>"
+            },
+            "center": {
+                "x": "50%",
+                "y": "50%"
+            },
+            "startAngle": 0,
+            "endAngle": 360,
+            "explode": true,
+            "enableAnimation": false,
+            "dataLabel": {
+                "visible": true,
+                "position": "Inside",
+                "name": "text",
+                "font": {
+                    "fontWeight": "600"
+                }
+            },
+            "animation": {
+                "enable": false
+            },
+            "palette": [
+                "#48b524",
+                "#E94649"
+            ]
         },
         {
             "type": "Column",
-            "title": "Broj odsutne dece po grupama",
-            "width": "col-md-12",
+            "title": "Broj odsutne dece po grupama(danas)",
+            "width": "col-md-8",
             "name": "Broj odsutne dece po grupama",
             "request": {
                 "type": "GET",
@@ -256,7 +305,10 @@
                 "border": {
                     "width": 0
                 }
-            }
+            },
+            "palette": [
+                "#bc8f14"
+            ]
         },
         {
             "type": "Pie",
@@ -271,7 +323,59 @@
                 "root": ""
             },
             "xName": "date",
-            "yName": "number"
+            "yName": "number",
+            "palette": [
+                "#E94649",
+                "#F6B53F",
+                "#6FAAB0",
+                "#C4C24A"
+            ]
+        },
+        {
+            "type": "Pie",
+            "name": "Broj dolazaka dece po danima",
+            "title": "Statistika 2",
+            "width": "col-md-4",
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getChildrenAbsenseForLast7Days",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "tooltip": {
+                "enable": true,
+                "format": "${point.x}: <b>${point.y} rata</b>"
+            },
+            "xName": "date",
+            "yName": "number",
+            "palette": [
+                "#E94649",
+                "#F6B53F",
+                "#6FAAB0",
+                "#C4C24A"
+            ]
+        },
+        {
+            "type": "Pie",
+            "name": "Broj dolazaka dece po danima",
+            "title": "Statistika 2",
+            "width": "col-md-4",
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getChildrenAbsenseForLast7Days",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "xName": "date",
+            "yName": "number",
+            "palette": [
+                "#E94649",
+                "#F6B53F",
+                "#6FAAB0",
+                "#C4C24A"
+            ]
         }
     ]
 }

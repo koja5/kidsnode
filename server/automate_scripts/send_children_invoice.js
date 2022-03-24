@@ -23,9 +23,10 @@ function sendChildrenInvoice() {
         res.json(err);
       }
       conn.query(
-        "select *, i.id as 'id_invoice', k.email as 'kindergarden_email', p1.firstname as 'father_name' from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id join parents p1 on c.father_id = p1.id join parents p2 on c.mother_id = p2.id  where MONTH(i.creation_date) = MONTH(CURRENT_DATE())",
+        "select *, i.id as 'id_invoice', k.email as 'kindergarden_email', p1.firstname as 'father_name', cs.price from invoice_children i join childrens c on i.children_id = c.id join kindergarden_general_info k on i.kindergarden_id = k.kindergarden_id join parents p1 on c.father_id = p1.id join parents p2 on c.mother_id = p2.id join children_setting cs on c.id = cs.children_id  where MONTH(i.creation_date) = MONTH(CURRENT_DATE())",
         function (err, rows) {
           try {
+            console.log(rows);
             if (rows) {
               var config = JSON.parse(
                 fs.readFileSync("./server/mail_server/config.json", "utf-8")
@@ -58,6 +59,7 @@ function sendChildrenInvoice() {
                     to.lastname
                   );
                 body.send_children_invoice.fields["payee"] = to.name;
+                body.send_children_invoice.fields["price"] = to.price;
                 body.send_children_invoice.fields["account_number"] =
                   to.account_number;
                 body.send_children_invoice.fields["id_invoice"] = to.id_invoice;
