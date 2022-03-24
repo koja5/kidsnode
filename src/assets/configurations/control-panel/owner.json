@@ -173,7 +173,7 @@
             ]
         },
         {
-            "type": "Area",
+            "type": "Line",
             "title": "Broj odsutne dece u proteklih 7 dana",
             "width": "col-md-8",
             "name": "Broj dolazaka dece u prethodnoj nedelji",
