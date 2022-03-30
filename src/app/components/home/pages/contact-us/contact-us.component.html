@@ -1,8 +1,8 @@
 <app-home-navigation-menu></app-home-navigation-menu>
 <app-header-section
-  [title]="'Contact Us'"
+  [title]="'Imate pitanja?'"
   [text]="
-    'Seamlessly actualize client-based users after out-of-the-box value data through frictionless expertise.'
+    'Kontaktirajte nas putem chat-a, mail-a, telefona ili kontakt forme i biće nam drago da odgovorimo na svako Vaše pitanje!'
   "
 ></app-header-section>
 <!--contact us promo section start-->
@@ -15,16 +15,12 @@
         >
           <span class="fa fa-comment fa-3x text-primary"></span>
           <div class="contact-promo-info mb-4">
-            <h5>Chat with us</h5>
+            <h5>Četujte sa nama</h5>
             <p>
-              We've got live Social Experts waiting to help you
-              <strong>monday to friday</strong> from
-              <strong>9am to 5pm EST.</strong>
+              Možete nas kontaktirati putem četa koji se nalazi u donjem desnom
+              uglu. Brzo ćemo Vam se javiti neko od naših agenata!
             </p>
           </div>
-          <a href="mailto:hellothemetags@gmail.com" class="btn btn-link mt-auto"
-            >Chat with us</a
-          >
         </div>
       </div>
       <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
@@ -33,17 +29,15 @@
         >
           <span class="fa fa-envelope fa-3x text-primary"></span>
           <div class="contact-promo-info mb-4">
-            <h5>Email Us</h5>
+            <h5>Posaljite nam email</h5>
             <p>
-              Simple drop us an email at
-              <strong>hellothemetags@gmail.com</strong> and you'll receive a
-              reply within 24 hours
+              Možete nam poslati sve što Vas zanima i na email
+              <strong>kidsnode@yandex.com</strong> i dobićete odgovor u roku od
+              24h!
             </p>
           </div>
-          <a
-            href="mailto:hellothemetags@gmail.com"
-            class="btn btn-primary mt-auto"
-            >Email Us</a
+          <a href="mailto:kidsnode@yandex.com" class="btn btn-primary mt-auto"
+            >Posalji email</a
           >
         </div>
       </div>
@@ -53,15 +47,11 @@
         >
           <span class="fa fa-phone fa-3x text-primary"></span>
           <div class="contact-promo-info mb-4">
-            <h5>Give us a call</h5>
-            <p>
-              Give us a ring.Our Experts are standing by
-              <strong>monday to friday</strong> from
-              <strong>9am to 5pm EST.</strong>
-            </p>
+            <h5>Pozovite nas</h5>
+            <p>Lakše Vam je preko telefona, nije problem. Tu smo za Vas 24h!</p>
           </div>
-          <a href="tel:00-976-561-008" class="btn btn-link mt-auto"
-            >00-976-561-008</a
+          <a href="tel:0694505544" class="btn btn-link mt-auto"
+            >+381(0) 69 450/55-44</a
           >
         </div>
       </div>
@@ -82,53 +72,51 @@
     <div class="row justify-content-lg-between align-items-center">
       <div class="col-lg-6 col-md-8">
         <div class="section-heading">
-          <h2>Talk to Our Sales & Marketing Department Team</h2>
+          <h2>Forma za upit</h2>
           <p>
-            Collaboratively promote client-focused convergence vis-a-vis
-            customer directed alignments via standardized infrastructures.
+            Upit nam možete poslati putem forme u nastavku i dobićete odgovor na
+            mail koji ste naveli u formi!
           </p>
         </div>
         <form action="#" class="register-form">
           <div class="row">
             <div class="col-sm-6">
               <label for="firstName" class="mb-1"
-                >First name <span class="text-danger">*</span></label
+                >Vaše ime <span class="text-danger">*</span></label
               >
               <div class="input-group mb-3">
                 <input
                   type="text"
                   class="form-control"
-                  id="firstName"
-                  required
-                  placeholder="First name"
-                  aria-label="First name"
+                  name="firstname"
+                  [(ngModel)]="form.firstname"
+                  placeholder="Unesite Vaše ime"
                 />
               </div>
             </div>
             <div class="col-sm-6">
-              <label for="lastName" class="mb-1">Last name</label>
+              <label for="lastName" class="mb-1">Prezime</label>
               <div class="input-group mb-3">
                 <input
                   type="text"
                   class="form-control"
-                  id="lastName"
-                  placeholder="Last name"
-                  aria-label="Last name"
+                  name="lastname"
+                  [(ngModel)]="form.lastname"
+                  placeholder="Unesite Vaše prezime"
                 />
               </div>
             </div>
             <div class="col-sm-6">
               <label for="phone" class="mb-1"
-                >Phone <span class="text-danger">*</span></label
+                >Telefon <span class="text-danger">*</span></label
               >
               <div class="input-group mb-3">
                 <input
                   type="text"
                   class="form-control"
-                  id="phone"
-                  required
-                  placeholder="Phone"
-                  aria-label="Phone"
+                  name="phone"
+                  [(ngModel)]="form.phone"
+                  placeholder="Unesite Vaš telefon"
                 />
               </div>
             </div>
@@ -140,30 +128,37 @@
                 <input
                   type="email"
                   class="form-control"
-                  id="email"
-                  required
-                  placeholder="Email"
-                  aria-label="Email"
+                  name="email"
+                  [(ngModel)]="form.email"
+                  placeholder="Unesite Vaš email"
                 />
               </div>
             </div>
             <div class="col-12">
               <label for="yourMessage" class="mb-1"
-                >Message <span class="text-danger">*</span></label
+                >Poruka <span class="text-danger">*</span></label
               >
               <div class="input-group mb-3">
                 <textarea
                   class="form-control"
-                  id="yourMessage"
-                  required
-                  placeholder="How can we help you?"
+                  name="message"
+                  [(ngModel)]="form.message"
+                  placeholder="Kako možete da Vam pomognemo?"
                   style="height: 120px"
                 ></textarea>
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary mt-4">
-            Get in Touch
+          <div class="message-status">
+            <p class="text-danger" *ngIf="status === 0">
+              {{ language.needToInputRequiredFields }}
+            </p>
+            <p class="text-danger" *ngIf="status === 1">
+              {{ language.successfullySendMessageRequest }}
+            </p>
+          </div>
+          <button (click)="submitForm()" class="btn btn-primary mt-4">
+            Pošalji upit
           </button>
         </form>
       </div>

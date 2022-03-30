@@ -112,5 +112,7 @@
     "employeeOffline": "Nije prisutan na poslu",
     "noInputDataForShowCurrent": "Još uvek nisu uneti podaci za prikaz!",
     "profileImage": "Profilna slika",
-    "profileImageText": "Profilna slika vrtića se koristi u fakturama, izveštajima..."
+    "profileImageText": "Profilna slika vrtića se koristi u fakturama, izveštajima...",
+    "needToInputRequiredFields": "Potrebno je da popunite neophodna polja!",
+    "successfullySendMessageRequest": "Uspešno ste poslali upit!"
 }

@@ -6,7 +6,9 @@
       <div class="col-lg-7 col-md-8">
         <div class="subscribe-info-wrap text-center position-relative z-2">
           <div class="section-heading">
-            <h4 class="h5 text-warning">Probajte sada! Dajemo Vam besplatnu podršku!</h4>
+            <h4 class="h5 text-warning">
+              Probajte sada! Dajemo Vam besplatnu podršku!
+            </h4>
             <h2>Besplatni probni period 14 dana!</h2>
             <p>
               Pomoći cemo Vam da digitalizujete i efikasnije vodite Vaš vrtić!
@@ -22,28 +24,26 @@
                 type="email"
                 class="form-control mr-2"
                 name="Email"
-                data-name="Email"
                 placeholder="Unesite Vašu email adresu..."
-                id="Email2"
-                required=""
+                [(ngModel)]="email"
+                email="true"
               />
-              <input
-                type="submit"
-                value="Posalji"
-                data-wait="Please wait..."
-                class="btn btn-primary"
-              />
+              <button (click)="sendForDemoAccount()" class="btn btn-primary">
+                Posalji
+              </button>
             </form>
           </div>
           <ul class="nav justify-content-center subscribe-feature-list mt-3">
             <li class="nav-item">
               <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i>Probni period 14 dana</span
+                ><i class="fa fa-dot-circle text-primary mr-2"></i>Probni period
+                14 dana</span
               >
             </li>
             <li class="nav-item">
               <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i>Bez kreditne kartice</span
+                ><i class="fa fa-dot-circle text-primary mr-2"></i>Bez kreditne
+                kartice</span
               >
             </li>
             <li class="nav-item">
@@ -54,7 +54,8 @@
             </li>
             <li class="nav-item">
               <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i>Otkažite u bilo kom trenutku</span
+                ><i class="fa fa-dot-circle text-primary mr-2"></i>Otkažite u
+                bilo kom trenutku</span
               >
             </li>
           </ul>

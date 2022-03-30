@@ -273,16 +273,6 @@ export class DynamicGridComponent implements OnInit {
           }
         }
         this.invoice['products'] = [];
-        /*this.invoice = {
-          customerName: 'Test',
-          address: 'Test',
-          contactNo: 1234,
-          email: 'Test',
-          phone: 'Test',
-
-          products: [],
-          additionalDetails: 'Test',
-        };*/
         this.invoiceAction = event.item.properties.id;
         this.generateInvoice = true;
         setTimeout(() => {

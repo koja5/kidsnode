@@ -4415,4 +4415,56 @@ router.get("/getPersonalize", auth, async (req, res, next) => {
 
 /* END PERSONALIZE */
 
+/* LANDING PAGES */
+
+router.post("/sendRequestForDemoAccount", function (req, res, next) {
+  var body = JSON.parse(
+    fs.readFileSync("./server/mail_server/config.json", "utf-8")
+  );
+
+  body.request_for_demo_account.fields["email"] = req.body.email;
+
+  var options = {
+    url: process.env.link_api + "mail-server/sendMail",
+    method: "POST",
+    body: body.request_for_demo_account,
+    json: true,
+  };
+  request(options, function (error, response, body) {
+    if (!error) {
+      res.json(true);
+    } else {
+      res.json(false);
+    }
+  });
+});
+
+router.post("/sendFromContactForm", function (req, res, next) {
+  var body = JSON.parse(
+    fs.readFileSync("./server/mail_server/config.json", "utf-8")
+  );
+
+  body.send_from_contact_form.fields["firstname"] = req.body.firstname;
+  body.send_from_contact_form.fields["lastname"] = req.body.lastname;
+  body.send_from_contact_form.fields["phone"] = req.body.phone;
+  body.send_from_contact_form.fields["email"] = req.body.email;
+  body.send_from_contact_form.fields["message"] = req.body.message;
+
+  var options = {
+    url: process.env.link_api + "mail-server/sendMail",
+    method: "POST",
+    body: body.send_from_contact_form,
+    json: true,
+  };
+  request(options, function (error, response, body) {
+    if (!error) {
+      res.json(true);
+    } else {
+      res.json(false);
+    }
+  });
+});
+
+/* END LANDING PAGES */
+
 module.exports = router;
