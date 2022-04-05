@@ -1,13 +1,13 @@
 <app-home-navigation-menu></app-home-navigation-menu>
-<app-header-section
+<!-- <app-header-section
   [title]="'Price Suit to Your Business'"
   [text]="
     'Seamlessly actualize client-based users after out-of-the-box value. Globally embrace strategic data through frictionless expertise.'
   "
-></app-header-section>
+></app-header-section> -->
 
 <!--pricing section start-->
-<section class="pricing-section ptb-120 position-relative z-2">
+<section class="pricing-section pt-60 position-relative z-2">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-6 col-md-10">
@@ -55,6 +55,7 @@
         </div>
       </div>
     </div>
+    <!-- 
     <div class="row">
       <div class="col-lg-4 col-md-6">
         <div
@@ -62,7 +63,7 @@
         >
           <div class="pricing-header mb-32">
             <h3 class="package-name text-primary d-block">Stater</h3>
-            <h4 class="display-6 fw-semi-bold">$25<span>/month</span></h4>
+            <h4 class="display-6 fw-semi-bold">$25<span>/mesečnonth</span></h4>
           </div>
           <div class="pricing-info mb-4">
             <ul class="pricing-feature-list list-unstyled">
@@ -103,11 +104,9 @@
             >Buy Now</a
           >
 
-          <!--pattern start-->
           <div class="dot-shape-bg position-absolute z--1 left--40 bottom--40">
             <img src="./assets/home/shape/dot-big-square.svg" alt="shape" />
           </div>
-          <!--pattern end-->
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
@@ -116,7 +115,7 @@
         >
           <div class="pricing-header mb-32">
             <h3 class="package-name text-warning d-block">Advanced</h3>
-            <h4 class="display-6 fw-semi-bold">$45<span>/month</span></h4>
+            <h4 class="display-6 fw-semi-bold">$45<span>/mesečnonth</span></h4>
           </div>
           <div class="pricing-info mb-4">
             <ul class="pricing-feature-list list-unstyled">
@@ -162,7 +161,7 @@
         >
           <div class="pricing-header mb-32">
             <h3 class="package-name text-primary d-block">Premium</h3>
-            <h4 class="display-6 fw-semi-bold">$75<span>/month</span></h4>
+            <h4 class="display-6 fw-semi-bold">$75<span>/mesečnonth</span></h4>
           </div>
           <div class="pricing-info mb-4">
             <ul class="pricing-feature-list list-unstyled">
@@ -203,17 +202,300 @@
             >Buy Now</a
           >
 
-          <!--pattern start-->
           <div class="dot-shape-bg position-absolute z--1 right--40 top--40">
             <img src="./assets/home/shape/dot-big-square.svg" alt="shape" />
           </div>
-          <!--pattern end-->
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>
+<!--pricing section end-->
+
+<div>
+  <h3 class="text-center">Koliko dece imate u vrtiću?</h3>
+  <div class="row number-of-children mt-4">
+    <div
+      *ngFor="let item of prices; let i = index"
+      class="col-md-2 {{ i < 6 ? 'border-right' : '' }} {{
+        i === selectedPackage ? 'active' : ''
+      }}"
+      (click)="selectPackage(i)"
+    >
+      {{ item.count }}
+    </div>
+    <!-- <div class="col-sm-2 border-right">0-50</div>
+    <div class="col-sm-2 border-right">51-100</div>
+    <div class="col-sm-2 border-right">101-200</div>
+    <div class="col-sm-2 border-right">201-350</div>
+    <div class="col-sm-2 border-right">351-500</div>
+    <div class="col-sm-2">501-~</div> -->
+  </div>
+</div>
+
+<div>
+  <div class="price-tab row mt-5">
+    <div class="col-xs-12 col-md-6 col-lg-6">
+      <div
+        data-w-id="f4a5e0ee-1ecf-e000-d215-7be3b0643909"
+        class="pricing-image _1"
+        style="display: flex"
+      >
+        <div class="price-holder">
+          <div class="font-18-white-sb">
+            {{ prices[selectedPackage].count }} dece
+          </div>
+          <div class="annual-price" style="display: none">
+            <div class="font-36-white-sb">€</div>
+            <div class="font-80-white-sb">
+              {{ prices[selectedPackage].price }}
+            </div>
+            <div class="font-20-white-sb-price">/mesečno</div>
+          </div>
+          <div class="monthly-price-2" style="display: flex">
+            <div class="font-36-white-sb">€</div>
+            <div class="font-80-white-sb">
+              {{ prices[selectedPackage].price }}
+            </div>
+            <div class="font-20-white-sb-price">/mesečno</div>
+          </div>
+          <div class="font-14-white-barokah" style="display: none">
+            Save $12/mesečno!
+          </div>
+        </div>
+        <img
+          src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5ddff690357418a5f8c2fcd3_Child%20Care%20Center%201.png"
+          alt=""
+          class="site-image"
+        />
+      </div>
+    </div>
+    <div class="pricing-right-div col-xs-12 col-md-6 col-lg-6">
+      <div class="check-list-box">
+        <ul role="list" class="check-list new w-list-unstyled">
+          <li class="check-list-item new">
+            <img
+              src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
+              width="20"
+              alt="White Check
+"
+            />
+            <div class="spacer-column-10"></div>
+            <div>Bez ugovora - otkažite u bilo kom trenutku</div>
+          </li>
+          <li class="check-list-item new">
+            <img
+              src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
+              width="20"
+              alt="White Check
+"
+            />
+            <div class="spacer-column-10"></div>
+            <div>Neograničeno korisnika i uređaja</div>
+          </li>
+          <li class="check-list-item new">
+            <img
+              src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
+              width="20"
+              alt="White Check
+"
+            />
+            <div class="spacer-column-10"></div>
+            <div>Neograničena tehnička podrška</div>
+          </li>
+          <li class="check-list-item new">
+            <img
+              src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
+              width="20"
+              alt="White Check
+"
+            />
+            <div class="spacer-column-10"></div>
+            <div><strong>Automatizovano čuvanje vaših podataka</strong></div>
+          </li>
+        </ul>
+        <div class="spacer-row-20"></div>
+        <div class="price-box-inner new">
+          <a routerLink="/request-demo" class="button green big w-button"
+            >Probajte&nbsp;BESPLATNO</a
+          >
+          <div class="spacer-row-10"></div>
+          <div class="font-14-white-sb mt-2">
+            Nije potrebna kreditna kartica!
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
-<!--pricing section end-->
+</div>
+
+<div class="style-guide">
+  <!--features grid section start-->
+  <section class="feature-section pb-120">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 col-md-12 m-4">
+          <div class="section-heading text-center">
+            <h2>Svi planovi uključuju sledeće funkcionalnosti</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="feature-grid">
+            <div
+              class="feature-card border border-light bg-white shadow-sm highlight-card rounded-custom p-5"
+            >
+              <div class="feature-icon rounded bg-primary mb-32">
+                <i class="fa fa-user fa-2x text-white"></i>
+              </div>
+              <div class="feature-content">
+                <h3 class="h5">Više uloga u sistemu</h3>
+                <p>
+                  U zavisnosti od pozicije zaposlenog u vrtiću dodelite Vašem
+                  zaposlenom različita prava u sistemu!
+                </p>
+                <p>
+                  Na osnovu toga zaposlenom ce biti prikazani samo oni podaci
+                  koji su namenjeni njemu i ulozi koju ima u sistemu!
+                </p>
+                <h6 class="mt-4">To uključuje sledeće uloge:</h6>
+                <ul class="list-unstyled mb-0">
+                  <li class="py-1">
+                    <i class="fa fa-check-circle mr-2 text-primary"></i>Vlasnik
+                    vrtića
+                  </li>
+                  <li class="py-1">
+                    <i class="fa fa-check-circle mr-2 text-primary"></i>Direktor
+                    vrtića
+                  </li>
+                  <li class="py-1">
+                    <i class="fa fa-check-circle mr-2 text-primary"></i>Vaspitač
+                  </li>
+                  <li class="py-1">
+                    <i class="fa fa-check-circle mr-2 text-primary"></i
+                    >Administrativni radnik
+                  </li>
+                  <li class="py-1">
+                    <i class="fa fa-check-circle mr-2 text-primary"></i
+                    >Zdravstveni radnik(logoped, pedagog, psihijatar, pedijatar)
+                  </li>
+                  <li class="py-1">
+                    <i class="fa fa-check-circle mr-2 text-primary"></i
+                    >Kuvar/Nutricionista
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div
+              class="feature-card border border-light border-2 bg-white rounded-custom p-5"
+            >
+              <div class="feature-icon rounded bg-success mb-32">
+                <i class="fa fa-rocket fa-2x text-white"></i>
+              </div>
+              <div class="feature-content">
+                <h3 class="h5">Automatizovani procesi</h3>
+                <p class="mb-0">
+                  Pametni automatizovani procesi koji rade umesto Vas i štede
+                  Vam vreme! Generisanje faktura, podsetnika, obaveštenja,
+                  upozorenja, sve to sistem radi umesto Vas.
+                </p>
+              </div>
+            </div>
+            <div
+              class="feature-card border border-light border-2 bg-white rounded-custom p-5"
+            >
+              <div class="feature-icon rounded bg-danger mb-32">
+                <i class="fa fa-chart-line fa-2x text-white"></i>
+              </div>
+              <div class="feature-content">
+                <h3 class="h5">Statistika</h3>
+                <p class="mb-0">
+                  Podaci u realnom vremenu kao i stastistički podaci su sada na
+                  dohvat ruke. Na osnovu toga možete da pratite stanje u vašem
+                  vrtiću i pravovremeno donesete odgovarajuće odluke kako Vi,
+                  tako i Vaši zaposleni na osnivu podataka koji se njima
+                  prikazuju.
+                </p>
+              </div>
+            </div>
+            <div
+              class="feature-card border border-light border-2 bg-white rounded-custom p-5"
+            >
+              <div class="feature-icon rounded bg-dark mb-32">
+                <i class="fa fa-calendar-check fa-2x text-white"></i>
+              </div>
+              <div class="feature-content">
+                <h3 class="h5">Evidencija prisutnosti dece</h3>
+                <p class="mb-0">
+                  Jednim klikom evidentirajte ukoliko dete nije prisutno u
+                  vrtiću! Time obezbedite statističke podatke koji će vam pomoći
+                  u planiranju aktivnosti, obroka...
+                </p>
+              </div>
+            </div>
+            <div
+              class="feature-card border border-light border-2 bg-white rounded-custom p-5"
+            >
+              <div class="feature-icon rounded bg-warning mb-32">
+                <i class="fa fa-clock fa-2x text-white"></i>
+              </div>
+              <div class="feature-content">
+                <h3 class="h5">Prijava prilikom dolaska na posao</h3>
+                <p class="mb-0">
+                  Pogledajte informaciju o svakom zaposlenom kada je došao i
+                  otišao sa posla, kada je koji zaposleni na odmoru ili
+                  bolovanju i kako planira svoje vreme.
+                </p>
+              </div>
+            </div>
+            <div
+              class="feature-card border border-light border-2 bg-white rounded-custom p-5"
+            >
+              <div class="feature-icon rounded bg-danger mb-32">
+                <i class="fa fa-dollar-sign fa-2x text-white"></i>
+              </div>
+              <div class="feature-content">
+                <h3 class="h5">Uplate</h3>
+                <p class="mb-0">
+                  Efikasno upravljanje uplatama i fakturama, kao i generisanje
+                  istih.
+                </p>
+              </div>
+            </div>
+            <div
+              class="feature-card border border-light border-2 bg-white rounded-custom p-5"
+            >
+              <div class="feature-icon rounded bg-primary mb-32">
+                <i class="fa fa-calendar fa-2x text-white"></i>
+              </div>
+              <div class="feature-content">
+                <h3 class="h5">Planeri</h3>
+                <p class="mb-0">
+                  Planiranje dnevnih aktivnosti, kao i aktivnosti rada!
+                </p>
+              </div>
+            </div>
+            <div
+              class="feature-card border border-light border-2 bg-white rounded-custom p-5"
+            >
+              <div class="feature-icon rounded bg-success mb-32">
+                <i class="fa fa-carrot fa-2x text-white"></i>
+              </div>
+              <div class="feature-content">
+                <h3 class="h5">Ishrana</h3>
+                <p class="mb-0">
+                  Popis svih jela, kao i izrada jelovnika na nedeljenom nivou!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--features grid section end-->
+</div>
 
 <app-subscribe-section></app-subscribe-section>
 
