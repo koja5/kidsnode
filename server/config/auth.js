@@ -9,6 +9,13 @@ const verifyToken = (req, res, next) => {
     req.headers["cookie"];
   if (token.startsWith("token")) {
     token = token.toString().split("=")[1];
+  } else {
+    const itemCookie = token.toString().split(" ");
+    for (let i = 0; i < itemCookie.length; i++) {
+      if (itemCookie[i].startsWith("token")) {
+        token = itemCookie[i].toString().split("=")[1];
+      }
+    }
   }
 
   if (!token) {

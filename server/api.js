@@ -4439,6 +4439,37 @@ router.post("/sendRequestForDemoAccount", function (req, res, next) {
   });
 });
 
+router.post("/sendReqestForDemoAccountFull", function (req, res, next) {
+  var body = JSON.parse(
+    fs.readFileSync("./server/mail_server/config.json", "utf-8")
+  );
+
+  body.request_for_demo_account_full.fields["name"] = req.body.name;
+  body.request_for_demo_account_full.fields["email"] = req.body.email;
+  body.request_for_demo_account_full.fields["phone"] = req.body.phone;
+  body.request_for_demo_account_full.fields["nameOfKindergarden"] =
+    req.body.nameOfKindergarden;
+  body.request_for_demo_account_full.fields["countOfChildrens"] =
+    req.body.countOfChildrens;
+  body.request_for_demo_account_full.fields["notes"] = req.body.notes;
+
+  var options = {
+    url: process.env.link_api + "mail-server/sendMail",
+    method: "POST",
+    body: body.request_for_demo_account_full,
+    json: true,
+  };
+  request(options, function (error, response, body) {
+    if (!error) {
+      res.json(true);
+    } else {
+      res.json(false);
+    }
+  });
+  // this is not good, try to make handler for return correct value
+  res.json(true);
+});
+
 router.post("/sendFromContactForm", function (req, res, next) {
   var body = JSON.parse(
     fs.readFileSync("./server/mail_server/config.json", "utf-8")
