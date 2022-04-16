@@ -1920,7 +1920,8 @@ router.post("/deleteRecordAbsenseSingle", auth, function (req, res, next) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      const date = new Date().toISOString().slice(0, 10);
+      var tzoffset = new Date().getTimezoneOffset() * 60000;
+      var date = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
       req.body.date = date;
       conn.query(
         "delete from record_absense where children_id = ? and date = ?",
@@ -1949,7 +1950,9 @@ router.get("/getChildrenEvidentedAbsense", auth, async (req, res, next) => {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       } else {
-        const date = new Date().toISOString().slice(0, 10);
+        // const date = new Date().toISOString().slice(0, 10);
+        var tzoffset = new Date().getTimezoneOffset() * 60000;
+        var date = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
         conn.query(
           "select * from record_absense r where date = ?",
           [date],
@@ -4175,6 +4178,8 @@ router.post("/updateInvoiceChildrenPayment", auth, function (req, res, next) {
                 res.json(false);
               }
             });
+            // check this - it's not good, because we don't get return information from SMTP server
+            res.json(true);
           } else {
             res.json(true);
           }

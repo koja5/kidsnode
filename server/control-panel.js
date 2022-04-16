@@ -119,7 +119,8 @@ router.get(
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         } else {
-          const date = new Date().toISOString();
+          var tzoffset = new Date().getTimezoneOffset() * 60000;
+          var date = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
           conn.query(
             "select count(*) as 'number' from calendar_of_children_activity where kindergarden_id = ? and StartTime > ?",
             [req.user.user.kindergarden, date],
@@ -149,7 +150,6 @@ router.get(
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         } else {
-          const date = new Date().toISOString();
           conn.query(
             "select count(*) as 'number' from suppliers_company where kindergarden_id = ?",
             [req.user.user.kindergarden],
@@ -176,7 +176,8 @@ router.get("/getRecordsOfArrivalByGroup", auth, async (req, res, next) => {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       } else {
-        const date = new Date().toISOString().slice(0, 10);
+        var tzoffset = new Date().getTimezoneOffset() * 60000;
+        var date = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
         conn.query(
           "select count(c.id) as 'number', k.name as 'group' from record_absense r join childrens c on r.children_id = c.id join kindergarden_subgroup k on c.kindergarden_subgroup_id = k.id where k.kindergarden_id = ? and date = ? group by k.name",
           [req.user.user.kindergarden, date],
@@ -235,8 +236,8 @@ router.post("/signOutWork", auth, function (req, res, next) {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       }
-      const date = new Date();
-      const today = new Date().toISOString().slice(0, 10);
+      var tzoffset = new Date().getTimezoneOffset() * 60000;
+      var today = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
       req.body.start_date = date;
       req.body.kindergarden_id = req.user.user.kindergarden;
       req.body.employee_id = req.user.user.id;
@@ -267,7 +268,8 @@ router.get("/getReportingPresenceEmployee", auth, async (req, res, next) => {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       } else {
-        const date = new Date().toISOString().slice(0, 10);
+        var tzoffset = new Date().getTimezoneOffset() * 60000;
+        var date = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
         conn.query(
           "select * from reporting_presence_employees r where employee_id = ? and creation_date = ?",
           [req.user.user.id, date],
@@ -303,8 +305,8 @@ router.get(
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         } else {
-          const date = new Date().toISOString().slice(0, 10);
-          console.log(req.user.user.id);
+          var tzoffset = new Date().getTimezoneOffset() * 60000;
+          var date = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
           conn.query(
             "select * from reporting_presence_employees r where kindergarden_id = ? and creation_date = ?",
             [req.user.user.kindergarden, date],
@@ -341,7 +343,8 @@ router.get(
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         } else {
-          const date = new Date().toISOString().slice(0, 10);
+          var tzoffset = new Date().getTimezoneOffset() * 60000;
+          var date = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
 
           conn.query(
             "select count(*) as 'count' from childrens where kindergarden_id = ?",
@@ -394,7 +397,8 @@ router.get(
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         } else {
-          const date = new Date().toISOString().slice(0, 10);
+          var tzoffset = new Date().getTimezoneOffset() * 60000;
+          var date = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
 
           conn.query(
             "select count(*) as 'count' from employees where kindergarden_id = ?",
@@ -450,8 +454,6 @@ router.get(
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         } else {
-          const date = new Date().toISOString().slice(0, 10);
-
           conn.query(
             "select count(*) as 'count' from invoice_children where kindergarden_id = ? and payment_date IS NOT NULL",
             [req.user.user.kindergarden],
@@ -471,7 +473,10 @@ router.get(
                     } else {
                       var body = [];
                       body.push({ name: "Uplaćeno", value: paid[0].count });
-                      body.push({ name: "Nije uplaćeno", value: unpaid[0].count });
+                      body.push({
+                        name: "Nije uplaćeno",
+                        value: unpaid[0].count,
+                      });
                       res.json(body);
                     }
                   }
@@ -495,8 +500,6 @@ router.get("/getInvoiceChildrenSumPaidUnpaid", auth, async (req, res, next) => {
         logger.log("error", err.sql + ". " + err.sqlMessage);
         res.json(err);
       } else {
-        const date = new Date().toISOString().slice(0, 10);
-
         conn.query(
           "select SUM(c.price) as 'count' from invoice_children i join children_setting c on i.children_id = c.children_id where kindergarden_id = ? and payment_date IS NOT NULL",
           [req.user.user.kindergarden],
@@ -516,7 +519,10 @@ router.get("/getInvoiceChildrenSumPaidUnpaid", auth, async (req, res, next) => {
                   } else {
                     var body = [];
                     body.push({ name: "Uplaćeno", value: paid[0].count });
-                    body.push({ name: "Nije uplaćeno", value: unpaid[0].count });
+                    body.push({
+                      name: "Nije uplaćeno",
+                      value: unpaid[0].count,
+                    });
                     res.json(body);
                   }
                 }

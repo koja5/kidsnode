@@ -7,7 +7,16 @@ import { HelpService } from 'src/app/services/help.service';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  constructor() {}
+  public isMobile = false;
 
-  ngOnInit(): void {}
+  constructor(private helpService: HelpService) {}
+
+  ngOnInit(): void {
+    this.isMobile = this.helpService.checkMobileDevice();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.isMobile = this.helpService.checkMobileDevice();
+  }
 }

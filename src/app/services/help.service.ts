@@ -23,9 +23,9 @@ export class HelpService {
   getHeightForGridWithoutPx(partOfTab?: boolean) {
     let innerHeight = window.innerHeight;
     if (partOfTab) {
-      innerHeight = Number(innerHeight - 297);
+      innerHeight = Number(innerHeight - 300);
     } else {
-      innerHeight = Number(innerHeight - 261);
+      innerHeight = Number(innerHeight - 264);
     }
 
     if (this.getLocalStorageStringValue('orientation') === 'horizontal') {

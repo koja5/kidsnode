@@ -33,7 +33,7 @@
             <!-- <h1 class="fw-bold display-5">
               #1 plarforma za upravljanje vrtićima i predškolskim ustanovama
             </h1> -->
-            <h1 class="fw-bold display-4">
+            <h1 class="fw-bold {{ isMobile ? 'display-6' : 'display-4' }}">
               Platforma za efikasno upravljanje vrtićima i predškolskim
               ustanovama!
             </h1>
@@ -44,10 +44,16 @@
               jelovnikom i još mnogo toga!
             </p>
             <div class="action-btns text-center pt-4">
-              <a routerLink="request-demo" class="btn btn-primary mr-3"
+              <a
+                routerLink="request-demo"
+                class="btn btn-primary {{
+                  isMobile ? 'mb-3 width-60' : 'mr-3'
+                }} "
                 >Kreirajte besplatno nalog</a
               >
-              <a routerLink="contact-us" class="btn btn-outline-primary"
+              <a
+                routerLink="contact-us"
+                class="btn btn-outline-primary {{ isMobile ? 'width-60' : '' }}"
                 >Razgovarajte sa nama</a
               >
             </div>
@@ -102,7 +108,7 @@
           <div
             class="review-info-wrap text-center rounded-custom d-flex flex-column h-100 p-5"
           >
-            <div class="icon-box">
+            <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
               <i class="fas fa-globe text-white bg-success rounded"></i>
             </div>
             <h5>Veću povezanost u poslovanju</h5>
@@ -118,7 +124,7 @@
           <div
             class="review-info-wrap text-center rounded-custom d-flex flex-column h-100 p-5"
           >
-            <div class="icon-box">
+            <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
               <i class="fas fa-users text-white bg-warning rounded"></i>
             </div>
             <h5>Nalog za sve članove tima</h5>
@@ -134,7 +140,7 @@
           <div
             class="review-info-wrap text-center rounded-custom d-flex flex-column h-100 p-5"
           >
-            <div class="icon-box">
+            <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
               <i class="fas fa-border-none text-white bg-primary rounded"></i>
             </div>
             <h5>Sve na jednom mestu</h5>
@@ -176,7 +182,7 @@
             >
               <i class="fa fa-user fa-2x"></i>
             </div>
-            <h3 class="h5">Research</h3>
+            <h3 class="h5 {{isMobile ? 'text-center' : '' }}">Research</h3>
             <p class="mb-0">Uniquely pursue compelling initiatives expanded.</p>
           </div>
         </div>
@@ -189,7 +195,7 @@
             >
               <i class="fa fa-bezier-curve fa-2x"></i>
             </div>
-            <h3 class="h5">Designing</h3>
+            <h3 class="h5 {{isMobile ? 'text-center' : '' }}">Designing</h3>
             <p class="mb-0">Uniquely pursue compelling initiatives expanded.</p>
           </div>
         </div>
@@ -202,7 +208,7 @@
             >
               <i class="fa fa-layer-group fa-2x"></i>
             </div>
-            <h3 class="h5">Building</h3>
+            <h3 class="h5 {{isMobile ? 'text-center' : '' }}">Building</h3>
             <p class="mb-0">Uniquely pursue compelling initiatives expanded.</p>
           </div>
         </div>
@@ -215,7 +221,7 @@
             >
               <i class="fa fa-truck fa-2x"></i>
             </div>
-            <h3 class="h5">Deliver</h3>
+            <h3 class="h5 {{isMobile ? 'text-center' : '' }}">Deliver</h3>
             <p class="mb-0">Uniquely pursue compelling initiatives expanded.</p>
           </div>
         </div>
@@ -241,12 +247,14 @@
             </div>
             <ul class="list-unstyled d-flex flex-wrap list-two-col mb-0">
               <li>
-                <div class="icon-box">
+                <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
                   <i
                     class="fas fa-file-invoice-dollar text-white bg-primary rounded"
                   ></i>
                 </div>
-                <h3 class="h5">Kreiranje faktura</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Kreiranje faktura
+                </h3>
                 <p>
                   Sistem sam kreira fakture za svako dete u Vašem vrtiću i salje
                   na mail roditeljima. Takođe, šalje automatizovano i podsetnik
@@ -255,10 +263,12 @@
                 </p>
               </li>
               <li>
-                <div class="icon-box">
+                <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
                   <i class="fas fa-receipt text-white bg-danger rounded"></i>
                 </div>
-                <h3 class="h5">Dnevni izveštaji</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Dnevni izveštaji
+                </h3>
                 <p>
                   Dete je na privikavanju? Desilo se nešto specifično u toku
                   dana detetu i vaspitačica je to unela u sistem? Roditelj će na
@@ -309,22 +319,26 @@
             </div>
             <ul class="list-unstyled d-flex flex-wrap list-two-col mb-0">
               <li>
-                <div class="icon-box">
+                <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
                   <i
                     class="fas fa-business-time text-white bg-success rounded"
                   ></i>
                 </div>
-                <h3 class="h5">Podaci u realnom vremenu</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Podaci u realnom vremenu
+                </h3>
                 <p>
                   Gde god da se nalazite, možete da ispratite šta se trenutno
                   dešava u vrtiću.
                 </p>
               </li>
               <li>
-                <div class="icon-box">
+                <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
                   <i class="fas fa-chart-line text-white bg-dark rounded"></i>
                 </div>
-                <h3 class="h5">Prethodna statistika</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Prethodna statistika
+                </h3>
                 <p>
                   Na osnovu podataka koje se svakodnevno arhiviraju, planirajte
                   svoje buduće korake...
@@ -375,20 +389,24 @@
             </div>
             <ul class="list-unstyled d-flex flex-wrap list-two-col mt-5">
               <li>
-                <div class="icon-box">
+                <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
                   <i class="fas fa-lock text-white bg-warning rounded"></i>
                 </div>
-                <h3 class="h5">Sigurnost podataka</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Sigurnost podataka
+                </h3>
                 <p>
                   Deo koji je nama veoma bitan i kome smo posvetili dosta
                   pažnje. Dostupnost i sigurnost Vaših podataka je naša briga!
                 </p>
               </li>
               <li>
-                <div class="icon-box">
+                <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
                   <i class="fas fa-file text-white bg-info rounded"></i>
                 </div>
-                <h3 class="h5">Laka pretraga</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Laka pretraga
+                </h3>
                 <p>
                   Do svih podataka je moguće doći u par klikova, a podaci su
                   dostupni u zavisnosti od Vaše uloge u sistemu i vrtiću.
@@ -446,13 +464,21 @@
             <div
               class="feature-card bg-white shadow-sm highlight-card rounded-custom p-5"
             >
-              <div
-                class="icon-box d-inline-block rounded-circle bg-primary-soft mb-32"
-              >
-                <i class="fa fa-user icon-sm text-primary"></i>
+              <div class="{{ isMobile ? 'text-center' : '' }}">
+                <div
+                  class="icon-box d-inline-block rounded-circle bg-primary-soft mb-32"
+                >
+                  <i
+                    class="fa fa-user icon-sm text-primary {{
+                      isMobile ? 'text-center' : ''
+                    }}"
+                  ></i>
+                </div>
               </div>
               <div class="feature-content">
-                <h3 class="h5">Više uloga u sistemu</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Više uloga u sistemu
+                </h3>
                 <p>
                   U zavisnosti od pozicije zaposlenog u vrtiću dodelite Vašem
                   zaposlenom različita prava u sistemu!
@@ -490,51 +516,61 @@
               </div>
             </div>
             <div class="feature-card bg-white shadow-sm rounded-custom p-5">
-              <div
-                class="icon-box d-inline-block rounded-circle bg-success-soft mb-32"
-              >
-                <i class="fa fa-rocket icon-sm text-success"></i>
+              <div class="{{ isMobile ? 'text-center' : '' }}">
+                <div
+                  class="icon-box d-inline-block rounded-circle bg-success-soft mb-32"
+                >
+                  <i
+                    class="fa fa-rocket icon-sm text-success {{
+                      isMobile ? 'text-center' : ''
+                    }}"
+                  ></i>
+                </div>
               </div>
               <div class="feature-content">
-                <h3 class="h5">Automatizovani procesi</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Automatizovani procesi
+                </h3>
                 <p class="mb-0">
                   Pametni automatizovani procesi koji rade umesto Vas i štede
                   Vam vreme!
                 </p>
               </div>
-              <a
-                href="service-single.html"
-                class="link-with-icon text-decoration-none mt-3"
-                >Pogledaj detaljnije <i class="far fa-arrow-right"></i
-              ></a>
             </div>
             <div class="feature-card bg-white shadow-sm rounded-custom p-5">
-              <div
-                class="icon-box d-inline-block rounded-circle bg-danger-soft mb-32"
-              >
-                <i class="fa fa-chart-line icon-sm text-danger"></i>
+              <div class="{{ isMobile ? 'text-center' : '' }}">
+                <div
+                  class="icon-box d-inline-block rounded-circle bg-danger-soft mb-32"
+                >
+                  <i
+                    class="fa fa-chart-line icon-sm text-danger {{
+                      isMobile ? 'text-center' : ''
+                    }}"
+                  ></i>
+                </div>
               </div>
               <div class="feature-content">
-                <h3 class="h5">Statistika</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Statistika
+                </h3>
                 <p class="mb-0">
                   Podaci u realnom vremenu kao i stastistički podaci su sada na
                   dohvat ruke...
                 </p>
               </div>
-              <a
-                href="service-single.html"
-                class="link-with-icon text-decoration-none mt-3"
-                >Pogledaj detaljnije <i class="far fa-arrow-right"></i
-              ></a>
             </div>
             <div class="feature-card bg-white shadow-sm rounded-custom p-5">
-              <div
-                class="icon-box d-inline-block rounded-circle bg-dark-soft mb-32"
-              >
-                <i class="fa fa-calendar-check icon-sm text-dark"></i>
+              <div class="{{ isMobile ? 'text-center' : '' }}">
+                <div
+                  class="icon-box d-inline-block rounded-circle bg-dark-soft mb-32"
+                >
+                  <i class="fa fa-calendar-check icon-sm text-dark"></i>
+                </div>
               </div>
               <div class="feature-content">
-                <h3 class="h5">Evidencija prisutnosti dece</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Evidencija prisutnosti dece
+                </h3>
                 <p class="mb-0">
                   Jednim klikom evidentirajte ukoliko dete nije prisutno u
                   vrtiću!
@@ -542,13 +578,21 @@
               </div>
             </div>
             <div class="feature-card bg-white shadow-sm rounded-custom p-5">
-              <div
-                class="icon-box d-inline-block rounded-circle bg-warning-soft mb-32"
-              >
-                <i class="fa fa-clock text-warning"></i>
+              <div class="{{ isMobile ? 'text-center' : '' }}">
+                <div
+                  class="icon-box d-inline-block rounded-circle bg-warning-soft mb-32"
+                >
+                  <i
+                    class="fa fa-clock text-warning {{
+                      isMobile ? 'text-center' : ''
+                    }}"
+                  ></i>
+                </div>
               </div>
               <div class="feature-content">
-                <h3 class="h5">Prijava prilikom dolaska na posao</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  Prijava prilikom dolaska na posao
+                </h3>
                 <p class="mb-0">
                   Pogledajte informaciju o svakom zaposlenom kada je došao i
                   otišao sa posla...
@@ -556,13 +600,19 @@
               </div>
             </div>
             <div class="feature-card bg-white shadow-sm rounded-custom p-5">
-              <div
-                class="icon-box d-inline-block rounded-circle bg-danger-soft mb-32"
-              >
-                <i class="fa fa-dollar-sign icon-sm text-danger"></i>
+              <div class="{{ isMobile ? 'text-center' : '' }}">
+                <div
+                  class="icon-box d-inline-block rounded-circle bg-danger-soft mb-32"
+                >
+                  <i
+                    class="fa fa-dollar-sign icon-sm text-danger {{
+                      isMobile ? 'text-center' : ''
+                    }}"
+                  ></i>
+                </div>
               </div>
               <div class="feature-content">
-                <h3 class="h5">Uplate</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">Uplate</h3>
                 <p class="mb-0">
                   Efikasno upravljanje uplatama i fakturama, kao i generisanje
                   istih.
@@ -575,13 +625,19 @@
               ></a>
             </div>
             <div class="feature-card bg-white shadow-sm rounded-custom p-5">
-              <div
-                class="icon-box d-inline-block rounded-circle bg-primary-soft mb-32"
-              >
-                <i class="fa fa-calendar icon-sm text-primary"></i>
+              <div class="{{ isMobile ? 'text-center' : '' }}">
+                <div
+                  class="icon-box d-inline-block rounded-circle bg-primary-soft mb-32"
+                >
+                  <i
+                    class="fa fa-calendar icon-sm text-primary {{
+                      isMobile ? 'text-center' : ''
+                    }}"
+                  ></i>
+                </div>
               </div>
               <div class="feature-content">
-                <h3 class="h5">Planeri</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">Planeri</h3>
                 <p class="mb-0">
                   Planiranje dnevnih aktivnosti, kao i aktivnosti rada!
                 </p>
@@ -593,13 +649,19 @@
               ></a>
             </div>
             <div class="feature-card bg-white shadow-sm rounded-custom p-5">
-              <div
-                class="icon-box d-inline-block rounded-circle bg-success-soft mb-32"
-              >
-                <i class="fa fa-carrot icon-sm text-success"></i>
+              <div class="{{ isMobile ? 'text-center' : '' }}">
+                <div
+                  class="icon-box d-inline-block rounded-circle bg-success-soft mb-32"
+                >
+                  <i
+                    class="fa fa-carrot icon-sm text-success {{
+                      isMobile ? 'text-center' : ''
+                    }}"
+                  ></i>
+                </div>
               </div>
               <div class="feature-content">
-                <h3 class="h5">Ishrana</h3>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">Ishrana</h3>
                 <p class="mb-0">
                   Popis svih jela, kao i izrada jelovnika na nedeljenom nivou!
                 </p>
