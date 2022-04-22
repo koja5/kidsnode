@@ -25,15 +25,6 @@
 /*******************/
 
 .price-tab {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  height: 450px;
-  min-height: auto;
-  min-width: 800px;
   margin: 12px auto 30px;
   padding-bottom: 0;
   padding-left: 0;
@@ -49,6 +40,26 @@
   background-size: cover;
   background-repeat: no-repeat;
   box-shadow: 1px 1px 10px 0 rgb(0 0 0 / 20%);
+}
+
+@media (min-width: 992px) {
+  .price-tab {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 450px;
+    min-height: auto;
+    min-width: 800px;
+  }
+}
+
+@media (max-width: 991px) {
+  .site-image {
+    display: none;
+  }
 }
 
 .pricing-image._1 {
@@ -274,7 +285,6 @@
 }
 
 .font-36-white-sb {
-  width: 90%;
   font-family: "Mark simonson proxima soft", Tahoma, sans-serif;
   color: #fff;
   font-size: 36px;
@@ -407,4 +417,12 @@ li {
 
 .list-unstyled li {
   list-style: none;
+}
+
+.arrow-down-price {
+  width: 32px;
+}
+
+.selected-range {
+  color: #f25767;
 }

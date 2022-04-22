@@ -1,10 +1,4 @@
 <app-home-navigation-menu></app-home-navigation-menu>
-<!-- <app-header-section
-  [title]="'Price Suit to Your Business'"
-  [text]="
-    'Seamlessly actualize client-based users after out-of-the-box value. Globally embrace strategic data through frictionless expertise.'
-  "
-></app-header-section> -->
 
 <!--pricing section start-->
 <section class="pricing-section pt-60 position-relative z-2">
@@ -214,6 +208,12 @@
 
 <div>
   <h3 class="text-center">Koliko dece imate u vrtiću?</h3>
+  <h5 class="text-center selected-range">
+    <img
+      class="arrow-down-price"
+      src="./assets/icons/arrow-down-bangi.gif"
+    />Izaberite broj dece klikom na raspon u nastavku kako bi pogledali cenu
+  </h5>
   <div class="row number-of-children mt-4">
     <div
       *ngFor="let item of prices; let i = index"
@@ -234,90 +234,92 @@
 </div>
 
 <div>
-  <div class="price-tab row mt-5">
-    <div class="col-xs-12 col-md-6 col-lg-6">
-      <div
-        data-w-id="f4a5e0ee-1ecf-e000-d215-7be3b0643909"
-        class="pricing-image _1"
-        style="display: flex"
-      >
-        <div class="price-holder">
-          <div class="font-18-white-sb">
-            {{ prices[selectedPackage].count }} dece
-          </div>
-          <div class="annual-price" style="display: none">
-            <div class="font-36-white-sb">€</div>
-            <div class="font-80-white-sb">
-              {{ prices[selectedPackage].price }}
+  <div class="price-tab mt-5">
+    <div class="col-sm-12 pt-4 pb-4">
+      <div class="col-xs-12 col-md-6 col-lg-6">
+        <div style="text-align: center">
+          <div>
+            <div class="font-18-white-sb">
+              {{ prices[selectedPackage].count }} dece
             </div>
-            <div class="font-20-white-sb-price">/mesečno</div>
-          </div>
-          <div class="monthly-price-2" style="display: flex">
-            <div class="font-36-white-sb">€</div>
-            <div class="font-80-white-sb">
-              {{ prices[selectedPackage].price }}
+            <div class="annual-price" style="display: none">
+              <div class="font-36-white-sb">€</div>
+              <div class="font-80-white-sb">
+                {{ prices[selectedPackage].price }}
+              </div>
+              <div class="font-20-white-sb-price">/mesečno</div>
             </div>
-            <div class="font-20-white-sb-price">/mesečno</div>
-          </div>
-          <div class="font-14-white-barokah" style="display: none">
+            <div class="monthly-price-2" style="display: flex">
+              <div class="font-36-white-sb">€</div>
+              <div class="font-80-white-sb">
+                {{ prices[selectedPackage].price }}
+              </div>
+              <div class="font-20-white-sb-price">/mesečno</div>
+            </div>
+            <!-- <div class="font-14-white-barokah" style="display: none">
             Save $12/mesečno!
+          </div> -->
           </div>
+          <img
+            src="./assets/home/children-group/{{ selectedPackage + 1 }}.png"
+            alt=""
+            class="site-image"
+          />
         </div>
-        <img src="./assets/home/children-group/{{selectedPackage + 1}}.png" alt="" class="site-image" />
       </div>
-    </div>
-    <div class="pricing-right-div col-xs-12 col-md-6 col-lg-6">
-      <div class="check-list-box">
-        <ul role="list" class="check-list new w-list-unstyled">
-          <li class="check-list-item new">
-            <img
-              src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
-              width="20"
-              alt="White Check
+      <div class="col-xs-12 col-md-6 col-lg-6 pt-4 pb-5">
+        <div class="check-list-box">
+          <ul role="list" class="check-list new w-list-unstyled">
+            <li class="check-list-item new">
+              <img
+                src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
+                width="20"
+                alt="White Check
 "
-            />
-            <div class="spacer-column-10"></div>
-            <div>Bez ugovora - otkažite u bilo kom trenutku</div>
-          </li>
-          <li class="check-list-item new">
-            <img
-              src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
-              width="20"
-              alt="White Check
+              />
+              <div class="spacer-column-10"></div>
+              <div>Bez ugovora - otkažite u bilo kom trenutku</div>
+            </li>
+            <li class="check-list-item new">
+              <img
+                src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
+                width="20"
+                alt="White Check
 "
-            />
-            <div class="spacer-column-10"></div>
-            <div>Neograničeno korisnika i uređaja</div>
-          </li>
-          <li class="check-list-item new">
-            <img
-              src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
-              width="20"
-              alt="White Check
+              />
+              <div class="spacer-column-10"></div>
+              <div>Neograničeno korisnika i uređaja</div>
+            </li>
+            <li class="check-list-item new">
+              <img
+                src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
+                width="20"
+                alt="White Check
 "
-            />
-            <div class="spacer-column-10"></div>
-            <div>Neograničena tehnička podrška</div>
-          </li>
-          <li class="check-list-item new">
-            <img
-              src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
-              width="20"
-              alt="White Check
+              />
+              <div class="spacer-column-10"></div>
+              <div>Neograničena tehnička podrška</div>
+            </li>
+            <li class="check-list-item new">
+              <img
+                src="https://assets-global.website-files.com/5b71d8d18f97f2123be6a81c/5cbdf415505f3e78334d650f_Check%20Circle.png"
+                width="20"
+                alt="White Check
 "
-            />
-            <div class="spacer-column-10"></div>
-            <div><strong>Automatizovano čuvanje vaših podataka</strong></div>
-          </li>
-        </ul>
-        <div class="spacer-row-20"></div>
-        <div class="price-box-inner new">
-          <a routerLink="/request-demo" class="button green big w-button"
-            >Probajte&nbsp;BESPLATNO</a
-          >
-          <div class="spacer-row-10"></div>
-          <div class="font-14-white-sb mt-2">
-            Nije potrebna kreditna kartica!
+              />
+              <div class="spacer-column-10"></div>
+              <div><strong>Automatizovano čuvanje vaših podataka</strong></div>
+            </li>
+          </ul>
+          <div class="spacer-row-20"></div>
+          <div class="price-box-inner new pt-4">
+            <a routerLink="/request-demo" class="button green big w-button"
+              >Probajte&nbsp;BESPLATNO</a
+            >
+            <div class="spacer-row-10"></div>
+            <div class="font-14-white-sb mt-2">
+              Nije potrebna kreditna kartica!
+            </div>
           </div>
         </div>
       </div>
