@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
     if (this.helpService.getLanguage()) {
       this.language = this.helpService.getLanguage();
     } else {
-      this.configurationService.getLanguage('serbian').subscribe((language) => {
+      this.configurationService.getLanguageForDashboard('serbian').subscribe((language) => {
         this.language = language;
         this.helpService.setLanguage(language);
       });

@@ -12,7 +12,11 @@ export class ConfigurationService {
     return this.http.get("../../assets/configurations/" + path + "/" + file);
   }
 
-  getLanguage(language: string) {
-    return this.http.get("../../assets/configurations/languages/" + language + '.json');
+  getLanguageForDashboard(language: string) {
+    return this.http.get("../../assets/configurations/languages/dashboard/" + language + '.json');
+  }
+
+  getLanguageForLanding(language: string) {
+    return this.http.get("../../assets/configurations/languages/landing/" + language + '.json');
   }
 }
