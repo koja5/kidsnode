@@ -1,5 +1,6 @@
 <section
   class="cta-subscribe bg-dark ptb-120 position-relative overflow-hidden"
+  *ngIf="language"
 >
   <div class="container">
     <div class="row justify-content-center">
@@ -7,11 +8,11 @@
         <div class="subscribe-info-wrap text-center position-relative z-2">
           <div class="section-heading">
             <h4 class="h5 text-warning">
-              Probajte sada! Dajemo Vam besplatnu podršku!
+              {{ language.subscribeSectionUpText }}
             </h4>
-            <h2>Besplatni probni period 14 dana!</h2>
+            <h2>{{ language.subscribeSectionTitle }}</h2>
             <p>
-              Pomoći cemo Vam da digitalizujete i efikasnije vodite Vaš vrtić!
+              {{ language.subscribeSectionText }}
             </p>
           </div>
           <div class="form-block-banner mw-60 m-auto mt-5">
@@ -24,38 +25,38 @@
                 type="email"
                 class="form-control mr-2"
                 name="Email"
-                placeholder="Unesite Vašu email adresu..."
+                placeholder="{{ language.subscribeSectionTextPlaceholder }}"
                 [(ngModel)]="email"
                 email="true"
               />
               <button (click)="sendForDemoAccount()" class="btn btn-primary">
-                Posalji
+                {{ language.subscribeSectionSendButton }}
               </button>
             </form>
           </div>
           <ul class="nav justify-content-center subscribe-feature-list mt-3">
             <li class="nav-item">
               <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i>Probni period
-                14 dana</span
+                ><i class="fa fa-dot-circle text-primary mr-2"></i
+                >{{ language.subscribeSectionTryPeriod }}</span
               >
             </li>
             <li class="nav-item">
               <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i>Bez kreditne
-                kartice</span
+                ><i class="fa fa-dot-circle text-primary mr-2"></i
+                >{{ language.subscribeSectionNoNeedCreditCard }}</span
               >
             </li>
             <li class="nav-item">
               <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i>Podrška
-                24/7</span
+                ><i class="fa fa-dot-circle text-primary mr-2"></i
+                >{{ language.subscribeSectionSupport }}</span
               >
             </li>
             <li class="nav-item">
               <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i>Otkažite u
-                bilo kom trenutku</span
+                ><i class="fa fa-dot-circle text-primary mr-2"></i
+                >{{ language.subscribeSectionAnytimeCancel }}</span
               >
             </li>
           </ul>

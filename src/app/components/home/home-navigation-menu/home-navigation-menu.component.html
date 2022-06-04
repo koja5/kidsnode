@@ -46,6 +46,35 @@
         </ul>
       </div>
 
+      <div class="sl-nav">
+        <ul>
+          <li>
+            <img
+              class="flag"
+              src="../../../../assets/icons/flags/{{ selectionLanguage }}.png"
+            />
+            &nbsp;
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+            <div class="triangle"></div>
+            <ul *ngIf="chooseLang">
+              <li
+                *ngFor="let item of chooseLang"
+                (click)="changeLanguage(item.name)"
+              >
+                <img
+                  class="flag"
+                  src="../../../../assets/icons/flags/{{ item.flag }}"
+                />
+                <span
+                  class="{{ selectionLanguage == item.name ? 'active' : '' }}"
+                  >{{ language[item.name] }}</span
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
       <div
         class="action-btns text-end mr-5 me-lg-0 d-none d-md-block d-lg-block"
       >

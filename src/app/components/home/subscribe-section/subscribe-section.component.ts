@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CallApiService } from 'src/app/services/call-api.service';
 import { ToastrComponent } from '../../dynamic-component/common/toastr/toastr.component';
 
@@ -8,6 +8,7 @@ import { ToastrComponent } from '../../dynamic-component/common/toastr/toastr.co
   styleUrls: ['./subscribe-section.component.scss'],
 })
 export class SubscribeSectionComponent implements OnInit {
+  @Input() language: any;
   public email!: string;
 
   constructor(

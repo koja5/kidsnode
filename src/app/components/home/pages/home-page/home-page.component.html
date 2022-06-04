@@ -1,6 +1,6 @@
 <div class="main-wrapper" *ngIf="language">
   <!--hero section start-->
-  <app-home-navigation-menu></app-home-navigation-menu>
+  <app-home-navigation-menu [language]="language"></app-home-navigation-menu>
   <section
     class="hero-section ptb-120 position-relative overflow-hidden"
     style="
@@ -34,14 +34,10 @@
               #1 plarforma za upravljanje vrtićima i predškolskim ustanovama
             </h1> -->
             <h1 class="fw-bold {{ isMobile ? 'display-6' : 'display-4' }}">
-              Platforma za efikasno upravljanje vrtićima i predškolskim
-              ustanovama!
+              {{ language.homeOneSectionTitle }}
             </h1>
             <p class="lead">
-              KidsNode je jednostavan za korišćenje, a pritom vrlo efikasan
-              sistem, dizajniran da Vam pomogne da organizujete sve poslovne
-              procese u vrtiću, poput upravljanje zaposlenima, decom, uplatama,
-              jelovnikom i još mnogo toga!
+              {{ language.homeOneSectionText }}
             </p>
             <div class="action-btns text-center pt-4">
               <a
@@ -49,12 +45,12 @@
                 class="btn btn-primary {{
                   isMobile ? 'mb-3 width-60' : 'mr-3'
                 }} "
-                >Kreirajte besplatno nalog</a
+                >{{ language.homeOneSectionButtonLeft }}</a
               >
               <a
                 routerLink="contact-us"
                 class="btn btn-outline-primary {{ isMobile ? 'width-60' : '' }}"
-                >Razgovarajte sa nama</a
+                >{{ language.homeOneSectionButtonRight }}</a
               >
             </div>
           </div>
@@ -100,7 +96,7 @@
     <div class="container">
       <div class="text-center">
         <div class="section-heading text-center">
-          <h2 class="fw-medium h4">KidsNode je razvijen tako da Vam pruži</h2>
+          <h2 class="fw-medium h4">{{ language.homeTwoSectionTitle }}</h2>
         </div>
       </div>
       <div class="row">
@@ -111,11 +107,10 @@
             <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
               <i class="fas fa-globe text-white bg-success rounded"></i>
             </div>
-            <h5>Veću povezanost u poslovanju</h5>
+            <h5>{{ language.homeTwoSectionItem1Title }}</h5>
             <div class="review-info-content mt-2">
               <p class="mb-4">
-                KidsNode vam omogućava da vidite podatke i informacije za više
-                centara, što dovodi do veće povezanosti i izveštavanja.
+                {{ language.homeTwoSectionItem1Text }}
               </p>
             </div>
           </div>
@@ -127,11 +122,10 @@
             <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
               <i class="fas fa-users text-white bg-warning rounded"></i>
             </div>
-            <h5>Nalog za sve članove tima</h5>
+            <h5>{{ language.homeTwoSectionItem2Title }}</h5>
             <div class="review-info-content mt-2">
               <p class="mb-4">
-                Upravljanje, kontrola i komunikacija je sada moguća za sve u
-                vrtiću u zavisnosti od njihove pozicije i uloge u sistemu.
+                {{ language.homeTwoSectionItem2Text }}
               </p>
             </div>
           </div>
@@ -143,11 +137,10 @@
             <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
               <i class="fas fa-border-none text-white bg-primary rounded"></i>
             </div>
-            <h5>Sve na jednom mestu</h5>
+            <h5>{{ language.homeTwoSectionItem3Title }}</h5>
             <div class="review-info-content mt-2">
               <p class="mb-4">
-                KidsNode vam pruža upravljanje zaposlenima, decom, izveštaje,
-                automatizovane procese i još mnogo toga...
+                {{ language.homeTwoSectionItem3Text }}
               </p>
             </div>
           </div>
@@ -237,12 +230,9 @@
         <div class="col-lg-5 col-12">
           <div class="feature-img-content">
             <div class="section-heading">
-              <h2>Automatizovani procesi</h2>
+              <h2>{{ language.homeThreeSectionItem1Title }}</h2>
               <p>
-                KidsNode radi umesto Vas i poseduje pametne i automatizovane
-                procese za neke od akcija koje se ponavljaju iz dana u dan,
-                odnosno iz meseca u mesec, tako da Vi o tome ne morate da vodite
-                računa. Neke od njih su recimo:
+                {{ language.homeThreeSectionItem1Text }}
               </p>
             </div>
             <ul class="list-unstyled d-flex flex-wrap list-two-col mb-0">
@@ -253,13 +243,10 @@
                   ></i>
                 </div>
                 <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
-                  Kreiranje faktura
+                  {{ language.homeThreeSectionItem1LeftDescriptionTitle }}
                 </h3>
                 <p>
-                  Sistem sam kreira fakture za svako dete u Vašem vrtiću i salje
-                  na mail roditeljima. Takođe, šalje automatizovano i podsetnik
-                  ukoliko roditelj nije izmirio dugovanja, kao i potvrdu ukoliko
-                  jeste...
+                  {{ language.homeThreeSectionItem1LeftDescriptionText }}
                 </p>
               </li>
               <li>
@@ -267,12 +254,10 @@
                   <i class="fas fa-receipt text-white bg-danger rounded"></i>
                 </div>
                 <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
-                  Dnevni izveštaji
+                  {{ language.homeThreeSectionItem1RightDescriptionTitle }}
                 </h3>
                 <p>
-                  Dete je na privikavanju? Desilo se nešto specifično u toku
-                  dana detetu i vaspitačica je to unela u sistem? Roditelj će na
-                  kraju dana dobiti kompletan izveštaj na mail...
+                  {{ language.homeThreeSectionItem1RightDescriptionText }}
                 </p>
               </li>
             </ul>
@@ -310,11 +295,9 @@
         <div class="col-lg-5 col-12 order-lg-1">
           <div class="feature-img-content">
             <div class="section-heading">
-              <h2>Budite uvek u toku - pratite statistiku</h2>
+              <h2>{{ language.homeThreeSectionItem2Title }}</h2>
               <p>
-                KidsNode Vam omogućava da u trenutnom vremenu znate šta se
-                dešava u Vašem vrtiću. Koliko je dece u vrtiću prisutno, koliko
-                zaposlenih, koliko je uplata prošlo i još mnogo toga...
+                {{ language.homeThreeSectionItem2Text }}
               </p>
             </div>
             <ul class="list-unstyled d-flex flex-wrap list-two-col mb-0">
@@ -325,11 +308,10 @@
                   ></i>
                 </div>
                 <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
-                  Podaci u realnom vremenu
+                  {{ language.homeThreeSectionItem2LeftDescriptionTitle }}
                 </h3>
                 <p>
-                  Gde god da se nalazite, možete da ispratite šta se trenutno
-                  dešava u vrtiću.
+                  {{ language.homeThreeSectionItem2LeftDescriptionText }}
                 </p>
               </li>
               <li>
@@ -337,11 +319,10 @@
                   <i class="fas fa-chart-line text-white bg-dark rounded"></i>
                 </div>
                 <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
-                  Prethodna statistika
+                  {{ language.homeThreeSectionItem2RightDescriptionTitle }}
                 </h3>
                 <p>
-                  Na osnovu podataka koje se svakodnevno arhiviraju, planirajte
-                  svoje buduće korake...
+                  {{ language.homeThreeSectionItem2RightDescriptionText }}
                 </p>
               </li>
             </ul>
@@ -379,12 +360,9 @@
         <div class="col-lg-5 col-12">
           <div class="feature-img-content">
             <div class="section-heading">
-              <h2>Sve informacije na jednom mestu</h2>
+              <h2>{{ language.homeThreeSectionItem3Title }}</h2>
               <p>
-                KidsNode čuva kompletne informacije o svakom detetu(osnovne,
-                informacije o roditeljima/starateljima, osobama za preuzimanje,
-                zdravstvenom kartonu, dokumentima), zaposlenima u vriću,
-                spoljnim saradnicima/dobavljacima, poslovnim dokumentima...
+                {{ language.homeThreeSectionItem3Text }}
               </p>
             </div>
             <ul class="list-unstyled d-flex flex-wrap list-two-col mt-5">
@@ -393,11 +371,10 @@
                   <i class="fas fa-lock text-white bg-warning rounded"></i>
                 </div>
                 <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
-                  Sigurnost podataka
+                  {{ language.homeThreeSectionItem3LeftDescriptionTitle }}
                 </h3>
                 <p>
-                  Deo koji je nama veoma bitan i kome smo posvetili dosta
-                  pažnje. Dostupnost i sigurnost Vaših podataka je naša briga!
+                  {{ language.homeThreeSectionItem3LeftDescriptionText }}
                 </p>
               </li>
               <li>
@@ -405,11 +382,10 @@
                   <i class="fas fa-file text-white bg-info rounded"></i>
                 </div>
                 <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
-                  Laka pretraga
+                  {{ language.homeThreeSectionItem3RightDescriptionTitle }}
                 </h3>
                 <p>
-                  Do svih podataka je moguće doći u par klikova, a podaci su
-                  dostupni u zavisnosti od Vaše uloge u sistemu i vrtiću.
+                  {{ language.homeThreeSectionItem3RightDescriptionText }}
                 </p>
               </li>
             </ul>
@@ -445,7 +421,7 @@
 
   <!--features grid section start-->
 
-  <app-feature-section></app-feature-section>
+  <app-feature-section [language]="language"></app-feature-section>
 
   <!--features grid section end-->
 
@@ -1222,7 +1198,7 @@
   <!--integration section end-->
 
   <!-- subscribe scrtion start -->
-  <app-subscribe-section></app-subscribe-section>
+  <app-subscribe-section [language]="language"></app-subscribe-section>
   <!-- subscribe scrtion end -->
 
   <!--footer section start-->

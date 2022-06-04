@@ -1,12 +1,12 @@
 <!--style guide block start-->
-<div class="style-guide">
+<div class="style-guide" *ngIf="language">
   <!--features grid section start-->
   <section class="feature-section pb-120">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-10">
           <div class="section-heading text-center">
-            <h2>Servisi vam štede vreme i povećavaju efikasnost</h2>
+            <h2>{{ language.featureSectionTitle }}</h2>
             <p>
               KidsNode je nova generacija software-a koja na najbolji mogući
               način optimizuje rad vaših zaposlenih i Vas, stedeći vam vreme i

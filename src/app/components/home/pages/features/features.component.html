@@ -1,43 +1,40 @@
-<app-home-navigation-menu></app-home-navigation-menu>
+<app-home-navigation-menu [language]="language"></app-home-navigation-menu>
 
 <!--style guide block start-->
-<div class="style-guide">
+<div class="style-guide" *ngIf="language">
   <!--feature section three start-->
   <section class="feature-section soft-bg ptb-120">
     <div class="container">
       <div class="row align-items-center justify-content-center">
         <div class="col-lg-6 col-md-12">
           <div class="feature-subtitle">
-            <h5 class="h6 text-primary">Želite vecu kontrolu nad vrtićem?</h5>
+            <h5 class="h6 text-primary">
+              {{ language.featureSectionFirstUpText }}
+            </h5>
             <h2>
-              Dizajnirali smo sistem pomoću koga možete sve u par klikova!
+              {{ language.featureSectionFirstTitle }}
             </h2>
             <p>
-              KidsNode je dizajniran od nule tako da u potpunosti odgovori na
-              potrebe efikasnijeg upravljanja kako vlasnika/direktora, tako i
-              zaposlenih koji rade u njemu i da pruži kvalitetne i potpune
-              informacije roditeljima čija deca borave u vrtiću!
+              {{ language.featureSectionFirstText }}
             </p>
           </div>
           <div class="row mt-5">
             <div class="col-12 col-md-6">
-              <h6 class="fw-bold display-5 text-primary mb-4">99%</h6>
-              <h3 class="h5">Vreme dostupnosi aplikacije</h3>
+              <h6 class="fw-bold display-5 text-primary mb-4">
+                {{ language.featureSectionFirstLeftProcent }}
+              </h6>
+              <h3 class="h5">{{ language.featureSectionFirstLeftTitle }}</h3>
               <p>
-                KidsNode će vam biti dostupan u svakom trenutku, tako da, bilo
-                da li se nalazite u vrtiću ili van njega, možete da imate punu
-                kontrolu nad vašim poslovanjem i da u svakom trenutku znate šta
-                se dešava u vašoj organizaciji!
+                {{ language.featureSectionFirstLeftText }}
               </p>
             </div>
             <div class="col-12 col-md-6">
-              <h6 class="fw-bold display-5 text-primary mb-4">101%</h6>
-              <h3 class="h5">Odgovornosti</h3>
+              <h6 class="fw-bold display-5 text-primary mb-4">
+                {{ language.featureSectionFirstRightProcent }}
+              </h6>
+              <h3 class="h5">{{ language.featureSectionFirstRightTitle }}</h3>
               <p>
-                Ponosni smo na cinjenicu da 95% vrtića posle demo verzije krene
-                da koristi naš sistem. Ukoliko u nekom trenutku nakon toga ne
-                budete zadovoljni, bez brige, možete da otkažete korišćenje i
-                vraćamo vam novac!
+                {{ language.featureSectionFirstRightText }}
               </p>
             </div>
           </div>
@@ -72,17 +69,14 @@
               class="feature-content-wrap pe-lg-4 ptb-60 p-lg-0 mb-5 mb-lg-0"
             >
               <h5 class="text-primary h6 fw-bold">
-                Nova tehnologija i moderan dizajn
+                {{ language.featureSectionSecondUpText }}
               </h5>
-              <h2>KidsNode je Cloud aplikacija, sve je online!</h2>
+              <h2>{{ language.featureSectionSecondTitle }}</h2>
               <p>
-                KidsNode je tip aplikacije koji se izvršava u "oblaku". Ovo
-                znači da su svi vaši podaci smešteni na serverima i dostupni u
-                svakom trenutku, bez obzira da li se nalazite u vrtiću ili van
-                njega. Na ovaj način imate potpunu mobilnost i sigurnost.
+                {{ language.featureSectionSecondText }}
               </p>
 
-              <a href="#" class="btn btn-primary mt-4">Learn More</a>
+              <!-- <a href="#" class="btn btn-primary mt-4">Learn More</a> -->
             </div>
           </div>
           <div class="col-lg-7 col-md-12">
@@ -96,12 +90,11 @@
                   <div class="feature-icon d-inline-block bg-dark rounded mb-4">
                     <i class="fa fa-laptop text-white fa-2x"></i>
                   </div>
-                  <h3 class="h5 fw-bold">Dostupno za sve uređaje</h3>
+                  <h3 class="h5 fw-bold">
+                    {{ language.featureSectionSecondItem1Title }}
+                  </h3>
                   <p class="mb-0">
-                    KidsNode je dostupan za sve uređaje, bez obzira na
-                    operativni sistem! KidsNode možete koristiti na
-                    računarima(Windows/Linux/iOS), telefonima(Android/iOS), pa
-                    čak i na pametnim televizorima!
+                    {{ language.featureSectionSecondItem1Text }}
                   </p>
                 </div>
               </div>
@@ -114,11 +107,15 @@
                   >
                     <i class="fa fa-bezier-curve text-white fa-2x"></i>
                   </div>
-                  <h3 class="h5 fw-bold">Bez instalacije</h3>
+                  <h3 class="h5 fw-bold">
+                    {{ language.featureSectionSecondItem2Title }}
+                  </h3>
                   <p class="mb-0">
-                    Za KidsNode nije potrebna nikakva instalacija na vašim
-                    uređajima. Neophodno je samo da otvorite nalog popunjavanjem
-                    <a routerLink="/request-demo">forme</a> i to je sve!
+                    {{ language.featureSectionSecondItem2TextFirstPart }}
+                    <a routerLink="/request-demo">{{
+                      language.featureSectionSecondItem2TextForm
+                    }}</a>
+                    {{ language.featureSectionSecondItem2TextSecondPart }}
                   </p>
                 </div>
                 <div
@@ -129,10 +126,11 @@
                   >
                     <i class="fa fa-lock text-white fa-2x"></i>
                   </div>
-                  <h3 class="h5 fw-bold">Sigurnost i dostupnost</h3>
+                  <h3 class="h5 fw-bold">
+                    {{ language.featureSectionSecondItem3Title }}
+                  </h3>
                   <p class="mb-0">
-                    O sigurnosti i dostupnosti vaših podataka ne morate da
-                    vodite računa. To je naša briga!
+                    {{ language.featureSectionSecondItem3Text }}
                   </p>
                 </div>
               </div>
@@ -159,10 +157,10 @@
 </div>
 <!--style guide block end-->
 
-<app-feature-section></app-feature-section>
+<app-feature-section [language]="language"></app-feature-section>
 
 <!-- subscribe scrtion start -->
-<app-subscribe-section></app-subscribe-section>
+<app-subscribe-section [language]="language"></app-subscribe-section>
 <!-- subscribe scrtion end -->
 
 <!--footer section start-->

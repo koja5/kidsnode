@@ -1,9 +1,7 @@
-<app-home-navigation-menu></app-home-navigation-menu>
+<app-home-navigation-menu [language]="language"></app-home-navigation-menu>
 <app-header-section
-  [title]="'Imate pitanja?'"
-  [text]="
-    'Kontaktirajte nas putem chat-a, mail-a, telefona ili kontakt forme i biće nam drago da odgovorimo na svako Vaše pitanje!'
-  "
+  [title]="language.contactSectionHeaderTitle"
+  [text]="language.contactSectionHeaderText"
 ></app-header-section>
 <!--contact us promo section start-->
 <section class="contact-promo ptb-120">
@@ -15,10 +13,9 @@
         >
           <span class="fa fa-comment fa-3x text-primary"></span>
           <div class="contact-promo-info mb-4">
-            <h5>Četujte sa nama</h5>
+            <h5>{{ language.contactSectionItem1Title }}</h5>
             <p>
-              Možete nas kontaktirati putem četa koji se nalazi u donjem desnom
-              uglu. Javiće Vam se neko od naših agenata!
+              {{ language.contactSectionItem1Text }}
             </p>
           </div>
         </div>
@@ -29,15 +26,17 @@
         >
           <span class="fa fa-envelope fa-3x text-primary"></span>
           <div class="contact-promo-info mb-4">
-            <h5>Posaljite nam email</h5>
+            <h5>{{ language.contactSectionItem2Title }}</h5>
             <p>
-              Možete nam poslati sve što Vas zanima i na email
-              <strong>kidsnode@yandex.com</strong> i dobićete odgovor u roku od
-              24h!
+              {{ language.contactSectionItem2TextFirst }}
+              <strong>{{ language.contactSectionItem2TextEmail }}</strong>
+              {{ language.contactSectionItem2TextSecond }}
             </p>
           </div>
-          <a href="mailto:kidsnode@yandex.com" class="btn btn-primary mt-auto"
-            >Posalji email</a
+          <a
+            href="mailto:kidsnode@yandex.com"
+            class="btn btn-primary mt-auto"
+            >{{ language.contactSectionItem2Button }}</a
           >
         </div>
       </div>
@@ -47,12 +46,12 @@
         >
           <span class="fa fa-phone fa-3x text-primary"></span>
           <div class="contact-promo-info mb-4">
-            <h5>Pozovite nas</h5>
-            <p>Lakše Vam je preko telefona, nije problem. Tu smo za Vas 24h!</p>
+            <h5>{{ language.contactSectionItem3Title }}</h5>
+            <p>{{ language.contactSectionItem3Text }}</p>
           </div>
-          <a href="tel:0694505544" class="btn btn-link mt-auto"
-            >+381(0) 69 450/55-44</a
-          >
+          <a href="tel:0694505544" class="btn btn-link mt-auto">{{
+            language.contactSectionItem3Phone
+          }}</a>
         </div>
       </div>
     </div>
@@ -72,17 +71,17 @@
     <div class="row justify-content-lg-between align-items-center">
       <div class="col-lg-6 col-md-8">
         <div class="section-heading">
-          <h2>Forma za upit</h2>
+          <h2>{{ language.contactSectionFormTitle }}</h2>
           <p>
-            Upit nam možete poslati putem forme u nastavku i dobićete odgovor na
-            mail koji ste naveli u formi!
+            {{ language.contactSectionFormText }}
           </p>
         </div>
         <form action="#" class="register-form">
           <div class="row">
             <div class="col-sm-6">
               <label for="firstName" class="mb-1"
-                >Vaše ime <span class="text-danger">*</span></label
+                >{{ language.contactSectionFormFirstname }}
+                <span class="text-danger">*</span></label
               >
               <div class="input-group mb-3">
                 <input
@@ -90,25 +89,32 @@
                   class="form-control"
                   name="firstname"
                   [(ngModel)]="form.firstname"
-                  placeholder="Unesite Vaše ime"
+                  placeholder="{{
+                    language.contactSectionFormFirstnamePlaceholder
+                  }}"
                 />
               </div>
             </div>
             <div class="col-sm-6">
-              <label for="lastName" class="mb-1">Prezime</label>
+              <label for="lastName" class="mb-1">{{
+                language.contactSectionFormLastname
+              }}</label>
               <div class="input-group mb-3">
                 <input
                   type="text"
                   class="form-control"
                   name="lastname"
                   [(ngModel)]="form.lastname"
-                  placeholder="Unesite Vaše prezime"
+                  placeholder="{{
+                    language.contactSectionFormLastnamePlaceholder
+                  }}"
                 />
               </div>
             </div>
             <div class="col-sm-6">
               <label for="phone" class="mb-1"
-                >Telefon <span class="text-danger">*</span></label
+                >{{ language.contactSectionFormTelephone }}
+                <span class="text-danger">*</span></label
               >
               <div class="input-group mb-3">
                 <input
@@ -116,13 +122,16 @@
                   class="form-control"
                   name="phone"
                   [(ngModel)]="form.phone"
-                  placeholder="Unesite Vaš telefon"
+                  placeholder="{{
+                    language.contactSectionFormTelephonePlaceholder
+                  }}"
                 />
               </div>
             </div>
             <div class="col-sm-6">
               <label for="email" class="mb-1"
-                >Email<span class="text-danger">*</span></label
+                >{{ language.contactSectionFormEmail }}
+                <span class="text-danger">*</span></label
               >
               <div class="input-group mb-3">
                 <input
@@ -130,20 +139,25 @@
                   class="form-control"
                   name="email"
                   [(ngModel)]="form.email"
-                  placeholder="Unesite Vaš email"
+                  placeholder="{{
+                    language.contactSectionFormEmailPlaceholder
+                  }}"
                 />
               </div>
             </div>
             <div class="col-12">
               <label for="yourMessage" class="mb-1"
-                >Poruka <span class="text-danger">*</span></label
+                >{{ language.contactSectionFormMessage }}
+                <span class="text-danger">*</span></label
               >
               <div class="input-group mb-3">
                 <textarea
                   class="form-control"
                   name="message"
                   [(ngModel)]="form.message"
-                  placeholder="Kako možete da Vam pomognemo?"
+                  placeholder="{{
+                    language.contactSectionFormMessagePlaceholder
+                  }}"
                   style="height: 120px"
                 ></textarea>
               </div>
@@ -158,7 +172,7 @@
             </p>
           </div>
           <button (click)="submitForm()" class="btn btn-primary mt-4">
-            Pošalji upit
+            {{ language.contactSectionFormSendButton }}
           </button>
         </form>
       </div>
@@ -177,7 +191,7 @@
 <!--contact us form end-->
 
 <!-- subscribe scrtion start -->
-<app-subscribe-section></app-subscribe-section>
+<app-subscribe-section [language]="language"></app-subscribe-section>
 <!-- subscribe scrtion end -->
 
 <!--footer section start-->

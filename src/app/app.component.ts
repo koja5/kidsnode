@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
+import { ConfigurationService } from './services/configuration.service';
+import { HelpService } from './services/help.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,11 @@ export class AppComponent implements OnInit, OnDestroy {
   connectionStatusMessage!: string;
   connectionStatus!: string;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private configurationService: ConfigurationService,
+    private helpService: HelpService
+  ) {}
 
   ngOnInit(): void {
     this.onlineEvent = fromEvent(window, 'online');
@@ -43,6 +49,13 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.events.subscribe((evt) => {
       window.scrollTo(0, 0);
     });
+
+    const selectionLanguage = this.helpService.getSelectionLangauge();
+    this.configurationService
+      .getLanguageForLanding(selectionLanguage ? selectionLanguage : 'serbia')
+      .subscribe((language) => {
+        this.helpService.setLanguageForLanding(language);
+      });
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,7 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit, Output } from '@angular/core';
+import { ConfigurationService } from 'src/app/services/configuration.service';
+import { HelpService } from 'src/app/services/help.service';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-home-navigation-menu',
@@ -7,13 +10,28 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 })
 export class HomeNavigationMenuComponent implements OnInit {
   @Input() color?: string;
+  @Input() language: any;
 
   public navigationScroll = '';
   public navigationMobile = '';
 
-  constructor() {}
+  public chooseLang: any;
+  public selectionLanguage: any;
 
-  ngOnInit(): void {}
+  constructor(
+    private helpService: HelpService,
+    private configurationService: ConfigurationService
+  ) {}
+
+  ngOnInit(): void {
+    this.selectionLanguage = this.helpService.getSelectionLangauge();
+
+    this.configurationService
+      .getConfiguration('/languages', 'choose-lang.json')
+      .subscribe((data) => {
+        this.chooseLang = data;
+      });
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
@@ -30,5 +48,17 @@ export class HomeNavigationMenuComponent implements OnInit {
     } else {
       this.navigationMobile = '';
     }
+  }
+
+  changeLanguage(name: string) {
+    this.selectionLanguage = name;
+    this.helpService.setSelectionLanguage(name);
+    this.configurationService
+      .getLanguageForLanding(name)
+      .subscribe((language) => {
+        this.language = language;
+        this.helpService.setLanguageForLanding(language);
+      });
+    // this.sendEventForChangingLanguage.emit(name);
   }
 }

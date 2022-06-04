@@ -16,7 +16,7 @@ export class ContactUsComponent implements OnInit {
     message: '',
   };
   public status = -1;
-  public language!: string;
+  public language: any;
 
   constructor(
     private callApi: CallApiService,
@@ -24,7 +24,7 @@ export class ContactUsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.language = this.helpService.getLanguage();
+    this.language = this.helpService.getLanguageForLanding();
   }
 
   submitForm() {

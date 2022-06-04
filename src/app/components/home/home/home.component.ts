@@ -4,6 +4,7 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
+import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
 
 @Component({
@@ -16,9 +17,13 @@ export class HomeComponent implements OnInit {
   public navigationScroll = '';
   public navigationMobile = '';
 
-  constructor(private helpService: HelpService) {}
+  constructor(
+    private helpService: HelpService,
+    private configurationService: ConfigurationService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {

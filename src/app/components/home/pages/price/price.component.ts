@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HelpService } from 'src/app/services/help.service';
 
 @Component({
   selector: 'app-price',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./price.component.scss'],
 })
 export class PriceComponent implements OnInit {
+  public language: any;
   public prices = [
     {
       count: '0 - 50',
@@ -34,9 +36,11 @@ export class PriceComponent implements OnInit {
   ];
   public selectedPackage = 0;
 
-  constructor() {}
+  constructor(private helpService: HelpService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.language = this.helpService.getLanguageForLanding();
+  }
 
   selectPackage(index: number) {
     this.selectedPackage = index;

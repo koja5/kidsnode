@@ -116,6 +116,33 @@ export class HelpService {
     }
   }
 
+  setLanguageForLanding(value: any) {
+    localStorage.setItem(
+      'language-landing',
+      typeof value === 'string' ? value : JSON.stringify(value)
+    );
+  }
+
+  getLanguageForLanding() {
+    if (localStorage.getItem('language-landing')) {
+      return JSON.parse(localStorage.getItem('language-landing') ?? '{}');
+    } else {
+      return null;
+    }
+  }
+
+  setSelectionLanguage(value: string) {
+    localStorage.setItem('selectionLanguage', value);
+  }
+
+  getSelectionLangauge() {
+    if (localStorage.getItem('selectionLanguage')) {
+      return localStorage.getItem('selectionLanguage');
+    } else {
+      return null;
+    }
+  }
+
   setLocalStorage(key: string, value: any) {
     localStorage.setItem(
       key,

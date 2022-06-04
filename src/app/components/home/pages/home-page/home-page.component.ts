@@ -18,11 +18,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.isMobile = this.helpService.checkMobileDevice();
-    this.configurationService
-      .getLanguageForLanding('serbian')
-      .subscribe((langauge) => {
-        this.language = langauge;
-      });
+    this.language = this.helpService.getLanguageForLanding();
   }
 
   @HostListener('window:resize', ['$event'])
