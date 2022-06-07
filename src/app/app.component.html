@@ -1,6 +1,9 @@
-<router-outlet></router-outlet>
+<app-loader-brand *ngIf="loader"></app-loader-brand>
 
-<app-online-status *ngIf="connectionStatus"
+<router-outlet *ngIf="!loader"></router-outlet>
+
+<app-online-status
+  *ngIf="connectionStatus"
   [onlineStatusMessage]="connectionStatusMessage"
   [onlineStatus]="connectionStatus"
 >

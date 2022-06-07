@@ -14,16 +14,10 @@ import { SignupComponent } from '../signup/signup.component';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LoaderBrandComponent } from '../../common/loader-brand/loader-brand.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    SignupComponent,
-    ForgotPasswordComponent,
-    LoaderBrandComponent
-  ],
+  declarations: [LoginComponent, SignupComponent, ForgotPasswordComponent],
   imports: [
     DynamicModuleModule,
     CommonModule,
@@ -31,7 +25,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     NgbModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [CookieService],
   bootstrap: [],

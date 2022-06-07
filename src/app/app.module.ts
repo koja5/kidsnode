@@ -17,14 +17,15 @@ import { NotFoundComponent } from './components/common/not-found/not-found.compo
 import { OnlineStatusComponent } from './components/common/online-status/online-status.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { RouterModule } from '@angular/router';
-import { SettingPersonalizeComponent } from './components/dashboard/settings/setting-items/setting-personalize/setting-personalize.component';
+import { LoaderBrandComponent } from './components/common/loader-brand/loader-brand.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     OnlineStatusComponent,
-    HomeComponent
+    HomeComponent,
+    LoaderBrandComponent,
   ],
   imports: [
     BrowserModule,

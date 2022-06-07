@@ -3,6 +3,7 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { ConfigurationService } from './services/configuration.service';
 import { HelpService } from './services/help.service';
+import { CallApiService } from './services/call-api.service';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +18,16 @@ export class AppComponent implements OnInit, OnDestroy {
 
   connectionStatusMessage!: string;
   connectionStatus!: string;
+  public loader = false;
 
   constructor(
     private router: Router,
     private configurationService: ConfigurationService,
-    private helpService: HelpService
-  ) {}
+    private helpService: HelpService,
+    private callApi: CallApiService
+  ) {
+    this.initializationLanguage();
+  }
 
   ngOnInit(): void {
     this.onlineEvent = fromEvent(window, 'online');
@@ -49,12 +54,44 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.events.subscribe((evt) => {
       window.scrollTo(0, 0);
     });
+  }
 
-    const selectionLanguage = this.helpService.getSelectionLangauge();
+  initializationLanguage() {
+    this.callApi.getUserLocation().subscribe(
+      (data: any) => {
+        if (
+          data.location.country.code !== this.helpService.getSelectionLangauge()
+        ) {
+          this.loader = true;
+          this.configurationService.getAllLangs().subscribe((langs) => {
+            this.setLanguageByLocation(data.location.country, langs);
+          });
+        }
+      },
+      (error: any) => {
+        this.getLanguageByCode('english', 'EN');
+      }
+    );
+  }
+
+  setLanguageByLocation(location: any, langs: any) {
+    for (let i = 0; i < langs.length; i++) {
+      for (let j = 0; j < langs[i].code.length; j++) {
+        if (langs[i].code[j] === location.code) {
+          this.getLanguageByCode(langs[i].name, location.code);
+          break;
+        }
+      }
+    }
+  }
+
+  getLanguageByCode(language: string, code: string) {
     this.configurationService
-      .getLanguageForLanding(selectionLanguage ? selectionLanguage : 'serbia')
-      .subscribe((language) => {
-        this.helpService.setLanguageForLanding(language);
+      .getLanguageForLanding(language)
+      .subscribe((data) => {
+        this.helpService.setLanguageForLanding(data);
+        this.helpService.setSelectionLanguage(code);
+        this.loader = false;
       });
   }
 

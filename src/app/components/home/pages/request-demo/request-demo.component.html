@@ -1,5 +1,9 @@
 <div class="main-wrapper">
-  <app-home-navigation-menu [color]="'navbar-dark'"></app-home-navigation-menu>
+  <app-home-navigation-menu
+    [color]="'navbar-dark'"
+    [language]="language"
+    (sendEventForChangeLanguage)="sendEventForChangeLanguage($event)"
+  ></app-home-navigation-menu>
 
   <!--register section start-->
   <section
@@ -13,11 +17,10 @@
         <div class="col-xl-5 col-lg-5 col-md-12 order-1 order-lg-0">
           <div class="testimonial-tab-slider-wrap mt-5">
             <h1 class="fw-bold text-white display-5">
-              Digitalizujte Vaš vrtić!
+              {{ language.requestSectionTitle }}
             </h1>
             <p>
-              Savremene tehnologije su tu da nam olakšaju svakodnevni rad i
-              povećaju efikasnost!
+              {{ language.requestSectionText1 }}
             </p>
             <hr />
             <div
@@ -30,21 +33,11 @@
                 role="tabpanel"
               >
                 <blockquote class="blockquote">
-                  <em
-                    >Uvođenjem KidsNode-a imaćete kompletan pregled svih
-                    segmenata vrtića na jednom mestu, čime će Vaše poslovanje
-                    postati mnogo efikasnije, a sama organizacija i planiranje
-                    aktivnosti kako Vas, tako i Vaših zaposlenih
-                    jednostavnija!</em
-                  >
+                  <em>{{ language.requestSectionText2 }}</em>
                 </blockquote>
 
                 <blockquote class="blockquote">
-                  <em
-                    >95% vrtića nakon DEMO verzije, počelo je da koristi naš
-                    sistem! Čak i nakon toga, ukoliko niste zadovoljni,
-                    vratićemo Vam novac!</em
-                  >
+                  <em>{{ language.requestSectionText3 }}</em>
                 </blockquote>
                 <!-- <div class="author-info mt-3">
                   <span class="h6">Veronica P. Byrd</span>
@@ -146,7 +139,7 @@
             class="register-wrap p-5 bg-white shadow rounded-custom mt-5 mt-lg-0 mt-xl-0"
           >
             <h5 class="fw-medium">
-              Popunite formu u nastavku i otvorićemo nalog za vas!
+              {{ language.requestSectionFormTitle }}
             </h5>
 
             <form action="#" class="mt-4 register-form">
@@ -156,7 +149,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Ime(*)"
+                      placeholder="{{ language.requestSectionFormName }}"
                       name="name"
                       [(ngModel)]="data.name"
                     />
@@ -167,7 +160,7 @@
                     <input
                       type="email"
                       class="form-control"
-                      placeholder="Email(*)"
+                      placeholder="{{ language.requestSectionFormEmail }}"
                       name="email"
                       [(ngModel)]="data.email"
                     />
@@ -178,7 +171,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Telefon(*)"
+                      placeholder="{{ language.requestSectionFormPhone }}"
                       name="phone"
                       [(ngModel)]="data.phone"
                     />
@@ -189,7 +182,9 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Ime vrtića(*)"
+                      placeholder="{{
+                        language.requestSectionFormNameOfKindergarden
+                      }}"
                       name="nameOfKindergarden"
                       [(ngModel)]="data.nameOfKindergarden"
                     />
@@ -205,7 +200,9 @@
                       required=""
                     >
                       <option value="undefined" selected="" disabled="">
-                        Odaberite broj dece(*)
+                        {{
+                          language.requestSectionFormChooiceNumberOfChildrens
+                        }}
                       </option>
                       <option value="0-50">Od 0 do 50</option>
                       <option value="51-100">Od 51 do 100</option>
@@ -504,7 +501,7 @@
                   <div class="input-group mb-3">
                     <textarea
                       class="form-control"
-                      placeholder="Recite nam nešto više o vama(opciono)"
+                      placeholder="{{ language.requestSectionFormMessage }}"
                       style="height: 120px"
                       name="notes"
                       [(ngModel)]="data.notes"
@@ -534,18 +531,17 @@
                     (click)="sendReqestForDemoAccount()"
                     class="btn btn-primary mt-4 d-block w-100"
                   >
-                    Pošalji zahtev
+                    {{ language.requestSectionFormSendRequestButton }}
                   </button>
                 </div>
               </div>
             </form>
             <div class="mt-3 text-center">
               <p *ngIf="required" class="text-danger">
-                Neophodno je da unesete polja označena zvezdicom(*)
+                {{ language.needToFillAllField }}
               </p>
               <p *ngIf="success" class="text-success">
-                Uspesno ste poslali zahtev za kreiranje naloga. Kontaktiraćemo
-                Vas u najkraćem mogućem roku!
+                {{ language.successSendRequest }}
               </p>
             </div>
           </div>

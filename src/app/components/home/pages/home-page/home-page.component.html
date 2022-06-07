@@ -1,6 +1,6 @@
 <div class="main-wrapper" *ngIf="language">
   <!--hero section start-->
-  <app-home-navigation-menu [language]="language"></app-home-navigation-menu>
+  <app-home-navigation-menu [language]="language" (sendEventForChangeLanguage)="sendEventForChangeLanguage($event)"></app-home-navigation-menu>
   <section
     class="hero-section ptb-120 position-relative overflow-hidden"
     style="

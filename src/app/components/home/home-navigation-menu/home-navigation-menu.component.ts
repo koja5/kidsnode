@@ -1,7 +1,13 @@
-import { Component, HostListener, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-home-navigation-menu',
@@ -11,6 +17,7 @@ import { EventEmitter } from 'stream';
 export class HomeNavigationMenuComponent implements OnInit {
   @Input() color?: string;
   @Input() language: any;
+  @Output() sendEventForChangeLanguage: EventEmitter<any> = new EventEmitter();
 
   public navigationScroll = '';
   public navigationMobile = '';
@@ -24,13 +31,25 @@ export class HomeNavigationMenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.selectionLanguage = this.helpService.getSelectionLangauge();
+    this.configurationService.getAllLangs().subscribe((data) => {
+      this.chooseLang = data;
+      const selectionLanguage = this.helpService.getSelectionLangauge();
+      this.getNameOfFlag(data, selectionLanguage);
+      if (!this.selectionLanguage) {
+        this.selectionLanguage = selectionLanguage;
+      }
+    });
+  }
 
-    this.configurationService
-      .getConfiguration('/languages', 'choose-lang.json')
-      .subscribe((data) => {
-        this.chooseLang = data;
-      });
+  getNameOfFlag(langs: any, selectionLanguage: any) {
+    for (let i = 0; i < langs.length; i++) {
+      for (let j = 0; j < langs[i].code.length; j++) {
+        if (langs[i].code[j] === selectionLanguage) {
+          this.selectionLanguage = langs[i].name;
+          break;
+        }
+      }
+    }
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -58,7 +77,7 @@ export class HomeNavigationMenuComponent implements OnInit {
       .subscribe((language) => {
         this.language = language;
         this.helpService.setLanguageForLanding(language);
+        this.sendEventForChangeLanguage.emit(name);
       });
-    // this.sendEventForChangingLanguage.emit(name);
   }
 }

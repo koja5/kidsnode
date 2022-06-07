@@ -18,11 +18,11 @@
                 /></a>
               </div>
               <div *ngIf="formIndicator === 'login'" class="login-container">
-                <h3>{{ language.welcomeTitle }}</h3>
+                <h3>{{ language.loginTitle }}</h3>
                 <p>
-                  {{ language.noHaveAccount }}
+                  {{ language.loginNoHaveAccount }}
                   <a class="signup-link" routerLink="/request-demo">{{
-                    language.signUp
+                    language.loginCreateAccount
                   }}</a>
                 </p>
                 <p *ngIf="notCorrect">
@@ -32,7 +32,7 @@
                   <div class="form-group-login">
                     <input
                       type="email"
-                      placeholder="{{ language.enterEmail }}"
+                      placeholder="{{ language.loginEnterEmail }}"
                       class="form-control-login"
                       name="username"
                       [(ngModel)]="loginData.username"
@@ -41,29 +41,29 @@
                   <div class="form-group-login">
                     <input
                       type="password"
-                      placeholder="{{ language.enterPassword }}"
+                      placeholder="{{ language.loginEnterPassword }}"
                       class="form-control-login"
                       name="password"
                       [(ngModel)]="loginData.password"
                     />
                   </div>
                   <button type="submit" class="default-btn">
-                    <i class="bx bxs-hot"></i>{{ language.loginButton
+                    <i class="bx bxs-hot"></i>{{ language.loginSignIn
                     }}<span></span>
                   </button>
                   <div class="forgot-password">
                     <a (click)="formIndicator = 'forgotPassword'">{{
-                      language.forgotPassword
+                      language.loginForgotPassword
                     }}</a>
                   </div>
                   <div class="connect-with-social">
                     <button type="submit" class="facebook">
                       <i class="bx bxl-facebook"></i>
-                      {{ language.connectWithFacebook }}
+                      {{ language.loginConnectWithFacebook }}
                     </button>
                     <button type="submit" class="google">
                       <i class="bx bxl-google"></i>
-                      {{ language.connectWithGoogle }}
+                      {{ language.loginConnectWithGoogle }}
                     </button>
                   </div>
                 </form>
@@ -72,7 +72,7 @@
                 *ngIf="formIndicator === 'forgotPassword'"
                 class="forgot-container"
               >
-                <h5>{{ language.forgotPasswordTitle }}</h5>
+                <h5>{{ language.forgotTitle }}</h5>
                 <p *ngIf="successfulySendMessage">
                   {{ language.successfulySendMailForForgotPassword }}
                 </p>
@@ -80,25 +80,25 @@
                   <div class="form-group-login">
                     <input
                       type="email"
-                      placeholder="{{ language.enterEmail }}"
+                      placeholder="{{ language.forgotEnterEmail }}"
                       class="form-control-login"
                       name="username"
                       [(ngModel)]="loginData.username"
                     />
                   </div>
                   <button type="submit" class="default-btn">
-                    <i class="bx bxs-hot"></i>{{ language.forgotPasswordButton
+                    <i class="bx bxs-hot"></i>{{ language.forgotRenewPAssword
                     }}<span></span>
                   </button>
                 </form>
                 <p>
-                  {{ language.haveAccount }}
+                  {{ language.forgotYouHaveAccount }}
                   <a
                     class="signup-link"
                     (click)="
                       formIndicator = 'login'; successfulySendMessage = false
                     "
-                    >{{ language.loginButton }}</a
+                    >{{ language.loginSignIn }}</a
                   >
                 </p>
               </div>

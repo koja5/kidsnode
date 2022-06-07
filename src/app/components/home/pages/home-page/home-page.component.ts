@@ -25,4 +25,8 @@ export class HomePageComponent implements OnInit {
   onResize() {
     this.isMobile = this.helpService.checkMobileDevice();
   }
+
+  sendEventForChangeLanguage(event: any) {
+    this.language = this.helpService.getLanguageForLanding();
+  }
 }

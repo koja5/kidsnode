@@ -135,4 +135,10 @@ export class CallApiService {
       return this.callGetMethod(request.api, data);
     }
   }
+
+  getUserLocation() {
+    return this.http.get(
+      'https://api.ipregistry.co/87.116.160.144?key=m8po7r7zc4y1awic'
+    );
+  }
 }

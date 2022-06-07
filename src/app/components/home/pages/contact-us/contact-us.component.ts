@@ -44,4 +44,8 @@ export class ContactUsComponent implements OnInit {
         });
     }
   }
+
+  sendEventForChangeLanguage(event: any) {
+    this.language = this.helpService.getLanguageForLanding();
+  }
 }

@@ -14,4 +14,8 @@ export class FeaturesComponent implements OnInit {
   ngOnInit(): void {
     this.language = this.helpService.getLanguageForLanding();
   }
+
+  sendEventForChangeLanguage(event: any) {
+    this.language = this.helpService.getLanguageForLanding();
+  }
 }

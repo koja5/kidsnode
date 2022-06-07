@@ -1,4 +1,7 @@
-<app-home-navigation-menu [language]="language"></app-home-navigation-menu>
+<app-home-navigation-menu
+  [language]="language"
+  (sendEventForChangeLanguage)="sendEventForChangeLanguage($event)"
+></app-home-navigation-menu>
 
 <!--style guide block start-->
 <div class="style-guide" *ngIf="language">

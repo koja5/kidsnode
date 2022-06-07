@@ -1,5 +1,5 @@
 <!--header start-->
-<header class="main-header w-100">
+<header class="main-header w-100" *ngIf="language && selectionLanguage">
   <nav
     class="navbar navbar-expand-xl {{
       color ? color : 'navbar-light'
@@ -35,14 +35,26 @@
       <div class="collapse navbar-collapse justify-content-left">
         <ul class="nav col-12 col-md-auto justify-content-center main-menu">
           <li class="nav-item dropdown">
-            <a class="nav-link" routerLink="/"> Početna </a>
+            <a class="nav-link" routerLink="/">
+              {{ language.navigationMenuHome }}
+            </a>
           </li>
           <li>
-            <a class="nav-link" routerLink="/features">Funkcionalnosti</a>
+            <a class="nav-link" routerLink="/features">{{
+              language.navigationMenuFeature
+            }}</a>
           </li>
-          <li><a class="nav-link" routerLink="/prices">Cena</a></li>
+          <li>
+            <a class="nav-link" routerLink="/prices">{{
+              language.navigationMenuPrice
+            }}</a>
+          </li>
           <!-- <li><a class="nav-link" routerLink="/about-us">O nama</a></li> -->
-          <li><a class="nav-link" routerLink="/contact-us">Kontakt</a></li>
+          <li>
+            <a class="nav-link" routerLink="/contact-us">{{
+              language.navigationMenuContact
+            }}</a>
+          </li>
         </ul>
       </div>
 
@@ -50,6 +62,7 @@
         <ul>
           <li>
             <img
+              *ngIf="selectionLanguage"
               class="flag"
               src="../../../../assets/icons/flags/{{ selectionLanguage }}.png"
             />
@@ -78,12 +91,14 @@
       <div
         class="action-btns text-end mr-5 me-lg-0 d-none d-md-block d-lg-block"
       >
-        <a routerLink="../login" class="btn btn-link text-decoration-none mr-2"
-          >Prijavi se</a
+        <a
+          routerLink="../login"
+          class="btn btn-link text-decoration-none mr-2"
+          >{{ language.navigationMenuSignIn }}</a
         >
-        <a routerLink="../request-demo" class="btn btn-primary"
-          >Krairaj nalog</a
-        >
+        <a routerLink="../request-demo" class="btn btn-primary">{{
+          language.navigationMenuSignUp
+        }}</a>
       </div>
 
       <!--offcanvas menu start-->
@@ -113,21 +128,33 @@
         <div class="offcanvas-body">
           <ul class="nav col-12 col-md-auto justify-content-center main-menu">
             <li class="nav-item dropdown">
-              <a class="nav-link" routerLink="/"> Početna </a>
+              <a class="nav-link" routerLink="/">
+                {{ language.navigationMenuHome }}
+              </a>
             </li>
             <li>
-              <a class="nav-link" routerLink="/features">Funkcionalnosti</a>
+              <a class="nav-link" routerLink="/features">
+                {{ language.navigationMenuFeature }}</a
+              >
             </li>
-            <li><a class="nav-link" routerLink="/prices">Cena</a></li>
+            <li>
+              <a class="nav-link" routerLink="/prices">
+                {{ language.navigationMenuPrice }}</a
+              >
+            </li>
             <!-- <li><a class="nav-link" routerLink="/about-us">O nama</a></li> -->
-            <li><a class="nav-link" routerLink="/contact-us">Kontakt</a></li>
+            <li>
+              <a class="nav-link" routerLink="/contact-us">
+                {{ language.navigationMenuContact }}</a
+              >
+            </li>
           </ul>
           <div class="action-btns mt-4 ps-3 text-center">
-            <a routerLink="../login" class="btn btn-outline-primary mr-2"
-              >Prijavi se</a
+            <a routerLink="../login" class="btn btn-outline-primary mr-2">
+              {{ language.navigationMenuSignIn }}</a
             >
-            <a routerLink="../request-demo" class="btn btn-primary"
-              >Kreiraj nalog</a
+            <a routerLink="../request-demo" class="btn btn-primary">
+              {{ language.navigationMenuSignUp }}</a
             >
           </div>
         </div>

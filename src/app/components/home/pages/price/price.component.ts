@@ -45,4 +45,8 @@ export class PriceComponent implements OnInit {
   selectPackage(index: number) {
     this.selectedPackage = index;
   }
+
+  sendEventForChangeLanguage(event: any) {
+    this.language = this.helpService.getLanguageForLanding();
+  }
 }

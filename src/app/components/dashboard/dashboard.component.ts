@@ -288,7 +288,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-    this.storageService.removeAllLocalStorage();
+    // this.storageService.removeAllLocalStorage();
     this.storageService.deleteToken();
     this.router.navigate(['/login']);
   }

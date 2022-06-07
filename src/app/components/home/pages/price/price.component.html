@@ -1,4 +1,7 @@
-<app-home-navigation-menu [language]="language"></app-home-navigation-menu>
+<app-home-navigation-menu
+  [language]="language"
+  (sendEventForChangeLanguage)="sendEventForChangeLanguage($event)"
+></app-home-navigation-menu>
 
 <!--pricing section start-->
 <section class="pricing-section pt-60 position-relative z-2" *ngIf="language">

@@ -282,6 +282,18 @@
 
 /* language flags */
 
+@media (max-width: 767px) {
+  .sl-nav {
+    margin-right: 45px;
+  }
+}
+
+@media (min-width: 768px) {
+  .sl-nav {
+    margin-right: 0px;
+  }
+}
+
 .sl-nav {
   display: inline;
   margin-top: 10px;

@@ -70,13 +70,8 @@ export class LoginComponent implements OnInit {
   }
 
   initializationLanguage() {
-    if (this.helpService.getLanguage()) {
-      this.language = this.helpService.getLanguage();
-    } else {
-      this.configurationService.getLanguageForDashboard('serbian').subscribe((language) => {
-        this.language = language;
-        this.helpService.setLanguage(language);
-      });
+    if (this.helpService.getLanguageForLanding()) {
+      this.language = this.helpService.getLanguageForLanding();
     }
   }
 
@@ -107,13 +102,32 @@ export class LoginComponent implements OnInit {
         }
       });
   }
+
   setUserInfoAndRoute(data: any) {
     this.storageService.setToken(data.token);
     const token = this.helpService.getDecodeToken();
     this.helpService.setLocalStorage('logo', token.logo);
+    this.setLanguageForDashboard();
     setTimeout(() => {
       this.loader = false;
       this.router.navigate(['/dashboard']);
     }, 150);
+  }
+
+  setLanguageForDashboard() {
+    this.configurationService.getAllLangs().subscribe((langs: any) => {
+      const selectionLanguage = this.helpService.getSelectionLangauge();
+      for (let i = 0; i < langs.length; i++) {
+        for (let j = 0; j < langs[i].code.length; j++) {
+          if (langs[i].code[j] === selectionLanguage) {
+            this.configurationService
+              .getLanguageForDashboard(langs[i].name)
+              .subscribe((data) => {
+                this.helpService.setLanguage(data);
+              });
+          }
+        }
+      }
+    });
   }
 }
