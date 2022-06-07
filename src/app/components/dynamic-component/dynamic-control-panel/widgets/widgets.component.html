@@ -86,7 +86,11 @@
                 class="{{ children.width }} text-center"
               >
                 <a class="{{ children.class }}" routerLink="{{ children.url }}">
-                  {{ children.title }}
+                  {{
+                    language[children.title]
+                      ? language[children.title]
+                      : children.title
+                  }}
                 </a>
               </div>
             </div>

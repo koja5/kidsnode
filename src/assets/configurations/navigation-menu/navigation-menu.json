@@ -1,6 +1,6 @@
 [
   {
-    "title": "Statistika",
+    "title": "navigationMenuTitleStatistic",
     "rights": [
       "superadmin",
       "director",
@@ -10,13 +10,13 @@
     "menu": [
       {
         "icon": "admin_panel_settings",
-        "title": "Kontrolni panel",
+        "title": "navigationMenuControlPanel",
         "link": "/dashboard/control-panel/owner"
       }
     ]
   },
   {
-    "title": "Deca",
+    "title": "navigationMenuTitleChildren",
     "rights": [
       "superadmin",
       "owner",
@@ -31,25 +31,25 @@
     "menu": [
       {
         "icon": "child_care",
-        "title": "Popis dece",
+        "title": "navigationMenuAllChildren",
         "link": "/dashboard/children/all-childrens"
       },
       {
         "icon": "assignment_turned_in",
-        "title": "Evidencija dolazaka",
+        "title": "navigationMenuEvidenceChildrenAriival",
         "link": "/dashboard/children/records-of-arrivals",
         "rights": ""
       },
       {
         "icon": "event",
-        "title": "Kalendar aktivnosti",
+        "title": "navigationMenuCalendarOfActivity",
         "link": "/dashboard/children/calendar-of-children-activity",
         "rights": ""
       }
     ]
   },
   {
-    "title": "Organizacija",
+    "title": "navigationMenuTitleOrganization",
     "rights": [
       "superadmin",
       "owner",
@@ -59,14 +59,14 @@
     "menu": [
       {
         "icon": "badge",
-        "title": "Zaposleni",
+        "title": "navigationMenuEmployee",
         "link": "/dashboard/employee/all-employees",
         "rights": ""
       }
     ]
   },
   {
-    "title": "Finansije",
+    "title": "navigationMenuTitleFinance",
     "rights": [
       "superadmin",
       "director",
@@ -76,20 +76,20 @@
     "menu": [
       {
         "icon": "paid",
-        "title": "Uplate",
+        "title": "navigationMenuInvoices",
         "link": "/dashboard/invoices/children-invoices",
         "rights": ""
       },
       {
         "icon": "receipt",
-        "title": "Generiši fakturu",
+        "title": "navigationMenuGenerateInvoice",
         "link": "/dashboard/invoices/invoice-form",
         "rights": ""
       }
     ]
   },
   {
-    "title": "Zaposleni",
+    "title": "navigationMenuTitleEmployee",
     "rights": [
       "superadmin",
       "director",
@@ -99,20 +99,20 @@
     "menu": [
       {
         "icon": "import_contacts",
-        "title": "Dnevnik rada",
+        "title": "navigationMenuWorkDiary",
         "link": "/dashboard/employee/work-diary",
         "rights": ""
       },
       {
         "icon": "event_note",
-        "title": "Evidencija prisutnosti",
+        "title": "navigationMenuAttendanceRecords",
         "link": "/dashboard/employee/reporting-presence",
         "rights": ""
       }
     ]
   },
   {
-    "title": "Službe",
+    "title": "navigationMenuTitleServices",
     "rights": [
       "superadmin",
       "director",
@@ -125,13 +125,13 @@
     "menu": [
       {
         "icon": "monitor_heart",
-        "title": "Zdravstvena zlužba",
+        "title": "navigationMenuHealthService",
         "link": "/dashboard/services/health"
       }
     ]
   },
   {
-    "title": "Hrana",
+    "title": "navigationMenuTitleFood",
     "rights": [
       "superadmin",
       "director",
@@ -144,19 +144,19 @@
     "menu": [
       {
         "icon": "restaurant",
-        "title": "Hrana",
+        "title": "navigationMenuFood",
         "link": "",
         "rights": "",
         "children": [
           {
             "icon": "work",
-            "title": "Jela",
+            "title": "navigationMenuDishes",
             "link": "/dashboard/parameters/food",
             "rights": ""
           },
           {
             "icon": "receipt_long",
-            "title": "Jelovnik",
+            "title": "navigationMenuFoodMenu",
             "link": "/dashboard/parameters/food-menu",
             "rights": ""
           }
@@ -165,7 +165,7 @@
     ]
   },
   {
-    "title": "Administracija",
+    "title": "navigationMenuTitleAdministration",
     "rights": [
       "superadmin",
       "director",
@@ -174,25 +174,25 @@
     "menu": [
       {
         "icon": "work",
-        "title": "Posao",
+        "title": "navigationMenuWork",
         "link": "",
         "rights": "",
         "children": [
           {
             "icon": "work",
-            "title": "Radna mesta",
+            "title": "navigationMenuWorkPlaces",
             "link": "/dashboard/parameters/work-places",
             "rights": ""
           },
           {
             "icon": "receipt_long",
-            "title": "Vrste rada",
+            "title": "navigationMenuTypesOfWork",
             "link": "/dashboard/parameters/type-of-work",
             "rights": ""
           },
           {
             "icon": "receipt_long",
-            "title": "Opsti ugovori",
+            "title": "navigationMenuGeneralContracts",
             "link": "/dashboard/parameters/general-contracts",
             "rights": ""
           }
@@ -200,17 +200,17 @@
       },
       {
         "icon": "local_shipping",
-        "title": "Dobavljaci",
+        "title": "navigationMenuSuppliers",
         "link": "",
         "rights": "",
         "children": [
           {
-            "title": "Spisak dobavljaca",
+            "title": "navigationMenuAllSuppliers",
             "link": "/dashboard/parameters/suppliers-company",
             "rights": ""
           },
           {
-            "title": "Računi",
+            "title": "navigationMenuSuppliersInvoices",
             "link": "/dashboard/parameters/invoice-suppliers",
             "rights": ""
           }
@@ -218,18 +218,18 @@
       },
       {
         "icon": "groups",
-        "title": "Grupe",
+        "title": "navigationMenuGroup",
         "children": [
           {
             "icon": "text_snippet",
-            "title": "Upisne grupe",
+            "title": "navigationMenuEnrollmentGroup",
             "link": "/dashboard/children/group",
             "rights": "",
             "isDefault": true
           },
           {
             "icon": "speaker_notes",
-            "title": "Grupe u vrticu",
+            "title": "navigationMenuKindergartenGroup",
             "link": "/dashboard/children/subgroup",
             "rights": ""
           }

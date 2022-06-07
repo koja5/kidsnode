@@ -169,6 +169,7 @@ export class DashboardComponent implements OnInit {
   }
 
   initializeConfigurations() {
+    this.language = this.helpService.getLanguage();
     this.configurationService
       .getConfiguration('/navigation-menu', 'navigation-menu.json')
       .subscribe((data: any) => {

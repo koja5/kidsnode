@@ -14,7 +14,11 @@
   </a>
 </div>
 
-<div class="outer" *ngIf="!data || !data.length" style="height: 48vh">
+<div
+  class="outer"
+  *ngIf="(!data || !data.length) && !loader"
+  style="height: 48vh"
+>
   <div class="middle">
     <div class="inner">
       <mat-icon aria-hidden="false" class="no-data-chart text-muted"
@@ -44,7 +48,9 @@
       type="{{ type ? type : 'Pie' }}"
       xName="{{ config?.xName }}"
       yName="{{ config?.yName }}"
-      name="{{ config?.name }}"
+      name="{{
+        language[config?.name] ? language[config?.name] : config?.name
+      }}"
       width="2"
       [marker]="config?.marker"
       [cornerRadius]="config?.radius"

@@ -86,7 +86,7 @@
             },
             "buttons": [
                 {
-                    "title": "controlPanelButtonSeeArrivalChildrenRecords",
+                    "title": "controlPanelButtonSeeArrivalRecords",
                     "class": "button-action e-info e-control e-btn",
                     "url": "/dashboard/children/records-of-arrivals"
                 }
@@ -219,7 +219,7 @@
         },
         {
             "type": "Pie",
-            "name": "controlPanelChartPlaceholderStatistic",
+            "name": "controlPanelChartStatistic",
             "title": "controlPanelChartInvoiceForCurrentMonthByInstallments",
             "width": "col-md-4",
             "request": {
@@ -308,6 +308,73 @@
             },
             "palette": [
                 "#bc8f14"
+            ]
+        },
+        {
+            "type": "Pie",
+            "name": "Broj dolazaka dece po danima",
+            "title": "Statistika 2",
+            "width": "col-md-4",
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getChildrenAbsenseForLast7Days",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "xName": "date",
+            "yName": "number",
+            "palette": [
+                "#E94649",
+                "#F6B53F",
+                "#6FAAB0",
+                "#C4C24A"
+            ]
+        },
+        {
+            "type": "Pie",
+            "name": "Broj dolazaka dece po danima",
+            "title": "Statistika 2",
+            "width": "col-md-4",
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getChildrenAbsenseForLast7Days",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "tooltip": {
+                "enable": true,
+                "format": "${point.x}: <b>${point.y} rata</b>"
+            },
+            "xName": "date",
+            "yName": "number",
+            "palette": [
+                "#E94649",
+                "#F6B53F",
+                "#6FAAB0",
+                "#C4C24A"
+            ]
+        },
+        {
+            "type": "Pie",
+            "name": "Broj dolazaka dece po danima",
+            "title": "Statistika 2",
+            "width": "col-md-4",
+            "request": {
+                "type": "GET",
+                "api": "/api/control-panel/getChildrenAbsenseForLast7Days",
+                "parameters": [],
+                "fields": "",
+                "root": ""
+            },
+            "xName": "date",
+            "yName": "number",
+            "palette": [
+                "#E94649",
+                "#F6B53F",
+                "#6FAAB0",
+                "#C4C24A"
             ]
         }
     ]

@@ -100,7 +100,7 @@
       "allowEditing": false
     },
     {
-      "title": "Children firstname",
+      "title": "firstname",
       "filterable": true,
       "hideable": true,
       "type": "string",
@@ -111,7 +111,7 @@
       }
     },
     {
-      "title": "Children lastname",
+      "title": "lastname",
       "filterable": true,
       "hideable": true,
       "type": "string",
@@ -122,7 +122,7 @@
       }
     },
     {
-      "title": "Children birthday",
+      "title": "birthday",
       "filterable": true,
       "hideable": true,
       "type": "date",
@@ -134,7 +134,7 @@
       }
     },
     {
-      "title": "Pol",
+      "title": "gender",
       "template": {
         "choices": [
           {
@@ -154,7 +154,7 @@
       "field": "children_gender"
     },
     {
-      "title": "Mother firstname",
+      "title": "motherFirstname",
       "filterable": true,
       "hideable": true,
       "type": "string",
@@ -165,7 +165,7 @@
       }
     },
     {
-      "title": "Father firstname",
+      "title": "fatherFirstname",
       "filterable": true,
       "hideable": true,
       "type": "string",
