@@ -72,14 +72,14 @@
             <ul *ngIf="chooseLang">
               <li
                 *ngFor="let item of chooseLang"
-                (click)="changeLanguage(item.name)"
+                (click)="changeLanguage(item.code, item.name)"
               >
                 <img
                   class="flag"
                   src="../../../../assets/icons/flags/{{ item.flag }}"
                 />
                 <span
-                  class="{{ selectionLanguage == item.name ? 'active' : '' }}"
+                  class="{{ selectionLanguage == item.code ? 'active' : '' }}"
                   >{{ language[item.name] }}</span
                 >
               </li>

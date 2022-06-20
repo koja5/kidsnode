@@ -15,6 +15,6 @@
 <div *ngIf="title || icon">
   <button class="e-btn {{ class }}" (click)="clickButton()">
     <app-dynamic-icon *ngIf="icon" [icon]="icon"></app-dynamic-icon>
-    {{ title }}
+    {{ language[title] ? language[title] : title }}
   </button>
 </div>

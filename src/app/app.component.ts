@@ -76,8 +76,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   setLanguageByLocation(location: any, langs: any) {
     for (let i = 0; i < langs.length; i++) {
-      for (let j = 0; j < langs[i].code.length; j++) {
-        if (langs[i].code[j] === location.code) {
+      for (let j = 0; j < langs[i].similarCode.length; j++) {
+        if (langs[i].similarCode[j] === location.code) {
           this.getLanguageByCode(langs[i].name, location.code);
           break;
         }

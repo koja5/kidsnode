@@ -93,7 +93,7 @@
       "allowEditing": false
     },
     {
-      "title": "name",
+      "title": "meal",
       "filterable": true,
       "hideable": true,
       "type": "string",
@@ -126,7 +126,7 @@
       "width": "col-md-12",
       "class": "e-outline",
       "name": "name",
-      "title": "name",
+      "title": "meal",
       "field": "name"
     },
     {

@@ -43,8 +43,8 @@ export class HomeNavigationMenuComponent implements OnInit {
 
   getNameOfFlag(langs: any, selectionLanguage: any) {
     for (let i = 0; i < langs.length; i++) {
-      for (let j = 0; j < langs[i].code.length; j++) {
-        if (langs[i].code[j] === selectionLanguage) {
+      for (let j = 0; j < langs[i].similarCode.length; j++) {
+        if (langs[i].similarCode[j] === selectionLanguage) {
           this.selectionLanguage = langs[i].name;
           break;
         }
@@ -69,9 +69,9 @@ export class HomeNavigationMenuComponent implements OnInit {
     }
   }
 
-  changeLanguage(name: string) {
+  changeLanguage(code: string, name: string) {
     this.selectionLanguage = name;
-    this.helpService.setSelectionLanguage(name);
+    this.helpService.setSelectionLanguage(code);
     this.configurationService
       .getLanguageForLanding(name)
       .subscribe((language) => {

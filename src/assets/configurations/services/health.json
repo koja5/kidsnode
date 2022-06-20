@@ -100,7 +100,7 @@
             "allowEditing": false
         },
         {
-            "title": "Children firstname",
+            "title": "firstname",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -111,7 +111,7 @@
             }
         },
         {
-            "title": "Children lastname",
+            "title": "lastname",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -122,7 +122,7 @@
             }
         },
         {
-            "title": "Children birthday",
+            "title": "birthday",
             "filterable": true,
             "hideable": true,
             "type": "date",
@@ -134,7 +134,7 @@
             }
         },
         {
-            "title": "Children gender",
+            "title": "gender",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -145,7 +145,7 @@
             }
         },
         {
-            "title": "Mother firstname",
+            "title": "motherFirstname",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -156,7 +156,7 @@
             }
         },
         {
-            "title": "Father firstname",
+            "title": "fatherFirstname",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -189,8 +189,8 @@
         {
             "type": "label",
             "width": "col-md-12",
-            "title": "Podaci o detetu",
-            "text": "Molimo unesite neke osnovne podatke o detetu"
+            "title": "childrenData",
+            "text": "pleaseInsertChildrenData"
         },
         {
             "type": "textbox",
@@ -206,7 +206,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "children_firstname",
-            "title": "Firstname",
+            "title": "firstname",
             "field": "children_firstname"
         },
         {
@@ -214,7 +214,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "children_lastname",
-            "title": "Lastname",
+            "title": "lastname",
             "field": "children_lastname"
         },
         {
@@ -222,15 +222,15 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "children_gender",
-            "title": "Gender",
+            "title": "gender",
             "field": "children_gender",
             "itemFields": [
                 {
-                    "title": "Muski",
+                    "title": "man",
                     "value": "man"
                 },
                 {
-                    "title": "Zenski",
+                    "title": "woman",
                     "value": "femaly"
                 }
             ]
@@ -240,7 +240,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "children_birthday",
-            "title": "Birthday",
+            "title": "birthday",
             "field": "children_birthday"
         },
         {
@@ -248,7 +248,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "kindergarden_subgroup_id",
-            "title": "Kindergarden subgroup",
+            "title": "kindergardenSubgroupName",
             "field": {
                 "text": "name",
                 "value": "id"
@@ -270,8 +270,8 @@
         {
             "type": "label",
             "width": "col-md-12 border-top mt-3 pt-3",
-            "title": "Podaci o ocu",
-            "text": "Molimo unesite neke osnovne podatke o ocu"
+            "title": "childrenData",
+            "text": "pleaseInsertChildrenData"
         },
         {
             "type": "textbox",
@@ -287,7 +287,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "father_firstname",
-            "title": "Firstname",
+            "title": "firstname",
             "field": "father_firstname"
         },
         {
@@ -295,7 +295,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "father_lastname",
-            "title": "Lastname",
+            "title": "lastname",
             "field": "father_lastname"
         },
         {
@@ -303,7 +303,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "father_birthday",
-            "title": "Birthday",
+            "title": "birthday",
             "field": "father_birthday"
         },
         {
@@ -311,14 +311,14 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "father_telephone",
-            "title": "Broj telefona",
+            "title": "telephone",
             "field": "father_telephone"
         },
         {
             "type": "label",
             "width": "col-md-12 border-top mt-3 pt-3",
-            "title": "Podaci o majci",
-            "text": "Molimo unesite neke osnovne podatke o majci"
+            "title": "motherData",
+            "text": "pleaseInsertMotherData"
         },
         {
             "type": "textbox",
@@ -334,7 +334,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "mother_firstname",
-            "title": "Firstname",
+            "title": "firstname",
             "field": "mother_firstname"
         },
         {
@@ -342,7 +342,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "mother_lastname",
-            "title": "Lastname",
+            "title": "lastname",
             "field": "mother_lastname"
         },
         {
@@ -350,7 +350,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "mother_birthday",
-            "title": "Birthday",
+            "title": "birthday",
             "field": "mother_birthday"
         },
         {
@@ -358,7 +358,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "mother_telephone",
-            "title": "Broj telefona",
+            "title": "telephone",
             "field": "mother_telephone"
         },
         {
@@ -366,7 +366,7 @@
             "width": "col-md-7",
             "class": "e-outline",
             "name": "mother_address",
-            "title": "Adresa",
+            "title": "address",
             "field": "mother_address"
         },
         {
@@ -374,7 +374,7 @@
             "width": "col-md-2",
             "class": "e-outline",
             "name": "mother_zipCode",
-            "title": "Zip kod",
+            "title": "zipCode",
             "field": "mother_zipCode"
         },
         {
@@ -382,7 +382,7 @@
             "width": "col-md-3",
             "class": "e-outline",
             "name": "mother_city",
-            "title": "Grad",
+            "title": "city",
             "field": "mother_city"
         },
         {
@@ -390,7 +390,7 @@
             "width": "col-md-12",
             "class": "e-info button-action",
             "name": "submit",
-            "title": "Sacuvaj",
+            "title": "saveButton",
             "field": "submit",
             "positionClass": "position-end mt-3 col-md-12"
         }

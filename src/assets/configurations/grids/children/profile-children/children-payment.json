@@ -85,7 +85,7 @@
             "allowEditing": false
         },
         {
-            "title": "Datum kreiranja",
+            "title": "creationDate",
             "filterable": true,
             "hideable": true,
             "type": "date",
@@ -97,7 +97,7 @@
             }
         },
         {
-            "title": "Status",
+            "title": "status",
             "template": {
                 "choices": [
                     {
@@ -117,7 +117,7 @@
             "field": "paymeny_status"
         },
         {
-            "title": "Datum plaćanja",
+            "title": "paymentDate",
             "filterable": true,
             "hideable": true,
             "type": "date",

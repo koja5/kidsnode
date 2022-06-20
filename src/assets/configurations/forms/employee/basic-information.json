@@ -90,11 +90,11 @@
       "field": "gender",
       "itemFields": [
         {
-          "title": "Muski",
+          "title": "man",
           "value": "man"
         },
         {
-          "title": "Zenski",
+          "title": "woman",
           "value": "femaly"
         }
       ]

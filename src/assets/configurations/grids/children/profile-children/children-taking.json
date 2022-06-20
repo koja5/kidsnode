@@ -96,7 +96,7 @@
         "allowEditing": false
       },
       {
-        "title": "Datum kreiranja",
+        "title": "creationDate",
         "filterable": true,
         "hideable": true,
         "type": "date",

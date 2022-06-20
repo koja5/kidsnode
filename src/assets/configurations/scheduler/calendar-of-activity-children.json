@@ -70,7 +70,7 @@
       "width": "col-md-12",
       "class": "e-outline",
       "fieldClass": "e-field e-input",
-      "title": "Start",
+      "title": "start",
       "name": "StartTime",
       "schedule": true
     },
@@ -79,7 +79,7 @@
       "width": "col-md-12",
       "class": "e-outline",
       "fieldClass": "e-field e-input",
-      "title": "End",
+      "title": "end",
       "name": "EndTime",
       "schedule": true
     }

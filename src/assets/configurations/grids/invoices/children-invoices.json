@@ -84,7 +84,7 @@
             "allowEditing": false
         },
         {
-            "title": "Datum kreiranja",
+            "title": "creationDate",
             "filterable": true,
             "hideable": true,
             "type": "date",
@@ -96,7 +96,7 @@
             }
         },
         {
-            "title": "Ime",
+            "title": "firstname",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -107,7 +107,7 @@
             }
         },
         {
-            "title": "Prezime",
+            "title": "lastname",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -118,7 +118,7 @@
             }
         },
         {
-            "title": "Status",
+            "title": "status",
             "template": {
                 "choices": [
                     {
@@ -138,7 +138,7 @@
             "field": "paymeny_status"
         },
         {
-            "title": "Datum plaćanja",
+            "title": "paymentDate",
             "filterable": true,
             "hideable": true,
             "type": "date",
@@ -231,7 +231,7 @@
             "width": "col-md-12 hide",
             "class": "e-outline",
             "name": "creation_date",
-            "title": "Datum kreiranja",
+            "title": "creationDate",
             "field": "creation_date",
             "readonly": true
         },
@@ -240,7 +240,7 @@
             "width": "col-md-12 hide",
             "class": "e-outline",
             "name": "father_name",
-            "title": "Ime oca",
+            "title": "fatherFirstname",
             "field": "father_name"
         },
         {
@@ -248,7 +248,7 @@
             "width": "col-md-12 hide",
             "class": "e-outline",
             "name": "name",
-            "title": "Ime vrtića",
+            "title": "kindergardenName",
             "field": "name"
         },
         {
@@ -256,7 +256,7 @@
             "width": "col-md-12 hide",
             "class": "e-outline",
             "name": "kindergarden_email",
-            "title": "Email vrtića",
+            "title": "kindergardenEmail",
             "field": "kindergarden_email"
         },
         {
@@ -264,7 +264,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "firstname",
-            "title": "Ime deteta",
+            "title": "childrenFirstname",
             "field": "firstname",
             "readonly": true
         },
@@ -273,7 +273,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "lastname",
-            "title": "Prezime deteta",
+            "title": "childrenLastname",
             "field": "lastname",
             "readonly": true
         },
@@ -282,7 +282,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "payment_status",
-            "title": "Status plaćanja",
+            "title": "paymentStatus",
             "field": {
                 "text": "name",
                 "value": "id"
@@ -305,7 +305,7 @@
             "width": "col-md-12",
             "class": "button-action e-info",
             "name": "submit",
-            "title": "Sacuvaj",
+            "title": "saveButton",
             "field": "submit",
             "positionClass": "position-end mt-3 col-md-12"
         }

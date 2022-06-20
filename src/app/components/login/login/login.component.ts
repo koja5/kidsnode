@@ -118,8 +118,8 @@ export class LoginComponent implements OnInit {
     this.configurationService.getAllLangs().subscribe((langs: any) => {
       const selectionLanguage = this.helpService.getSelectionLangauge();
       for (let i = 0; i < langs.length; i++) {
-        for (let j = 0; j < langs[i].code.length; j++) {
-          if (langs[i].code[j] === selectionLanguage) {
+        for (let j = 0; j < langs[i].similarCode.length; j++) {
+          if (langs[i].similarCode[j] === selectionLanguage) {
             this.configurationService
               .getLanguageForDashboard(langs[i].name)
               .subscribe((data) => {

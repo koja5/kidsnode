@@ -77,7 +77,7 @@
       "allowEditing": false
     },
     {
-      "title": "Ime dokumenta",
+      "title": "nameOfDocument",
       "filterable": true,
       "hideable": true,
       "type": "string",
@@ -85,7 +85,7 @@
       "field": "name"
     },
     {
-      "title": "Tip dokumenta",
+      "title": "typeOfDocument",
       "filterable": true,
       "hideable": true,
       "type": "string",

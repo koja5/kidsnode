@@ -167,7 +167,7 @@
       }
     },
     {
-      "title": "Status",
+      "title": "status",
       "template": {
         "choices": [
           {

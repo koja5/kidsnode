@@ -16,7 +16,8 @@
 
 <div>
   <h4 class="food-menu-title pb-2 text-center">
-    Jelovnik za period od {{ dateFrom | date: "dd.MM.yyyy" }} do
+    {{ language.menuForPeriodFromTitle }} {{ dateFrom | date: "dd.MM.yyyy" }}
+    {{ language.to }}
     {{ dateTo | date: "dd.MM.yyyy" }}
   </h4>
 
@@ -53,7 +54,7 @@
   >
     <div class="row width-50 pb-2">
       <div class="form-group col-sm-6">
-        <label class="custom-label">Datum od</label>
+        <label class="custom-label">{{ language.dateFrom }}</label>
         <ejs-datepicker
           cssClass="e-outline"
           id="dateFrom"
@@ -61,7 +62,7 @@
         ></ejs-datepicker>
       </div>
       <div class="form-group col-sm-6">
-        <label class="custom-label">Datum od</label>
+        <label class="custom-label">{{ language.dateTo }}</label>
         <ejs-datepicker
           cssClass="e-outline"
           id="dateTo"
@@ -104,7 +105,7 @@
       </div>
     </div>
     <div class="form-group col-sm-12 pt-4">
-      <label class="custom-label">Napomena(opciono)</label>
+      <label class="custom-label">{{ language.note }}</label>
       <ejs-textbox
         cssClass="e-outline"
         [id]="'note'"

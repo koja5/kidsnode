@@ -1,141 +1,141 @@
 {
-    "request": {
-      "type": "GET",
-      "api": "/api/getChildrenParentsById",
-      "url": ["id"],
-      "parameters": [],
-      "fields": "",
-      "root": ""
+  "request": {
+    "type": "GET",
+    "api": "/api/getChildrenParentsById",
+    "url": [
+      "id"
+    ],
+    "parameters": [],
+    "fields": "",
+    "root": ""
+  },
+  "config": [
+    {
+      "type": "label",
+      "width": "col-md-12 pt-2",
+      "title": "fatherData",
+      "text": "pleaseInsertFatherData"
     },
-    "config": [
-      {
-        "type": "label",
-        "width": "col-md-12 pt-2",
-        "title": "Podaci o ocu",
-        "text": "Molimo unesite neke osnovne podatke o ocu"
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-12 hide",
-        "class": "e-outline",
-        "name": "father_id",
-        "title": "ID",
-        "field": "father_id",
-        "readonly": true
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-6",
-        "class": "e-outline",
-        "name": "father_firstname",
-        "title": "Firstname",
-        "field": "father_firstname"
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-6",
-        "class": "e-outline",
-        "name": "father_lastname",
-        "title": "Lastname",
-        "field": "father_lastname"
-      },
-      {
-        "type": "datepicker",
-        "width": "col-md-6",
-        "class": "e-outline",
-        "name": "father_birthday",
-        "title": "Birthday",
-        "field": "father_birthday"
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-6",
-        "class": "e-outline",
-        "name": "father_telephone",
-        "title": "Broj telefona",
-        "field": "father_telephone"
-      },
-  
-      {
-        "type": "label",
-        "width": "col-md-12 border-top mt-3 pt-3",
-        "title": "Podaci o majci",
-        "text": "Molimo unesite neke osnovne podatke o majci"
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-12 hide",
-        "class": "e-outline",
-        "name": "mother_id",
-        "title": "ID",
-        "field": "mother_id",
-        "readonly": true
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-6",
-        "class": "e-outline",
-        "name": "mother_firstname",
-        "title": "Firstname",
-        "field": "mother_firstname"
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-6",
-        "class": "e-outline",
-        "name": "mother_lastname",
-        "title": "Lastname",
-        "field": "mother_lastname"
-      },
-      {
-        "type": "datepicker",
-        "width": "col-md-6",
-        "class": "e-outline",
-        "name": "mother_birthday",
-        "title": "Birthday",
-        "field": "mother_birthday"
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-6",
-        "class": "e-outline",
-        "name": "mother_telephone",
-        "title": "Broj telefona",
-        "field": "mother_telephone"
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-7",
-        "class": "e-outline",
-        "name": "mother_address",
-        "title": "Adresa",
-        "field": "mother_address"
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-2",
-        "class": "e-outline",
-        "name": "mother_zipCode",
-        "title": "Zip kod",
-        "field": "mother_zipCode"
-      },
-      {
-        "type": "textbox",
-        "width": "col-md-3",
-        "class": "e-outline",
-        "name": "mother_city",
-        "title": "Grad",
-        "field": "mother_city"
-      },
-      {
-        "type": "button",
-        "width": "col-md-12",
-        "class": "button-action e-info",
-        "name": "submit",
-        "title": "Sacuvaj",
-        "field": "submit",
-        "positionClass": "position-end mt-3 col-md-12"
-      }
-    ]
-  }
-  
+    {
+      "type": "textbox",
+      "width": "col-md-12 hide",
+      "class": "e-outline",
+      "name": "father_id",
+      "title": "ID",
+      "field": "father_id",
+      "readonly": true
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "father_firstname",
+      "title": "firstname",
+      "field": "father_firstname"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "father_lastname",
+      "title": "lastname",
+      "field": "father_lastname"
+    },
+    {
+      "type": "datepicker",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "father_birthday",
+      "title": "birthday",
+      "field": "father_birthday"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "father_telephone",
+      "title": "telephone",
+      "field": "father_telephone"
+    },
+    {
+      "type": "label",
+      "width": "col-md-12 border-top mt-3 pt-3",
+      "title": "motherData",
+      "text": "pleaseInsertMotherData"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-12 hide",
+      "class": "e-outline",
+      "name": "mother_id",
+      "title": "ID",
+      "field": "mother_id",
+      "readonly": true
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "mother_firstname",
+      "title": "firstname",
+      "field": "mother_firstname"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "mother_lastname",
+      "title": "lastname",
+      "field": "mother_lastname"
+    },
+    {
+      "type": "datepicker",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "mother_birthday",
+      "title": "birthday",
+      "field": "mother_birthday"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-6",
+      "class": "e-outline",
+      "name": "mother_telephone",
+      "title": "telephone",
+      "field": "mother_telephone"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-7",
+      "class": "e-outline",
+      "name": "mother_address",
+      "title": "address",
+      "field": "mother_address"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-2",
+      "class": "e-outline",
+      "name": "mother_zipCode",
+      "title": "zipCode",
+      "field": "mother_zipCode"
+    },
+    {
+      "type": "textbox",
+      "width": "col-md-3",
+      "class": "e-outline",
+      "name": "mother_city",
+      "title": "city",
+      "field": "mother_city"
+    },
+    {
+      "type": "button",
+      "width": "col-md-12",
+      "class": "button-action e-info",
+      "name": "submit",
+      "title": "saveButton",
+      "field": "submit",
+      "positionClass": "position-end mt-3 col-md-12"
+    }
+  ]
+}

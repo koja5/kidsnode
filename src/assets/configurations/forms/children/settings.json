@@ -66,7 +66,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "price",
-      "title": "Mesečno plaćanje(izraženo u dinarima)",
+      "title": "monthlyPayment",
       "field": "price"
     },
     {

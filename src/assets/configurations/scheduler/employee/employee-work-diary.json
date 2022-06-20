@@ -77,7 +77,7 @@
             "class": "e-outline",
             "fieldClass": "e-field e-input",
             "name": "work_structure",
-            "title": "Obrok",
+            "title": "type",
             "field": {
                 "text": "name",
                 "value": "id"
@@ -106,7 +106,7 @@
         },
         {
             "type": "datetimepicker",
-            "title": "Start",
+            "title": "start",
             "width": "col-md-12",
             "class": "e-outline",
             "fieldClass": "e-field e-input",
@@ -115,7 +115,7 @@
         },
         {
             "type": "datetimepicker",
-            "title": "End",
+            "title": "end",
             "width": "col-md-12",
             "class": "e-outline",
             "fieldClass": "e-field e-input",

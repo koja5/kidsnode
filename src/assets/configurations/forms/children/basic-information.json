@@ -2,7 +2,9 @@
   "request": {
     "type": "GET",
     "api": "/api/getChildrenById/",
-    "url": ["id"],
+    "url": [
+      "id"
+    ],
     "parameters": [],
     "fields": "",
     "root": ""
@@ -11,8 +13,8 @@
     {
       "type": "label",
       "width": "col-md-12 pt-2",
-      "title": "Podaci o detetu",
-      "text": "Molimo unesite neke osnovne podatke o detetu"
+      "title": "childrenData",
+      "text": "pleaseInsertChildrenData"
     },
     {
       "type": "textbox",
@@ -28,7 +30,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "firstname",
-      "title": "Firstname",
+      "title": "firstname",
       "field": "firstname"
     },
     {
@@ -36,7 +38,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "lastname",
-      "title": "Lastname",
+      "title": "lastname",
       "field": "lastname"
     },
     {
@@ -44,15 +46,15 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "gender",
-      "title": "Gender",
+      "title": "gender",
       "field": "gender",
       "itemFields": [
         {
-          "title": "Muski",
+          "title": "man",
           "value": "man"
         },
         {
-          "title": "Zenski",
+          "title": "woman",
           "value": "femaly"
         }
       ]
@@ -62,7 +64,7 @@
       "width": "col-md-6",
       "class": "e-outline",
       "name": "birthday",
-      "title": "Birthday",
+      "title": "birthday",
       "field": "birthday"
     },
     {
@@ -70,8 +72,11 @@
       "width": "col-md-12",
       "class": "e-outline",
       "name": "kindergarden_subgroup_id",
-      "title": "Kindergarden subgroup",
-      "field": { "text": "name", "value": "id" },
+      "title": "kindergardenSubgroupName",
+      "field": {
+        "text": "name",
+        "value": "id"
+      },
       "request": {
         "type": "GET",
         "api": "/api/getKindergardenSubgroup",

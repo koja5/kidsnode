@@ -1,19 +1,22 @@
 [
     {
         "name": "serbia",
-        "code": [
+        "code": "RS",
+        "similarCode": [
             "RS"
         ],
         "flag": "serbia.png"
     },
     {
         "name": "english",
-        "code": [],
+        "code": "EN",
+        "similarCode": [],
         "flag": "english.png"
     },
     {
         "name": "germany",
-        "code": [
+        "code": "DE",
+        "similarCode": [
             "AT",
             "DE"
         ],
