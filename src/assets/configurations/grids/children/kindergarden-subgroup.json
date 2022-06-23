@@ -48,7 +48,13 @@
     "Group",
     "Ungroup"
   ],
-  "toolbar": ["Add", "Edit", "Delete", "Print", "Search"],
+  "toolbar": [
+    "Add",
+    "Edit",
+    "Delete",
+    "Print",
+    "Search"
+  ],
   "editSettings": {
     "allowEditing": true,
     "allowAdding": true,
@@ -93,22 +99,26 @@
       "allowEditing": false
     },
     {
-      "title": "kindergarden_subgroup_name",
+      "title": "kindergardenSubgroupName",
       "filterable": true,
       "hideable": true,
       "type": "string",
       "class": "text-align-right",
       "field": "name",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     },
     {
-      "title": "kindergarden_group_name",
+      "title": "kindergardenGroupName",
       "filterable": true,
       "hideable": true,
       "type": "string",
       "class": "text-align-right",
       "field": "kindergarden_group_name",
-      "validation": { "required": true }
+      "validation": {
+        "required": true
+      }
     }
   ],
   "config": [
@@ -126,7 +136,7 @@
       "width": "col-md-12",
       "class": "e-outline",
       "name": "name",
-      "title": "Name",
+      "title": "kindergardenSubgroupName",
       "field": "name"
     },
     {
@@ -134,8 +144,11 @@
       "width": "col-md-12",
       "class": "e-outline",
       "name": "kindergarden_group_id",
-      "title": "Kindergarden group",
-      "field": { "text": "name", "value": "id" },
+      "title": "kindergardenGroupName",
+      "field": {
+        "text": "name",
+        "value": "id"
+      },
       "request": {
         "type": "GET",
         "api": "/api/getKindergardenGroupByKindergardenId",
@@ -155,7 +168,7 @@
       "width": "col-md-12",
       "class": "e-info button-action",
       "name": "submit",
-      "title": "Sacuvaj",
+      "title": "saveButton",
       "field": "submit",
       "positionClass": "position-end mt-3 col-md-12"
     }

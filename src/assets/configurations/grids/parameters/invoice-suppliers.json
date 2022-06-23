@@ -99,7 +99,7 @@
             "allowEditing": false
         },
         {
-            "title": "Dobavljač",
+            "title": "supplier",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -107,7 +107,7 @@
             "field": "supplier_name"
         },
         {
-            "title": "Cena",
+            "title": "price",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -115,7 +115,7 @@
             "field": "price"
         },
         {
-            "title": "Opis",
+            "title": "description",
             "filterable": true,
             "hideable": true,
             "type": "string",
@@ -123,7 +123,7 @@
             "field": "description"
         },
         {
-            "title": "Status",
+            "title": "status",
             "template": {
                 "choices": [
                     {
@@ -191,7 +191,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "supplier_id",
-            "title": "Dostavljač",
+            "title": "supplier",
             "field": {
                 "text": "name",
                 "value": "id"
@@ -214,7 +214,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "price",
-            "title": "Cena",
+            "title": "price",
             "field": "price"
         },
         {
@@ -223,7 +223,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "description",
-            "title": "Opis usluge",
+            "title": "description",
             "field": "description"
         },
         {

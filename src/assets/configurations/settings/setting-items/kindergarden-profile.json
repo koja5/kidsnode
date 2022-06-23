@@ -50,8 +50,8 @@
         {
             "type": "label",
             "width": "col-md-12",
-            "title": "Vrtić",
-            "text": "U nastavku se nalaze osnovne informaicije o Vašem vrtiću!"
+            "title": "kindergardenData",
+            "text": "pleaseInsertKindergardenData"
         },
         {
             "type": "textbox",
@@ -67,7 +67,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "name",
-            "title": "Ime vrtića",
+            "title": "kindergardenName",
             "field": "name"
         },
         {
@@ -75,7 +75,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "address",
-            "title": "Adresa",
+            "title": "address",
             "field": "address"
         },
         {
@@ -83,7 +83,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "city",
-            "title": "Grad",
+            "title": "city",
             "field": "city"
         },
         {
@@ -91,7 +91,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "zip_code",
-            "title": "Postanski broj",
+            "title": "zipCode",
             "field": "zip_code"
         },
         {
@@ -107,7 +107,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "email",
-            "title": "Email",
+            "title": "email",
             "field": "email"
         },
         {
@@ -115,21 +115,21 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "pib",
-            "title": "PIB",
+            "title": "pib",
             "field": "pib"
         },
         {
             "type": "label",
             "width": "col-md-12",
-            "title": "Kontakt osoba",
-            "text": "Osnovne informacije o kontakt osobi."
+            "title": "contactPerson",
+            "text": "contactPersonText"
         },
         {
             "type": "textbox",
             "width": "col-md-6",
             "class": "e-outline",
             "name": "contact_person_firstname",
-            "title": "Ime",
+            "title": "firstname",
             "field": "contact_person_firstname"
         },
         {
@@ -137,7 +137,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "contact_person_lastname",
-            "title": "Prezime",
+            "title": "lastname",
             "field": "contact_person_lastname"
         },
         {
@@ -145,7 +145,7 @@
             "width": "col-md-12",
             "class": "e-outline",
             "name": "contact_person_address",
-            "title": "Adresa",
+            "title": "address",
             "field": "contact_person_address"
         },
         {
@@ -153,7 +153,7 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "contact_person_telephone",
-            "title": "Telefon",
+            "title": "telefon",
             "field": "contact_person_telephone"
         },
         {
@@ -161,21 +161,21 @@
             "width": "col-md-6",
             "class": "e-outline",
             "name": "contact_person_email",
-            "title": "Email",
+            "title": "email",
             "field": "contact_person_email"
         },
         {
             "type": "label",
             "width": "col-md-12",
-            "title": "Finansije",
-            "text": "Broj ziro racuna vrtića na kome stizati uplate"
+            "title": "finance",
+            "text": "financeText"
         },
         {
             "type": "textbox",
             "width": "col-md-6",
             "class": "e-outline",
             "name": "account_number",
-            "title": "Broj žiro računa vrtića",
+            "title": "accountNumber",
             "field": "account_number"
         },
         {

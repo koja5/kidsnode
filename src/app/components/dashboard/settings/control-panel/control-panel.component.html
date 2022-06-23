@@ -22,11 +22,19 @@
                       <a
                         class="heading text-primary stretched-link"
                         routerLink="{{ item.link }}"
-                        >{{ item.title }}</a
+                        >{{
+                          language[item.title]
+                            ? language[item.title]
+                            : item.title
+                        }}</a
                       >
                     </div>
                     <div class="text-alternate">
-                      {{ item.description }}
+                      {{
+                        language[item.description]
+                          ? language[item.description]
+                          : item.description
+                      }}
                     </div>
                   </div>
                 </div>

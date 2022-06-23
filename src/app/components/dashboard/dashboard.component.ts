@@ -170,6 +170,7 @@ export class DashboardComponent implements OnInit {
 
   initializeConfigurations() {
     this.language = this.helpService.getLanguage();
+    this.setNavBarButton();
     this.configurationService
       .getConfiguration('/navigation-menu', 'navigation-menu.json')
       .subscribe((data: any) => {
@@ -193,6 +194,11 @@ export class DashboardComponent implements OnInit {
       this.helpService.setLocalStorage('orientation', this.layoutOrientation);
     });
     this.initializeLayoutOrientation();
+  }
+
+  setNavBarButton() {
+    this.items[0].text = this.language.settings;
+    this.items[2].text = this.language.logout;
   }
 
   initializeLayoutOrientation() {

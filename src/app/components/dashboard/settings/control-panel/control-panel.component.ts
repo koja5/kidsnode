@@ -11,6 +11,7 @@ export class ControlPanelComponent implements OnInit {
   private path = 'settings';
   private file = 'control-panel.json';
   public configuration: any;
+  public language: any;
 
   constructor(
     private configurationService: ConfigurationService,
@@ -22,6 +23,7 @@ export class ControlPanelComponent implements OnInit {
   }
 
   initConfiguration() {
+    this.language = this.helpService.getLanguage();
     this.configurationService
       .getConfiguration(this.path, this.file)
       .subscribe((data) => {

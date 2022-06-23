@@ -1,7 +1,7 @@
 [
     {
-        "title": "Moj profil",
-        "description": "Osnovne informacije o meni",
+        "title": "settingMyProfileTitle",
+        "description": "settingMyProfileText",
         "icon": "account_circle",
         "link": "/dashboard/settings/owner-profile",
         "rights": [
@@ -9,8 +9,8 @@
         ]
     },
     {
-        "title": "Moj profil",
-        "description": "Osnovne informacije o meni",
+        "title": "settingMyProfileTitle",
+        "description": "settingMyProfileText",
         "icon": "account_circle",
         "link": "/dashboard/settings/employee-profile",
         "rights": [
@@ -18,14 +18,14 @@
         ]
     },
     {
-        "title": "Personalizacija",
-        "description": "Prilagodite izgled aplikacije onakako kako vi zelite...",
+        "title": "settingPersonalizationTitle",
+        "description": "settingPersonalizationText",
         "icon": "palette",
         "link": "/dashboard/settings/personalize"
     },
     {
-        "title": "Informacije o vrtiću",
-        "description": "Osnovne informacije o vrtiću(naziv vrtića, lokacija, broj telefona, mail adresa...)",
+        "title": "settingInfoAboutKindergardenTitle",
+        "description": "settingInfoAboutKindergardenText",
         "icon": "info",
         "link": "/dashboard/settings/kindergarden-profile",
         "rights": [
@@ -35,8 +35,8 @@
         ]
     },
     {
-        "title": "Promeni lozinku",
-        "description": "Promenite vasu trenutnu lozinku.",
+        "title": "settingChangeLanguageTitle",
+        "description": "settingChangeLanguageText",
         "icon": "lock",
         "link": "/dashboard/settings/change-password",
         "rights": ""
