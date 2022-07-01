@@ -10,7 +10,9 @@
     {
         "name": "english",
         "code": "EN",
-        "similarCode": [],
+        "similarCode": [
+            "EN"
+        ],
         "flag": "english.png"
     },
     {

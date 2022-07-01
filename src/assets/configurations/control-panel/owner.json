@@ -16,7 +16,7 @@
             "icon": "child_care"
         },
         {
-            "title": "Ukupan broj zaposlenih",
+            "title": "controlPanelWidgetTotalNumberOfEmployee",
             "width": "col-md-3",
             "name": "employees",
             "request": {
@@ -46,7 +46,7 @@
             "icon": "directions_run"
         },
         {
-            "title": "Saradnici",
+            "title": "controlPanelWidgetSupplier",
             "width": "col-md-3",
             "name": "suppliers",
             "request": {
