@@ -109,6 +109,24 @@
             </button>
           </div>
 
+          <div class="button-options center-text width-auto mr-3">
+            <mat-icon
+              class="screen"
+              *ngIf="!isFullScreen"
+              (click)="openFullscreen()"
+              >fullscreen</mat-icon
+            >
+            <mat-icon
+              class="screen"
+              *ngIf="isFullScreen"
+              (click)="closeFullscreen()"
+              >fullscreen_exit</mat-icon
+            >
+          </div>
+
+          <div class="button-options center-text width-auto">
+            <mat-icon aria-hidden="false" routerLink="../chat">chat</mat-icon>
+          </div>
           <div class="dropdown d-flex">
             <!-- <button
               type="button"

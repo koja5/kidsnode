@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserTypeGuardService } from 'src/app/services/login-guard/user-type-guard.service';
+import { ChatComponent } from '../chat/chat.component';
 import { ChildrenComponent } from '../children/children/children.component';
 import { ControlPanelComponent } from '../control-panel/control-panel/control-panel.component';
 import { EmployeeComponent } from '../employee/employee/employee.component';
@@ -82,7 +83,7 @@ const routes: Routes = [
       import('../invoice/routing-module/invoice.module').then(
         (m) => m.InvoiceModule
       ),
-  },
+  }
 ];
 
 @NgModule({

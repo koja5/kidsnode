@@ -377,3 +377,13 @@ input:focus-visible {
   height: 120px;
   margin-bottom: 10px;
 }
+
+mat-icon {
+  cursor: pointer;
+}
+
+.muted-link {
+  color: #afafaf;
+  float: left;
+  padding: 13px;
+}

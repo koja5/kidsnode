@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { PathComponent } from '../common/path/path.component';
 import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 import { UserTypeGuardService } from 'src/app/services/login-guard/user-type-guard.service';
-import { ReportingPresenceComponent } from '../employee/reporting-presence/reporting-presence.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };

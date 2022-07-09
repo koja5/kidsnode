@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/common/not-found/not-found.component';
+import { ChatComponent } from './components/dashboard/chat/chat.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home/home.component';
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
@@ -45,6 +46,10 @@ const routes: Routes = [
     component: NotFoundComponent,
   },
   {
+    path: 'chat',
+    component: ChatComponent,
+  },
+  {
     path: '**',
     pathMatch: 'full',
     component: NotFoundComponent,
@@ -52,9 +57,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

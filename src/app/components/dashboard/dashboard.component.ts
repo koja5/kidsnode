@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuEventArgs } from '@syncfusion/ej2-angular-navigations';
 import { ItemModel } from '@syncfusion/ej2-angular-splitbuttons';
@@ -115,6 +116,8 @@ export class DashboardComponent implements OnInit {
       },
     ],
   };
+  public elem: any;
+  public isFullScreen = false;
 
   constructor(
     private helpService: HelpService,
@@ -122,13 +125,16 @@ export class DashboardComponent implements OnInit {
     private configurationService: ConfigurationService,
     private router: Router,
     private messageService: MessageService,
-    private callApi: CallApiService
+    private callApi: CallApiService,
+    @Inject(DOCUMENT) private document: any
   ) {}
 
   ngOnInit(): void {
     this.checkInitialLayoutSettings();
     this.getUserInfo();
     this.initializeConfigurations();
+
+    this.elem = document.documentElement;
   }
 
   checkInitialLayoutSettings() {
@@ -346,5 +352,37 @@ export class DashboardComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  openFullscreen() {
+    if (this.elem.requestFullscreen) {
+      this.elem.requestFullscreen();
+    } else if (this.elem.mozRequestFullScreen) {
+      /* Firefox */
+      this.elem.mozRequestFullScreen();
+    } else if (this.elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.elem.webkitRequestFullscreen();
+    } else if (this.elem.msRequestFullscreen) {
+      /* IE/Edge */
+      this.elem.msRequestFullscreen();
+    }
+    this.isFullScreen = true;
+  }
+
+  closeFullscreen() {
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen();
+    } else if (this.document.mozCancelFullScreen) {
+      /* Firefox */
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
+      /* IE/Edge */
+      this.document.msExitFullscreen();
+    }
+    this.isFullScreen = false;
   }
 }

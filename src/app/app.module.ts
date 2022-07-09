@@ -18,6 +18,7 @@ import { OnlineStatusComponent } from './components/common/online-status/online-
 import { HomeComponent } from './components/home/home/home.component';
 import { RouterModule } from '@angular/router';
 import { LoaderBrandComponent } from './components/common/loader-brand/loader-brand.component';
+import { ChatComponent } from './components/dashboard/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { LoaderBrandComponent } from './components/common/loader-brand/loader-br
     OnlineStatusComponent,
     HomeComponent,
     LoaderBrandComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
