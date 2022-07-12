@@ -16,11 +16,9 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": { "@angular/*": [ "./node_modules/@angular/*" ] }
+    "lib": ["es2018", "dom"],
+    "paths": { "@angular/*": ["./node_modules/@angular/*"] },
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

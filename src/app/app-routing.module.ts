@@ -47,6 +47,11 @@ const routes: Routes = [
   },
   {
     path: 'chat',
+    canActivate: [LoginGuardService],
+    loadChildren: () =>
+      import('./components/dashboard/chat/routing-module/chat.module').then(
+        (m) => m.ChatModule
+      ),
     component: ChatComponent,
   },
   {

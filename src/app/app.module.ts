@@ -19,6 +19,8 @@ import { HomeComponent } from './components/home/home/home.component';
 import { RouterModule } from '@angular/router';
 import { LoaderBrandComponent } from './components/common/loader-brand/loader-brand.component';
 import { ChatComponent } from './components/dashboard/chat/chat.component';
+import { FIREBASE_OPTIONS } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,6 @@ import { ChatComponent } from './components/dashboard/chat/chat.component';
     OnlineStatusComponent,
     HomeComponent,
     LoaderBrandComponent,
-    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +43,7 @@ import { ChatComponent } from './components/dashboard/chat/chat.component';
     HttpClientModule,
     LoginModule,
   ],
-  providers: [],
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
