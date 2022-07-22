@@ -18,9 +18,6 @@ import { OnlineStatusComponent } from './components/common/online-status/online-
 import { HomeComponent } from './components/home/home/home.component';
 import { RouterModule } from '@angular/router';
 import { LoaderBrandComponent } from './components/common/loader-brand/loader-brand.component';
-import { ChatComponent } from './components/dashboard/chat/chat.component';
-import { FIREBASE_OPTIONS } from '@angular/fire';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -43,7 +40,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     LoginModule,
   ],
-  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

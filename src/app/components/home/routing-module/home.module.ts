@@ -19,6 +19,7 @@ import { AboutUsComponent } from '../pages/about-us/about-us.component';
 import { ContactUsComponent } from '../pages/contact-us/contact-us.component';
 import { FeaturesComponent } from '../pages/features/features.component';
 import { FeatureSectionComponent } from '../sections/feature-section/feature-section.component';
+import { FeatureDescriptionComponent } from '../sections/feature-description/feature-description.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -36,7 +37,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AboutUsComponent,
     ContactUsComponent,
     FeaturesComponent,
-    FeatureSectionComponent
+    FeatureSectionComponent,
+    FeatureDescriptionComponent
   ],
   imports: [CommonModule, FormsModule, HomedRouting],
   providers: [

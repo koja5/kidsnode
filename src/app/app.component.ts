@@ -11,7 +11,7 @@ import { CallApiService } from './services/call-api.service';
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   onlineEvent!: Observable<Event>;
   offlineEvent!: Observable<Event>;
   subscriptions: Subscription[] = [];
@@ -93,12 +93,5 @@ export class AppComponent implements OnInit, OnDestroy {
         this.helpService.setSelectionLanguage(code);
         this.loader = false;
       });
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-      this.connectionStatus = '';
-    });
   }
 }
