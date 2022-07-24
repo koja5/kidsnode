@@ -193,5 +193,68 @@
       </div>
     </div>
   </section>
+  <section class="image-feature ptb-120">
+    <div class="container">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-lg-5 col-12 order-lg-1">
+          <div class="feature-img-content">
+            <div class="section-heading">
+              <h2>{{language.homeThreeSectionItem4Title}}</h2>
+              <p>
+                {{language.homeThreeSectionItem4Text}}
+              </p>
+            </div>
+            <ul class="list-unstyled d-flex flex-wrap list-two-col mt-5">
+              <li>
+                <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
+                  <i class="fas fa-lock text-white bg-warning rounded"></i>
+                </div>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  {{ language.homeThreeSectionItem4LeftDescriptionTitle }}
+                </h3>
+                <p>
+                  {{ language.homeThreeSectionItem4LeftDescriptionText }}
+                </p>
+              </li>
+              <li>
+                <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
+                  <i class="fas fa-file text-white bg-info rounded"></i>
+                </div>
+                <h3 class="h5 {{ isMobile ? 'text-center' : '' }}">
+                  {{ language.homeThreeSectionItem4RightDescriptionTitle }}
+                </h3>
+                <p>
+                  {{ language.homeThreeSectionItem4RightDescriptionText }}
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 order-lg-0">
+          <div class="feature-img-holder p-5">
+            <div
+              class="bg-primary-soft p-5 rounded-custom position-relative d-block feature-img-wrap"
+            >
+              <div class="z-10 position-relative">
+                <img
+                  src="./assets/home/screen/desktop-chat.png"
+                  class="img-fluid rounded-custom position-relative"
+                  alt="feature-image"
+                />
+                <img
+                  src="./assets/home/screen/mobile-chat.png"
+                  class="img-fluid rounded-custom shadow position-absolute top--100 right--100 hide-medium mobile-chat"
+                  alt="feature-image"
+                />
+              </div>
+              <div
+                class="position-absolute bg-dark-soft z--1 dot-mask dm-size-12 dm-wh-250 bottom-right"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!--image feature section end-->
 </div>

@@ -1,0 +1,85 @@
+.mobile-chat {
+  width: 255px;
+}
+
+/*feature tow col list*/
+.list-two-col,
+.list-three-col {
+  max-width: 100%;
+}
+.list-two-col li {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 12px;
+}
+.list-three-col li {
+  flex: 0 0 33%;
+  max-width: 33%;
+  padding-right: 12px;
+}
+
+@media (min-width: 320px) and (max-width: 575px) {
+  .list-two-col li {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+@media (min-width: 320px) and (max-width: 767px) {
+  .list-three-col li {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.feature-img .feature-top-img {
+  position: absolute;
+  left: 0.5rem;
+  top: 5rem;
+}
+.feature-img-shape:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -60px;
+  z-index: -1;
+  width: 150px;
+  height: 150px;
+  transform: scale(-1, 1);
+  background-repeat: no-repeat;
+}
+@media (min-width: 320px) and (max-width: 575px) {
+  .feature-img-shape:before {
+    display: none;
+  }
+}
+.feature-img-shape-top-right:before {
+  background-image: url("../../../../../assets/home/shape/dot-big-square.svg");
+}
+@media (min-width: 320px) and (max-width: 991px) {
+  .hide-medium {
+    display: none;
+  }
+}
+
+.screenshots-content-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.roted-img-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-top: -100px;
+  perspective: 2200px;
+}
+.roted-img {
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  margin-bottom: -90px;
+  -webkit-transform: rotateX(50deg) rotateY(0) rotateZ(0);
+  transform: rotateX(50deg) rotateY(0) rotateZ(0);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
