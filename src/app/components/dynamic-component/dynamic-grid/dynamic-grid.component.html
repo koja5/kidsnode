@@ -20,8 +20,12 @@
     [allowPdfExport]="true"
     [pageSettings]="config.paging.settings"
     [allowFiltering]="config.filtering.enable"
+    [filterSettings]="config.filtering.settings"
+    [allowExcelExport]='true'
     [contextMenuItems]="config.contextMenuItems"
     (actionComplete)="actionComplete($event)"
+    (toolbarClick)='toolbarClick($event)'
+    
   >
     <e-columns>
       <e-column
@@ -37,6 +41,7 @@
         [allowEditing]="item.allowEditing"
         [format]="item.format"
         [validationRules]="item.validation"
+        [allowFiltering]="item.allowFiltering === false ? false : true"
       >
         <ng-template #template let-data *ngIf="item?.template">
           <div *ngIf="item.template.type === 'button'">

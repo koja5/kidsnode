@@ -10,7 +10,9 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   DialogEditEventArgs,
+  ExcelExportProperties,
   GridComponent,
+  PdfExportProperties,
 } from '@syncfusion/ej2-angular-grids';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { Subject, Subscription } from 'rxjs';
@@ -21,7 +23,8 @@ import { MessageService } from 'src/app/services/message.service';
 import { ToastrComponent } from '../common/toastr/toastr.component';
 import { DynamicFormsComponent } from '../dynamic-forms/dynamic-forms.component';
 import { saveAs } from 'file-saver';
-import { InvoiceModel } from 'src/app/models/invoice-model';
+import { FilterSettingsModel } from '@syncfusion/ej2-angular-grids';
+import { ClickEventArgs } from '@syncfusion/ej2-angular-navigations';
 
 @Component({
   selector: 'app-dynamic-grid',
@@ -50,6 +53,7 @@ export class DynamicGridComponent implements OnInit {
   public invoice: any = {};
   public invoiceAction!: string;
   public generateInvoice = false;
+  public filterOptions!: FilterSettingsModel;
 
   constructor(
     private configurationService: ConfigurationService,
@@ -65,6 +69,9 @@ export class DynamicGridComponent implements OnInit {
     this.loader = true;
     this.initializeConfig();
     this.subscribeMessageServices();
+    this.filterOptions = {
+      type: 'Menu',
+    };
   }
 
   @HostListener('window:resize', ['$event'])
@@ -279,6 +286,21 @@ export class DynamicGridComponent implements OnInit {
           this.generateInvoice = false;
         }, 100);
       }
+    }
+  }
+
+  toolbarClick(args: ClickEventArgs): void {
+    if (args.item.prefixIcon === 'e-excelexport') {
+      // 'Grid_excelexport' -> Grid component id + _ + toolbar item name
+      const excelExportProperties: ExcelExportProperties = {
+        exportType: 'CurrentPage',
+      };
+      this.grid.excelExport(excelExportProperties);
+    } else if (args.item.prefixIcon === 'e-pdfexport') {
+      const pdfExportProperties: PdfExportProperties = {
+        exportType: 'CurrentPage',
+      };
+      this.grid.pdfExport(pdfExportProperties);
     }
   }
 }

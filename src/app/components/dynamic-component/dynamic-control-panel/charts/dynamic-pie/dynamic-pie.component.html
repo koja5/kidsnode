@@ -30,7 +30,7 @@
 </div>
 
 <ejs-accumulationchart
-  *ngIf="!loader"
+  *ngIf="!loader && data.length"
   id="container{{ id }}"
   #pie
   style="display: block; width: 92%"

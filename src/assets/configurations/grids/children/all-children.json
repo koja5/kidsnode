@@ -22,7 +22,10 @@
     "group": []
   },
   "filtering": {
-    "enable": false
+    "enable": true,
+    "settings": {
+      "type": "Menu"
+    }
   },
   "customGrouping": false,
   "allowResizing": true,
@@ -54,6 +57,7 @@
     "Edit",
     "Delete",
     "Print",
+    "ExcelExport",
     "Search"
   ],
   "editSettings": {
@@ -182,6 +186,7 @@
       "type": "string",
       "class": "text-align-right",
       "field": "father_firstname",
+      "allowFiltering": false,
       "template": {
         "type": "button",
         "action": "open",

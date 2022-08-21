@@ -472,11 +472,13 @@ router.get(
                       res.json(err);
                     } else {
                       var body = [];
-                      body.push({ name: "Uplaćeno", value: paid[0].count });
-                      body.push({
-                        name: "Nije uplaćeno",
-                        value: unpaid[0].count,
-                      });
+                      if (paid[0].count && unpaid[0].count) {
+                        body.push({ name: "Uplaćeno", value: paid[0].count });
+                        body.push({
+                          name: "Nije uplaćeno",
+                          value: unpaid[0].count,
+                        });
+                      }
                       res.json(body);
                     }
                   }
@@ -518,11 +520,13 @@ router.get("/getInvoiceChildrenSumPaidUnpaid", auth, async (req, res, next) => {
                     res.json(err);
                   } else {
                     var body = [];
-                    body.push({ name: "Uplaćeno", value: paid[0].count });
-                    body.push({
-                      name: "Nije uplaćeno",
-                      value: unpaid[0].count,
-                    });
+                    if (paid[0].count && unpaid[0].count) {
+                      body.push({ name: "Uplaćeno", value: paid[0].count });
+                      body.push({
+                        name: "Nije uplaćeno",
+                        value: unpaid[0].count,
+                      });
+                    }
                     res.json(body);
                   }
                 }

@@ -151,9 +151,14 @@ router.post("/getDocument", async (req, res, next) => {
 });
 
 router.post("/getImage", async (req, res, next) => {
-  req.body.path = req.body.path.toString().replace("server\\", "");
-  filepath = path.join(__dirname, req.body.path);
-  res.sendFile(filepath);
+  console.log(req.body);
+  if (req.body.path !== "null") {
+    req.body.path = req.body.path.toString().replace("server\\", "");
+    filepath = path.join(__dirname, req.body.path);
+    res.sendFile(filepath);
+  } else {
+    res.send(null);
+  }
 });
 
 // END DOCUMENT ON CHILDREN PROFILE

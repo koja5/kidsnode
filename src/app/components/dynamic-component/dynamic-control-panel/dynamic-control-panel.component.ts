@@ -70,9 +70,18 @@ export class DynamicControlPanelComponent implements OnInit {
     const body = {
       path: logo,
     };
-    this.apiService.getImage(body).subscribe((data: any) => {
-      this.createImageFromBlob(data);
-    });
+    this.apiService.getImage(body).subscribe(
+      (data: any) => {
+        if (data && data.size) {
+          this.createImageFromBlob(data);
+        } else {
+          this.imageToShow = './assets/profile-icon/no-profile-icon.png';
+        }
+      },
+      (error) => {
+        this.imageToShow = './assets/profile-icon/no-profile-icon.png';
+      }
+    );
   }
 
   createImageFromBlob(image: Blob) {

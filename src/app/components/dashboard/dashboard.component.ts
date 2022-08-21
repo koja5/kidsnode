@@ -212,7 +212,7 @@ export class DashboardComponent implements OnInit {
       this.callApi
         .callGetMethod('/api/getPersonalize', '')
         .subscribe((data: any) => {
-          if (data) {
+          if (data && data.length) {
             this.layoutOrientation = data[0].orientation;
             this.helpService.setLocalStorage(
               'orientation',
