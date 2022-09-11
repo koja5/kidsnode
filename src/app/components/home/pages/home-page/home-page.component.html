@@ -1,16 +1,11 @@
 <div class="main-wrapper" *ngIf="language">
   <!--hero section start-->
-  <app-home-navigation-menu
-    [language]="language"
-    (sendEventForChangeLanguage)="sendEventForChangeLanguage($event)"
-  ></app-home-navigation-menu>
-  <section
-    class="hero-section ptb-120 position-relative overflow-hidden"
-    style="
+  <app-home-navigation-menu [language]="language" (sendEventForChangeLanguage)="sendEventForChangeLanguage($event)">
+  </app-home-navigation-menu>
+  <section class="hero-section ptb-120 position-relative overflow-hidden" style="
       background: url('./assets/home/shape/color-particles-2.svg') no-repeat
         center top;
-    "
-  >
+    ">
     <!-- <div class="cookie-message">
       <img src="https://img.icons8.com/plasticine/100/000000/cookie.png" />
       <span
@@ -43,54 +38,37 @@
               {{ language.homeOneSectionText }}
             </p>
             <div class="action-btns text-center pt-4">
-              <a
+              <!-- <a
                 routerLink="request-demo"
                 class="btn btn-primary {{
                   isMobile ? 'mb-3 width-60' : 'mr-3'
                 }} "
                 >{{ language.homeOneSectionButtonLeft }}</a
-              >
-              <a
-                routerLink="contact-us"
-                class="btn btn-outline-primary {{ isMobile ? 'width-60' : '' }}"
-                >{{ language.homeOneSectionButtonRight }}</a
-              >
+              > -->
+              <a routerLink="contact-us" class="btn btn-outline-primary {{ isMobile ? 'width-60' : '' }}">{{
+                language.homeOneSectionButtonRight }}</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-9">
           <div class="position-relative">
-            <ul
-              class="position-absolute animate-element parallax-element widget-img-wrap z-2"
-            >
+            <ul class="position-absolute animate-element parallax-element widget-img-wrap z-2">
               <li class="layer" data-depth="0.04">
-                <img
-                  src="./assets/home/screen/widget-3.png"
-                  alt="widget-img"
-                  class="img-fluid widget-img-1 position-absolute shadow-lg rounded-custom"
-                />
+                <img src="./assets/home/screen/widget-3.png" alt="widget-img"
+                  class="img-fluid widget-img-1 position-absolute shadow-lg rounded-custom" />
               </li>
               <li class="layer" data-depth="0.02">
-                <img
-                  src="./assets/home/screen/widget-4.png"
-                  alt="widget-img"
-                  class="img-fluid widget-img-3 position-absolute shadow-lg rounded-custom"
-                />
+                <img src="./assets/home/screen/widget-4.png" alt="widget-img"
+                  class="img-fluid widget-img-3 position-absolute shadow-lg rounded-custom" />
               </li>
             </ul>
-            <img
-              src="./assets/home/dashboard-img.png"
-              alt=""
-              class="img-fluid position-relative rounded-custom mt-5"
-            />
+            <img src="./assets/home/dashboard-img.png" alt="" class="img-fluid position-relative rounded-custom mt-5" />
           </div>
         </div>
       </div>
     </div>
-    <div
-      class="bg-dark position-absolute bottom-0 h-25 bottom-0 left-0 right-0 z--1 py-5"
-    ></div>
+    <div class="bg-dark position-absolute bottom-0 h-25 bottom-0 left-0 right-0 z--1 py-5"></div>
   </section>
   <!--hero section end-->
 
@@ -104,9 +82,7 @@
       </div>
       <div class="row">
         <div class="col-lg-4 col-md-4">
-          <div
-            class="review-info-wrap text-center rounded-custom d-flex flex-column h-100 p-5"
-          >
+          <div class="review-info-wrap text-center rounded-custom d-flex flex-column h-100 p-5">
             <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
               <i class="fas fa-globe text-white bg-success rounded"></i>
             </div>
@@ -119,9 +95,7 @@
           </div>
         </div>
         <div class="col-lg-4 col-md-4">
-          <div
-            class="review-info-wrap text-center rounded-custom d-flex flex-column h-100 p-5"
-          >
+          <div class="review-info-wrap text-center rounded-custom d-flex flex-column h-100 p-5">
             <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
               <i class="fas fa-users text-white bg-warning rounded"></i>
             </div>
@@ -134,9 +108,7 @@
           </div>
         </div>
         <div class="col-lg-4 col-md-4">
-          <div
-            class="review-info-wrap text-center rounded-custom d-flex flex-column h-100 p-5"
-          >
+          <div class="review-info-wrap text-center rounded-custom d-flex flex-column h-100 p-5">
             <div class="icon-box {{ isMobile ? 'text-center' : '' }}">
               <i class="fas fa-border-none text-white bg-primary rounded"></i>
             </div>
@@ -153,10 +125,7 @@
   </section>
   <!--customer review section end-->
 
-  <app-feature-description
-    [language]="language"
-    [isMobile]="isMobile"
-  ></app-feature-description>
+  <app-feature-description [language]="language" [isMobile]="isMobile"></app-feature-description>
 
   <!--features grid section start-->
 

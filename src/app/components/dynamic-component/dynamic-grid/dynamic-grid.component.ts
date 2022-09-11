@@ -164,6 +164,7 @@ export class DynamicGridComponent implements OnInit {
             });
         } else {
           this.toastr.showError();
+          this.grid.hideSpinner();
         }
       });
   }
@@ -267,6 +268,7 @@ export class DynamicGridComponent implements OnInit {
           } else {
             this.toastr.showError();
           }
+          this.grid.hideSpinner();
         });
       } else {
         if (template.fields && template.fields[event.item.properties.id]) {

@@ -789,6 +789,38 @@ router.post("/deleteChildren", auth, (req, res, next) => {
 
 /* ALL CHILDRENS END */
 
+router.get("/getChildrensPerGroup", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        conn.query(
+          "select c.id as children_id, c.firstname as children_firstname, c.lastname as children_lastname, c.birthday as children_birthday, c.gender as children_gender, p1.firstname as mother_firstname, p1.lastname as mother_lastname, p2.firstname as father_firstname, p2.lastname as father_lastname, ks.id as kindergarden_subgroup_id from childrens c join parents p1 on c.mother_id = p1.id join parents p2 on c.father_id = p2.id join kindergarden_subgroup ks on c.kindergarden_subgroup_id = ks.id join employees e on c.kindergarden_subgroup_id = e.kindergarden_subgroup_id where c.kindergarden_id = ? and e.id = ?",
+          [req.user.user.kindergarden, req.user.user.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* CHILDRENS PER GROUP */
+
+/* END CHILDRENS PER GROUP */
+
 /* CHILDREN NOTES */
 
 router.get(
@@ -1984,8 +2016,8 @@ router.get("/getChildrensAndAbsense", auth, async (req, res, next) => {
       } else {
         const date = new Date().toLocaleDateString("en-US");
         conn.query(
-          "select * from childrens c where c.kindergarden_id = ?",
-          [req.user.user.kindergarden],
+          "select * from childrens c join employees e on c.kindergarden_subgroup_id = e.kindergarden_subgroup_id where c.kindergarden_id = ? and e.id = ?",
+          [req.user.user.kindergarden, req.user.user.id],
           function (err, rows, fields) {
             conn.release();
             if (err) {
@@ -2017,6 +2049,7 @@ router.post(
         if (err) {
           res.json(err);
         }
+        console.log(req.user);
         const data = {
           kindergarden_id: req.user.user.kindergarden,
           creator_id: req.user.user.id,
@@ -2027,6 +2060,8 @@ router.post(
           StartTime: new Date(req.body.StartTime),
           EndTime: new Date(req.body.EndTime),
         };
+        // ovde verovatno treba da se insertuje na sledeci nacin zbog spoljnog kljuca
+        //insert into calendar_of_children_activity(kolona1, kolona 2) values(vrednost 1, vrednost 2...)
         conn.query(
           "insert into calendar_of_children_activity SET ?",
           [data],

@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { CalendarOfActivityComponent } from '../calendar-of-activity/calendar-of-activity.component';
 import { FormsModule } from '@angular/forms';
 import { CommonDashboardModule } from '../../common/common-dashboard.module';
+import { ChildrenPerGroupComponent } from '../children-per-group/children-per-group.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CommonDashboardModule } from '../../common/common-dashboard.module';
     ProfileChildrenComponent,
     RecordsOfArrivalsComponent,
     CalendarOfActivityComponent,
+    ChildrenPerGroupComponent
   ],
   imports: [
     FormsModule,

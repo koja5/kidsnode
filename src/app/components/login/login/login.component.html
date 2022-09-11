@@ -19,12 +19,12 @@
               </div>
               <div *ngIf="formIndicator === 'login'" class="login-container">
                 <h3>{{ language.loginTitle }}</h3>
-                <p>
+                <!-- <p>
                   {{ language.loginNoHaveAccount }}
                   <a class="signup-link" routerLink="/request-demo">{{
                     language.loginCreateAccount
                   }}</a>
-                </p>
+                </p> -->
                 <p *ngIf="notCorrect">
                   {{ language.notCorrectUserOrPassword }}
                 </p>

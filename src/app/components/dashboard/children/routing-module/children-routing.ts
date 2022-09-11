@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AllChildrenComponent } from '../all-children/all-children.component';
 import { ProfileChildrenComponent } from '../all-children/profile-children/profile-children.component';
 import { CalendarOfActivityComponent } from '../calendar-of-activity/calendar-of-activity.component';
+import { ChildrenPerGroupComponent } from '../children-per-group/children-per-group.component';
 import { KindergardenGroupComponent } from '../kindergarden-group/kindergarden-group.component';
 import { KindergardenSubgroupComponent } from '../kindergarden-subgroup/kindergarden-subgroup.component';
 import { RecordsOfArrivalsComponent } from '../records-of-arrivals/records-of-arrivals.component';
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'all-childrens',
     component: AllChildrenComponent
+  },
+  {
+    path: 'childrens-per-group',
+    component: ChildrenPerGroupComponent
   },
   {
     path: 'profile-children/:id',

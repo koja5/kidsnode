@@ -25,7 +25,7 @@ import { LoaderBrandComponent } from './components/common/loader-brand/loader-br
     NotFoundComponent,
     OnlineStatusComponent,
     HomeComponent,
-    LoaderBrandComponent,
+    LoaderBrandComponent
   ],
   imports: [
     BrowserModule,

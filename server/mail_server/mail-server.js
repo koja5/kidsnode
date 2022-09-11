@@ -22,8 +22,8 @@ const logger = require("../config/logger");
 var smtpTransport = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "akojicpmf@gmail.com",
-    pass: "vrbovac12345",
+    user: "kidsnodeoffice@gmail.com",
+    pass: "rvciekpadttcvbwt",
   },
 });
 
