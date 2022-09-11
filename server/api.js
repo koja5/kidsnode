@@ -163,8 +163,8 @@ router.post("/login", function (req, res, next) {
           logger.log("error", err.sql + ". " + err.sqlMessage);
           res.json(err);
         }
-        console.log(rows);
         if (rows.length > 0) {
+          conn.end();
           const token = jwt.sign(
             {
               user: {
@@ -196,6 +196,7 @@ router.post("/login", function (req, res, next) {
             "SELECT * FROM employees WHERE active = 1 AND email=? AND password=?",
             [req.body.username, sha1(req.body.password)],
             function (err, rows, fields) {
+              conn.end();
               if (err) {
                 logger.log("error", err.sql + ". " + err.sqlMessage);
                 res.json(err);

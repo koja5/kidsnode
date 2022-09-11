@@ -1,7 +1,4 @@
-<section
-  class="cta-subscribe bg-dark ptb-120 position-relative overflow-hidden"
-  *ngIf="language"
->
+<section class="cta-subscribe bg-dark ptb-120 position-relative overflow-hidden" *ngIf="language">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-7 col-md-8">
@@ -15,7 +12,7 @@
               {{ language.subscribeSectionText }}
             </p>
           </div>
-          <div class="form-block-banner mw-60 m-auto mt-5">
+          <!-- <div class="form-block-banner mw-60 m-auto mt-5">
             <form
               id="email-form2"
               name="email-form"
@@ -33,41 +30,27 @@
                 {{ language.subscribeSectionSendButton }}
               </button>
             </form>
-          </div>
+          </div> -->
           <ul class="nav justify-content-center subscribe-feature-list mt-3">
             <li class="nav-item">
-              <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i
-                >{{ language.subscribeSectionTryPeriod }}</span
-              >
+              <span><i class="fa fa-dot-circle text-primary mr-2"></i>{{ language.subscribeSectionTryPeriod }}</span>
             </li>
             <li class="nav-item">
-              <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i
-                >{{ language.subscribeSectionNoNeedCreditCard }}</span
-              >
+              <span><i class="fa fa-dot-circle text-primary mr-2"></i>{{ language.subscribeSectionNoNeedCreditCard
+                }}</span>
             </li>
             <li class="nav-item">
-              <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i
-                >{{ language.subscribeSectionSupport }}</span
-              >
+              <span><i class="fa fa-dot-circle text-primary mr-2"></i>{{ language.subscribeSectionSupport }}</span>
             </li>
             <li class="nav-item">
-              <span
-                ><i class="fa fa-dot-circle text-primary mr-2"></i
-                >{{ language.subscribeSectionAnytimeCancel }}</span
-              >
+              <span><i class="fa fa-dot-circle text-primary mr-2"></i>{{ language.subscribeSectionAnytimeCancel
+                }}</span>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <div
-      class="bg-circle rounded-circle circle-shape-3 position-absolute bg-dark-light left-5"
-    ></div>
-    <div
-      class="bg-circle rounded-circle circle-shape-1 position-absolute bg-warning right-5"
-    ></div>
+    <div class="bg-circle rounded-circle circle-shape-3 position-absolute bg-dark-light left-5"></div>
+    <div class="bg-circle rounded-circle circle-shape-1 position-absolute bg-warning right-5"></div>
   </div>
 </section>

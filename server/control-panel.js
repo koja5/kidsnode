@@ -238,7 +238,7 @@ router.post("/signOutWork", auth, function (req, res, next) {
       }
       var tzoffset = new Date().getTimezoneOffset() * 60000;
       var today = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
-      req.body.start_date = date;
+      const date = new Date();
       req.body.kindergarden_id = req.user.user.kindergarden;
       req.body.employee_id = req.user.user.id;
       conn.query(
