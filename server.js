@@ -8,7 +8,8 @@ const upload = require("./server/upload");
 const controlPanel = require("./server/control-panel");
 const mailServer = require("./server/mail_server/mail-server");
 const schedule = require("node-schedule");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
+const chat = require("./server/chat");
 
 //AUTOMATE SCRIPTS
 const createChildrenInvoice = require("./server/automate_scripts/create_children_invoice");
@@ -52,7 +53,16 @@ app.get("*", (req, res) => {
 const port = process.env.PORT || "3001";
 app.set("port", port);
 const server = http.createServer(app);
+
+//SOCKET CHAT
+chat(server);
+//SOCKET CHAT END
+
 server.listen(port, () => console.log(`API running on localhost:${port}`));
+
+//chat
+
+//chat END
 
 // AUTOMATE WORK
 

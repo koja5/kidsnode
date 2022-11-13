@@ -7,7 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "client": "ng serve --port 4201 --proxy-config proxy.config.json",
+    "client": "node --max-old-space-size=4096 node_modules/@angular/cli/bin/ng serve --configuration development --port 4201 --proxy-config proxy.config.json",
     "server": "nodemon server.js --port 3001",
     "start": "npx npm-run-all -p client server",
     "build": "ng serve --port 3000 --open && nodemon server",

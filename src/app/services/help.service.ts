@@ -247,6 +247,16 @@ export class HelpService {
     return token.kindergarden_logo;
   }
 
+  getKindergardenId() {
+    const token = this.getDecodeToken();
+    return token.kindergarden;
+  }
+
+  getUserId() {
+    const token = this.getDecodeToken();
+    return token.id;
+  }
+
   setLogoInToken(value: string) {
     const token = this.getDecodeToken();
     token.logo = value;

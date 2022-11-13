@@ -9,6 +9,8 @@ import { ConfigurationService } from 'src/app/services/configuration.service';
 import { HelpService } from 'src/app/services/help.service';
 import { MessageService } from 'src/app/services/message.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { io } from 'socket.io-client';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -118,6 +120,7 @@ export class DashboardComponent implements OnInit {
   };
   public elem: any;
   public isFullScreen = false;
+  private socket: any;
 
   constructor(
     private helpService: HelpService,
@@ -126,8 +129,12 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private messageService: MessageService,
     private callApi: CallApiService,
+    private chatService: ChatService,
     @Inject(DOCUMENT) private document: any
-  ) {}
+  ) {
+    this.socket = io('ws://localhost:3001');
+    this.chatService.joinToKindergarden();
+  }
 
   ngOnInit(): void {
     this.checkInitialLayoutSettings();
@@ -135,6 +142,11 @@ export class DashboardComponent implements OnInit {
     this.initializeConfigurations();
 
     this.elem = document.documentElement;
+
+    this.socket.on('received_message', (data: any) => {
+      alert('Message + ' + data.message + ' from ' + data.sender_id);
+    });
+    this.chatService.checkWhenNewClientLogged();
   }
 
   checkInitialLayoutSettings() {
@@ -385,4 +397,8 @@ export class DashboardComponent implements OnInit {
     }
     this.isFullScreen = false;
   }
+
+  //socket
+
+  
 }

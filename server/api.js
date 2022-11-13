@@ -4539,4 +4539,37 @@ router.post("/sendFromContactForm", function (req, res, next) {
 
 /* END LANDING PAGES */
 
+/* GET ALL USERS FOR CHAT */
+
+router.get("/getAllUsersForChat", auth, async (req, res, next) => {
+  try {
+    connection.getConnection(function (err, conn) {
+      if (err) {
+        logger.log("error", err.sql + ". " + err.sqlMessage);
+        res.json(err);
+      } else {
+        console.log(req.user.user.kindergarden);
+        conn.query(
+          "select distinct * from employees e where e.kindergarden_id = ? and e.id != ?",
+          [req.user.user.kindergarden, req.user.user.id],
+          function (err, rows, fields) {
+            conn.release();
+            if (err) {
+              logger.log("error", err.sql + ". " + err.sqlMessage);
+              res.json(err);
+            } else {
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  } catch (ex) {
+    logger.log("error", err.sql + ". " + err.sqlMessage);
+    res.json(ex);
+  }
+});
+
+/* END GET ALL USERS FOR CHAT */
+
 module.exports = router;

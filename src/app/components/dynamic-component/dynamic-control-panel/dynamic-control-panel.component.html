@@ -11,11 +11,7 @@
               </div>
             </div>
             <div class="col-5 align-self-end">
-              <img
-                src="./assets/profile-icon/{{ user.type }}.png"
-                alt=""
-                class="img-fluid"
-              />
+              <img src="./assets/profile-icon/{{ user.type }}.png" alt="" class="img-fluid" />
             </div>
           </div>
         </div>
@@ -24,35 +20,23 @@
             <div class="col-sm-4">
               <div class="avatar-md profile-user-wid mb-4">
                 <app-loader-content *ngIf="!imageToShow"></app-loader-content>
-                <img
-                  *ngIf="imageToShow"
-                  [src]="imageToShow"
-                  alt=""
-                  class="img-thumbnail rounded-circle image-profile"
-                />
+                <img *ngIf="imageToShow" [src]="imageToShow" alt=""
+                  class="img-thumbnail rounded-circle image-profile" />
               </div>
               <h6 class="font-size-15 text-truncate">{{ user.name }}</h6>
               <p class="text-muted mb-0 text-truncate">{{ user.typeName }}</p>
             </div>
 
             <!-- POPRAVI PRIJAVLJIVANJE I ODJAVLJIVANJE -->
-            <!-- <div class="col-sm-8">
+            <div class="col-sm-8">
               <div class="pt-4">
                 <div class="text-center">
-                  <a
-                    *ngIf="signInIndicator === 1"
-                    class="button-action e-btn e-control e-info"
-                    (click)="signInWork()"
-                    >{{ language.signInWork }}
-                    <i class="mdi mdi-arrow-right ms-1"></i
-                  ></a>
-                  <a
-                    *ngIf="signInIndicator === 0"
-                    class="button-action e-btn e-control e-danger"
-                    (click)="signOutWork()"
-                    >{{ language.signOutWork }}
-                    <i class="mdi mdi-arrow-right ms-1"></i
-                  ></a>
+                  <a *ngIf="signInIndicator === 1" class="button-action e-btn e-control e-info"
+                    (click)="signInWork()">{{ language.signInWork }}
+                    <i class="mdi mdi-arrow-right ms-1"></i></a>
+                  <a *ngIf="signInIndicator === 0" class="button-action e-btn e-control e-danger"
+                    (click)="signOutWork()">{{ language.signOutWork }}
+                    <i class="mdi mdi-arrow-right ms-1"></i></a>
                 </div>
                 <div class="text-center mt-4 text-muted">
                   <p *ngIf="signWorkDate.start_date" class="mb-0">
@@ -65,26 +49,20 @@
                   </p>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div
-      *ngIf="!loader && config.widgets"
-      class="col-xs-12 col-md-12 col-lg-8"
-      [ngClass]="config.widgets ? 'pb-4' : ''"
-    >
+    <div *ngIf="!loader && config.widgets" class="col-xs-12 col-md-12 col-lg-8"
+      [ngClass]="config.widgets ? 'pb-4' : ''">
       <app-widgets [config]="config"></app-widgets>
     </div>
   </div>
 
   <div *ngIf="!loader">
     <div *ngIf="config.charts" class="row">
-      <div
-        *ngFor="let item of config.charts; let i = index"
-        class="{{ item.width ? item.width : 'col-md-12' }}  mb-4"
-      >
+      <div *ngFor="let item of config.charts; let i = index" class="{{ item.width ? item.width : 'col-md-12' }}  mb-4">
         <div>
           <div class="card">
             <div class="card-body" style="position: relative">
@@ -92,25 +70,15 @@
                 <div class="col-md-12">
                   <h4 class="card-title mb-4 text-muted">
                     {{
-                      language[item.title] ? language[item.title] : item.title
+                    language[item.title] ? language[item.title] : item.title
                     }}
                   </h4>
                 </div>
               </div>
               <div id="stacked-column-chart" class="apex-charts">
-                <app-dynamic-pie
-                  #{{i}}
-                  *ngIf="item.type === 'Pie'"
-                  [config]="item"
-                  [id]="i"
-                ></app-dynamic-pie>
-                <app-dynamic-column
-                  #{{i}}
-                  *ngIf="item.type !== 'Pie' && item.type !== 'Grid'"
-                  [config]="item"
-                  [id]="i"
-                  [type]="item?.type"
-                ></app-dynamic-column>
+                <app-dynamic-pie #{{i}} *ngIf="item.type === 'Pie'" [config]="item" [id]="i"></app-dynamic-pie>
+                <app-dynamic-column #{{i}} *ngIf="item.type !== 'Pie' && item.type !== 'Grid'" [config]="item" [id]="i"
+                  [type]="item?.type"></app-dynamic-column>
               </div>
             </div>
           </div>
