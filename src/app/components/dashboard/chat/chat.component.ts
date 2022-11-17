@@ -16,15 +16,18 @@ export class ChatComponent implements OnInit {
   public language: any;
   public message = '';
   public messages: any[] = [];
+  public newMessages: any[] = [];
   public users: any;
   public allUsers: any;
   public searchTerm = '';
-  public receiveUser!: number;
-  private socket: any;
+  public receiveUser: any;
+  public loader = false;
+  public newMessageNotification: any = {};
+  public kindergardenId: any;
 
   constructor(
     private callApi: CallApiService,
-    private helpService: HelpService,
+    public helpService: HelpService,
     private chatService: ChatService
   ) {
     this.chatService.joinToKindergarden();
@@ -35,6 +38,19 @@ export class ChatComponent implements OnInit {
     this.getAllUsersForChat();
     this.chatService.checkWhenNewClientLogged();
     this.chatService.getMessage(this.messages);
+    this.chatService.getNewMessageNotification(this.newMessageNotification);
+    this.getInfoAboutUnreadMessage();
+    this.kindergardenId = this.helpService.getKindergardenId();
+  }
+
+  ngOnDestroy(): void {}
+
+  getInfoAboutUnreadMessage() {
+    const unreadMessage =
+      this.helpService.getSessionStorage('new_unread_message');
+    for (let i = 0; i < unreadMessage.length; i++) {
+      this.newMessageNotification[unreadMessage[i]] = true;
+    }
   }
 
   getAllUsersForChat() {
@@ -51,12 +67,15 @@ export class ChatComponent implements OnInit {
       const data = {
         kindergarden: this.helpService.getKindergardenId(),
         sender_id: this.helpService.getUserId(),
-        received_id: this.receiveUser,
+        received_id: this.receiveUser.id,
         message: this.message,
       };
       this.messages.push(data);
+      this.newMessages.push(data);
       this.message = '';
       this.chatService.sendMessage(data);
+      this.chatService.addMessage(data).subscribe((data) => {});
+      this.autoScroll();
     }
   }
 
@@ -66,7 +85,62 @@ export class ChatComponent implements OnInit {
     );
   }
 
-  selectUser(id: number) {
-    this.receiveUser = id;
+  selectUser(item: any) {
+    this.loader = true;
+    this.receiveUser = item;
+    this.chatService.getMessages(item.id.toString()).subscribe((data: any) => {
+      console.log(data);
+      this.messages = data;
+      this.chatService.getMessage(this.messages);
+      this.loader = false;
+    });
+    if (this.newMessageNotification[item.id]) {
+      delete this.newMessageNotification[item.id];
+      this.helpService.setSessionStorage(
+        'new_unread_message',
+        this.newMessageNotification
+      );
+    }
+  }
+
+  autoScroll() {
+    var elem = document.getElementById('messages');
+    var atbottom = this.scrollAtBottom(elem);
+    var isWebkit = 'WebkitAppearance' in document.documentElement.style;
+    var isEdge = '-ms-accelerator' in document.documentElement.style;
+    var tempCounter = 6;
+    if (atbottom) {
+      this.updateScroll(elem);
+    }
+  }
+
+  updateScroll(el: any) {
+    setTimeout(() => {
+      var elem = document.getElementById('messages');
+      if (elem) {
+        elem.scrollTop = elem.scrollHeight + 20;
+      }
+    }, 20);
+  }
+  scrollAtBottom(el: any) {
+    if (el) {
+      return el.scrollTop + 5 >= el.scrollHeight - el.offsetHeight;
+    }
+    return false;
+  }
+
+  selectKindergarden() {
+    this.loader = true;
+    this.receiveUser = {
+      id: this.helpService.getKindergardenId(),
+    };
+    this.chatService
+      .getMessages(this.receiveUser.id.toString())
+      .subscribe((data: any) => {
+        console.log(data);
+        this.messages = data;
+        this.chatService.getMessage(this.messages);
+        this.loader = false;
+      });
   }
 }

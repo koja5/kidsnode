@@ -257,6 +257,16 @@ export class HelpService {
     return token.id;
   }
 
+  getUserFirstname() {
+    const token = this.getDecodeToken();
+    return token.firstname ? token.firstname : '';
+  }
+
+  getUserLastname() {
+    const token = this.getDecodeToken();
+    return token.lastname ? token.lastname : '';
+  }
+
   setLogoInToken(value: string) {
     const token = this.getDecodeToken();
     token.logo = value;

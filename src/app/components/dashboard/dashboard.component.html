@@ -1,7 +1,4 @@
-<body
-  data-topbar="dark"
-  [ngClass]="[sidebarClass, layoutOrientation, mobileClass]"
->
+<body data-topbar="dark" [ngClass]="[sidebarClass, layoutOrientation, mobileClass]">
   <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
   <!-- Begin page -->
@@ -30,28 +27,14 @@
             </a>
           </div>
 
-          <button
-            *ngIf="layoutOrientation === 'vertical'"
-            type="button"
-            class="btn btn-sm px-3 font-size-16 header-item waves-effect"
-            id="vertical-menu-btn"
-          >
-            <mat-icon (click)="collapseSidebar()" style="font-size: 30px"
-              >swap_horiz</mat-icon
-            >
+          <button *ngIf="layoutOrientation === 'vertical'" type="button"
+            class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+            <mat-icon (click)="collapseSidebar()" style="font-size: 30px">swap_horiz</mat-icon>
           </button>
-          <button
-            *ngIf="layoutOrientation === 'horizontal' && mobile"
-            type="button"
-            class="btn btn-sm px-3 font-size-16 header-item waves-effect"
-            (click)="collapseHorizontalSidebar()"
-          >
-            <mat-icon *ngIf="horizontalSideBar === ''" style="font-size: 30px"
-              >expand_more</mat-icon
-            >
-            <mat-icon *ngIf="horizontalSideBar !== ''" style="font-size: 30px"
-              >expand_less</mat-icon
-            >
+          <button *ngIf="layoutOrientation === 'horizontal' && mobile" type="button"
+            class="btn btn-sm px-3 font-size-16 header-item waves-effect" (click)="collapseHorizontalSidebar()">
+            <mat-icon *ngIf="horizontalSideBar === ''" style="font-size: 30px">expand_more</mat-icon>
+            <mat-icon *ngIf="horizontalSideBar !== ''" style="font-size: 30px">expand_less</mat-icon>
           </button>
 
           <!-- App Search-->
@@ -65,29 +48,17 @@
 
         <div class="d-flex">
           <div class="dropdown d-inline-block d-lg-none ms-2">
-            <button
-              type="button"
-              class="btn header-item noti-icon waves-effect"
-              id="page-header-search-dropdown"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
+            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="mdi mdi-magnify"></i>
             </button>
-            <div
-              class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-              aria-labelledby="page-header-search-dropdown"
-            >
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+              aria-labelledby="page-header-search-dropdown">
               <form class="p-3">
                 <div class="form-group m-0">
                   <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Search ..."
-                      aria-label="Recipient's username"
-                    />
+                    <input type="text" class="form-control" placeholder="Search ..."
+                      aria-label="Recipient's username" />
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="submit">
                         <i class="mdi mdi-magnify"></i>
@@ -100,32 +71,20 @@
           </div>
 
           <div class="dropdown d-none d-lg-inline-block ms-1">
-            <button
-              type="button"
-              class="btn header-item noti-icon waves-effect"
-              data-bs-toggle="fullscreen"
-            >
+            <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
               <i class="bx bx-fullscreen"></i>
             </button>
           </div>
 
           <div class="button-options center-text width-auto mr-3">
-            <mat-icon
-              class="screen"
-              *ngIf="!isFullScreen"
-              (click)="openFullscreen()"
-              >fullscreen</mat-icon
-            >
-            <mat-icon
-              class="screen"
-              *ngIf="isFullScreen"
-              (click)="closeFullscreen()"
-              >fullscreen_exit</mat-icon
-            >
+            <mat-icon class="screen" *ngIf="!isFullScreen" (click)="openFullscreen()">fullscreen</mat-icon>
+            <mat-icon class="screen" *ngIf="isFullScreen" (click)="closeFullscreen()">fullscreen_exit</mat-icon>
           </div>
 
           <div class="button-options center-text width-auto">
             <mat-icon aria-hidden="false" routerLink="../chat">chat</mat-icon>
+            <span class="new-message-notification"
+              *ngIf="newMessageNotification && newMessageNotification.length">{{newMessageNotification.length}}</span>
           </div>
           <div class="dropdown d-flex">
             <!-- <button
@@ -140,14 +99,8 @@
               <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
             </button> -->
             <!-- <mat-icon class="person-account">account_circle</mat-icon> -->
-            <button
-              *ngIf="items"
-              ejs-dropdownbutton
-              class="background-none"
-              [items]="items"
-              content="{{ username }}"
-              (select)="profileIconSelectEvent($event)"
-            ></button>
+            <button *ngIf="items" ejs-dropdownbutton class="background-none" [items]="items" content="{{ username }}"
+              (select)="profileIconSelectEvent($event)"></button>
           </div>
         </div>
       </div>
@@ -162,100 +115,67 @@
           </div>
           <div class="simplebar-mask">
             <div class="simplebar-offset" style="right: 0px; bottom: 0px">
-              <div
-                class="simplebar-content-wrapper"
-                style="height: 100%; overflow: hidden"
-              >
+              <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden">
                 <div class="simplebar-content" style="padding: 0px">
                   <div id="sidebar-menu" class="mm-active">
-                    <ul
-                      class="metismenu list-unstyled mm-show"
-                      id="side-menu"
-                      *ngFor="let item of menu; let i = index"
-                    >
+                    <ul class="metismenu list-unstyled mm-show" id="side-menu" *ngFor="let item of menu; let i = index">
                       <li class="menu-title" key="t-menu">
                         {{
-                          language[item.title]
-                            ? language[item.title]
-                            : item.title
+                        language[item.title]
+                        ? language[item.title]
+                        : item.title
                         }}
                       </li>
 
                       <li *ngFor="let parent of item.menu; let j = index">
-                        <a
-                          *ngIf="!parent.children"
-                          routerLink="{{ parent.link }}"
-                          (click)="clickParentActiveNode(i, j)"
-                          class="waves-effect {{ activeParentNode[i][j] }}"
-                        >
+                        <a *ngIf="!parent.children" routerLink="{{ parent.link }}" (click)="clickParentActiveNode(i, j)"
+                          class="waves-effect {{ activeParentNode[i][j] }}">
                           <div class="center-text">
                             <mat-icon aria-hidden="false">{{
                               parent.icon
-                            }}</mat-icon>
+                              }}</mat-icon>
                             <span key="t-dashboards">{{
                               language[parent.title]
-                                ? language[parent.title]
-                                : parent.title
-                            }}</span>
+                              ? language[parent.title]
+                              : parent.title
+                              }}</span>
                           </div>
                         </a>
-                        <a
-                          *ngIf="parent.children"
-                          (click)="
+                        <a *ngIf="parent.children" (click)="
                             collapseMenu(i, j); clickParentActiveNode(i, j)
-                          "
-                          class="waves-effect {{ activeParentNode[i][j] }}"
-                          ><div class="center-text">
+                          " class="waves-effect {{ activeParentNode[i][j] }}">
+                          <div class="center-text">
                             <mat-icon aria-hidden="false">{{
                               parent.icon
-                            }}</mat-icon>
+                              }}</mat-icon>
                             <span key="t-dashboards">{{
                               language[parent.title]
-                                ? language[parent.title]
-                                : parent.title
-                            }}</span>
+                              ? language[parent.title]
+                              : parent.title
+                              }}</span>
                           </div>
-                          <mat-icon
-                            class="expand-icon"
-                            *ngIf="
+                          <mat-icon class="expand-icon" *ngIf="
                               parent.children &&
                               collapseMenuItems[i][j] !== '' &&
                               sidebarClass === ''
-                            "
-                            >expand_less</mat-icon
-                          >
-                          <mat-icon
-                            class="expand-icon"
-                            *ngIf="
+                            ">expand_less</mat-icon>
+                          <mat-icon class="expand-icon" *ngIf="
                               parent.children &&
                               collapseMenuItems[i][j] === '' &&
                               sidebarClass === ''
-                            "
-                            >expand_more</mat-icon
-                          >
+                            ">expand_more</mat-icon>
                         </a>
-                        <ul
-                          *ngIf="parent.children"
-                          class="sub-menu mm-collapse {{
+                        <ul *ngIf="parent.children" class="sub-menu mm-collapse {{
                             collapseMenuItems[i][j]
-                          }}"
-                          aria-expanded="false"
-                        >
-                          <li
-                            class="mm-{{ activeChildrenNode[i][j][k] }}"
-                            *ngFor="let child of parent.children; let k = index"
-                          >
-                            <a
-                              routerLink="{{ child.link }}"
-                              (click)="clickActiveChildrenNode(i, j, k)"
-                              key="t-default"
-                              class="{{ activeChildrenNode[i][j][k] }}"
-                              >{{
-                                language[child.title]
-                                  ? language[child.title]
-                                  : child.title
-                              }}</a
-                            >
+                          }}" aria-expanded="false">
+                          <li class="mm-{{ activeChildrenNode[i][j][k] }}"
+                            *ngFor="let child of parent.children; let k = index">
+                            <a routerLink="{{ child.link }}" (click)="clickActiveChildrenNode(i, j, k)" key="t-default"
+                              class="{{ activeChildrenNode[i][j][k] }}">{{
+                              language[child.title]
+                              ? language[child.title]
+                              : child.title
+                              }}</a>
                           </li>
                         </ul>
                       </li>
@@ -266,27 +186,15 @@
             </div>
           </div>
         </div>
-        <div
-          class="simplebar-track simplebar-horizontal"
-          style="visibility: hidden"
-        >
-          <div
-            class="simplebar-scrollbar"
-            style="transform: translate3d(0px, 0px, 0px); display: none"
-          ></div>
+        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden">
+          <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none"></div>
         </div>
-        <div
-          class="simplebar-track simplebar-vertical"
-          style="visibility: hidden"
-        >
-          <div
-            class="simplebar-scrollbar"
-            style="
+        <div class="simplebar-track simplebar-vertical" style="visibility: hidden">
+          <div class="simplebar-scrollbar" style="
               height: 272px;
               transform: translate3d(0px, 0px, 0px);
               display: none;
-            "
-          ></div>
+            "></div>
         </div>
       </div>
     </div>
@@ -297,108 +205,70 @@
     <div *ngIf="layoutOrientation !== 'vertical'" class="topnav">
       <div class="container-fluid">
         <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
-          <div
-            class="navbar-collapse active collapse {{ horizontalSideBar }}"
-            id="topnav-menu-content"
-          >
+          <div class="navbar-collapse active collapse {{ horizontalSideBar }}" id="topnav-menu-content">
             <ul class="metismenu navbar-nav active">
-              <li
-                class="nav-item dropdown"
-                *ngFor="let item of menu; let i = index"
-              >
-                <a
-                  class="nav-link dropdown-toggle arrow-none"
-                  id="topnav-dashboard"
-                  role="button"
-                >
-                  <i class="bx bx-home-circle me-2"></i
-                  ><span key="t-dashboards"
-                    ><div class="center-text">
+              <li class="nav-item dropdown" *ngFor="let item of menu; let i = index">
+                <a class="nav-link dropdown-toggle arrow-none" id="topnav-dashboard" role="button">
+                  <i class="bx bx-home-circle me-2"></i><span key="t-dashboards">
+                    <div class="center-text">
                       <mat-icon aria-hidden="false">{{ item.icon }}</mat-icon>
                       <span key="t-dashboards">{{
                         language[item.title] ? language[item.title] : item.title
-                      }}</span>
-                    </div></span
-                  >
+                        }}</span>
+                    </div>
+                  </span>
                 </a>
-                <div
-                  class="dropdown-menu {{ dropDownNavigationMenu[i] }} {{
+                <div class="dropdown-menu {{ dropDownNavigationMenu[i] }} {{
                     activeGroupNode[i]
-                  }}"
-                  aria-labelledby="topnav-dashboard"
-                >
+                  }}" aria-labelledby="topnav-dashboard">
                   <div *ngFor="let parent of item.menu; let j = index">
-                    <a
-                      *ngIf="!parent.children"
-                      routerLink="{{ parent.link }}"
-                      (click)="clickParentActiveNode(i, j)"
-                      class="dropdown-item {{ activeParentNode[i][j] }}"
-                      id="topnav-email"
-                      ><div class="center-text">
+                    <a *ngIf="!parent.children" routerLink="{{ parent.link }}" (click)="clickParentActiveNode(i, j)"
+                      class="dropdown-item {{ activeParentNode[i][j] }}" id="topnav-email">
+                      <div class="center-text">
                         <mat-icon aria-hidden="false">{{
                           parent.icon
-                        }}</mat-icon>
+                          }}</mat-icon>
                         <span key="t-dashboards">{{
                           language[parent.title]
-                            ? language[parent.title]
-                            : parent.title
-                        }}</span>
-                      </div></a
-                    >
-                    <a
-                      *ngIf="parent.children"
-                      (click)="collapseMenu(i, j); clickParentActiveNode(i, j)"
-                      class="dropdown-item {{ activeParentNode[i][j] }}"
-                      ><div class="center-text">
-                        <mat-icon aria-hidden="false">{{
-                          parent.icon
-                        }}</mat-icon>
-                        <span key="t-dashboards">{{
-                          language[parent.title]
-                            ? language[parent.title]
-                            : parent.title
-                        }}</span>
+                          ? language[parent.title]
+                          : parent.title
+                          }}</span>
                       </div>
-                      <mat-icon
-                        class="expand-icon"
-                        *ngIf="
+                    </a>
+                    <a *ngIf="parent.children" (click)="collapseMenu(i, j); clickParentActiveNode(i, j)"
+                      class="dropdown-item {{ activeParentNode[i][j] }}">
+                      <div class="center-text">
+                        <mat-icon aria-hidden="false">{{
+                          parent.icon
+                          }}</mat-icon>
+                        <span key="t-dashboards">{{
+                          language[parent.title]
+                          ? language[parent.title]
+                          : parent.title
+                          }}</span>
+                      </div>
+                      <mat-icon class="expand-icon" *ngIf="
                           parent.children &&
                           collapseMenuItems[i][j] !== '' &&
                           sidebarClass === ''
-                        "
-                        >expand_less</mat-icon
-                      >
-                      <mat-icon
-                        class="expand-icon"
-                        *ngIf="
+                        ">expand_less</mat-icon>
+                      <mat-icon class="expand-icon" *ngIf="
                           parent.children &&
                           collapseMenuItems[i][j] === '' &&
                           sidebarClass === ''
-                        "
-                        >expand_more</mat-icon
-                      >
+                        ">expand_more</mat-icon>
                     </a>
 
-                    <div
-                      class="sub-menu mm-collapse {{ collapseMenuItems[i][j] }}"
-                    >
-                      <div
-                        class="dropdown-item mm-{{
+                    <div class="sub-menu mm-collapse {{ collapseMenuItems[i][j] }}">
+                      <div class="dropdown-item mm-{{
                           activeChildrenNode[i][j][k]
-                        }}"
-                        *ngFor="let child of parent.children; let k = index"
-                        (click)="clickActiveChildrenNode(i, j, k)"
-                        routerLink="{{ child.link }}"
-                      >
-                        <a
-                          key="t-default"
-                          class="{{ activeChildrenNode[i][j][k] }}"
-                          >{{
-                            language[child.title]
-                              ? language[child.title]
-                              : child.title
-                          }}</a
-                        >
+                        }}" *ngFor="let child of parent.children; let k = index"
+                        (click)="clickActiveChildrenNode(i, j, k)" routerLink="{{ child.link }}">
+                        <a key="t-default" class="{{ activeChildrenNode[i][j][k] }}">{{
+                          language[child.title]
+                          ? language[child.title]
+                          : child.title
+                          }}</a>
                       </div>
                     </div>
                   </div>

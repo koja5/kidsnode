@@ -1,9 +1,9 @@
 <div id="frame">
   <div id="sidepanel">
-    <div id="profile">
+    <!-- <div id="profile">
       <div class="wrap">
         <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-        <p>Mike Ross</p>
+        <p>{{helpService.getUserFirstname()}} {{helpService.getUserLastname()}}</p>
         <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
         <div id="status-options">
           <ul>
@@ -34,35 +34,65 @@
           <input name="twitter" type="text" value="mike.ross" />
         </div>
       </div>
-    </div>
+    </div> -->
     <div id="search">
       <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-      <input type="text" placeholder="Search contacts..." [(ngModel)]="search" (input)="search(searchTerm)" />
+      <input type="text" placeholder="Search contacts..." [(ngModel)]="searchTerm" />
     </div>
     <div id="contacts" *ngIf="users">
       <ul class="contacts-ul">
-        <li *ngFor="let item of users" class="contact {{item.id === receiveUser ? 'active' : ''}}" >
-          <div class="wrap" (click)="selectUser(item.id)">
-            <span class="contact-status away"></span>
-            <img src="http://emilcarlsson.se/assets/rachelzane.png" alt="" />
+        <li class="contact {{kindergardenId === receiveUser?.id ? 'active' : ''}}" (click)="selectKindergarden()">
+          <div class="wrap">
+            <img src="../../../../assets/icons/public.png" alt="" />
             <div class="meta">
-              <p class="name">{{item.firstname}} {{item.lastname}}</p>
-              <p class="preview">
-                I was thinking that we could have chicken tonight, sounds good?
-              </p>
+              <p *ngIf="newMessageNotification && newMessageNotification[kindergardenId] && !receiveUser"
+                class="new_message">
+                new</p>
+              <p class="name mb-0">Public</p>
+            </div>
+          </div>
+        </li>
+        <li class="contact" (click)="selectKindergarden()">
+          <div class="wrap">
+            <img src="../../../../assets/icons/group.png" alt="" />
+            <div class="meta">
+              <!-- <p *ngIf="newMessageNotification && newMessageNotification[item.id] && !receiveUser" class="new_message">
+                new</p> -->
+              <p class="name mb-0">My group</p>
+            </div>
+          </div>
+        </li>
+        <hr class="m-0">
+        <p class="text-center contacts-title mt-2">Contacts</p>
+        <li *ngFor="let item of users | searchInput: searchTerm"
+          class="contact {{item.id === receiveUser?.id ? 'active' : ''}}" (click)="selectUser(item)">
+          <div class="wrap">
+            <!-- <span class="contact-status away"></span> -->
+            <img src="../../../../assets/icons/profile_pic.png" alt="" />
+            <div class="meta">
+              <p *ngIf="newMessageNotification && newMessageNotification[item.id] && !receiveUser" class="new_message">
+                new</p>
+              <p class="name mb-0">{{item.firstname}} {{item.lastname}} </p>
+              <!-- <p *ngIf="newMessageNotification && newMessageNotification[item.id]" class="preview">
+                {{newMessageNotification[item.id]}}
+              </p> -->
             </div>
           </div>
         </li>
       </ul>
     </div>
     <div id="bottom-bar">
-      <button id="addcontact">
+      <!-- <button id="addcontact">
         <i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>
         <span>Add contact</span>
       </button>
       <button id="settings">
         <i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span>
-      </button>
+      </button> -->
+      <div class="chat-copyright  d-none d-md-block">
+        <p class="title">KidsNode Chat</p>
+        <p class="text">Powered by <a href="www.kidsnode.com" target="_blank">kidsnode.com</a></p>
+      </div>
     </div>
   </div>
   <div class="content">
@@ -81,26 +111,56 @@
       </div>
       <div class="col-xs-6 col-sm-6">
         <div class="float-right">
-          <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-          <p class="d-none d-sm-block">Harvey Specter</p>
+          <!-- <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /> -->
+          <p class="d-none d-sm-block">{{helpService.getUserFirstname()}} {{helpService.getUserLastname()}}</p>
         </div>
       </div>
     </div>
-    <div class="messages" *ngIf="messages">
-      <ul>
-        <li *ngFor="let item of messages" class="{{item && item.sender_id !== helpService.getUserId() ? 'sent' : 'replies'}}">
-          <img src="http://emilcarlsson.se/assets/donnapaulsen.png" alt="" />
-          <p>{{item.message}}</p>
-        </li>
-      </ul>
+    <div *ngIf="!receiveUser||loader" class="outer">
+      <div class="middle">
+        <div class="inner">
+          <div *ngIf="loader">
+            <app-loader></app-loader>
+          </div>
+          <div *ngIf="!loader">
+            <img class="chat-icon" src="../../../../assets/icons/chat.png">
+            <div class="chat-text">KidsNode Chat</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="message-input">
-      <div class="wrap">
-        <textarea type="text" placeholder="Write your message..." [(ngModel)]="message"></textarea>
-        <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-        <button class="submit" (click)="sendMessage()">
-          <i class="fa fa-paper-plane" aria-hidden="true"></i>
-        </button>
+    <div *ngIf="receiveUser&&!loader">
+      <div id="messages" class="messages" *ngIf="messages&&messages.length">
+        <ul>
+          <li *ngFor="let item of messages"
+            class="{{item && item.sender_id !== helpService.getUserId() ? 'sent' : 'replies'}}">
+            <!-- <img src="http://emilcarlsson.se/assets/donnapaulsen.png" alt="" />
+            <p class="chat-name" *ngIf="item.sender_id === helpService.getUserId()">{{helpService.getUserFirstname()}}</p>
+            <p class="chat-name" *ngIf="item.received_id === helpService.getUserId()">{{receiveUser.firstname}}</p> -->
+            <p class="item-message">{{item.message}}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="outer postbox-empty" *ngIf="!messages || messages.length === 0">
+        <div class="middle">
+          <div class="inner">
+            <div>
+              <img class="chat-icon" src="../../../../assets/icons/postbox.png">
+              <h4>Your postbox is empty</h4>
+              <h5>Start correspondence.</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="message-input">
+        <div class="wrap">
+          <textarea type="text" placeholder="Write your message..." [(ngModel)]="message"
+            (keyup.enter)="sendMessage()"></textarea>
+          <!-- <i class="fa fa-paperclip attachment" aria-hidden="true"></i> -->
+          <button class="submit" (click)="sendMessage()">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>

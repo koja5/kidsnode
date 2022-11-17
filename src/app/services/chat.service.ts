@@ -29,9 +29,7 @@ export class ChatService {
   }
 
   checkWhenNewClientLogged() {
-    this.socket.on('joined', (data: any) => {
-      
-    });
+    this.socket.on('joined', (data: any) => {});
   }
 
   sendMessage(data: any) {
@@ -45,7 +43,29 @@ export class ChatService {
     });
   }
 
+  getNewMessageNotification(newMessages: any[]) {
+    this.socket.on('new_message_notification', (data: any) => {
+      newMessages[data.sender_id] = data.message;
+      this.helpService.setSessionStorage('new_unread_message', newMessages);
+    });
+  }
+
+  getNumberOfNewMessageNotification(newMessages: any[]) {
+    this.socket.on('new_message_notification', (data: any) => {
+      newMessages.push(data.sender_id);
+      this.helpService.setSessionStorage('new_unread_message', newMessages);
+    });
+  }
+
   getSequenceNumber() {
     this.socket.on('seq-num', (msg) => console.log(msg));
+  }
+
+  addMessage(data: any) {
+    return this.callApi.callPostMethod('/api/mongo/addMessage', data);
+  }
+
+  getMessages(id: string) {
+    return this.callApi.callGetMethod('/api/mongo/getMessagesForUser', id);
   }
 }

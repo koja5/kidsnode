@@ -10,6 +10,7 @@ const mailServer = require("./server/mail_server/mail-server");
 const schedule = require("node-schedule");
 const cookieParser = require("cookie-parser");
 const chat = require("./server/chat");
+const mongo = require('./server/mongo');
 
 //AUTOMATE SCRIPTS
 const createChildrenInvoice = require("./server/automate_scripts/create_children_invoice");
@@ -45,6 +46,7 @@ app.use("/api", api);
 app.use("/api/upload", upload);
 app.use("/api/control-panel", controlPanel);
 app.use("/api/mail-server", mailServer);
+app.use("/api/mongo", mongo);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "src/index.html"));

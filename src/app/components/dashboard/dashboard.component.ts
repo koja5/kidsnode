@@ -121,6 +121,7 @@ export class DashboardComponent implements OnInit {
   public elem: any;
   public isFullScreen = false;
   private socket: any;
+  public newMessageNotification: any = [];
 
   constructor(
     private helpService: HelpService,
@@ -147,6 +148,9 @@ export class DashboardComponent implements OnInit {
       alert('Message + ' + data.message + ' from ' + data.sender_id);
     });
     this.chatService.checkWhenNewClientLogged();
+    this.chatService.getNumberOfNewMessageNotification(
+      this.newMessageNotification
+    );
   }
 
   checkInitialLayoutSettings() {
@@ -399,6 +403,4 @@ export class DashboardComponent implements OnInit {
   }
 
   //socket
-
-  
 }

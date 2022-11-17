@@ -544,13 +544,13 @@ body {
 
       label {
         position: absolute;
-        margin: 10px 0 0 20px;
+        margin: 18px 0 0 20px;
       }
 
       input {
         font-family: "proxima-nova", "Source Sans Pro", sans-serif;
-        padding: 10px 0 10px 46px;
-        width: calc(100% - 25px);
+        padding: 15px 0 15px 46px;
+        width: calc(100%);
         border: none;
         background: $lighter;
         color: $white;
@@ -576,7 +576,7 @@ body {
     }
 
     #contacts {
-      height: calc(100% - 177px);
+      height: calc(100% - 232px);
       overflow-y: scroll;
       overflow-x: hidden;
       @media screen and (max-width: $break) {
@@ -657,7 +657,7 @@ body {
             }
 
             img {
-              width: 40px;
+              width: 33px;
               border-radius: 50%;
               float: left;
               margin-right: 10px;
@@ -869,7 +869,7 @@ body {
           p {
             display: inline-block;
             padding: 10px 15px;
-            border-radius: 20px;
+            border-radius: 5px;
             max-width: 205px;
             line-height: 130%;
             @media screen and (min-width: $break) {
@@ -909,15 +909,15 @@ body {
             outline: none;
           }
         }
-		
-		textarea {
+
+        textarea {
           font-family: "proxima-nova", "Source Sans Pro", sans-serif;
           float: left;
           border: none;
           width: calc(100% - 50px);
           padding: 11px 32px 10px 8px;
           font-size: 0.8em;
-		  height: 52px;
+          height: 52px;
           color: $lighter;
           @media screen and (max-width: $break) {
             padding: 15px 32px 16px 8px;
@@ -976,4 +976,61 @@ body {
   .col-xs-6 {
     width: 50% !important;
   }
+}
+
+.chat-text {
+  font-size: 26px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.chat-icon {
+  width: 100px;
+}
+
+.new_message {
+  float: right;
+  border: 1px solid green;
+  background: green;
+  border-radius: 22px;
+  width: 53px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.chat-copyright {
+  text-align: center;
+  color: #697a8b;
+}
+
+.chat-copyright .title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.chat-copyright .text {
+  font-size: 11px;
+}
+
+.item-message {
+  white-space: pre-line;
+}
+
+.postbox-empty {
+  position: absolute !important;
+  height: 88% !important;
+  margin-top: 61px;
+}
+
+.chat-name {
+  margin-top: -40px;
+  background: none;
+  font-weight: bold;
+}
+
+.contacts-title {
+  font-size: 12px;
+  color: #697a8b;
+  font-weight: bold;
 }

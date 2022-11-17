@@ -18,6 +18,7 @@ import { OnlineStatusComponent } from './components/common/online-status/online-
 import { HomeComponent } from './components/home/home/home.component';
 import { RouterModule } from '@angular/router';
 import { LoaderBrandComponent } from './components/common/loader-brand/loader-brand.component';
+import { SharingModule } from './sharing.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LoaderBrandComponent } from './components/common/loader-brand/loader-br
     FontAwesomeModule,
     HttpClientModule,
     LoginModule,
+    SharingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

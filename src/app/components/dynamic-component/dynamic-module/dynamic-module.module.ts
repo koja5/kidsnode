@@ -50,6 +50,7 @@ import { DynamicControlPanelModule } from '../dynamic-control-panel/dynamic-cont
 import { DynamicBreadcrumbComponent } from '../common/dynamic-breadcrumb/dynamic-breadcrumb.component';
 import { DynamicInvoiceComponent } from '../dynamic-invoice/dynamic-invoice.component';
 import { DynamicLabelListComponent } from '../dynamic-label-list/dynamic-label-list.component';
+import { SharingModule } from 'src/app/sharing.module';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,6 @@ import { DynamicLabelListComponent } from '../dynamic-label-list/dynamic-label-l
     DynamicFormsComponent,
     DynamicTabsComponent,
     DynamicActionButtonComponent,
-    LoaderComponent,
     DialogModalComponent,
     ToastrComponent,
     DynamicSchedulerComponent,
@@ -72,7 +72,6 @@ import { DynamicLabelListComponent } from '../dynamic-label-list/dynamic-label-l
     DynamicFormsComponent,
     DynamicTabsComponent,
     DynamicActionButtonComponent,
-    LoaderComponent,
     DialogModalComponent,
     ToastrComponent,
     DynamicSchedulerComponent,
@@ -98,6 +97,7 @@ import { DynamicLabelListComponent } from '../dynamic-label-list/dynamic-label-l
     UploaderModule,
     DialogAllModule,
     DynamicControlPanelModule,
+    SharingModule
   ],
   providers: [
     EditService,

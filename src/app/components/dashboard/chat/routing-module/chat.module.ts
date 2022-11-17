@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ChatService } from 'src/app/services/chat.service';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { SharingModule } from 'src/app/sharing.module';
 
 @NgModule({
   declarations: [ChatComponent],
@@ -15,7 +16,8 @@ import { BrowserModule } from '@angular/platform-browser';
     CommonModule,
     ChatRouting,
     FormsModule,
-    RouterModule
+    RouterModule,
+    SharingModule
   ],
   providers: [ChatService],
 })
